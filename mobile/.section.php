@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Группа";
+$arDirProperties = Array(
+
+);
+?>

@@ -1,0 +1,847 @@
+@media screen and (max-device-width: 640px){
+    .chat{
+        display: none;
+    }
+    
+    .gallery_comments{
+        margin-left: 20px;
+        background: none !important;
+    }
+    
+    a.likes{
+        width: 34px !important;
+        height: 31px !important;
+    }
+    
+    .slimScrollDiv{
+        width: 100% !important;
+    }
+    
+    .likes-wrap{
+        width: 78px !important;
+    }
+    
+    .gallery_comm_item_text{
+        font-size: 20px !important;
+    }
+    
+    .gallery_comm_item_name{
+        font-size: 20px !important;
+    }
+    
+    .detail_picture_view{
+        top:50%;
+        width: 100%;
+    }
+    
+    .popup_detail_picture_wrapper img{
+        max-width: 100% !important;
+    }
+    
+    .gallery{
+        width: 100% !important;
+    }
+    
+    .gallery_leftcol{
+        float: none !important;
+    }
+    .gallery_rightcol{
+        width: 100% !important;
+        float: none !important;
+        margin-top: 0px !important;
+    }
+    
+    .gallery_leftcol{
+        width: 100% !important;
+        height: 220px;
+    }
+    .gallery_open{
+        display: none;
+    }
+    
+    .gallery_arrow_up{
+        display: none;
+    }
+    
+    .gallery_arrow_down{
+        display: none;
+    }
+    
+    .gallery_rightcol_sk{
+        width: 100% !important;
+    }
+    
+    .gallery_preview_cont_cont{
+        height: 190px !important;
+        width: auto !important;
+    }
+    
+    .slimScrollDiv{
+        height: auto !important;
+    }
+    
+    #gallery_photo{
+        width: 100% !important;
+        max-width: none !important;
+		max-height: none !important;
+    }
+    
+    .gallery_rightcol_sk{
+        margin-left: 0px !important;
+    }
+    
+}
+
+.detail_page { 
+	width: 100%;
+	height: 1200px;
+	background: url(../images/f1.jpg) no-repeat;
+	background-size: 100%;
+	position: relative;
+}
+
+.detail_page_content {
+	width: 700px;
+	float: right;
+	margin-right: 20px;
+	background: url(../images/grey_90.png);
+	font-size: 14px;
+	font-family: GothamProRegular;
+	line-height: 24px;
+}
+.detail_page h1 { 
+	width: 350px;
+	margin-top: 70px;
+	margin-left: 300px;
+	font-family: GothamProBlack;
+	font-size: 35px;
+	line-height: 40px;
+	color: #021e43;
+	text-transform: uppercase; 
+}
+.detail_page h1:first-line { 
+	color: #16d7ff;
+}
+.detail_page p {
+	margin-top: 30px;
+	margin-right: 35px;
+	margin-left: 300px;
+}
+.detail_page p.snoska {
+	font-family: GothamProBlack;
+	width: 195px;
+	float: left;
+	margin-top: 40px;
+	margin-left: 20px;
+	padding-bottom: 15px;
+	border-bottom: 4px solid #16d7ff;
+}
+.detail_page b {
+	font-family: GothamProBold;
+}
+.detail_page img {
+	margin: 10px;
+}
+
+.detail_page nav {
+	position: absolute;
+	top: 0px; 
+	right: 40px;
+	font-size: 11px;
+	text-transform: uppercase; 
+}
+.detail_page nav a {
+	text-align: right;
+	margin-top:20px;
+	display: block;
+	line-height: 16px;
+	color: #898989;
+	text-decoration: none;
+}
+.detail_page nav a b{
+	display: none;
+	position: absolute;
+    margin-left: -110px;
+    width: 100px;
+}
+.detail_page nav a:hover b{
+	display: inline;
+}
+.detail_page nav a span {
+	width: 16px;
+	height: 16px;
+	margin-left: 10px;
+	float: right;
+	clear: both;
+}
+span.icon_close {
+	background: url(../images/detail_page_close.png) center center no-repeat;
+}
+span.icon_close:hover {
+	background: url(../images/detail_page_close_hover.png) center center no-repeat;
+}
+span.icon_next {
+	background: url(../images/detail_page_next.png) center center no-repeat;
+}
+span.icon_next:hover {
+	background: url(../images/detail_page_next_hover.png) center center no-repeat;
+}
+span.icon_prev {
+	background: url(../images/detail_page_prev.png) center center no-repeat;
+}
+span.icon_prev:hover {
+	background: url(../images/detail_page_prev_hover.png) center center no-repeat;
+}
+span.icon_fb {
+	background: url(../images/detail_page_fb.png) center center no-repeat;
+}
+span.icon_fb:hover {
+	background: url(../images/detail_page_fb_hover.png) center center no-repeat;
+}
+span.icon_vk {
+	background: url(../images/detail_page_vk.png) center center no-repeat;
+}
+span.icon_vk:hover {
+	background: url(../images/detail_page_vk_hover.png) center center no-repeat;
+}
+span.icon_gp {
+	background: url(../images/detail_page_gp.png) center center no-repeat;
+}
+span.icon_gp:hover {
+	background: url(../images/detail_page_gp_hover.png) center center no-repeat;
+}
+
+
+
+.enter_page { 
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.enter_page_leftcol { border: 0px solid white;
+	height: 100%;
+	width: 100%;
+	margin-right: 720px;
+	background: #ebebeb;
+	font-size: 14px;
+	color: #7d7d7d;
+	font-family: GothamProRegular;
+	line-height: 24px;
+	text-align: center;
+	border: 0px solid #ebebeb;
+}
+.enter_page_leftcol_cont{
+	width: 100%;
+}
+.enter_page_leftcol_lock_icon{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+.enter_page_leftcol a{ 
+	color: #ff4500;
+	text-decoration: none;
+}
+.enter_page_leftcol a:hover{ 
+	text-decoration: underline;
+}
+.enter_page_leftcol form { border: 0px solid black;
+	width: 100%;
+	margin-top: 20px;
+	position: relative;
+}
+.enter_page_input{ 
+	width: 338px;
+	height: 50px;
+	margin-bottom: 15px;
+	padding-left: 20px;
+	margin-left: 48px;
+	border: 2px solid #ffffff;
+	border-radius: 8px;
+	background: #ebebeb;
+	color: #7d7d7d;
+	font-family: GothamProBold;
+	font-size: 11px;
+	line-height: 25px;
+	text-transform: uppercase; 
+}
+input.enter_page_submit{ 
+	1position: absolute;
+	1top: 40px; 
+	1right: 0px;
+	float: right !important;
+	margin-top: 40px;
+	width: 48px;
+	height: 50px;
+	border: 0px;
+	background: none;
+}
+.enter_page_social {
+	text-transform: uppercase; 
+	font-size: 11px;
+	margin-top: 60px;
+}
+.enter_page_social  img{
+	margin: 10px 20px 0px 20px;
+}
+.enter_page_rights {
+	text-transform: uppercase; 
+	font-size: 11px;
+	line-height: 14px;
+	margin: 30px 0px 20px 0px;
+}
+
+
+.enter_page_rightcol {border: 0px solid red;
+	width: 720px;
+	height: 100%;
+	float: right;
+	overflow: hidden;
+}
+.enter_page_group_item { border:1px solid black;
+	height: 180px;
+	width: 720px;
+	position: relative;
+}
+.enter_page_group_item h1 { 
+	width: 700px;
+	margin-top: 20px;
+	margin-left: 30px;
+	font-family: GothamProBlack;
+	font-size: 37px;
+	line-height: 40px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.enter_page_group_item h1:first-line { 
+	color: #16d7ff;
+}
+.enter_page_members{border: 0px solid red;
+	position: absolute;
+	left: 30px;
+	bottom: 10px;
+	color: #ffffff;
+	font-size: 17px;
+	font-family: GothamProRegular;
+}
+.enter_page_members img{
+	float: left; 
+	margin-right: 10px;
+}
+.enter_page_group_lock{
+	text-align: center;
+	width: 100px;
+	position: absolute;
+	right: 70px;
+	top: 60px;
+	color: #ffffff;
+	font-size: 11px;
+	font-family: GothamProRegular;
+	text-transform: uppercase;
+}
+.enter_page_group_lock img{
+	margin-bottom: 10px;
+}
+
+
+
+.photo_list {
+
+}
+.photo_list_item {
+	border: 0px solid white;
+	width: 280px;
+	height: 300px;
+	margin: 0px 20px 20px 0px;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	font-size: 14px;
+	font-family: GothamProBold;
+	color: #ffffff;
+	text-transform: uppercase;
+	border-radius: 10px;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+}
+.photo_list_item:hover  .photo_list_user {
+	display: none;
+}
+.photo_list_item:hover  .photo_list_gradient {
+	display: none;
+}
+.photo_list_item:hover  .photo_list_date {
+	color: #ffffff;
+}
+
+.photo_list_gradient {
+	width: 280px;
+	height: 300px;
+	position: absolute;
+}
+.photo_list_user {
+	position: absolute;
+	width: 100%;
+	margin-top: 46px;
+	text-align: center;
+}
+.photo_list_avatar {
+	width: 80px;
+	height: 80px;
+	border-radius: 50px;
+	border: 2px solid #00d7ff;
+	margin: 0px auto 0px auto;
+	box-shadow: 4px 4px 6px rgba(0,0,0,0.5)
+}
+.photo_list_name {
+	margin-top: 10px;
+}
+.photo_list_header {
+	line-height: 21px;
+	margin: 25px auto 0px auto;
+}
+.photo_list_info{
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	right: -110px;
+
+}
+.photo_list_like {
+	float: left;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+	cursor: pointer;
+}
+
+.like_active {
+	background: url(../images/like_active.png);
+}
+
+.photo_list_like:hover {
+	background: url(../images/like_hover.png);
+}
+
+
+.photo_list_comments{
+	float: left;
+	height: 20px;
+	margin-left: 20px;
+	font-size: 11px;
+	font-family: GothamProRegular;
+	color: #8e8e8e;
+	line-height: 15px;
+	background: url(../images/comments.png) no-repeat left;
+	padding-left: 30px;
+	cursor: pointer;
+}
+.photo_list_comments:hover {
+	color: #ffffff;
+	background: url(../images/comments_hover.png) no-repeat left;
+}
+
+.photo_list_comments img{
+	float: left;
+	margin-right: 10px;
+}
+
+
+.photo_list_reblog{
+	float: left;
+	width: 17px;
+	height: 17px;
+	background: url(../images/reblog.png);
+	cursor: pointer;
+	margin-left: 20px;
+}
+.photo_list_reblog:hover {
+	background: url(../images/reblog_hover.png);
+}
+.photo_list_date{
+	float: left;
+	margin-left: 60px;
+	font-size: 11px;
+	font-family: GothamProRegular;
+	color: #8e8e8e;
+	text-transform: uppercase;
+	line-height: 16px;
+}
+
+
+.gallery{
+	width: 1100px;
+	/*margin-left: 70px;*/
+
+}
+.gallery h1{
+	font-family: GothamProBlack;
+	font-size: 39px;
+	line-height: 45px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.gallery_back{
+	float: left;
+	margin: 13px 15px 0px 0px;
+	width: 31px;
+	height: 21px;
+	background: url(../images/gallery_back.png);
+}
+.gallery_back:hover {
+	background: url(../images/gallery_back_hover.png);
+}
+.gallery_like{
+	float: right;
+	margin: 13px 15px 0px 0px;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+}
+.gallery_like:hover{
+	background: url(../images/like_hover.png);
+}
+.gallery_comments{
+	float: right;
+	/*margin: 13px 15px 0px 0px;*/
+	min-width: 25px;
+	height: 20px;
+	background: url(../images/comments.png) left no-repeat;
+	font-family: GothamProRegular;
+	font-size: 11px;
+	line-height: 15px;
+	color: #ffffff;
+	text-decoration: none;
+}
+.gallery_comments span{
+		display: none;
+		margin-left: 30px;
+}
+.gallery_comments:hover{
+	background: url(../images/comments_hover.png) left no-repeat;
+	text-decoration: none;
+}
+.gallery_comments:hover span{
+	display: inline;
+}
+.gallery_comments_active{
+	background: url(../images/comments_hover.png) left no-repeat !important;
+}
+.gallery_comments_active span{
+	display: inline !important;
+}
+.gallery_reblog{
+	float: right;
+	margin: 13px 15px 0px 0px;
+	width: 17px;
+	height: 17px;
+	background: url(../images/reblog.png);
+}
+.gallery_reblog:hover{
+	background: url(../images/reblog_hover.png);
+}
+.gallery_leftcol{
+	width: 300px;
+	float: left;
+	position: relative;
+}
+.gallery_text {
+	font-size: 14px;
+	line-height: 24px;
+	color: #ffffff;
+	font-family: GothamProRegular;
+}
+
+.gallery_preview {
+	/*position: absolute;*/
+	bottom: 0px;
+}
+.gallery_open {
+	width: 300px;
+	height: 70px;
+	background: url(../images/gallery_open.png);
+	cursor: pointer;
+}
+.gallery_preview_cont{/*Ѕлок который слайдеритьс€*/
+	background: #001022;
+
+}
+.gallery_preview_cont_cont{/*Ѕлок в котором скролитс€*/
+	position: relative;
+	overflow: hidden;
+	height: 370px;
+	padding-left:2px;
+}
+.gallery_preview_cont_cont_cont{/*Ѕлок который скролитс€*/
+	top: 0px;
+	position: absolute;
+	margin:10px 0;
+}
+.gallery_arrow_up {
+	display: none;
+	width: 300px;
+	height: 90px;
+	margin: 10px auto;
+	background: url(../images/gallery_arrow_up.png);
+	background-size: 300px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	position: relative;
+	z-index:1;
+	margin-bottom:-60px;
+}
+.gallery_arrow_down {
+	width: 300px;
+	height: 90px;
+	background: url(../images/gallery_arrow_down.png);
+	background-size: 300px;
+	background-repeat: no-repeat;
+	margin:10px auto;
+	cursor: pointer;
+	position: relative;
+	z-index:1;
+	/*position: absolute;
+	bottom: 0px*/
+}
+.gallery_preview a {
+	width: 80px;
+	height: 80px;
+	display:inline-block;
+	margin: 0px 16px 16px 0px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+	Vertical-align:top;
+}
+.gallery_preview a:hover {
+	border: 2px solid #00d7ff;
+	margin: -2px 14px 14px -2px;
+}
+
+.gallery_rightcol_sk{
+	width: 780px;
+	float: left;
+	padding:0 auto;
+	margin-left: 20px;
+	/*background: #000000;*/
+}
+.gallery_rightcol{
+	/*width: 780px;*/
+	float: left;
+	
+	/*background: #000000;*/
+}
+.gallery_photo_cont{border: 0px solid white;
+	position: relative;
+	overflow: hidden;
+}
+#gallery_photo{
+	border-radius: 10px;
+    width: auto;
+    max-width: 780px;
+    max-height: 800px;
+    margin: 0 auto;
+    display: block;	
+}
+.gallery_photo_gradient{border: 0px solid white;
+	top: 0px;
+	left: 0px; 
+	right: 0px;
+	height: 150px;
+	/*background: url(../images/photo_gradient.png);*/
+	position: absolute;
+}
+
+.gallery_comm {
+	width: 700px;
+	display: none;
+	margin: 30px 0px 20px 0px;
+}
+.gallery_comm_header {
+	font-family: GothamProRegular;
+	font-size: 12px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.gallery_comm_item {border: 0px solid white;
+	margin-top: 20px;
+}
+.gallery_comm_item_avatar {
+	width: 50px;
+	height: 50px;
+	float: left;
+	border-radius: 50px;
+	position: relative;
+	background-position: center center;
+}
+.gallery_comm_item_avatar div {
+	width: 10px;
+	height: 10px;
+	border-radius: 50px;
+	border: 5px solid #001022;
+	background: #ff0000;
+	position: absolute;
+	bottom: -5px;
+	right: -5px;
+}
+.gallery_comm_item_info {border: 0px solid white;
+	float: left;
+	margin-left: 15px;
+	margin-top: 10px;
+	/*width: 630px;*/
+}
+.gallery_comm_item_name {
+	font-family: GothamProBold;
+	font-size: 11px;
+	color: #8e8e8e;
+	text-transform: uppercase; 
+}
+.gallery_comm_item_roundarr {
+	margin: 0px 10px 0px 10px;
+}
+.gallery_comm_item_answer {
+	font-family: GothamProRegular;
+	font-size: 11px;
+	color: #898989;
+	text-transform: none; 
+}
+.gallery_comm_item_answer_name{
+	font-family: GothamProBold;
+	font-size: 11px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.gallery_comm_item_date {
+	float: right;
+	font-size: 11px;
+	color: #8e8e8e;
+}
+.gallery_comm_item_text {
+	float: left;
+	margin-top: 10px;
+	font-family: GothamProRegular;
+	font-size: 11px;
+	color: #ffffff;
+	line-height:12px;
+}
+
+.gallery_comm_form {
+	margin-top: 30px;
+}
+.gallery_comm_form  textarea{
+	width: 650px;
+	height: 50px;
+	border: 2px solid #8e8e8e;
+	border-radius: 10px;
+	color: #898989;
+	background: #0d1c2d;
+	font-family: GothamProBold;
+	font-size: 14px;
+	padding: 20px;
+}
+
+
+
+
+
+
+
+/*Обертка для соцкнопок*/
+.socwrap{
+	float: left;
+}
+
+/*Кнопка репоста*/
+.social-buttons{
+	/*cursor: pointer;*/
+	margin-left: 20px;
+	float: left;
+	background: url(../images/repost.png);
+	width: 16px;
+	height: 17px;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+/*Появления социконок при наведении*/
+
+.socwrap:hover .socblock{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	width: 120px;
+}
+
+/*Изменение цвета кнопки репоста*/
+.socwrap:hover .social-buttons{
+	background: url(../images/repost-red.png);	
+}
+
+/* Блок с тремя кнопками соцсетей*/
+.socblock{
+	overflow: hidden;
+	float: left;
+	width: 0px;
+	height: 18px;
+	-webkit-transform: scale(0);
+	-webkit-transition: 1s;
+	transform: scale(0);
+	transition: 1s;
+}
+
+
+/* Соц кнопки */
+.facebook{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 12px;
+	height: 18px;
+	background: url(../images/facbook-ico.png) no-repeat;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.vk{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 13px;
+	height: 18px;
+	background: url(../images/vk.png)  no-repeat;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.google{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: url(../images/google-ico.png)  no-repeat;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+
+/*Цвет соцкнопок*/
+.facebook:hover{
+	background: url(../images/facbook-ico-b.png)  no-repeat;
+}
+
+.vk:hover{
+	background: url(../images/vk-b.png)  no-repeat;	
+}
+
+.google:hover{
+	background: url(../images/google-ico-b.png)  no-repeat;
+}
+a.likes{
+	display:block;
+	cursor: pointer;
+	float: left;
+	margin-right: 30px;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+}
+a.likes:hover,a.likes.active {
+	background: url(../images/like_active.png);
+}

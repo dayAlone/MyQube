@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<meta name="format-detection" content="telephone=no">
+	<title>Главная</title>
+	<link href='https://fonts.googleapis.com/css?family=Exo+2:100,400,300,600,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<!-- begin l-container  -->
+	<div class="l-container">
+		<div class="b-menu">
+			<img src="img/menu.jpg" alt="Картинка меню">
+		</div>
+		<!-- begin l-content  -->
+		<div class="l-content">
+			<!-- begin b-authors  -->
+			<div class="l-section b-authors b-projects b-projects--end-vote" id="projects">
+				<div class="b-projects__end-vote">
+					<p>голосование <span>остановлено</span></p>
+				</div>
+				<div class="b-section__title b-section__title--big">спешите голосовать. <span>Осталось всего</span></div>
+				<div class="b-projects-timer"></div>
+				<div class="l-row l-row--authors">
+					<div class="l-row__col l-row__col-authors b-authors l-row__col_sw_4" data-vote="#vote1">
+						<div class="b-authors__title">«Форма и содержание»</div>
+						<div class="b-image">
+							<img src="img/project1n.jpg" alt="Фото проекта">
+							<span class="b-counter">123</span>
+						</div>
+						<p>Результатом тесного взаимодействия театрального перформанса и творчества уличных художников стала первая постановка в Екатеринбурге, где декорациями служат городские экстерьеры, а зрители становятся участниками творческого процесса создания уличных арт-объектов.</p>
+						<a href="#" title="Подробнее" class="b-authors__link">Узнать больше</a>
+					</div>
+					<div class="l-row__col l-row__col-authors b-authors l-row__col_sw_4" data-vote="#vote2">
+						<div class="b-authors__title">«Две энергии»</div>
+						<div class="b-image">
+							<img src="img/project2n.jpg" alt="Фото проекта">
+							<span class="b-counter">456</span>
+						</div>
+						<p>Творческий союз поэта и дизайнера — это синтез поэтических смыслов и дизайнерского мышления. Результат сотрудничества — это лимитированная коллекция свитшотов по мотивам поэтических строк, использованных в представлении.</p>
+						<a href="#" title="Подробнее" class="b-authors__link">Узнать больше</a>
+					</div>
+					<div class="l-row__col l-row__col-authors b-authors l-row__col_sw_4" data-vote="#vote3">
+						<div class="b-authors__title">«услышать и увидеть» </div>
+						<div class="b-image">
+							<img src="img/project3n.jpg" alt="Фото проекта">
+							<span class="b-counter">789</span>
+						</div>
+						<p>Классическая опера и современный танец соединились в уникальном, сложном, зрелищном и философском синтетическом действе – барочной опере. На стыке творчества и инноваций, при участии лучших представителей мира культуры и искусства Екатеринбурга.  </p>
+						<a href="#" title="Подробнее" class="b-authors__link">Узнать больше</a>
+					</div>
+				</div>
+
+				<form class="l-row l-row--authors b-voting">
+					<div class="l-row__col l-row__col-authors l-row__col_sw_4 b-voting-block" id="vote1">
+						<input type="radio" name="voteproject" id="voteproject1">
+						<label for="voteproject1"><span></span><i>«Форма и содержание»</i></label>
+					</div>
+					<div class="l-row__col l-row__col-authors l-row__col_sw_4 b-voting-block" id="vote2">
+						<input type="radio" name="voteproject" id="voteproject2">
+						<label for="voteproject2"><span></span><i>«Две энергии»</i></label>
+					</div>
+					<div class="l-row__col l-row__col-authors l-row__col_sw_4 b-voting-block" id="vote3">
+						<input type="radio" name="voteproject" id="voteproject3">
+						<label for="voteproject3"><span></span><i>«Услышать и увидеть»</i></label>
+					</div>
+					<div class="text-center">
+						<button type="submit" class="b-voting__button">Оставить свой голос</button>
+					</div>
+				</form>
+			</div>
+			<!-- end b-authors -->	
+		</div>
+		<!-- end l-content -->
+		
+	</div>
+	<!-- end l-container -->
+	<script src="js/main.js"></script>
+	<script src="js/jquery.countdown.js"></script>
+	<script src="js/jquery.countdown-ru.js"></script>
+	<script>
+		var date = new Date(); 
+		date = new Date(date.getFullYear(), 11 - 1, 27 ,24-1 ,40-1); 
+		$('.b-projects-timer').countdown({until: date, format: 'DHM', padZeroes: true, timezone: +6}); 
+	</script>
+</body>
+</html>

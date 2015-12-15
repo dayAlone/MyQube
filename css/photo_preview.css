@@ -1,0 +1,245 @@
+
+.gallery{
+	width: 1200px;
+	margin-left: 70px;
+
+}
+.gallery h1{
+	font-family: GothamProBlack;
+	font-size: 39px;
+	line-height: 45px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.gallery_back{
+	float: left;
+	margin: 13px 15px 0px 0px;
+	width: 31px;
+	height: 21px;
+	background: url(../images/gallery_back.png);
+}
+.gallery_back:hover {
+	background: url(../images/gallery_back_hover.png);
+}
+.gallery_like{
+	float: right;
+	margin: 13px 15px 0px 0px;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+}
+.gallery_like:hover{
+	background: url(../images/like_hover.png);
+}
+.gallery_comments{
+	float: right;
+	margin: 13px 15px 0px 0px;
+	min-width: 25px;
+	height: 20px;
+	background: url(../images/comments.png) left no-repeat;
+	font-family: GothamProRegular;
+	font-size: 11px;
+	line-height: 15px;
+	color: #ffffff;
+	text-decoration: none;
+}
+.gallery_comments span{
+		display: none;
+		margin-left: 30px;
+}
+.gallery_comments:hover{
+	background: url(../images/comments_hover.png) left no-repeat;
+	text-decoration: none;
+}
+.gallery_comments:hover span{
+	display: inline;
+}
+.gallery_comments_active{
+	background: url(../images/comments_hover.png) left no-repeat !important;
+}
+.gallery_comments_active span{
+	display: inline !important;
+}
+.gallery_reblog{
+	float: right;
+	margin: 13px 15px 0px 0px;
+	width: 17px;
+	height: 17px;
+	background: url(../images/reblog.png);
+}
+.gallery_reblog:hover{
+	background: url(../images/reblog_hover.png);
+}
+.gallery_leftcol{
+	width: 300px;
+	float: left;
+	position: relative;
+}
+.gallery_text {
+	font-size: 14px;
+	line-height: 24px;
+	color: #ffffff;
+	font-family: GothamProRegular;
+}
+
+.gallery_preview {
+	position: absolute;
+	bottom: 0px;
+}
+.gallery_open {
+	width: 300px;
+	height: 70px;
+	background: url(../images/gallery_open.png);
+	cursor: pointer;
+}
+.gallery_preview_cont{/*Ѕлок который слайдеритьс¤*/
+	background: #001022;
+
+}
+.gallery_preview_cont_cont{/*Ѕлок в котором скролитс¤*/
+	position: relative;
+	overflow: hidden;
+	height: 370px;
+}
+.gallery_preview_cont_cont_cont{/*Ѕлок который скролитс¤*/
+	top: 0px;
+	position: absolute;
+}
+.gallery_arrow_up {
+	display: none;
+	width: 300px;
+	height: 20px;
+	margin-bottom: 10px;
+	background: url(../images/gallery_arrow_up.png);
+	cursor: pointer;
+}
+.gallery_arrow_down {
+	width: 300px;
+	height: 70px;
+	background: url(../images/gallery_arrow_down.png);
+	cursor: pointer;
+	position: absolute;
+	bottom: 0px
+}
+.gallery_preview a {
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin: 0px 20px 20px 0px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.7)
+}
+.gallery_preview a:hover {
+	border: 2px solid #00d7ff;
+	margin: 0px 16px 16px 0px;
+}
+
+
+.gallery_rightcol{
+	width: 800px;
+	float: right;
+}
+.gallery_photo_cont{border: 0px solid white;
+	position: relative;
+	overflow: hidden;
+}
+#gallery_photo{
+	border-radius: 10px;
+	width: 800px;
+	
+}
+.gallery_photo_gradient{border: 0px solid white;
+	top: 0px;
+	left: 0px; 
+	right: 0px;
+	height: 150px;
+	background: url(../images/photo_gradient.png);
+	position: absolute;
+}
+
+.gallery_comm {
+	width: 700px;
+	display: none;
+	margin: 30px 0px 20px 0px;
+}
+.gallery_comm_header {
+	font-family: GothamProRegular;
+	font-size: 12px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.gallery_comm_item {border: 0px solid white;
+	margin-top: 20px;
+}
+.gallery_comm_item_avatar {
+	width: 50px;
+	height: 50px;
+	float: left;
+	border-radius: 50px;
+	position: relative;
+	background-position: center center;
+}
+.gallery_comm_item_avatar div {
+	width: 10px;
+	height: 10px;
+	border-radius: 50px;
+	border: 5px solid #001022;
+	background: #ff0000;
+	position: absolute;
+	bottom: -5px;
+	right: -5px;
+}
+.gallery_comm_item_info {border: 0px solid white;
+	float: left;
+	margin-left: 15px;
+	margin-top: 10px;
+	width: 630px;
+}
+.gallery_comm_item_name {
+	font-family: GothamProBold;
+	font-size: 14px;
+	color: #8e8e8e;
+	text-transform: uppercase; 
+}
+.gallery_comm_item_roundarr {
+	margin: 0px 10px 0px 10px;
+}
+.gallery_comm_item_answer {
+	font-family: GothamProRegular;
+	font-size: 11px;
+	color: #898989;
+	text-transform: none; 
+}
+.gallery_comm_item_answer_name{
+	font-family: GothamProBold;
+	font-size: 11px;
+	color: #ffffff;
+	text-transform: uppercase; 
+}
+.gallery_comm_item_date {
+	float: right;
+	font-size: 14px;
+	color: #8e8e8e;
+}
+.gallery_comm_item_text {
+	float: left;
+	margin-top: 10px;
+	font-family: GothamProRegular;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.gallery_comm_form {
+	margin-top: 30px;
+}
+.gallery_comm_form  textarea{
+	width: 650px;
+	height: 50px;
+	border: 2px solid #8e8e8e;
+	border-radius: 10px;
+	color: #898989;
+	background: #0d1c2d;
+	font-family: GothamProBold;
+	font-size: 14px;
+	padding: 20px;
+}

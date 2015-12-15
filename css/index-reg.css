@@ -1,0 +1,56 @@
+@media screen and (max-device-width: 640px){
+    .enter_page_leftcol_lock_icon{
+        display:none;
+    }
+    
+    .header-reg-mobile-up{
+        height: 100px;
+        width: 100%;
+        background: #ebebeb;
+        position: relative;
+    }
+    
+    .header-reg-mobile-up-left{
+        position: absolute;
+        top: 32px;
+        left: 15px;
+        height: 38px;
+        width: 22px;
+        background: url( ../mobile/images/left-mobile.png );
+    }
+    
+    .header-reg-mobile-down{
+        position: relative;
+        height: 145px;
+        width: 100%;
+        background: url( ../mobile/images/cityheader-mobile.jpg );
+        margin-bottom: 15px;    
+        background-size:100% auto ; 
+        background-position-y: -90px;   
+    }
+    
+    .header-reg-mobile-up-logo{       
+        margin: auto;
+        position: relative;
+        top: 20px;
+        width: 182px;
+        height: 64px;
+        background: url( ../mobile/images/myqube-mobile.png );
+    }
+    
+    .header-reg-mobile-down-text{
+        
+        font-family: "GothamProBold";
+        position: absolute;
+        left: 80px;
+        top: 35px;
+        width: 532px;
+        height: 114px;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 39px;
+        line-height: 1;
+    }
+
+    
+}

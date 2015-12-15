@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Группы", 
+		"/user/news/groups/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Друзья", 
+		"/user/news/friends/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Все", 
+		"/user/news/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

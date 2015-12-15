@@ -1,0 +1,828 @@
+@font-face { font-family: 'EuropeExt'; src: url('/nanotek/fonts/EuropeExtBold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'EuropeExt'; src: url('/nanotek/fonts/EuropeExtNormal.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Roboto'; src: url('/nanotek/fonts/Roboto-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+
+* {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+	-webkit-tap-highlight-color: transparent;
+}
+
+header.full_h {
+	background-image: url("/upload/iblock/d59/shapka_1_small.png") !important;
+	height: 90px !important;
+	top:0px;
+}
+header.full_h,
+nav#nav_1 {
+	position: fixed;
+	z-index: 2;
+}
+
+nav#nav_1 {
+	top: 90px;
+}
+#container{
+	margin:138px 0px 0px 0px !important;
+	background-image: none !important;
+}
+div.events {
+	display: none !important;
+}
+/*body {
+	background-color: #000000;
+	max-width: 1280px;
+	max-height: 775px;
+	width: 100%;
+	height: 100%;
+    overflow: hidden;
+}*/
+
+.preload {
+	position: absolute;
+	top: -1000px;
+	left: -1000px;
+	display: block;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	left: -100px;
+}
+
+#url-fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: block;
+	height: 67px;
+	width: 100%;
+	z-index: 1000;
+}
+
+#url-fixed > span {
+	display: block;
+	height: 33px;
+	width: 1222px;
+	margin: 13px;
+	padding: 4px 16px;
+	font-family: 'Roboto';
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 33px;
+	color: #ffffff;
+	background-color: #1b212c;
+	border-radius: 4px;
+}
+
+#url-fixed > span > img {
+	display: block;
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin: 6px 0 6px 6px;
+}
+
+#container {
+    z-index: 0;
+	display: block;
+    height: 580px;
+    width: 100%;
+    overflow: hidden;
+    background-image: url('/nanotek/img/background.jpg');
+    background-repeat: no-repeat;
+    background-position: top 67px left -180px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.page {
+    height: 580px;
+    width: 100%;
+    position: absolute;
+ 
+    left: 0;
+    text-align: center;
+    display: none;
+}
+
+.page-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 300;
+}
+
+.page.active {
+    display: block;
+}
+
+.normalized {
+	text-transform: none !important;
+}
+
+.hidden {
+	display: none;
+}
+
+.bold {
+	font-family: 'EuropeExt';
+	font-weight: 700;
+}
+
+.header {
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 38px;
+	line-height: 44px;
+	text-transform: uppercase;
+	display: block;
+	width: 100%;
+	height: 105px;
+	color: #ffffff;
+}
+
+.header > span.bold {
+	padding-top: 36px;
+}
+
+.header > span {
+	display: block;
+}
+
+.btn {
+	display: block;
+	width: 250px;
+	height: 56px;
+	background-image: url('/nanotek/img/button.border.png');
+	background-repeat: no-repeat;
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 56px;
+	padding-top: 5px;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.btn.active {
+	background-image: url('/nanotek/img/button.border.active.png');
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-mini {
+        padding-top: 3px;
+
+	width: 156px;
+	height: 38px;
+	background-image: url('/nanotek/img/button.border.mini.png');
+	line-height: 37px;
+}
+
+.btn-mini.active {
+	background-image: url('/nanotek/img/button.border.mini.active.png');
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.btn:active, .btn:hover, .btn:visited {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.home-btn {
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-image: url('/nanotek/img/round.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+    z-index: 400;
+}
+
+.home-btn-inner {
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-image: url('/nanotek/img/home.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.home-btn.active {
+	background-image: url('/nanotek/img/round.active.png');
+	opacity: 1;
+}
+
+.home-btn.active .home-btn-inner {
+	opacity: 0.6;
+}
+
+.next-btn {
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-image: url('/nanotek/img/round.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+    z-index: 400;
+}
+
+.next-btn-inner {
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-image: url('/nanotek/img/next.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.next-btn.active {
+	background-image: url('/nanotek/img/round.active.png');
+	opacity: 1;
+}
+
+.next-btn.active .home-btn-inner {
+	opacity: 0.6;
+}
+
+.prev-btn {
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-image: url('/nanotek/img/round.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+    z-index: 400;
+}
+
+.prev-btn-inner {
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-image: url('/nanotek/img/previous.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.prev-btn.active {
+	background-image: url('/nanotek/img/round.active.png');
+	opacity: 1;
+}
+
+.prev-btn.active .home-btn-inner {
+	opacity: 0.6;
+}
+
+/* ====== HOME ====== */
+
+#home .content-nano {
+	display: block;
+	width: 100%;
+	height: 490px;
+	position: relative;
+}
+
+#home .footer {
+	display: block;
+	width: 100%;
+	height: 98px;
+	position: relative;
+}
+
+#home #home-pack-1 {
+	width: 295px;
+	position: absolute;
+	top: -45px;
+	right: 50%;
+	margin-right: -133px;
+	z-index: 100;
+}
+
+#home #home-pack-1-shadow {
+	width: 271px;
+	position: absolute;
+	top: 20px;
+	right: 50%;
+	margin-right: -133px;
+	z-index: 100;
+}
+
+#home #home-pack-2 {
+	width: 308px;
+	position: absolute;
+	top: 23px;
+	left: 50%;
+	margin-left: -160px;
+	z-index: 99;
+}
+
+#home #home-pack-1-link {
+	position: absolute;
+	top: 0;
+	right: 50%;
+	margin-right: -125px;
+}
+
+#home #home-pack-2-link {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: 100px;
+}
+
+#home .sidelink {
+	position: absolute;
+	right: 340px;
+	display: block;
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 56px;
+	padding-top: 5px;
+	text-transform: uppercase;
+	color: #2ebdff;
+}
+
+#home .sidelink a, .sidelink a:hover, .sidelink a:active, .sidelink a:visited {
+	margin-left: 10px;
+	text-decoration: none;
+	color: #2ebdff;
+	border-bottom: 1px solid #2ebdff;
+}
+
+#home .sidelink a.active, .sidelink a.active:hover, .sidelink a.active:active, .sidelink a.active:visited {
+	color: #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+
+#home .home-btn {
+	position: absolute;
+	top: 36px;
+	left: -75px;
+}
+
+/* ====== INFO ====== */
+
+#nanotek-info .home-btn {
+	position: absolute;
+	top: 36px;
+	left: 36px;
+}
+
+#nanotek-info .next-btn {
+	position: absolute;
+	bottom: 36px;
+	right: 36px;
+}
+
+#nanotek-info .content-nano {
+	display: block;
+	width: 100%;
+	height: 588px;
+	position: relative;
+}
+
+#nanotek-info .info-pack {
+	display: block;
+	height: 560px;
+	width: 370px;
+	position: absolute;
+	left: 213px;
+	top: -6px;
+	background-repeat: no-repeat;
+	background-position: top left -10px;
+}
+
+#nanotek-info .info-pack a, #nanotek-info .info-pack a:active, #nanotek-info .info-pack a:hover, #nanotek-info .info-pack a:visited {
+	display: inline-block;
+	position: absolute;
+	left: 60px;
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 20px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #2ebdff;
+	border-bottom: 1px solid #2ebdff;
+}
+
+#nanotek-info .info-pack a.active, #nanotek-info .info-pack a.active:active, #nanotek-info .info-pack a.active:hover, #nanotek-info .info-pack a.active:visited {
+	color: #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+
+#nanotek-info .info-list {
+	display: block;
+	height: 588px;
+	width: 700px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#nanotek-info .info-list .info-list-item-wrapper {
+	display: block;
+	width: 100%;
+	height: 170px;
+}
+
+#nanotek-info .info-list .info-list-item-wrapper .info-list-item-img {
+	display: block;
+	float: left;
+	width: 170px;
+	height: 170px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 120% 120%;
+}
+
+#nanotek-info .info-list .info-list-item-wrapper .info-list-item {
+	display: block;
+	width: 520px;
+	float: right;
+	margin-top: 30px;
+	text-align: left;
+}
+
+#nanotek-info .info-list .info-list-item-wrapper .info-list-item .info-list-item-title {
+	font-family: 'EuropeExt';
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 36px;
+	text-transform: uppercase;
+	color: #ffffff;
+	display: block;
+}
+
+#nanotek-info .info-list .info-list-item-wrapper .info-list-item .info-list-item-desc {
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 18px;
+	/*color: #aed2ff;*/
+	color: #ffffff;
+}
+
+#nanotek-info .info-list .info-list-item-wrapper .info-list-item .em {
+	color: #ffffff;
+}
+
+#nanotek-info .info-list .info-list-comment {
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 10px;
+	line-height: 18px;
+	color: #ffffff;
+	position: absolute;
+	bottom: 40px;
+	left: 180px;
+}
+
+#hd-info .home-btn {
+	position: absolute;
+	top: 36px;
+	left: 36px;
+}
+
+#hd-info .next-btn {
+	position: absolute;
+	bottom: 36px;
+	right: 36px;
+}
+
+#hd-info .content-nano {
+	display: block;
+	width: 100%;
+	height: 588px;
+	position: relative;
+}
+
+#hd-info .info-pack {
+	display: block;
+	height: 560px;
+	width: 370px;
+	position: absolute;
+	left: 677px;
+	top: -5px;
+	background-repeat: no-repeat;
+	background-position: top left -15px;
+}
+
+#hd-info .info-pack a, #hd-info .info-pack a:active, #hd-info .info-pack a:hover, #hd-info .info-pack a:visited {
+	display: inline-block;
+	position: absolute;
+	left: 60px;
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 20px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #2ebdff;
+	border-bottom: 1px solid #2ebdff;
+}
+
+#hd-info .info-pack a.active, #hd-info .info-pack a.active:active, #hd-info .info-pack a.active:hover, #hd-info .info-pack a.active:visited {
+	color: #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+
+#hd-info .info-list {
+	display: block;
+	height: 588px;
+	width: 700px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#hd-info .info-list .info-list-item-wrapper {
+	display: block;
+	width: 100%;
+	height: 170px;
+}
+
+#hd-info .info-list .info-list-item-wrapper .info-list-item-img {
+	display: block;
+	float: left;
+	width: 170px;
+	height: 170px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 120% 120%;
+}
+
+#hd-info .info-list .info-list-item-wrapper .info-list-item {
+	display: block;
+	width: 520px;
+	float: right;
+	margin-top: 30px;
+	text-align: left;
+}
+
+#hd-info .info-list .info-list-item-wrapper .info-list-item.special {
+	margin-top: 42px;
+}
+
+#hd-info .info-list .info-list-item-wrapper .info-list-item .info-list-item-title {
+	font-family: 'EuropeExt';
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 36px;
+	text-transform: uppercase;
+	color: #ffffff;
+	display: block;
+}
+
+#hd-info .info-list .info-list-item-wrapper .info-list-item .info-list-item-desc {
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 18px;
+	color: #ffffff;
+}
+
+#hd-info .info-list .info-list-item-wrapper .info-list-item .em {
+	color: #ffffff;
+}
+
+#hd-info .info-list .info-list-comment {
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 10px;
+	line-height: 18px;
+	color: #ffffff;
+	position: absolute;
+	bottom: 40px;
+	left: 180px;
+}
+
+/* ====== LINE ====== */
+
+.page-line {
+	z-index: 1001;
+}
+
+.page-line .home-btn {
+	position: absolute;
+	top: 36px;
+	left: 36px;
+}
+
+.page-line .prev-btn {
+	position: absolute;
+	bottom: 36px;
+	left: 36px;
+}
+
+.page-line .content-nano {
+	display: block;
+	width: 100%;
+	height: 588px;
+	position: relative;
+}
+
+.page-line .line-packs {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+
+.page-line .line-pack {
+	display: inline-block;
+	margin: 40px 40px 0;
+	text-align: center;
+}
+
+.page-line .line-pack .line-pack-centered {
+	display: block;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.page-line .line-pack img {
+	display: block;
+}
+
+.page-line .line-pack span {
+	display: block;
+	font-family: 'EuropeExt';
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 20px;
+	color: #aed2ff;
+	text-align: left;
+}
+
+.page-line .line-pack .line-pack-title {
+	display: block;
+	font-family: 'EuropeExt';
+	font-weight: 700;
+	margin-top: 30px;
+	font-size: 12px;
+	line-height: 30px;
+	color: #ffffff;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+#hd-line .line-pack {
+	margin: 20px 20px 0;
+}
+
+#nanotek-line .line-pack img {
+	margin-top: -20px;
+}
+
+#iswitch-line .line-pack img {
+	margin-top: -17px;
+}
+
+#hdi-line .line-pack img {
+	margin-top: -22px;
+}
+
+#hds-line .line-pack img {
+	margin-top: -55px;
+}
+
+/* ====== SERIES ====== */
+
+#series-line .page-wrapper {
+	background-image: url('/nanotek/img/background.3.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: 100% 100%;
+}
+
+#series-line .home-btn {
+	position: absolute;
+	top: 36px;
+	left: 36px;
+}
+
+#series-line .prev-btn {
+	position: absolute;
+	bottom: 36px;
+	left: 36px;
+}
+
+#series-line .content-nano {
+	display: block;
+	width: 100%;
+	height: 588px;
+	position: relative;
+}
+
+#series-line .line-packs {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+
+#series-line .line-pack {
+	display: inline-block;
+	margin: 0;
+	text-align: center;
+	position: relative;
+	width: 220px;
+	height: 422px;
+}
+
+#series-line .line-pack img {
+	display: block;
+	position: absolute;
+}
+
+#series-line .line-pack .btn {
+	display: block;
+	position: absolute;
+	top: 380px;
+	left: 32px;
+}
+
+/* ====== BLUR STYLES ====== */
+
+.overblur {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	z-index: 300;
+}
+
+/* ====== DEVELOPMENT STYLES ====== */
+
+.dev-line {
+	display: none;
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: red;
+	z-index: 9999;
+}
+
+.dev-hline {
+	display: none;
+	height: 100%;
+	width: 1px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: red;
+	z-index: 9999;
+}
+
+/* ====== DEVELOPMENT STYLES ====== */
+
+.threesixty {
+	height: 466px;
+}
+
+.rotate-icon {
+	position: absolute;
+	left: 0;
+	top: -5px;
+	display: block;
+	width: 100%;
+	height: 45px;
+	background-image: url('/nanotek/img/rotate.png');
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+
+#content_left{
+   top: 771px !important;
+}
+
+@media screen and (max-device-width: 640px){
+    header.full_h{
+        height: 45px !important;
+        background-position: 0% 42% !important;
+    }
+    header.full_h:not(.fixed){
+        background-position: 0% 42% !important;        
+    }
+    nav#nav_1{
+        top:44px;
+        left: 0px !important
+    }
+    #content_inner{
+        margin-top: 140px;
+    }
+    
+    
+}

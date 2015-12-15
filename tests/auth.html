@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>zaimi24.ru myqube auth</title>
+    <link href="include/main.css" rel="stylesheet" media="all" />
+    <script type="text/javascript" src="include/q.js"></script>
+    <script type="text/javascript" src="include/moment.js"></script>
+    <script type="text/javascript" src="include/jquery.min.js"></script>
+    <script type="text/javascript" src="include/jquery.base64.min.js"></script>
+    <script type="text/javascript" src="include/underscore-min.js"></script>
+
+
+    <script type="text/javascript">
+         var login       = 'tester';
+       // var login       = 'dev01';
+         var password    = '123456';
+        //var password    = 'FiL_dev_2749403';
+        var host        = 'http://myqube.ru';
+        var path        = '/app.php';
+        var url         = host + path;
+        var sessid      = null;
+        var userRole    = null;
+        var showPromo   = "N";
+
+        function requestAuth(requestUrl) {
+
+            var deferred = Q.defer();
+            var auth = $.base64.encode(login + ':' + password);
+            // console.log('auth: ' + auth);
+
+            $.ajax({
+                url: requestUrl + '?mode=checkauth',
+                method: 'POST',
+                data: {'login': login, 'password': password},
+                
+                beforeSend: function( xhr ){
+                    xhr.setRequestHeader('Authorization', 'Basic ' + auth);
+                    xhr.setRequestHeader('Method', 'POST');
+                },
+                success: function (data, status) {
+                    var objData = null;
+                    if (status === 'success') {
+                        console.log('requestAuth AJAX data: ' + data);
+                        var re1 = /^\[\{\\"/;
+                        if ("OK" == data[0].status) {
+                            sessid = data[0].sessid;
+                            userRole = data[0].role;
+                            showPromo = data[0].show_promo;
+                            deferred.resolve();
+                        } else {
+                            deferred.reject(new Error("Wrong status"));
+                        }               
+                    } else {
+                        deferred.reject(new Error("Status code was " + status));
+                    }alert(data);
+                },
+                error: function( jqXHR, textStatus, errorThrown ) {
+					var err = jqXHR.responseText;
+					alert(err);
+                    deferred.reject(new Error("Can't XHR " + textStatus + "(" + errorThrown + ")" ));
+                }
+            });
+
+            return deferred.promise;
+        };
+
+        $( document ).ready(function(){
+            requestAuth(url)
+            .then(function(data){
+                $('#output').html( JSON.stringify( data ) );
+            })
+            .catch(function (error) {
+                // Handle any error from all above steps
+                alert('error');
+                console.log( 'error: ' + JSON.stringify( error ) );
+            });
+        });
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="header">Auth</div>
+    <div id="output"></div>
+</body>

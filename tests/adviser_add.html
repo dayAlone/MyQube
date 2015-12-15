@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>myqube ADVISER contact add</title>
+	<link href="include/main.css" rel="stylesheet" media="all" />
+	<script type="text/javascript" src="include/q.js"></script>
+	<script type="text/javascript" src="include/moment.js"></script>
+	<script type="text/javascript" src="include/jquery.min.js"></script>
+	<script type="text/javascript" src="include/jquery.base64.min.js"></script>
+	<script type="text/javascript" src="include/underscore-min.js"></script>
+	<script type="text/javascript" src="include/_auth.js"></script>
+
+	<script type="text/javascript">
+		var login       = 'adviser';
+		var password    = '1234567';
+
+		var contact1 = {
+			'app_id':				'104',
+			'NAME':					'run182',
+			'LAST_NAME':			'run182',
+			'EMAIL':				'run@gmail.com',
+			'PERSONAL_MOBILE':		'123098',
+			'PERSONAL_BIRTHDAY':	'11.11.1981',
+			'UF_BRAND_1':			'',
+			'UF_BRAND_2':			'',
+			'UF_FB':				'',
+			"UF_VK":				'',
+			"UF_G_PLUS":			'',
+			"contact_type":			"2"
+		};
+
+		var contact2 = {
+			'app_id':				'105',
+			'NAME':					'run182',
+			'LAST_NAME':			'run182',
+			'EMAIL':				'run18200@techm.zzx',
+			'PERSONAL_MOBILE':		'123098',
+			'PERSONAL_BIRTHDAY':	'12.12.1982',
+			'UF_BRAND_1':			'b1',
+			'UF_BRAND_2':			'b2',
+			'UF_FB':				'advContact2_fb',
+			"UF_VK":				'advContact2_vk',
+			"UF_G_PLUS":			'advContact2_gp',
+		};
+
+		function sendAdviserContacts() {
+			var deferred = Q.defer();
+			var thisUrl = "/app.php" + '?mode=new_contact&sessid=' + sessid;
+			var contactArray = [contact1, contact2];
+			var contactData = JSON.stringify(contactArray);
+			// var contactData = contactArray;
+			console.log('contactData AJAX data: ' + contactData);
+
+			$.ajax({
+				url: thisUrl,
+				method: 'POST',
+				data: contactData,
+				// data: contactData,
+				success: function (data, status) {
+					var objData = null;
+					if (status === 'success') {
+						console.log('requestAuth AJAX data: ' + data);
+						jObj = JSON.parse(data)
+						if ("OK" == jObj[0].status) {
+							deferred.resolve(data);
+						} else {
+							deferred.reject(new Error("Wrong status: " + data));
+						}               
+					} else {
+						deferred.reject(new Error("Status code was " + status));
+					}
+				},
+				error: function( jqXHR, textStatus, errorThrown ) {
+					deferred.reject(new Error("Can't XHR " + textStatus + "(" + errorThrown + ")" ));
+				}
+			});
+
+			return deferred.promise;
+		}
+
+		$( document ).ready(function(){
+			requestAuth(login, password)
+			.then(sendAdviserContacts)
+			.then(function(data){
+			alert(data);
+				$('#output').html( JSON.stringify( data ) );
+			})
+			.catch(function (error) {
+				// Handle any error from all above steps
+				alert('error');
+				console.log( 'error: ' + JSON.stringify( error ) );
+			});
+		});
+	</script>
+	
+</head>
+
+
+<body>
+	<div id="header">myqube ADVISER contact add</div>
+	<div id="output"></div>
+</body>

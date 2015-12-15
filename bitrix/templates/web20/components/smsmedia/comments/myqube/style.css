@@ -1,0 +1,41 @@
+.comments {
+	margin: 50px 0 50px 150px;
+	clear: both;
+	position: relative;
+	width: 480px;
+}
+.comment_submit_button {
+	position: absolute;
+	right: -42px;
+	top: 2px;
+}
+#TEXT {
+	width: 100%;
+	border: 2px solid #ebebeb;
+	border-radius: 10px;
+	height: 80px;
+	background: none;
+	resize:none;
+	padding: 20px;
+	font-family: GothamProRegular;
+}
+#TEXT:focus {
+	outline: none !important;
+	border-color: #00d7ff;
+}
+.comments-button {
+	cursor: pointer;
+	padding: 53px 20px;
+	border-radius: 0 10px 10px 0;
+}
+.head-comm {
+	float: left;
+}
+::-webkit-input-placeholder {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+::-moz-placeholder          {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+:-moz-placeholder           {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+:-ms-input-placeholder      {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+
+.otvet  {
+	text-align:right;
+}

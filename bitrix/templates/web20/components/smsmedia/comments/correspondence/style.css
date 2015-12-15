@@ -1,0 +1,690 @@
+.comments {
+	margin: 50px 0 50px 150px;
+	clear: both;
+	position: relative;
+	width: 480px;
+}
+.comment_submit_button {
+	position: absolute;
+	right: -42px;
+	top: 2px;
+}
+#TEXT {
+	width: 100%;
+	border: 2px solid #ebebeb;
+	border-radius: 10px;
+	height: 81px !important;
+	background: none;
+	resize:none;
+	padding: 20px;
+	font-family: GothamProRegular;
+}
+#TEXT:focus {
+	outline: none !important;
+	border-color: #00d7ff;
+}
+.comments-button {
+	cursor: pointer;
+	padding: 53px 20px;
+	border-radius: 0 10px 10px 0;
+}
+.head-comm {
+	float: left;
+}
+::-webkit-input-placeholder {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+::-moz-placeholder          {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+:-moz-placeholder           {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+:-ms-input-placeholder      {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+
+.otvet  {
+	text-align:right;
+}
+/***********************************************/
+@font-face {
+  font-family: GothaProReg;
+  src: url(type/GothaProReg.otf) format("opentype");
+}
+
+
+.main{
+	padding-left: 120px;
+ 	font-family: GothaProReg, sans-serif;
+	width: 1220px;
+	height: 1000px;
+	margin: auto;
+	background-color: #001022;
+	padding-top: 10px;
+}
+
+.main-head{	
+	height: 45px;
+}
+
+
+.main-menu{
+	padding-top: 10px;
+	vertical-align: middle;
+	float: left;	
+}
+
+.main-text{
+	float: left;
+	 padding-left: 20px;
+	 font-size: 39px;
+	 text-transform: uppercase;
+	 font-weight: bold;
+	 color: #fff;
+}
+
+/*левый блок*/
+.left-block{
+	background: #000;
+	padding-right: 20px;
+	float: left;
+	width: 280px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #fff;
+}
+
+/*Тень после блока*/
+.left-block:after{
+    content: "";
+    display: block;
+    position: relative;
+    height: 70px;
+    bottom: 71px;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 16, 34, 0), #001022 100%);
+}
+
+/*Кнопки - лайк, камент и репост*/
+.like-menu{
+	height: 35px;
+	margin-top: 20px;
+}
+
+.like-ico { 
+	cursor: pointer;
+	display: inline-block;
+} 
+
+.comment-ico { 
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+.repost-ico { 
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+/*Количество человек*/
+.people-number{
+	margin-top: 25px;
+	  font-size: 12px;
+
+}
+
+.text-blue{
+	color: #00d7ff;
+}
+
+.user-name.text-blue{
+	color: #00d7ff;
+}
+
+
+/*Кнопка акцепта*/
+.accept button{
+	cursor: pointer;
+	border-radius: 8px;
+	margin: auto;
+	margin-top: 25px;
+	font-size: 11px;
+	width: 181px;
+	height: 40px;
+	background-color: rgba(0,0,0,0);
+	border: 2px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.accept button:hover{
+	background-color: #fff;
+	color: #000;
+}
+
+#accept-exit{
+	color: #f40000;
+	display: none;
+	width: 260px;
+	border: 2px solid #f40000;
+}
+
+
+/*Информационные блоки*/
+.info-block{
+	line-height:2;
+	font-size: 11px;
+	margin-top: 30px;
+	line-height: 1.5em;
+}
+
+.infoblock{
+	margin-top: 10px;
+	    height: 80px;
+}
+
+.info-block-head{
+	color: #8E8E8E;
+	margin-top: 10px;
+	padding-right: 20px;
+}
+
+.info-block-text{
+	margin-top: 10px;
+	font-weight: normal;
+	line-height: 1.5;
+}
+
+.competition-end{
+	text-align: center;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 28px;
+	color: rgb(0, 215, 255);
+	font-weight: bold;
+}
+
+.users-icon{
+	cursor: pointer;
+	float: left;
+	width: 18px;
+	height: 20px;
+	background: url(images/user-ico.png);
+
+}
+
+.comments-icon{
+	margin-right: 20px;
+	cursor: pointer;
+	float: left;
+	margin-left: 10px;
+	width: 25px;
+	height: 20px;
+	background: url(images/comment.png);
+}
+
+.infoblock-avatar{
+	margin-top: 10px;
+}
+
+
+
+.avatar-info{
+	opacity: 0;
+	visibility: hidden;
+	margin-top: 12px;
+	float: right;
+	transition:1s;
+	-webkit-transition: 1s;
+}
+
+.infoblock-avatar:hover .avatar-info{
+	visibility: visible;
+		opacity: 1;
+}
+
+
+/*------Правый блок с текстом и картинкой*/
+.right-block{
+	margin-top: 20px;
+	width: 720px;
+	float: left;
+	
+}
+/*Текст справа*/
+.competition-text{
+	padding-left: 20px;
+	margin-top: 20px;
+	width: 630px;
+	height: 130px;
+	line-height: 1.5em;
+	color: #8E8E8E;
+	font-weight: bold;
+	line-height: 1.857;
+	text-align: left;
+	overflow: hidden;
+	z-index:-1;
+}
+
+/*Тень на текст*/
+.shadow-text:after{
+	content:"";
+	display:block;
+	position: relative;
+	height: 90px;
+	bottom: 135px;
+	width: 100%;
+    background-image: linear-gradient(to top, rgba(0, 16, 34, 0), #001022 100%)
+}
+
+.left-block .infoblock-avatar{
+	width: 100%;
+}
+
+.left-block .user-photo{
+	float: left;
+}
+.left-block .right-text{
+	float: left;
+}
+
+
+
+/*Каменты*/
+.comments{
+	color: #fff;
+
+}
+
+
+.comment-head { 
+	margin-top: 10px;
+	text-transform: uppercase;
+	color: #fff;
+} 
+
+.comment { 
+	width: 550px;
+	float: left;
+	clear: both;
+	margin-top: 30px;
+} 
+
+.comment:nth-child(2){
+	margin-top: 10px;
+}
+
+.avatar { 
+	float: left;
+
+} 
+
+.user-photo { 
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+} 
+
+.opcircl{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: #001022;
+	top: 35px;
+	left: 25px;
+}
+
+.colorcrcl{
+	position: relative;
+	width: 10px;
+	height: 10px;
+	background-color: #8d9298;
+	border-radius: 10px;
+	top:5px;
+	left: 5px;
+}
+
+/*СТатусы по цветам*/
+.opcircl .red-satus{
+	background-color: #f94440;
+}
+
+.opcircl .green-satus{
+	background-color: #70b630;
+}
+
+/*Имя пользователя и коммент*/
+.right-text { 
+	margin-left: 10px;
+	position: relative;
+  	left: 10px;
+  	top: 4px;
+  	transition:1s;
+} 
+
+.user-name { 
+	    position: relative;
+    top: 9px;
+	height: 25px;
+	color: #555c63;
+	text-transform: uppercase;
+	font-weight: bold;
+	transition: 1s;
+} 
+.user-name-answer{
+    vertical-align: super;
+    transition: 1s;
+}
+
+.user-name-text{
+	display: inline-block;
+	vertical-align: top;
+	transition: 1s;
+
+}
+
+
+.comment-wrap:hover .user-name-text{
+	color: #00d7ff;
+}
+.comment-wrap:hover span.recomm{
+	
+}
+
+.user-name-recomm{
+
+	display: none;
+	color: #555c63;
+	text-transform: none;
+	font-size: 12px;
+	transition: 1s;
+}
+
+.comment-wrap:hover .user-name-recomm{
+display: inline-block;
+
+}
+
+
+span.recomm{
+
+	display: inline-block;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	background: url(images/recomm.png);
+	transition:1s;
+}
+
+.comment-text { 
+	margin-top: 2px;
+} 
+
+
+/*Тень под нижним каментом*/
+.comment-shadow{
+	    display: inline-block;
+	position: relative;
+	left: -30px;
+	background-color: #0d1c2d;
+	border-radius: 8px;
+	height: 45px;
+	width: 720px;
+	-webkit-box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+	-moz-box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+	box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+}
+
+.comments:after{
+    content: "";
+    display: block;
+    position: relative;
+    height: 46px;
+	bottom: -517px;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 16, 34, 0), #001022 100%);
+}
+  
+
+/*Добавляем дату камента*/
+.comment-wrap{
+	cursor: pointer;
+	width: 100%;
+}
+
+.comment-date{
+	color: #555c63;
+	margin-top: 30px;
+	float: right;
+}
+
+/* Подключение пользовательских аватаров*/
+#user-1{
+	background: url(images/user-1.jpg) no-repeat; 
+}
+#user-2{
+	background: url(images/user-2.jpg) no-repeat; 
+}
+#user-3{
+	background: url(images/user-3.jpg) no-repeat; 
+}
+
+#user-4{
+	background: url(images/user-4.jpg) no-repeat; 
+}
+
+#user-5{
+	background: url(images/user-5.jpg) no-repeat; 
+}
+
+#user-6{
+	background: url(images/user-6.jpg) no-repeat; 
+}
+
+#user-7{
+	background: url(images/user-7.jpg) no-repeat; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.messages .comment-text{
+
+	font-size: 10px;
+	color: #8e8e8e;
+}
+
+.messages .user-name{
+	color: #8e8e8e;
+	top: 5px;
+}
+
+.messages.left-block{
+    height: 532px;
+    overflow: hidden;
+    padding-left: 15px;
+    width: 200px;
+}
+.messages.left-block:after{
+background-image: linear-gradient(to bottom, rgba(0, 16, 34, 0), #000 100%);
+    bottom: -462px;	
+}
+
+.messages .opcircl{
+	background-color: #000;
+}
+
+.messages-right .comment-text{
+	font-size: 14px;
+}
+
+.messages-right .user-name{
+
+	top: 5px;
+}
+
+.my-comment .user-name{
+	color: #00d7ff;
+}
+
+.frend-comment .comment-date{
+	float: left;
+}
+
+.frend-comment.comment-wrap{
+	width: 610px;
+
+}
+
+.frend-comment .comment{
+	float: right;
+	width: 250px;
+}
+
+.messages-right.right-block{
+	margin-left: 20px;
+}
+
+.messages-right .comments:after{
+	display:none;
+}
+
+.messages-right .comment-wrap{
+	width: 570px;
+	height: 100px
+}
+
+.messages-right .comment{
+	width: 460px;
+
+}
+
+.frend-comment .right-text{
+	text-align: right;
+	left: -12px;
+
+}
+.frend-comment .avatar{
+	float: right;
+}
+
+.messages-right .comment-wrap{
+	overflow: hidden;
+}
+
+.messages-right .comment-date{
+	margin-top: 60px;
+	font-size: 12px;
+}
+
+.messages-input textarea{
+	font-family: GothaProReg, sans-serif;
+	width: 559px;
+    resize: none;
+    height: 73px;
+    color: #8e8e8e;
+    border: 3px solid #8e8e8e;
+    border-radius: 9px;
+    background: #001022;
+    padding-top: 15px;
+    padding-left: 15px;
+    z-index: 5;
+    overflow: auto;
+}
+
+.send-symbol{
+    transform: rotateY(174deg);
+    position: relative;
+    top: -68px;
+    left: -149px;
+
+    font-size: 25px;
+    color: #8e8e8e;
+}
+
+.messages-input{
+	overflow: auto;
+}
+
+
+.left-block-messages-hr{
+    margin-top: 28px;
+    width: 178px;
+    height: 2px;
+    border: 0px;
+    background-color: #8e8e8e;
+}
+
+/*ЧАТ МАЛЕНЬКИЙ*/
+
+.chat-box{
+	font-family: GothaProReg, sans-serif;
+	position: fixed;
+	bottom: 0;
+	left: 700px;
+    width: 259px;
+    height: 280px;
+	background: #ebebeb;
+	overflow: hidden;
+}
+
+.chat-box-top{
+	height: 35px;
+	background-color: #000;
+	color:  #00d7ff;
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.chat-box-top-text{
+	width: 130px;
+    padding-top: 10px;
+    padding-left: 20px;
+    overflow: hidden;
+    font-weight: bold;
+
+}
+
+.chat-box-top-x{
+	background: url(images/delet-red.png);
+	width: 13px;
+	height: 13px;
+	position: relative;
+    top: -13px;
+    left: 236px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.chat-box-main{
+	height: 210px;
+}
+
+.chat-box-input input{
+	font-family: GothaProReg, sans-serif;
+	color: #8e8e8e;
+    width: 255px;
+    height: 30px;
+    background: #ebebeb;
+    border-left: 0px;
+    border-top: 3px solid #fff;
+    border-bottom:3px solid #fff;
+    margin-left: 1px;	
+}
+
+.chat-box-input-photo{
+	background: url(images/photo.png);
+	width: 20px;
+	height: 18px;
+	position: relative;
+	top: -26px;
+    left: 231px;
+
+}

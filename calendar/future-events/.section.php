@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Предстоящие";
+$arDirProperties = Array(
+
+);
+?>

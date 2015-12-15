@@ -1,0 +1,523 @@
+.main-head{	
+	height: 45px;
+}
+
+.main-menu{
+	vertical-align: middle;
+	float: left;	
+}
+
+.main-text{
+
+	float: left;
+	 padding-left: 20px;
+	 font-size: 39px;
+	 text-transform: uppercase;
+	 font-weight: bold;
+	 color: #fff;
+}
+
+.left-block{
+	float: left;
+	width: 280px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #fff;
+}
+
+/*Кнопки - лайк, камент и репост*/
+.like-menu{
+	height: 35px;
+	margin-top: 20px;
+}
+
+.like-ico { 
+	cursor: pointer;
+	display: inline-block;
+} 
+
+.comment-ico { 
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+
+
+.repost-ico { 
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+/*Количество человек*/
+.people-number{
+	margin-top: 25px;
+	  font-size: 12px;
+
+}
+
+.text-blue{
+	color: #00d7ff;
+}
+
+.user-name.text-blue{
+	color: #00d7ff;
+}
+
+
+/*Кнопка акцепта*/
+.accept button{
+	cursor: pointer;
+	border-radius: 8px;
+	margin: auto;
+	margin-top: 25px;
+	font-size: 11px;
+	width: 181px;
+	height: 40px;
+	background-color: rgba(0,0,0,0);
+	border: 2px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.accept button:hover{
+	background-color: #fff;
+	color: #000;
+}
+
+button.accept-exit{
+	color: #f40000;
+	display: none;
+	width: 260px;
+	border: 2px solid #f40000;
+}
+#accept-exit{
+	width: 260px;
+}
+.accept {
+	float:left;
+}
+
+/*Информационные блоки*/
+.info-block{
+	line-height:2;
+	font-size: 11px;
+	margin-top: 30px;
+	line-height: 1.5em;
+}
+
+.info-block-head{
+	color: #8E8E8E;
+}
+
+.info-block-text{
+	font-weight: normal;
+}
+
+/*------Правый блок с текстом и картинкой*/
+.right-block{
+	margin-top: 20px;
+	width: 540px;
+	float: left;
+	margin-left:20px;
+	
+}
+/*Текст справа*/
+.competition-text{
+	padding-left: 20px;
+	margin-top: 20px;
+	width: 630px;
+	height: 130px;
+	line-height: 1.5em;
+	color: #8E8E8E;
+	font-weight: bold;
+	line-height: 1.857;
+	text-align: left;
+	overflow: hidden;
+	z-index:-1;
+}
+
+/*Тень на текст*/
+.shadow-text:after{
+	content:"";
+	display:block;
+	position: relative;
+	height: 90px;
+	bottom: 135px;
+	width: 100%;
+    
+    background-image: linear-gradient(to top, rgba(0, 16, 34, 0), #001022 100%)
+}
+
+/*Каменты*/
+.comments{
+	color: #fff;
+}
+
+.comment-head { 
+	margin-top: 10px;
+	text-transform: uppercase;
+	color: #fff;
+} 
+
+.comment { 
+	width: 550px;
+	float: left;
+	clear: both;
+	margin-top: 30px;
+} 
+
+.comment:nth-child(2){
+	margin-top: 10px;
+}
+
+.avatar { 
+	float: left;
+} 
+
+.user-photo { 
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+} 
+
+.opcircl{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: #001022;
+	top: 35px;
+	left: 25px;
+}
+
+.colorcrcl{
+	position: relative;
+	width: 10px;
+	height: 10px;
+	background-color: #8d9298;
+	border-radius: 10px;
+	top:5px;
+	left: 5px;
+}
+
+/*СТатусы по цветам*/
+.opcircl .red-satus{
+	background-color: #f94440;
+}
+
+.opcircl .green-satus{
+	background-color: #70b630;
+}
+
+/*Имя пользователя и коммент*/
+.right-text { 
+	margin-left: 10px;
+	position: relative;
+  	left: 10px;
+  	top: 4px;
+  	transition:1s;
+} 
+
+.user-name { 
+	height: 25px;
+	color: #555c63;
+	text-transform: uppercase;
+	font-weight: bold;
+	transition: 1s;
+} 
+.user-name-answer{
+    vertical-align: super;
+    transition: 1s;
+}
+
+.user-name-text{
+	display: inline-block;
+	vertical-align: top;
+	transition: 1s;
+
+}
+
+
+.comment-wrap:hover .user-name-text{
+	color: #00d7ff;
+}
+.comment-wrap:hover span.recomm{
+	
+}
+
+.user-name-recomm{
+
+	display: none;
+	color: #555c63;
+	text-transform: none;
+	font-size: 12px;
+	transition: 1s;
+}
+
+.comment-wrap:hover .user-name-recomm{
+display: inline-block;
+
+}
+
+
+span.recomm{
+
+	display: inline-block;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	background: url(/images/recomm.png);
+	transition:1s;
+}
+
+.comment-text { 
+	margin-top: 2px;
+} 
+
+.add-comment { 
+
+} 
+
+.add-comment input{
+	position: relative;
+	left: -30px;
+	background-color: #0d1c2d;
+	border-radius: 8px;
+	height: 45px;
+	width: 720px;
+	-webkit-box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+	-moz-box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+	box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+}
+  
+.add-comment input[type="text"]{
+	padding-left: 25px;
+	color: #fff;
+	font-weight: bold;
+}
+
+/*Добавляем дату камента*/
+.comment-wrap{
+	cursor: pointer;
+	width: 100%;
+}
+
+.comment-date{
+	color: #555c63;
+	margin-top: 30px;
+	float: right;
+}
+
+/* Подключение пользовательских аватаров*/
+#user-1{
+	background: url(/images/user-1.jpg) no-repeat; 
+}
+#user-2{
+	background: url(/images/user-2.jpg) no-repeat; 
+}
+#user-3{
+	background: url(/images/user-3.jpg) no-repeat; 
+}
+
+#user-4{
+	background: url(/images/user-4.jpg) no-repeat; 
+}
+
+#user-5{
+	background: url(/images/user-5.jpg) no-repeat; 
+}
+
+#user-6{
+	background: url(/images/user-6.jpg) no-repeat; 
+}
+
+#user-7{
+	background: url(/images/user-7.jpg) no-repeat; 
+}
+
+/*Обертка для инфы о кол-ве пользователей*/
+.comments-wrap{
+	float: left;
+}
+
+.comments-icon{
+	cursor: pointer;
+	float: left;
+	width: 25px;
+	height: 20px;
+	background: url(../images/comment.png) no-repeat;
+	transition:1s;
+	-webkit-transition: 1s;
+}
+
+/*Наведение на значок пользователей*/
+
+/*.comments-wrap:hover .comments-number{
+	width: 110px;
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}*/
+
+.comments-wrap:hover .comments-icon{
+	background: url(../images/comment_hover.png) no-repeat;
+}
+
+
+/*Блок с количеством пользователей*/
+.comments-number{
+	white-space: nowrap;
+	font-size: 11px;
+	/*width: 0px;*/
+	padding-top: 4px;
+	padding-left: 10px;
+	height: 30px;
+	font-size: 11px;
+	float: left;
+	/*opacity: 0;
+	-webkit-transform: scale(0);
+	-webkit-transition:  1s;	
+	transform: scale(0);
+	transition:  1s;	*/
+}
+a.likes{
+	display:block;
+	cursor: pointer;
+	float: left;
+	margin-right: 30px;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+}
+a.likes:hover,a.likes.active {
+	background: url(../images/like_active.png);
+}
+.competition-end {
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: rgb(0, 215, 255);
+    font-weight: bold;
+}
+.info-block-text {
+    margin-top: 10px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+.infoblock-avatar {
+    margin-top: 10px;
+}
+.left-block .user-photo {
+    float: left;
+}
+.right-text {
+    margin-left: 10px;
+    position: relative;
+    left: 10px;
+    top: 4px;
+    transition: 1s;
+}
+.user-name {
+    position: relative;
+    top: 9px;
+    height: 25px;
+    color: #555c63;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 1s;
+}
+.avatar-info {
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 12px;
+    float: right;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+.users-icon {
+    cursor: pointer;
+    float: left;
+    width: 18px;
+    height: 20px;
+    background: url(../img/user-ico.png);
+}
+.comments-icon2 {
+    margin-right: 20px;
+    cursor: pointer;
+    float: left;
+    margin-left: 10px;
+    width: 25px;
+    height: 20px;
+    background: url(../img/comment.png) no-repeat;
+}
+.gallery_back{
+	float: left;
+	margin: 9px 15px 0px 0px;
+	width: 31px;
+	height: 21px;
+	background: url(../images/gallery_back.png);
+}
+.gallery_back:hover {
+	background: url(../images/gallery_back_hover.png);
+}
+
+@media screen and (max-device-width: 640px){
+    .left-block{
+        padding: 0 20px;
+        width: auto;
+    }
+    .comment{
+        width: 100% !important;
+    }
+    .comments{
+        margin: 0px !important;
+        width: 100% !important;
+    }
+    
+    div.right-block{
+        width: 97% !important;
+    }  
+    .right-block-inner{
+        width: 97% !important;
+    }
+    .right-block-inner img{
+        width: 100%;
+    }
+    .gallery_back{
+        margin-top: 0px !important;
+        display: block !important;
+        background-size: 100%;
+        width: 52px;
+        height: 35px;
+    }
+    .gallery_back:hover{
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .right-block-inner{
+        margin: 0px !important;
+    }
+    
+    .accept{
+        float: none !important;
+    }
+    .accept button{
+        width: 100% !important;
+        font-size: 24px !important;
+        height: 60px !important;
+        
+    }
+    .likes-wrap{
+        margin-right: 20px !important;
+    }
+    
+    
+    
+    
+}

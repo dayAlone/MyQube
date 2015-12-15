@@ -1,0 +1,53 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Лента", 
+		"/group/#group_id#/", 
+		Array(), 
+		Array("#group_id#"=>"\$_GET[\"GROUP_ID\"]"), 
+		"" 
+	),
+	Array(
+		"Фото", 
+		"/group/#group_id#/photo/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Видео", 
+		"/group/#group_id#/video/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Конкурсы", 
+		"/group/#group_id#/contest/", 
+		Array(), 
+		Array(), 
+		"CSite::InPeriod(1441054800,1441141200)" 
+	),
+	Array(
+		"События", 
+		"/group/#group_id#/events/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"О бренде", 
+		"/group/#group_id#/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Конкурсы", 
+		"/group/#group_id#/contest/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

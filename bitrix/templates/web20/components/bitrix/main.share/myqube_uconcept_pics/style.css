@@ -1,0 +1,24 @@
+.soc_pics {
+	position: absolute;
+	width: 100%;
+    bottom: 5px;
+	z-index: 9999;
+}
+.soc_pics_inner {
+	width:240px;
+	margin: 0 auto;
+}
+.soc_pics img {
+	margin: 0 10px;
+	cursor: pointer;
+	z-index: 9999;
+	padding: 5px;
+}
+@media (max-device-width: 640px) {
+	.soc_pics img {
+		height: 25px;
+	}	
+	.soc_pics_inner {
+		width:180px;
+	}
+}

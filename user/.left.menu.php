@@ -1,0 +1,32 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Лента", 
+		"/user/#user#/profile/", 
+		Array(), 
+		Array("#user#"=>"\$_GET[\"user\"]"), 
+		"" 
+	),
+	Array(
+		"Фото", 
+		"/user/#user#/photo/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Видео", 
+		"/user/#user#/video/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Конкурсы", 
+		"/user/contest/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

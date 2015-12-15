@@ -1,0 +1,99 @@
+html,
+body {
+	margin:0px;
+	text-align:center;
+}
+div.container{
+	width:1200px;
+	margin:0px auto;
+	text-align:left;
+       font: normal normal bold 12px/27px "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+table.dashboard_list  {
+	width:100%;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border:2px solid #dde7e9;
+	-webkit-box-shadow: #B3B3B3 3px 3px 3px;
+	-moz-box-shadow: #B3B3B3 3px 3px 3px; 
+	box-shadow: #B3B3B3 3px 3px 3px;
+	margin:15px 10px;
+
+}
+table.dashboard_list thead tr{
+	border-bottom:1px solid #dde7e9;
+}
+table.dashboard_list tr {
+	border:1px solid #000000;
+}
+table.dashboard_list td {
+	height: 29px !important;
+	text-decoration: none !important;
+	outline: none !important;
+	padding: 3px !important;
+	margin: 0 10px 0 0 !important;
+	vertical-align: top !important;
+	text-align: left !important;
+}
+
+table.dashboard_list  tr.odd {
+	background-color:#e9e9e9;
+}
+
+table.dashboard_list  tr.even {
+	
+	
+}
+
+table.dashboard_list td a {
+	color:#1b2f4a;
+	margin: 0 7px 0  0;
+}
+.header-menu {
+	margin: 15px 10px 0;
+}
+.header-menu a {
+	color:#1b2f4a;
+	margin-right:15px;
+}
+.table_new_cons {
+	margin:15px auto;
+}
+.table_new_cons input {
+	margin-left:25px;
+  	height: 28px !important;
+  	font: normal normal bold 12px/27px "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	margin-bottom:10px;	
+}
+.table_new_cons input.btn, #event_date_interval input.btn { 	
+  	height: 29px !important;
+  	font: normal normal bold 12px/25px "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  	background: #273243;
+  	color: #dde7e9 !important;
+  	float: right;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border:1px solid #dde7e9;
+	-webkit-box-shadow: #B3B3B3 3px 3px 3px;
+	-moz-box-shadow: #B3B3B3 3px 3px 3px; 
+	box-shadow: #B3B3B3 3px 3px 3px;
+
+}
+#event_date_interval input.btn {
+	float:	none;
+}
+.table_new_cons input.btn:hover {
+  	background: rgb(84,92,107);
+}
+.table_new_cons tr {
+ 	margin:5px 0;
+}
+.fancybox-inner table thead {
+	 font-weight: bold;
+}
+.table_cons_list {
+	width: 100%;
+}
+	

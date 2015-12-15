@@ -1,0 +1,22 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Календарь");
+?><?/*$APPLICATION->IncludeComponent(
+	"bitrix:main.calendar",
+	"calendar",
+	Array(
+	)
+);?><?$APPLICATION->IncludeComponent(
+	"bitrix:catalog.socnets.buttons",
+	"",
+	Array(
+	)
+);*/?>
+<?$APPLICATION->IncludeComponent(
+	"bitrix:main.user.link",
+	"",
+	Array(
+	
+	)
+);?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

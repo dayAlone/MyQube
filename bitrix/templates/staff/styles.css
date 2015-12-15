@@ -1,0 +1,161 @@
+/* Start Menu */
+ul.menu {
+	list-style:none;
+	margin:-130px 0px 0px 0px;
+	padding:0px 0px 35px 0px;
+	position:relative;
+	z-index:1;
+}
+ul.menu a,
+ul.menu li{
+	height:90px;
+}
+ul.menu a {
+	color:#fff;
+	font-size:33px;
+	font-weight:bold;
+	text-decoration:none;
+	display:block;
+	line-height:58px;
+	background-image:url(/images/amplifiers/amplifiers_icons_1.png);
+	background-repeat:no-repeat;
+	background-position:30px 20px;
+	padding:0px 0px 0px 65px;
+}
+ul.menu li {
+	background-image:url(/images/amplifiers/amplifiers_icons_2.png);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+}
+/* End Menu */
+/* Start Add user */
+form.add-user{
+	padding:0px 25px 20px 25px
+}
+form.add-user table {
+	width:100%;
+	color:#1075c7;
+	font-weight:bold;
+}
+form.add-user table td a {
+	color:#1075c7;
+}
+form.add-user table tr td img {
+	width:13px;
+}
+form.add-user table tr td.add-user-td-padding,
+form.add-user table tr td:first-child {
+	padding:0px 4px 15px 6px;
+}
+form.add-user table tr td {
+	padding:0px 0px 15px 0px;
+}
+form.add-user table tr input[type="checkbox"]{
+	margin:0px 6px 0px 6px;
+}
+form.add-user input[type="text"] {
+	border-style:solid;
+	border-color:#fff;
+	border-width:0px 0px 3px 0px;
+	background:none;
+	font-size:26px;
+	color:#747474;
+	width:170px;
+}
+form.add-user table tr td[colspan="3"] input[type="text"] {
+	width:370px;
+}
+div.add-user-socialnetwork{
+	overflow:hidden;
+	margin:15px 0px 0px 0px;
+}
+div.add-user-socialnetwork > div {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	width:120px;
+}
+div.add-user-socialnetwork input[type="text"] {
+	width:40px;
+	color:#1075c7;
+	margin: 0px 0px 0px 10px;
+	border:none;
+}
+div.add-user-socialnetwork a {
+	width:40px;
+	height:40px;
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	background-repeat:no-repeat;
+	vertical-align:top;
+	margin:0px 0px 0px 20px;
+}
+div.add-user-socialnetwork-f a {
+	background-image:url(/images/amplifiers/amplifiers_icons_f.png);
+}
+div.add-user-socialnetwork-vk a {
+	background-image:url(/images/amplifiers/amplifiers_icons_vk.png);
+}
+div.add-user-socialnetwork-g a {
+	background-image:url(/images/amplifiers/amplifiers_icons_google_plus.png);
+}
+div.add-user-submit{
+	margin:40px 0px 20px 0px;
+	text-align:center;
+}
+div.add-user-submit input[type="submit"] {
+	background-image:url(/images/amplifiers/amplifiers_icons_send.png);
+	background-repeat:no-repeat;
+	border-radius:10px;
+	border:none;
+	width:74px;
+	height:28px;
+	background-color:none;
+}
+div.add-user-error{
+	margin:0px 48px 0px 48px;
+}
+div.add-user-iagree{
+	padding:0px 0px 0px 20px;
+}
+div.add-user-iagree * {
+	color:#000;
+	font-size:14px;
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	vertical-align:top;
+}
+div.add-user-iagree a {
+	font-weight:bold;
+}
+div.add-user-iagree span {
+	width:200px;
+}
+td.add-user-age span {
+	padding:0px;
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	width:340px;
+	vertical-align:top;
+	font-size:12px;
+}
+td.add-user-age input[type="checkbox"]{
+	margin: 24px 6px 0px 6px !important;
+}
+td.add-user-age input[type="text"]{
+	width:45px !important;
+	border-color: #1075c7 !important;
+	border-width: 0px 0px 1px 0px !important;
+}
+/* End Add User */
+/* Start Iagree */
+div.form-iagree *{
+	font-size:12px;
+}
+div.form-iagree {
+	
+}
+/* End Iagree*/

@@ -1,0 +1,386 @@
+@media screen and (max-device-width: 640px){
+    .left-block{
+        width: 100% !important;
+    }
+    
+    .main-text{
+        margin-bottom: 30px;
+    }
+    
+    .icon-menu{
+        height: auto !important;
+        margin-bottom: 26px;
+        overflow: hidden !important;
+    }
+    
+    
+    div.photo{
+        width: 100% !important;
+    }
+    
+        #TEXT{
+        padding: 2% !important;
+    }
+    
+    .head-form-comment{
+        width: 100% !important;
+    }
+    
+    
+    .likes-wrap{
+        margin-right: 20px !important;
+        width: 60px !important;
+    }
+    
+    .likes-number{
+        font-size: 16px !important;
+        width: auto !important;
+    }
+    
+    a.likes:hover:not(.active){
+        background: url(/bitrix/templates/web20/images/like.png) !important;
+        background-size: cover !important;
+    }
+    
+    a.likes.active:hover{
+        background: url(/images/like_active.png) no-repeat cover !important;
+    }    
+
+    
+    a.likes {
+        background-size: cover !important;
+    width: 34px !important;
+    height: 31px !important;
+}
+
+.social-buttons{
+                width: 35px !important;
+        height: 35px !important;
+        background-size: 100% !important; 
+    }
+    .socblock{
+        height: 50px !important;
+        width: 200px !important;
+    }
+    
+    .facebook{
+        margin-left: 30px !important;
+         background-size: 100% !important;  
+        width: 20px !important;
+        height: 35px !important;      
+    }
+    
+    .google{
+        margin-left: 30px !important;
+        width: 35px !important;
+        height: 35px !important;
+            background-size: 100% !important; 
+    }
+    .vk{
+        margin-left: 30px !important;
+               width: 35px !important;
+        height: 35px !important;
+            background-size: 100% !important;  
+    }
+    
+    
+}
+
+
+
+
+.main-text {
+
+    display: inline;
+    font-size: 39px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+}
+
+.left-block { 
+	float: left;
+	width: 280px;
+} 
+
+.icon-menu { 
+	height: 60px;
+} 
+
+.main-menu { 
+	float: left;
+	/*margin-top: 11px;*/
+} 
+
+.right-menu { 
+	float: right;
+	margin-top: 10px;
+	margin-right: 50px;
+
+} 
+
+.like-ico { 
+	display: inline-block;
+
+} 
+
+.comment-ico { 
+	display: inline-block;
+	margin-left: 15px;
+
+} 
+
+.repost-ico { 
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+.author-id{
+	    height: 60px;
+}
+
+.author-photo { 
+	float: left;
+	width: 60px;
+	border: 2px solid #01d6fd;
+} 
+
+.author-name { 
+	float: left;
+	position: relative;
+	color: #fff;
+	top: 16px;
+	left: 10px;
+} 
+
+.post { 
+	clear: both;
+	margin-top: 65px;
+
+} 
+/*Заголовок комментариев*/
+.comment-head { 
+	font-size: 12px;
+	clear: both;
+	margin-top: 20px;
+	text-transform: uppercase;
+	color: #fff;
+} 
+
+.comment { 
+	clear: both;
+	margin-top: 20px;
+} 
+
+.avatar { 
+	float: left;
+
+} 
+
+.user-photo { 
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+
+} 
+
+.opcircl{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background-color: #001022;
+	top: 35px;
+	left: 25px;
+}
+
+.colorcrcl{
+	position: relative;
+	width: 10px;
+	height: 10px;
+	background-color: #8d9298;
+	border-radius: 10px;
+	top:5px;
+	left: 5px;
+
+}
+
+/*СТатусы по цветам*/
+.opcircl .red-satus{
+	background-color: #f94440;
+}
+
+.opcircl .green-satus{
+	background-color: #70b630;
+}
+
+
+
+.status { 
+
+
+} 
+
+.right-text { 
+	margin-left: 10px;
+	position: relative;
+  	left: 10px;
+  	top: 6px;
+
+} 
+
+.user-name { 
+	text-transform: uppercase;
+	font-weight: bold;
+} 
+
+.comment-text { 
+	margin-top: 2px;
+
+} 
+
+.add-comment { 
+
+	position: relative;
+	left: -30px;
+
+} 
+
+.add-comment input{
+	margin-left: 11px;
+	margin-top: 17px;
+	background-color: #0d1c2d;
+	border-radius: 8px;
+	height: 55px;
+	width: 270px;
+
+
+-webkit-box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+-moz-box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+box-shadow: 0px -31px 42px 7px rgba(0,16,34,1);
+	
+}
+  
+.add-comment input[type="text"]{
+	padding-left: 30px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.right-block{
+	float: left;
+	margin-left: 20px;
+}
+
+.right-block-text{
+	margin: 20px 0px 30px 20px;
+}
+
+.photo { 
+	float: right;
+	width: 780px;
+	height: 440px;
+	background-color: #fff;
+	border-radius: 20px;
+} 
+
+#user-1{
+	background: url(/images/user-1.jpg) no-repeat; 
+}
+#user-2{
+	background: url(/images/user-2.jpg) no-repeat; 
+}
+#user-3{
+	background: url(/images/user-3.jpg) no-repeat; 
+}
+
+#user-4{
+	background: url(/images/user-4.jpg) no-repeat; 
+}
+
+#user-5{
+	background: url(/images/user-5.jpg) no-repeat; 
+}
+
+#user-6{
+	background: url(/images/user-6.jpg) no-repeat; 
+}
+
+#user-7{
+	background: url(/images/user-7.jpg) no-repeat; 
+}
+
+
+
+
+
+/*Обертка для инфы о кол-ве пользователей*/
+.comments-wrap{
+	float: left;
+	margin-left:14px;
+}
+
+.comments-icon{
+	cursor: pointer;
+	float: left;
+	width: 25px;
+	height: 20px;
+	background: url(../images/comment.png) no-repeat;
+	transition:1s;
+	-webkit-transition: 1s;
+}
+
+/*Наведение на значок пользователей*/
+
+/*.comments-wrap:hover .comments-number{
+	width: 110px;
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}*/
+
+.comments-wrap:hover .comments-icon{
+	background: url(../images/comment_hover.png) no-repeat;
+}
+
+
+/*Блок с количеством пользователей*/
+.comments-number{
+	white-space: nowrap;
+	font-size: 11px;
+	width: 30px;
+	padding-top: 4px;
+	padding-left: 10px;
+	height: 30px;
+	font-size: 11px;
+	float: left;
+	/*opacity: 0;
+	-webkit-transform: scale(0);
+	-webkit-transition:  1s;	
+	transform: scale(0);
+	transition:  1s;	*/
+}
+a.likes{
+	margin-top:1px !important;
+	display:block;
+	cursor: pointer;
+	float: left;
+	margin-right: 30px;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+}
+a.likes:hover,a.likes.active {
+	background: url(../images/like_active.png);
+}
+
+.gallery_back{
+	float: left;
+	margin: 9px 15px 0px 0px;
+	width: 31px;
+	height: 21px;
+	background: url(../images/gallery_back.png);
+}
+.gallery_back:hover {
+	background: url(../images/gallery_back_hover.png);
+}

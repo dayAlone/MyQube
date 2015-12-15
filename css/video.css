@@ -1,0 +1,172 @@
+/*Блок видео*/
+.video-block{
+	width: 280px;
+	height: 280px;
+	background-color: #000;
+	border-radius: 8px; 
+	background-image: -moz-linear-gradient( 90deg, rgb(0,0,0) 40%, rgba(0,0,0,0) 100%);
+  	background-image: -webkit-linear-gradient( 90deg, rgb(0,0,0) 40%, rgba(0,0,0,0) 100%);
+  	background-image: -ms-linear-gradient( 90deg, rgb(0,0,0) 40%, rgba(0,0,0,0) 100%);
+  	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.7);
+  	float: left;
+  	margin:20px 0 0 20px;
+  	overflow: hidden;
+	z-index:1;
+	position:relative;
+}
+
+/*Блок с превью картинки с видео*/
+.video-img{
+	width: 280px;
+	height: 186px;
+	overflow: hidden;
+}
+
+.play-img{
+	cursor: pointer;
+	margin: auto;
+	position: relative;
+	top: 80px;
+	width: 53px;
+	height: 53px;
+	background: url(../bitrix/templates/web20/images/play-img.png) no-repeat; 
+}
+
+/*Превью картинки к видео*/
+#video1 .video-img{
+	background: url(../bitrix/templates/web20/images/b2competition.jpg); background-size: cover; 
+}
+
+#video2 .video-img{
+	background: url(../bitrix/templates/web20/images/b2competition.jpg) no-repeat; 
+}
+
+#video3 .video-img{
+	background: url(../bitrix/templates/web20/images/b2competition.jpg) no-repeat; 
+}
+
+#video4 .video-img{
+	background: url(../bitrix/templates/web20/images/b2competition.jpg) no-repeat; 
+}
+
+#video5 .video-img{
+	background: url(../bitrix/templates/web20/images/b2competition.jpg) no-repeat; 
+}
+
+#video6 .video-img{
+	background: url(../bitrix/templates/web20/images/b2competition.jpg) no-repeat; 
+}
+/*название видео*/
+.video-name{
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin: 20px 0 0 20px;
+	overflow: hidden;
+	white-space:nowrap;
+}
+.video-name a{
+	color: #fff;
+	text-decoration: none;
+}
+
+/*Блок с соцкнопками*/
+.video-socbutton{
+	margin: 20px 0 0 20px;
+}
+.video-like:hover{
+background: url(../bitrix/templates/web20/images/like_hover.png);
+}
+.video-like{
+	cursor: pointer;
+	float: left;
+	background: url(../bitrix/templates/web20/images/like.png);
+	width: 20px;
+	height: 18px;
+}
+/*красный лайк*/
+.video-like-red{
+	background: url(../bitrix/templates/web20/images/like-red.png);
+}
+/*серый лайк*/
+.video-like-gray{
+	background: url(../bitrix/templates/web20/images/like.png);		
+}
+
+.video-comment:hover{
+background: url(../bitrix/templates/web20/images/comments_hover.png);
+}
+.video-comment{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	background: url(../bitrix/templates/web20/images/comment.png);
+	width: 25px;
+	height: 20px;
+}
+
+.video-repost{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	background: url(../bitrix/templates/web20/images/repost.png);
+	width: 25px;
+	height: 20px;
+}
+
+
+
+
+
+/*Правый блок с баннерами*/
+.banner-block{
+	width: 180px;
+	float: left;
+	margin-left: 20px;
+}
+
+/*Общий блок баннеров*/
+.banner{
+	text-transform: bold;
+	text-transform: uppercase;
+	text-align: center;
+	color: #fff;
+	/*margin-top: 20px;*/
+	border-radius: 10px;
+	/*width: 180px;*/
+  	/*box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.7);*/
+}
+
+/* Текст баннера*/
+.banner-text{
+	position: relative; 
+	top:40%;
+}
+
+/*Маленький баннер*/
+.small-banner{
+	height: 160px;
+}
+/*Большой баннер*/
+.big-banner{
+	height: 350px;
+}
+
+
+
+@media screen and (max-device-width: 640px){
+    .video-block{
+        width: 540px;
+        height: 540px;
+        float: none;
+        margin: auto;
+    }
+   .video-img{
+        width: 540px;
+        height: 387px;
+   } 
+    .video-name a{
+        font-size: 18px;
+    }
+    
+}

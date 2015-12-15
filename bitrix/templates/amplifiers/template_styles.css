@@ -1,0 +1,59 @@
+html,
+body {
+	margin:0px;
+}
+body {
+	text-align:center;
+	background-color:#c5c3c8;
+}
+body *{
+	font-family:Arial;
+}
+div.container {
+	width:450px;
+	margin:0px auto;
+	text-align:left;
+	overflow:hidden;
+}
+/* Header Start */
+div.header{
+	background-image:url(/images/amplifiers/amplifiers_header.png);
+	background-repeat:no-repeat;
+	height:363px;
+	position:relative;
+	overflow:hidden;
+}
+div.header-user{
+	margin:75px 180px 0px 60px;
+}
+div.header-user-data{
+	padding:0px 0px 0px 75px;
+	font-size:22px;
+	font-weight:bold;
+	background-repeat:no-repeat;
+	overflow:hidden;
+	background-position:left center;
+}
+a.header-check-in{
+	background-image:url(/images/amplifiers/amplifiers_check_in.png);
+	background-repeat:no-repeat;
+	width:119px;
+	height:34px;
+	position:absolute;
+	right:55px;
+	top:85px;
+}
+/* Header End */
+/* Footer Start */
+div.footer {
+	height:169px;
+	background-image:url(/images/amplifiers/amplifiers_footer_bg.png);
+	background-repeat:no-repeat;
+}
+div.footer-date {
+	font-size:33px;
+	color:#fff;
+	font-weight:bold;
+	padding:120px 0px 0px 25px;
+}
+/* Footer End */

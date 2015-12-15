@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Активные";
+$arDirProperties = Array(
+
+);
+?>

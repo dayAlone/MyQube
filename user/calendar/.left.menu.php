@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Пойду", 
+		"/user/calendar/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Предстоящие", 
+		"/user/calendar/next/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Архив", 
+		"/user/calendar/prev/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

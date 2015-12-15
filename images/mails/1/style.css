@@ -1,0 +1,10 @@
+@media only screen and (max-width: 600px) {
+	td[class="wrapper"],td[class="container"]{
+		width: auto !important;
+	}
+	td[class="img-block"]{
+		display: block !important;
+		width: 100% !important;
+		text-align: center !important;
+	}
+}

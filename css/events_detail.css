@@ -1,0 +1,447 @@
+@media screen and (max-device-width: 640px){
+    
+    .content{
+        width: 100% !important;       
+    }
+    .shadow-text:after{
+        background-image: none !important;
+    }
+    
+    .main-head a.back-link{
+            background-repeat: no-repeat !important;
+            width: 47px !important;
+            height: 33px !important;
+            background-size: 100% !important; 
+    }
+    
+    .main-menu{
+        padding-top: 0px !important;
+    }
+    
+    #TEXT{
+        padding: 2% !important;
+        width: 96%!important;
+    }
+    
+    .head-form-comment{
+        width: 100% !important;
+    }
+    
+    .right-block{
+         width: 96% !important; 
+        margin: 2% !important;
+    }
+    
+   a.likes.activ:not(:hover){
+        background: url(/images/like_active.png) no-repeat !important;
+    }
+    
+    .left-block button{
+        font-size: 20px !important;
+        width: 90% !important;
+        height: 60px !important;
+    }
+    
+    .left-block{
+        margin-left: 20px;
+        font-size: 18px !important;
+        width: 100% !important;
+        
+    }
+    
+    .main-img{
+        width: 100% !important;
+    } 
+    .competition-text{
+        width: 100% !important;
+    }   
+    
+    .main-text{
+        width: 80%;
+    }
+    
+    .main-head{
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    
+    .likes-wrap a{
+/*       width: 30px !important;
+       height: 30px !important;*/
+       background-size: 100% !important; 
+    }
+    
+    .comments-icon{
+        width: 40px !important;
+        height: 40px !important;
+        background-size: 100% !important; 
+    }
+    
+    .social-buttons{
+                width: 35px !important;
+        height: 35px !important;
+        background-size: 100% !important; 
+    }
+    .socblock{
+        height: 50px !important;
+        width: 200px !important;
+    }
+    
+    .facebook{
+        margin-left: 30px !important;
+         background-size: 100% !important;  
+        width: 20px !important;
+        height: 35px !important;      
+    }
+    
+    .google{
+        margin-left: 30px !important;
+        width: 35px !important;
+        height: 35px !important;
+            background-size: 100% !important; 
+    }
+    .vk{
+        margin-left: 30px !important;
+               width: 35px !important;
+        height: 35px !important;
+            background-size: 100% !important;  
+    }
+    
+    .comments-number{
+        /*width: 180px !important;*/
+        font-size: 16px !important;
+    }
+    
+    .likes-number{
+        font-size: 16px !important;
+    }
+    
+    }
+
+
+.content {
+	width:1100px;
+	padding:0px;
+} 
+.main-head{	
+	height: 45px;
+}
+
+.main-head a.back-link {
+	background:url(../bitrix/templates/web20/images/back-menu.png);
+	display:inline-block;
+	width:31px;
+	height:21px;
+}
+.main-head a.back-link:hover {
+	background:url(../bitrix/templates/web20/images/back-menu_hover.png);
+	cursor:pointer;
+}
+.main-menu{
+	padding-top: 10px;
+	vertical-align: middle;
+	float: left;	
+}
+
+.main-text{
+	float: left;
+	 padding-left: 20px;
+	 font-size: 39px;
+	 text-transform: uppercase;
+	 font-weight: bold;
+	 color: #fff;
+}
+
+.left-block{
+	float: left;
+	width: 280px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #fff;
+}
+
+/*Кнопки - лайк, камент и репост*/
+.like-menu{
+	height: 35px;
+	margin-top: 20px;
+}
+
+.like-ico { 
+	display: inline-block;
+} 
+
+.comment-ico { 
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+.repost-ico { 
+	display: inline-block;
+	margin-left: 15px;
+} 
+
+/*Кнопка - Я пойду*/
+.acccept{
+	margin:20px 0 0;
+}
+.acccept button{
+	font-size: 11px;
+	width: 165px;
+	height: 40px;
+	border: 2px solid #fff;
+	border-radius: 6px;
+	background-color: #001022;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor:pointer;
+}
+
+/*Информационные блоки*/
+.info-block{
+	margin-top: 30px;
+	line-height: 1.5em;
+}
+
+.info-block-head{
+	color: #8E8E8E;
+}
+.left-block {
+	font-size:11px;
+}
+
+.info-block-text{
+	font-weight: normal;
+}
+
+/*------Правый блок с текстом и картинкой*/
+.right-block{
+	margin-top: 20px;
+	width: 780px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 
+}
+/*Текст справа*/
+.competition-text{
+	margin-top: 20px;
+	width: 780px;
+	line-height: 1.5em;
+	color: #8E8E8E;
+	font-weight: bold;
+	line-height: 1.857;
+	text-align: left;
+	overflow: hidden;
+	z-index:-1;
+	font-size:14px;
+}
+
+/*Тень на текст*/
+.shadow-text:after{
+	content:"";
+	display:block;
+	position: relative;
+	height: 50px;
+	bottom: 45px;
+	width: 100%;
+    
+    background-image: linear-gradient(to bottom, rgba(0, 16, 34, 0.7), #001022 75%)
+}
+
+/*Картинка справа*/
+.main-img img{
+	width: 100%;
+}
+
+.main-img{
+	width: 780px;
+	/*height: 230px;*/
+	overflow: hidden;
+}
+.acccept button:hover {
+	border-color:#00d7ff;
+}
+.acccept button.active {
+	border-color:#00d7ff;
+	/*background:#155d1f;*/
+}
+
+/*Нижнее меню карточки с соцкнопками*/
+.bottom-small-menu{
+	margin-left: 10px;
+	height: 30px;
+	display: table;
+	text-align: center;
+}
+/*Обертка для инфы о кол-ве пользователей*/
+.comments-wrap{
+	float: left;
+	/*width: 50px;*/
+}
+.comments-wrap:hover {
+	/*width: 150px;*/
+}
+.comments-icon{
+	cursor: pointer;
+	float: left;
+	width: 25px;
+	height: 20px;
+	background: url(../images/comment_hover.png);
+	background-repeat:no-repeat;
+	transition:1s;
+	-webkit-transition: 1s;
+}
+
+/*Наведение на значок пользователей*/
+
+.comments-wrap:hover .comments-number{
+	/*width: 110px;*/
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.comments-wrap:hover .comments-icon{
+	background: url(../images/comment_hover.png);
+	background-repeat:no-repeat;
+}
+
+
+/*Блок с количеством пользователей*/
+.comments-number{
+	white-space: nowrap;
+	font-size: 11px;
+	/*width: 30px;*/
+	padding-top: 4px;
+	padding-left: 10px;
+	height: 30px;
+	font-size: 11px;
+	float: left;
+	/*opacity: 0;*/
+	/*-webkit-transform: scale(0);
+	-webkit-transition:  1s;	
+	transform: scale(0);
+	transition:  1s;	*/
+}
+
+a.likes{
+	display:block;
+	cursor: pointer;
+	float: left;
+	margin-right: 30px;
+	width: 20px;
+	height: 18px;
+	background: url(../images/like.png);
+	background-repeat:no-repeat;
+}
+a.likes:hover,a.likes.active {
+	background: url(../images/like_active.png);
+	background-repeat:no-repeat;
+}
+
+/*Обертка для соцкнопок*/
+.socwrap{
+	float: left;
+}
+
+/*Кнопка репоста*/
+.social-buttons{
+	/*cursor: pointer;*/
+	margin-left: 20px;
+	float: left;
+	background: url(../images/repost-red.png);
+	width: 16px;
+	height: 17px;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+/*Появления социконок при наведении*/
+
+.socwrap:hover .socblock{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	width: 130px;
+}
+
+/*Изменение цвета кнопки репоста*/
+/*.socwrap:hover .social-buttons{
+	background: url(../images/repost-red.png);	
+}*/
+
+/* Блок с тремя кнопками соцсетей*/
+.socblock{
+	overflow: hidden;
+	float: left;
+	width: 130px;
+	height: 18px;
+	-webkit-transform: scale(1);
+	-webkit-transition: 1s;
+	transform: scale(1);
+	transition: 1s;
+}
+
+
+/* Соц кнопки */
+.facebook{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 12px;
+	height: 18px;
+	background: url(../images/facbook-ico.png) no-repeat;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.vk{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 31px;
+	height: 18px;
+	background: url(../images/vk.png)  no-repeat;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.google{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: url(../images/google-ico.png)  no-repeat;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+
+/*Цвет соцкнопок*/
+.facebook:hover{
+	background: url(../images/facbook-ico-b.png)  no-repeat;
+}
+
+.vk:hover{
+	background: url(../images/vk-b.png)  no-repeat;	
+}
+
+.google:hover{
+	background: url(../images/google-ico-b.png)  no-repeat;
+}
+
+/*.comments {
+    clear: both;
+    margin: 50px 0 50px 150px;
+    position: relative;
+    width: 480px;
+}*/
+.comment_submit_button {
+    position: absolute;
+    right: -42px;
+    top: 2px;
+}
+#TEXT {
+	color:#898989;
+	background: #0d1c2d;
+}

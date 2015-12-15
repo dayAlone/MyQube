@@ -1,0 +1,417 @@
+@media screen and (max-device-width: 640px){
+    .shadow-wrap{
+        height: 80vw !important;
+        background-image: none !important;
+        background: rgba(0,0,0,0.6) !important;
+    }
+    
+    .bottom-small-menu{
+        display: none !important;
+    }
+    
+    .left-menu div{
+        float: left !important;
+    }
+    .left-menu{
+        width: 400px !important;
+    }
+    .left-menu a{
+        font-size: 22px;
+    }
+
+    
+    .accept-text{
+        width: auto !important;
+        font-size: 24px !important;
+    }
+    .unaccept-event{
+        font-size: 34px !important;
+    }
+    .accept-event{
+            width: 50px !important;
+    height: 60px !important;
+    background-size: cover !important;
+    }
+    
+    .event{
+        float: none !important;
+    }
+    
+    .upper-card-block{
+        height: 80vw !important;
+    }
+}
+
+
+/*Блок карточки мероприятия*/
+.event{
+	text-align: center;
+	overflow: hidden;
+	margin-top: 20px;
+	width: 280px;
+	height: 370px;
+	border-radius: 8px;
+	float: left;
+	margin-left: 20px;
+	color: #fff;
+	text-transform: uppercase;
+	z-index:1;
+	  background-image: -moz-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.7);
+
+}
+
+/*Тень на карточках*/
+.shadow-wrap{
+	width: 280px;
+	height: 370px;
+	background-image: -moz-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+  	background-image: -webkit-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+  	background-image: -ms-linear-gradient( 90deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+}
+
+/*Бэкграунд картинка для  карточек*/
+#event-1{
+	background: url(../images/b1competition.jpg);
+	background-size: cover;
+}
+
+#event-2{
+	background: url(../images/b2competition.jpg) no-repeat; 
+}
+
+#event-3{
+	background: url(../images/b3competition.jpg) no-repeat; 
+}
+
+#event-4{
+	background: url(../images/b4competition.jpg) no-repeat; 
+}
+
+/*Контент карточки*/
+.upper-card-block{
+	height: 327px;
+}
+
+
+.event-header{
+	margin: auto;
+	font-size: 23px;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 110px;
+}
+.event-header a{
+	color: #fff;
+	text-decoration: none;
+}
+.event-date a, .event-date a:hover{
+	text-decoration: none !important;    
+}
+/*Дата события*/
+.event-date{
+	text-align: center;
+	padding-top: 1em;
+}
+/*Блок вокруг кнопки*/
+.accept{
+	margin: auto;
+	padding-top: 3em;	
+	text-align: center;
+	margin-bottom: 52px;
+}
+/*Кнопка акцепта*/
+.accept button{
+	border-radius: 8px;
+	margin: auto;
+	font-size: 11px;
+	width: 164px;
+	height: 40px;
+	background-color: rgba(0,0,0,0);
+	border: 2px solid #fff;
+	color: #fff;
+	text-transform: uppercase;
+	transition: 1s;
+	-webkit-transition: 1s;
+	font-weight: 800;
+}
+
+.accept button:hover{
+	background-color: #fff;
+	color: #000;
+}
+
+
+/*Блоки "мероприятие проводится"*/
+.accept-event{
+	
+	background: url(../images/accept-user.png);
+	width: 38px;
+	height: 42px;
+	margin: 14px auto;
+}
+
+.accept-text{
+	margin:auto;
+	margin-top: 7px;
+	font-size: 11px;
+	width: 200px;
+}
+
+.unaccept-event{
+	margin-top: 14px;
+	text-transform: none;
+	font-size: 13px;
+    color: rgb(0, 215, 255);
+    margin-bottom: 44px;
+	cursor: pointer;
+}
+/*Мероприятие закончилось*/
+.end-event{
+	background: url(../images/end-event.png);
+	width: 29px;
+	height: 34px;
+	margin: 14px auto;
+}
+.end-event-text{
+	margin:auto;
+	margin-top: 7px;
+	font-size: 11px;
+	width: 200px;	
+	margin-bottom: 67px;
+}
+
+/*Нижнее меню карточки с соцкнопками*/
+.bottom-small-menu{
+	margin: 0px auto 0;
+	height: 30px;
+	display: table;
+	text-align: center;
+}
+/*Обертка для инфы о кол-ве пользователей*/
+.users-wrap{
+	float: left;
+	margin-left:16px;
+}
+
+.users-icon{
+	cursor: default;
+	float: left;
+	width: 18px;
+	height: 20px;
+	background: url(../images/user-ico-w.png);
+	transition:1s;
+	-webkit-transition: 1s;
+}
+
+/*Наведение на значок пользователей*/
+
+/*.users-wrap:hover .users-number{
+	width: 0px;
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}*/
+
+.users-wrap:hover .users-icon{
+	background: url(../images/user-ico-w.png);
+}
+
+
+/*Блок с количеством пользователей*/
+.users-number{
+	white-space: nowrap;
+	font-size: 11px;
+	width: 0px;
+	padding-top: 4px;
+	padding-left: 10px;
+	height: 30px;
+	font-size: 11px;
+	float: left;
+	opacity: 1;
+	-webkit-transform: scale(1);
+	-webkit-transition:  1s;	
+	transform: scale(1);
+	transition:  1s;	
+}
+
+.comments{
+	cursor: pointer;
+	float: left;
+	margin-left: 10px;
+	width: 25px;
+	height: 20px;
+	background: url(../images/comment.png);
+}
+.comments:hover {
+	color: #ffffff;
+    background: url(../images/comments_hover.png) no-repeat left;
+}
+
+/*Обертка для соцкнопок*/
+.socwrap{
+	float: left;
+	margin-left:10px;
+	margin-top:2px;
+}
+
+/*Кнопка репоста*/
+.social-buttons{
+	cursor: default;
+	margin-left: 20px;
+	float: left;
+	background: url(../images/repost-red.png);
+	width: 16px;
+	height: 17px;
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+.socwrap span {
+	margin-top:4px;
+	display:inline-block;
+}
+.fb_share_count {
+	margin-left:5px;
+}
+/*Появления социконок при наведении*/
+
+.socwrap:hover .socblock{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	width: 120px;
+}
+
+/*Изменение цвета кнопки репоста*/
+.socwrap:hover .social-buttons{
+	background: url(../images/repost-red.png);	
+}
+
+/* Блок с тремя кнопками соцсетей*/
+.socblock{
+	overflow: hidden;
+	float: left;
+	width: 0px;
+	height: 18px;
+	-webkit-transform: scale(0);
+	-webkit-transition: 1s;
+	transform: scale(0);
+	transition: 1s;
+}
+
+
+/* Соц кнопки */
+.facebook-icon{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 12px;
+	height: 18px;
+	background: url(../images/facbook-ico.png);
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.blogger-icon{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 13px;
+	height: 18px;
+	background: url(../images/vk.png);
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+.google-icon{
+	margin-left: 20px;
+	cursor: pointer;
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: url(../images/google-ico.png);
+	transition: 1s;
+	-webkit-transition: 1s;
+}
+
+
+/*Цвет соцкнопок*/
+.facebook-icon:hover{
+	background: url(../images/facbook-ico-b.png);
+}
+
+.blogger-icon:hover{
+	background: url(../images/vk-b.png);	
+}
+
+.google-icon:hover{
+	background: url(../images/google-ico-b.png);
+}
+
+
+/*Правый блок с баннерами*/
+.banner-block{
+	width: 180px;
+	float: left;
+	margin-left: 20px;
+}
+
+/* Текст баннера*/
+.banner-text{
+	position: relative; 
+	top:40%;
+}
+
+/*Маленький баннер*/
+.small-banner{
+	height: 160px;
+}
+/*Большой баннер*/
+.big-banner{
+	height: 350px;
+}
+/*Обертка для инфы о кол-ве пользователей*/
+.comments-wrap{
+	float: left;
+}
+
+.comments-icon{
+	cursor: pointer;
+	float: left;
+	width: 25px;
+	height: 20px;
+	background: url(../images/comment.png);
+	background-repeat:no-repeat;
+	transition:1s;
+	-webkit-transition: 1s;
+}
+
+/*Наведение на значок пользователей*/
+
+.comments-wrap:hover .comments-number{
+	width: 110px;
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.comments-wrap:hover .comments-icon{
+	background: url(../images/comment_hover.png);
+	background-repeat:no-repeat;
+}
+.comments-number{
+	white-space: nowrap;
+	font-size: 11px;
+	width: 0px;
+	padding-top: 4px;
+	padding-left: 10px;
+	height: 30px;
+	font-size: 11px;
+	float: left;
+	opacity: 0;
+	-webkit-transform: scale(0);
+	-webkit-transition:  1s;	
+	transform: scale(0);
+	transition:  1s;	
+}

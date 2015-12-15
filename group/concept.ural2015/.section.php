@@ -1,0 +1,6 @@
+<?
+$sSectionName = "projectekb";
+$arDirProperties = Array(
+
+);
+?>

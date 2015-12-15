@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>myqube ADVISER auth</title>
+	<link href="include/main.css" rel="stylesheet" media="all" />
+	<script type="text/javascript" src="include/q.js"></script>
+	<script type="text/javascript" src="include/moment.js"></script>
+	<script type="text/javascript" src="include/jquery.min.js"></script>
+	<script type="text/javascript" src="include/jquery.base64.min.js"></script>
+	<script type="text/javascript" src="include/underscore-min.js"></script>
+	<script type="text/javascript" src="include/_auth.js"></script>
+
+
+	<script type="text/javascript">
+
+		var login       = 'adviser';
+		var password    = '1234567';
+
+		function getAdviserContent() {
+			var deferred = Q.defer();
+			var thisUrl = url + '?mode=promo&zip=' + getZip + '&sessid=' + sessid;
+
+			$.ajax({
+				url: thisUrl,
+				method: 'GET',
+				success: function (data, status) {
+					var objData = null;
+					if (status === 'success') {
+						console.log('getAdviserContent AJAX data: ' + data);
+						jObj = JSON.parse(data)
+						if ("OK" == jObj[0].status) {
+							deferred.resolve(data);
+						} else {
+							deferred.reject(new Error("Wrong status: " + data));
+						}               
+					} else {
+						deferred.reject(new Error("Status code was " + status));
+					}
+				},
+				error: function( jqXHR, textStatus, errorThrown ) {
+					deferred.reject(new Error("Can't XHR " + textStatus + "(" + errorThrown + ")" ));
+				}
+			});
+
+			return deferred.promise;
+		}
+
+		$( document ).ready(function(){
+			requestAuth(login, password)
+			.then(getAdviserContent)
+			.then(function(data){
+				$('#output').html( data );
+			})
+			.catch(function (error) {
+				// Handle any error from all above steps
+				alert('error');
+				console.log( 'error: ' + JSON.stringify( error ) );
+			});
+		});
+	</script>
+	
+</head>
+
+
+<body>
+	<div id="header">myqube ADVISER auth</div>
+	<div id="output"></div>
+</body>

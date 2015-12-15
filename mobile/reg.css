@@ -1,0 +1,122 @@
+@media screen and (max-device-width: 640px){
+
+    .enter_page_leftcol_text{
+        font-size: 14px;
+        height: 100%;
+    }
+    
+    input[type="checkbox"] + label div{
+        font-size: 16px;
+    }
+    
+    input{
+        margin-top: 20px;
+        font-size: 15px !important;
+    }
+    
+    .enter_page_rights{
+        font-size: 1em !important;
+        bottom: 0px;
+        /*position: fixed;*/
+    }
+    
+    .enter_page_rightcol{
+        display: none !important;
+    }
+    
+    .enter_page_leftcol{
+        width: 100%;
+    }
+    
+    .enter_page{
+        min-width: 100%;     
+    }
+    
+    div.body{
+        background: #ebebeb;
+    }
+    
+    input[type="submit"]{
+        width: 468px !important;
+        height: 62px !important;
+    }
+    
+    .error{
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .enter_page_leftcol_cont {
+        background-position: 51% 318px; 
+        min-height: 960px;       
+    }
+    
+    .header-reg-mobile-up{
+        height: 100px;
+        width: 100%;
+        background: #ebebeb;
+        position: relative;
+    }
+    
+    .header-reg-mobile-up-left{
+        position: absolute;
+        top: 32px;
+        left: 15px;
+        height: 38px;
+        width: 22px;
+        background: url( images/left-mobile.png );
+    }
+    
+    .header-reg-mobile-down{
+        position: relative;
+        height: 145px;
+        width: 100%;
+        background: url( images/cityheader-mobile.jpg );
+        margin-bottom: 15px;    
+        background-size:100% auto ; 
+        background-position-y: -90px;   
+    }
+    
+    .header-reg-mobile-up-logo{       
+        margin: auto;
+        position: relative;
+        top: 20px;
+        width: 182px;
+        height: 64px;
+        background: url( images/myqube-mobile.png );
+    }
+    
+    .header-reg-mobile-down-text{
+        
+        font-family: "GothamProBold";
+        position: absolute;
+        left: 80px;
+        top: 35px;
+        width: 532px;
+        height: 114px;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 39px;
+        line-height: 1;
+    }
+    
+    .reg-mobile-footer{
+        font-size: 20px;
+        padding: 30px 0px;
+        width: 100%;
+        background: #000;
+        text-align: center;
+        bottom: 0;
+        left: -100%;
+        position: absolute;
+      
+    }
+    
+    .reg-mobile-footer span{
+        padding: 8px 20px;
+    }
+
+div.main{
+    height: 960px !important;
+}
+    
+}
