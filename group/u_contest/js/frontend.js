@@ -12052,7 +12052,7 @@ return jQuery;
     $step5.find('.wear__checkbox input.radio').on('change', function(e) {
       $step5.find('.error').mod('active', false);
       $step5.find('.button').mod('disabled', false);
-      $('.wear').mod('innactive', true).mod('active', false);
+      $step6.find('.wear').mod('innactive', true).mod('active', false);
       return $(this).parents('.wear').mod('innactive', false).mod('active', true).find('.wear__sizes input:first')[0].checked = true;
     });
     $step5.find('.button').on('click', function(e) {
@@ -12073,9 +12073,9 @@ return jQuery;
       } else {
         type = 1;
       }
-      $('.wear').elem('placeholder').find("[src*='lines']").removeClass('active');
-      $('.wear').elem('placeholder').find("[src*='" + type + "_']").removeClass('active');
-      $('.wear').elem('placeholder').find("[src*='" + type + "_" + val + "']").addClass('active');
+      $step6.find('.wear').elem('placeholder').find("[src*='lines']").removeClass('active');
+      $step6.find('.wear').elem('placeholder').find("[src*='" + type + "_']").removeClass('active');
+      $step6.find('.wear').elem('placeholder').find("[src*='" + type + "_" + val + "']").addClass('active');
       if ($step6.find('input[name="vertical"]:checked').length > 0 && $step6.find('input[name="horizont"]:checked').length > 0) {
         $step6.find('.message').mod('active', false);
         return $step6.find('.button').mod('disabled', false);
