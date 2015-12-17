@@ -4675,35 +4675,6 @@ svg g {
   position: relative;
   top: 15px;
 }
-.modal a:not(.close) {
-  color: #00f;
-  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,0,255,0.5) 50%);
-  background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,0,255,0.5) 50%);
-  background-image: -o-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,0,255,0.5) 50%);
-  background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,0,255,0.5) 50%);
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,255,0.5) 50%);
-  background-repeat: repeat-x;
-  -webkit-background-size: 2px 2px;
-  -moz-background-size: 2px 2px;
-  background-size: 2px 2px;
-  background-position: 0 100%;
-  background-position: 0 calc(100%);
-}
-.modal a:not(.close):hover {
-  text-decoration: none;
-}
-.modal .close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-.modal .close svg {
-  width: 20px;
-  height: 20px;
-}
-.modal .close svg path {
-  fill: #00f;
-}
 .error {
   margin: 0;
   border: 0;
@@ -4870,6 +4841,10 @@ svg g {
   font-size: 21px;
   letter-spacing: 1px;
   font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  line-height: 44px;
+  background-image: none;
   -webkit-transition-property: all;
   -moz-transition-property: all;
   -o-transition-property: all;
@@ -4880,6 +4855,9 @@ svg g {
   -o-transition-duration: 0.3s;
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
+}
+.button:active {
+  color: #fff;
 }
 .button--small {
   min-width: 200px;
@@ -5319,6 +5297,9 @@ input[type='checkbox'].checkbox + label:before {
   color: #e6612d;
   margin-top: 0;
   margin-bottom: 30px;
+}
+.modal-content h3.black {
+  color: #000;
 }
 textarea.textarea {
   width: 100%;

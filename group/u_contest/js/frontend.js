@@ -12087,8 +12087,11 @@ return jQuery;
         $(this).mod('disabled', true);
         return e.preventDefault();
       } else {
-        return next(e);
+        return $('#Shure').modal();
       }
+    });
+    $('#OK .button').click(function(e) {
+      return next(e);
     });
     if ($.browser && $.browser.mobile === true) {
       return $('body').addClass('mobile');
