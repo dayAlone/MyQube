@@ -12090,7 +12090,7 @@ return jQuery;
         return $('#Shure').modal();
       }
     });
-    $('#OK .button').click(function(e) {
+    $('#OK').on('hidden.bs.modal', function(e) {
       return next(e);
     });
     if ($.browser && $.browser.mobile === true) {

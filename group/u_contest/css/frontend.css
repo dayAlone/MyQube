@@ -5016,7 +5016,8 @@ svg g {
 .wear__image,
 .wear__down,
 .wear__hover,
-.wear__placeholder {
+.wear__placeholder,
+.wear__text {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -5037,13 +5038,15 @@ svg g {
   -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
-.wear__placeholder {
+.wear__placeholder,
+.wear__text {
   width: 100px;
   z-index: 50;
   height: 78px;
   margin-top: -40px;
 }
-.wear__placeholder img {
+.wear__placeholder img,
+.wear__text img {
   max-width: 100%;
   left: 0;
   top: 0;
@@ -5062,7 +5065,18 @@ svg g {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-.wear__placeholder img.active {
+.wear__placeholder img.active,
+.wear__text img.active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.wear__text {
+  z-index: 60;
+  width: 97px;
+  margin-left: 2px;
+}
+.wear__text img {
   opacity: 1;
   -ms-filter: none;
   filter: none;
