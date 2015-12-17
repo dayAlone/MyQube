@@ -11996,7 +11996,7 @@ return jQuery;
   };
 
   $(document).ready(function() {
-    var $intro, $step2, $step3, $step4, $step5;
+    var $intro, $step2, $step3, $step4, $step5, $step6;
     delay(300, function() {
       return size();
     });
@@ -12058,6 +12058,32 @@ return jQuery;
     $step5.find('.button').on('click', function(e) {
       if ($step5.find('input[name="type"]:checked').length === 0) {
         $step5.find('.error').mod('active', true);
+        $(this).mod('disabled', true);
+        return e.preventDefault();
+      } else {
+        return next(e);
+      }
+    });
+    $step6 = $('.contest').elem('step').byMod('6');
+    $step6.find('input[type="radio"]').on('change', function(e) {
+      var type, val;
+      val = $(this).val();
+      if ($(this).attr('name') === 'vertical') {
+        type = 2;
+      } else {
+        type = 1;
+      }
+      $('.wear').elem('placeholder').find("[src*='lines']").removeClass('active');
+      $('.wear').elem('placeholder').find("[src*='" + type + "_']").removeClass('active');
+      $('.wear').elem('placeholder').find("[src*='" + type + "_" + val + "']").addClass('active');
+      if ($step6.find('input[name="vertical"]:checked').length > 0 && $step6.find('input[name="horizont"]:checked').length > 0) {
+        $step6.find('.message').mod('active', false);
+        return $step6.find('.button').mod('disabled', false);
+      }
+    });
+    $step6.find('.button').on('click', function(e) {
+      if ($step6.find('input[name="vertical"]:checked').length === 0 || $step6.find('input[name="horizont"]:checked').length === 0) {
+        $step6.find('.message').mod('active', true);
         $(this).mod('disabled', true);
         return e.preventDefault();
       } else {
