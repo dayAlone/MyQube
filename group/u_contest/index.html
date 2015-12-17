@@ -1,0 +1,186 @@
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2:100,400,300,600,700&amp;subset=latin,cyrillic"/><link href="//myqube.ru.opt-css.1c-bitrix-cdn.ru/bitrix/js/main/core/css/core.css?14501959463963" type="text/css" rel="stylesheet">
+<link href="//myqube.ru.opt-css.1c-bitrix-cdn.ru/bitrix/panel/main/popup.css?145019602223084" type="text/css" data-template-style="true" rel="stylesheet">
+<link href="//myqube.ru.opt-css.1c-bitrix-cdn.ru/bitrix/templates/web20/styles.css?145019590033568" type="text/css" data-template-style="true" rel="stylesheet">
+<script type="text/javascript" src="/group/u_contest/js/frontend.js" defer async></script>
+<link rel="stylesheet" href="/group/u_contest/css/frontend.css" media="screen" title="no title" charset="utf-8">
+<div class="body">
+  <nav id="nav_left_open">
+    <a class="show_full_nav" href="#"></a>
+    <a href="/user/profile/" title="ПРОФИЛЬ" class="nav_item nav_item_1"><span class="icon_userprofile"></span>&nbsp;<span class="nav_text">ПРОФИЛЬ</span></a>
+    <a href="/user/groups/" title="ГРУППЫ" class="nav_item"><span class="icon_usergroups"></span>&nbsp;<span class="nav_text">ГРУППЫ</span></a>
+    <a href="/group/1/?back=group&amp;GROUP_ID=1" title="Вернуться в группу" class="nav_item"><span class="icon_group"></span>&nbsp;<span class="nav_text">В ГРУППУ</span></a>
+    <a href="/communication/" title="СООБЩЕНИЯ" class="nav_item"><span class="icon_communication"><div id="new_messages_count"></div></span>&nbsp;<span class="nav_text">СООБЩЕНИЯ</span></a>
+    <a href="/user/news/" title="НОВОСТИ" class="nav_item"><span class="icon_usernews"></span>&nbsp;<span class="nav_text">НОВОСТИ</span></a>
+    <a href="/user/calendar/" title="КАЛЕНДАРЬ СОБЫТИЙ" class="nav_item"><span class="icon_usercalendar"></span>&nbsp;<span class="nav_text">КАЛЕНДАРЬ</span></a>
+    <a href="/?logout=yes" title="ВЫХОД" class="nav_item"><span class="icon_logout"></span>&nbsp;<span class="nav_text">ВЫХОД</span></a>
+  </nav>
+  <div class="main">
+    <div class="contest contest--demo">
+      <div class="contest__header"> </div>
+      <nav id="nav_1">
+        <div class="nav-inner">
+            <div class="item nomobile" style="float:left;margin-right:120px;margin-left:24px"><img src="//myqube.ru.opt-images.1c-bitrix-cdn.ru/bitrix/templates/web20/images/KENT LAB.png?145019589532092" style="vertical-align: middle; height: 20px;"></div>
+            <div class="item"><a href="/group/1/">ЛЕНТА</a></div>
+            <div class="item"><a href="/group/1/photo/">ФОТО</a></div>
+            <div class="item"><a href="/group/1/video/">ВИДЕО</a></div>
+            <div class="item"><a href="/group/1/events/">СОБЫТИЯ</a></div>
+            <div class="item"><a href="/group/1/about/">О БРЕНДЕ</a></div>
+            <div class="item"><a class="selected" href="/group/1/contest/">КОНКУРСЫ</a></div>
+        </div>
+      </nav>
+      <div class="contest__content">
+        <div class="contest__step contest__intro center">
+          <!--.contest__step--active-->
+          <h1>U_creative</h1>
+          <p>
+            Участники проекта U_CONCEPT успешно создали арт-проекты.<br>
+            Пришла Ваша очередь показать свои творческие таланты. <br>
+            Место проведения проекта – <span>г. Екатеринбург.</span>
+          </p>
+          <div class="row contest__features">
+            <div class="col-xs-4 feature">
+              <div class="feature__image"><img src="/group/u_contest/images/icon-1.png" alt="" width="130"/></div>
+              <div class="feature__text">Ответьте на несколько<br/> простых вопросов.</div>
+            </div>
+            <div class="col-xs-4 feature">
+              <div class="feature__image"><img src="/group/u_contest/images/icon-2.png" alt="" width="130"/></div>
+              <div class="feature__text">Создайте уникальный дизайн<br/> для свитшота.</div>
+            </div>
+            <div class="col-xs-4 feature">
+              <div class="feature__image"><img src="/group/u_contest/images/icon-3.png" alt="" width="122"/></div>
+              <div class="feature__text">Получите авторскую вещь<br/>в качестве комплимента*. </div>
+            </div>
+          </div>
+          <form method="POST" action="/">
+            <input type="checkbox" name="agreement" class="checkbox"/>
+            <label>Я согласен с <a href="#Rules" data-toggle="modal">правилами участия</a></label><br/>
+            <button type="submit" class="button">начать</button><br/>
+            <div class="error">Пожалуйста, подтвердите свое согласие<br/>с правилами участия, чтобы продолжить.</div>
+          </form><br/><small>*Доставка осуществляется только в городе Екатеринбург.</small>
+        </div>
+        <div class="contest__question contest__step contest__step--2">
+          <h1 class="center">ВОПРОСЫ. <span>1/3</span></h1>
+          <h3 class="center">Откуда вы узнали о сигаретах Kent Explore?</h3>
+          <form method="POST" action="/">
+            <textarea placeholder="Напишите свой ответ" class="textarea"></textarea>
+            <div class="center"><br/>
+              <button type="submit" class="button">ответить</button><br/>
+              <div class="error">Пожалуйста, ответьте на вопрос<br/>для продолжения участия. </div>
+            </div>
+          </form>
+        </div>
+        <div class="contest__question contest__step contest__step--3">
+          <h1 class="center">ВОПРОСЫ. <span>2/3</span></h1>
+          <h3 class="center">Как бы Вы оценили дизайн Kent Explore?</h3>
+          <form method="POST" action="/">
+            <div class="row center">
+              <div class="col-xs-4">
+                <input id="r-1" type="radio" name="design" value="3" class="radio"/><br/>
+                <label for="r-1">Неудовлетворительно</label>
+              </div>
+              <div class="col-xs-4">
+                <input id="r-2" type="radio" name="design" value="4" class="radio"/><br/>
+                <label for="r-2">Хорошо</label>
+              </div>
+              <div class="col-xs-4">
+                <input id="r-3" type="radio" name="design" value="5" checked="checked" class="radio"/><br/>
+                <label for="r-3">Превосходно</label>
+              </div>
+            </div>
+            <div class="center"><br/>
+              <button type="submit" class="button">ответить</button>
+            </div>
+          </form>
+        </div>
+        <div class="contest__question contest__step contest__step--4">
+          <h1 class="center">ВОПРОСЫ. <span>3/3</span></h1>
+          <h3 class="center">Успели ли Вы оценить вкус Kent Explore?</h3>
+          <form method="POST" action="/">
+            <div class="row center">
+              <div class="col-xs-6">
+                <button type="submit" name="check" class="button button--small">Да</button>
+              </div>
+              <div class="col-xs-6">
+                <button type="submit" name="check" class="button button--small">Нет</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="contest__question contest__step contest__step--5 contest__step--active">
+          <div class="center">
+            <h1>Выбор свитшота</h1>
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="wear wear--man"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                  <div class="wear__sizes"><span>Выберите размер:</span>
+                    <input id="c-48" type="radio" name="size" value="48" checked="checked"/>
+                    <label for="c-48">48</label>
+                    <input id="c-50" type="radio" name="size" value="50"/>
+                    <label for="c-50">50</label>
+                  </div>
+                  <div class="wear__checkbox">
+                    <input id="man" type="radio" name="type" value="M" class="radio"/>
+                    <label for="man">Мужской</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="wear wear--woman"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                  <div class="wear__sizes"><span>Выберите размер:</span>
+                    <input id="c-44" type="radio" name="size" value="44" checked="checked"/>
+                    <label for="c-44">44</label>
+                    <input id="c-46" type="radio" name="size" value="46"/>
+                    <label for="c-46">46</label>
+                  </div>
+                  <div class="wear__checkbox">
+                    <input id="woman" type="radio" name="type" value="W" class="radio"/>
+                    <label for="woman">Женский</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="button">Следующий шаг            </button><br/>
+            <div class="error">Пожалуйста, выберите свитшот,<br/>чтобы перейти к его оформлению</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="Rules" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+      <div class="scroll">
+        <h3>УСЛОВИЯ УЧАСТИЯ В ВИКТОРИНЕ «U_CREATIVE»</h3>
+        <h4>I. ОБЩИЕ ПОЛОЖЕНИЯ</h4>
+        <p>1.1. Настоящие Условия определяют правила участия в Викторине    «U_CREATIVE» на территории Российской Федерации в г. Екатеринбург (далее по тексту — «Викторина»).</p>
+        <p>1.2. Данная Викторина разработана АО «Международные услуги по маркетингу табака» (121614, г. Москва, ул. Крылатская, д. 17, корп. 2), входящему в Группу компаний «Бритиш Американ Тобакко Россия» (далее — «Компания»).</p>
+        <p>1.3. Участие в Викторине возможно исключительно для совершеннолетних потребителей табачной продукции (граждан России старше 18 лет). Лицам, не достигшим совершеннолетия, участие в Викторине запрещено.</p>
+        <p>1.4. С целью обеспечения возможности своевременного ознакомления каждого Участника с изменениями Условий Викторины сообщения об этом, а также текст настоящих Условий участия в Викторине и изменений к ним, публикуются на портале http://myqube.ru в закрытой группе Kent Lab (далее по тексту – «Портал»)</p>
+        <p>1.5. Условия настоящей Викторины распространяют свое действие на всех без исключения Участников.</p>
+        <p>С момента выражения Вами согласия с Условиями Участия в Викторине, в том числе путем совершения Вами любых действий, влекущих за собой получение Призов, Вы подтверждаете факт Вашего надлежащего ознакомления с Условиями Викторины.</p>
+        <p>1.6. Настоящие Условия могут быть в любое время изменены/дополнены и/или сама Викторина может быть прекращена Компанией в одностороннем порядке как с предварительным уведомлением об этом, так и без него, в порядке, предусмотренном Условиями и/или действующим законодательством.</p>
+        <p>1.7. Компания рекомендует Участникам регулярно проверять Условия настоящей Викторины на предмет их изменения и/или дополнения. Продолжение участия в Викторине после внесения изменений и/или дополнений в Условия означает принятие Участником таких изменений/дополнений и согласие с ними.</p>
+        <p>1.8. Уведомление о прекращении или приостановке действия Викторины считается сделанным от имени Компании Участнику, если оно было передано по телефону или по электронной почте или размещено на Портале, указанном в п. 1.4 Условий.</p>
+        <p>1.9. Условия настоящей Викторины регулируются и толкуются в соответствии с законодательством Российской Федерации. Вопросы, не урегулированные Условиями, подлежат разрешению в соответствии с законодательством Российской Федерации по месту нахождения Компании в г. Москве.</p>
+        <p>Если по тем или иным причинам одно или несколько положений Условий будут признаны недействительными или не имеющими юридической силы, это не оказывает влияния на действительность или применимость остальных положений.</p>
+        <h4>II. УСЛОВИЯ УЧАСТИЯ</h4>
+        <p>2.1. Принять участие в Викторине может только зарегистрированный на настоящем портале совершеннолетний потребитель (старше 18 лет) табачной продукции (Пользователь Портала), подтвердивший свое согласие на участие в Викторине в соответствии с п. 4.1 настоящих Условий.</p>
+        <p>2.2. Компания вправе отказать Пользователю Портала и любому лицу в участии в Викторине без объяснения причин.</p>
+        <p>2.3. Участник обязуется самостоятельно отслеживать информацию о ходе Викторины и прочую информацию о Викторине.</p>
+        <p>2.4. Участник вправе в любой момент прекратить участие в Викторине и отказаться от Приза путем направления Компании уведомления о прекращении участия.</p>
+        <p>2.5. Компания не несет ответственности за недоступность информации о ходе Викторины в случае невозможности доступа Участника к Порталу из-за технических неполадок, устранение которых напрямую не зависит от Компании.</p>
+        <h4>III. СРОКИ ПРОВЕДЕНИЯ ВИКТОРИНЫ</h4>
+        <p>С 22.12.2015 года по 23.01.2016 года. Организатор Викторины оставляет за собой право менять сроки проведения Викторины, заранее уведомив о прекращении или приостановке действия Викторины согласно п. 1.8</p>
+        <h4>IV. ПРАВИЛА УЧАСТИЕ И ПОЛУЧЕНИЯ ПРИЗОВ В ВИКТОРИНЕ</h4>
+        <p>4.1. Каждый Участник должен согласиться с Условиями Участия в Викторине «U_CREATIVE» поставив отметку на странице Викторины в соответствующем пункте. </p>
+        <p>4.2. После соглашения с Условиями Участия в Викторине в соответствии с п.4.1. каждый Участник отвечает на 3 вопроса о Kent Эксплор.</p>
+        <p>4.2. Ответив на все 3 вопроса о Kent Эксплор каждый Участник получает возможность выбрать модель свитшота (мужская или женская), размер поставив отметку на странице Викторины в соответствующем разделе.</p>
+        <p>4.3. По выбора модели и размера свитшота в соответствии с п.4.2 каждый Участник получает возможность создать свой вариант дизайна для свитшота из имеющихся элементов дизайна, путем выбора двух элементов. Получившийся дизайн отображается на свитшоте. Участник подтверждает получившийся дизайн свитшота путем нажатия на кнопку «Подтвердить».</p>
+        <p>4.4. После подтверждения дизайна для свитшота в соответствии с п.4.3. каждый участник указывает адрес доставки свитшота в пределах г. Екатеринбург и контактный телефон и нажимает кнопку «Продолжить».</p>
+        <p>4.5. На электронный адрес Участника, указанный при регистрации на Портале, высылается электронное письмо о подтверждении заказа.</p>
+      </div>
+    </div>
+  </div>
+</div>
