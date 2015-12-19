@@ -30,7 +30,7 @@
         </div>
       </nav>
       <div class="contest__content">
-        <div class="contest__step contest__intro center">
+        <div class="contest__step contest__intro center contest__step--active">
           <h1>U_creative</h1>
           <p>
             Участники проекта U_CONCEPT успешно создали арт-проекты.<br>
@@ -38,15 +38,15 @@
             Место проведения проекта <nobr>– <span>г. Екатеринбург.</span></nobr>
           </p>
           <div class="row contest__features">
-            <div class="col-xs-12 col-md-4 feature">
+            <div class="col-xs-12 col-sm-4 feature">
               <div class="feature__image"><img src="/group/u_contest/images/icon-1.png" alt="" width="130"/></div>
               <div class="feature__text">Ответьте на несколько<br/> простых вопросов.</div>
             </div>
-            <div class="col-xs-12 col-md-4 feature">
+            <div class="col-xs-12 col-sm-4 feature">
               <div class="feature__image"><img src="/group/u_contest/images/icon-2.png" alt="" width="130"/></div>
               <div class="feature__text">Создайте уникальный дизайн<br/> для свитшота.</div>
             </div>
-            <div class="col-xs-12 col-md-4 feature">
+            <div class="col-xs-12 col-sm-4 feature">
               <div class="feature__image"><img src="/group/u_contest/images/icon-3.png" alt="" width="122"/></div>
               <div class="feature__text">Получите авторскую вещь<br/>в качестве комплимента*. </div>
             </div>
@@ -74,15 +74,15 @@
           <h3 class="center">Как бы Вы оценили дизайн Kent Explore?</h3>
           <form method="POST" action="/">
             <div class="row md-center">
-              <div class="col-xs-12 col-md-4">
+              <div class="col-xs-12 col-sm-4">
                 <input id="r-1" type="radio" name="design" value="Неудовлетворительно" class="radio"/><br/>
                 <label for="r-1">Неудовлетворительно</label>
               </div>
-              <div class="col-xs-12 col-md-4">
+              <div class="col-xs-12 col-sm-4">
                 <input id="r-2" type="radio" name="design" value="Хорошо" class="radio"/><br/>
                 <label for="r-2">Хорошо</label>
               </div>
-              <div class="col-xs-12 col-md-4">
+              <div class="col-xs-12 col-sm-4">
                 <input id="r-3" type="radio" name="design" value="Превосходно" checked="checked" class="radio"/><br/>
                 <label for="r-3">Превосходно</label>
               </div>
@@ -106,7 +106,7 @@
             </div>
           </form>
         </div>
-        <div class="contest__question contest__step contest__step--5 contest__step--active">
+        <div class="contest__question contest__step contest__step--5">
           <!--.contest__step--active-->
           <div class="center">
             <h1>Выбор свитшота</h1>
@@ -149,7 +149,7 @@
             <h1>Дизайн</h1>
             <div class="message visible-xs visible-sm">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
             <div class="row">
-              <div class="col-md-3 col-xs-6"><img src="/group/u_contest/images/svg/horizont.svg" alt="" class="icon"/><br/>
+              <div class="col-sm-3 col-xs-6"><img src="/group/u_contest/images/svg/horizont.svg" alt="" class="icon"/><br/>
                 <div class="pattern">
                   <input id="h-1" type="radio" name="horizont" value="1"/>
                   <label style="background-image: url(/group/u_contest/images/p-1.jpg)" for="h-1"></label>
@@ -163,7 +163,7 @@
                   <label style="background-image: url(/group/u_contest/images/p-3.jpg)" for="h-3"></label>
                 </div>
               </div>
-              <div class="col-md-3 col-md-push-6 col-xs-6"><img src="/group/u_contest/images/svg/vertical.svg" alt="" class="icon"/><br/>
+              <div class="col-sm-3 col-sm-push-6 col-xs-6"><img src="/group/u_contest/images/svg/vertical.svg" alt="" class="icon"/><br/>
                 <div class="pattern">
                   <input id="v-1" type="radio" name="vertical" value="1"/>
                   <label style="background-image: url(/group/u_contest/images/p-3.jpg)" for="v-1"></label>
@@ -177,7 +177,7 @@
                   <label style="background-image: url(/group/u_contest/images/p-5.jpg)" for="v-3"></label>
                 </div>
               </div>
-              <div class="col-md-6 col-md-pull-3 col-xs-12">
+              <div class="col-sm-6 col-sm-pull-3 col-xs-12">
                 <div class="wear wear--man wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                   <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
@@ -195,12 +195,12 @@
         <div class="contest__question contest__step contest__step--7">
           <h1 class="center">Подтверждение</h1>
           <div class="row">
-            <div class="col-xs-5 col-xs-pull-1">
+            <div class="col-sm-5 col-sm-pull-1 col-xs-12">
               <div class="wear wear--man wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                 <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                 <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
               </div>
-              <div class="wear wear--woman wear--disabled hidden"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+              <div class="wear wear--woman wear--disabled"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                 <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                 <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
               </div>
@@ -209,17 +209,17 @@
                 <!--    include ../../current/group/u_contest/images/svg/insta.svg-->
               </div>
             </div>
-            <div class="col-xs-7">
+            <div class="col-sm-7 col-xs-12">
               <h3>Пожалуйста, укажите свои контактные<br/>данные, чтобы продолжить.</h3>
               <form data-parsley-validate="data-parsley-validate">
                 <label for="address">Адрес доставки в г. Екатеринбург</label>
                 <input id="address" type="text" name="address" required="required"/>
                 <div class="row">
-                  <div class="col-xs-5">
+                  <div class="col-xs-12 col-sm-5">
                     <label for="phone">Телефон</label><br/><span class="number">+7</span>
                     <input id="phone" type="text" name="phone" placeholder="(    )     -   -" data-parsley-minlength="15" data-parsley-trigger="change" required="required"/>
                   </div>
-                  <div class="col-xs-7">
+                  <div class="col-xs-12 col-sm-7">
                     <label for="email">E-mail</label>
                     <input id="email" type="email" name="email" data-parsley-trigger="change" required="required"/>
                   </div>
@@ -237,7 +237,7 @@
 <div id="Leave" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
-      <div class="center">
+      <div class="md-center">
         <h3 class="black">Вы действительно хотите прекратить<br/>свое участие?</h3>
         <h4>Если Вы покинете эту страницу, то не сможете <br/>получить свитшот авторского дизайна. </h4><a href="#" data-dismiss="modal" class="button">Нет</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OK" data-toggle="modal" data-dismiss="modal" class="button">Да</a>
       </div>
@@ -247,7 +247,7 @@
 <div id="Success" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
-      <div class="center">
+      <div class="md-center">
         <h3 class="black">Спасибо за участие!</h3>
         <h4>
           На ваш e-mail <strong class='email'>lemesgev.sergey@gmail.com</strong> отправлено письмо<br/>с подробной  информацией о заказe.<br/><br/>
@@ -260,20 +260,22 @@
 <div id="Shure" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
-      <div class="center">
+      <div class="md-center">
         <h3 class="black">Вы уверены в своем выборе?</h3>
-        <h4>Напоминаем, что после утвердительного ответа Вы не сможете <br/>повторно создать дизайн для свитшота.</h4><a href="#" data-dismiss="modal" class="button">Нет</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OK" data-toggle="modal" data-dismiss="modal" class="button">Да</a>
+        <h4>Напоминаем, что после утвердительного ответа Вы не сможете <br/>повторно создать дизайн для свитшота.</h4>
       </div>
+      <div class="center"><a href="#" data-dismiss="modal" class="button">Нет</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OK" data-toggle="modal" data-dismiss="modal" class="button">Да</a></div>
     </div>
   </div>
 </div>
 <div id="OK" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
-      <div class="center">
+      <div class="md-center">
         <h3 class="black">Отличная работа</h3>
-        <h4>Осталось сделать всего несколько шагов, чтобы стать<br/>обладателем  свитшота авторского дизайна.</h4><a href="#" data-dismiss="modal" class="button">Продолжить</a>
+        <h4>Осталось сделать всего несколько шагов, чтобы стать<br/>обладателем  свитшота авторского дизайна.</h4>
       </div>
+      <div class="center"><a href="#" data-dismiss="modal" class="button">Продолжить</a></div>
     </div>
   </div>
 </div>
