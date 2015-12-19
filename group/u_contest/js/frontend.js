@@ -14716,6 +14716,124 @@ if ('undefined' !== typeof window.ParsleyValidator)
 	return window.Parsley;
 }));
 
+/*!
+ * jQuery Cookie Plugin v1.4.1
+ * https://github.com/carhartl/jquery-cookie
+ *
+ * Copyright 2013 Klaus Hartl
+ * Released under the MIT license
+ */
+(function (factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD
+		define(['jquery'], factory);
+	} else if (typeof exports === 'object') {
+		// CommonJS
+		factory(require('jquery'));
+	} else {
+		// Browser globals
+		factory(jQuery);
+	}
+}(function ($) {
+
+	var pluses = /\+/g;
+
+	function encode(s) {
+		return config.raw ? s : encodeURIComponent(s);
+	}
+
+	function decode(s) {
+		return config.raw ? s : decodeURIComponent(s);
+	}
+
+	function stringifyCookieValue(value) {
+		return encode(config.json ? JSON.stringify(value) : String(value));
+	}
+
+	function parseCookieValue(s) {
+		if (s.indexOf('"') === 0) {
+			// This is a quoted cookie as according to RFC2068, unescape...
+			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+		}
+
+		try {
+			// Replace server-side written pluses with spaces.
+			// If we can't decode the cookie, ignore it, it's unusable.
+			// If we can't parse the cookie, ignore it, it's unusable.
+			s = decodeURIComponent(s.replace(pluses, ' '));
+			return config.json ? JSON.parse(s) : s;
+		} catch(e) {}
+	}
+
+	function read(s, converter) {
+		var value = config.raw ? s : parseCookieValue(s);
+		return $.isFunction(converter) ? converter(value) : value;
+	}
+
+	var config = $.cookie = function (key, value, options) {
+
+		// Write
+
+		if (value !== undefined && !$.isFunction(value)) {
+			options = $.extend({}, config.defaults, options);
+
+			if (typeof options.expires === 'number') {
+				var days = options.expires, t = options.expires = new Date();
+				t.setTime(+t + days * 864e+5);
+			}
+
+			return (document.cookie = [
+				encode(key), '=', stringifyCookieValue(value),
+				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+				options.path    ? '; path=' + options.path : '',
+				options.domain  ? '; domain=' + options.domain : '',
+				options.secure  ? '; secure' : ''
+			].join(''));
+		}
+
+		// Read
+
+		var result = key ? undefined : {};
+
+		// To prevent the for loop in the first place assign an empty array
+		// in case there are no cookies at all. Also prevents odd result when
+		// calling $.cookie().
+		var cookies = document.cookie ? document.cookie.split('; ') : [];
+
+		for (var i = 0, l = cookies.length; i < l; i++) {
+			var parts = cookies[i].split('=');
+			var name = decode(parts.shift());
+			var cookie = parts.join('=');
+
+			if (key && key === name) {
+				// If second argument (value) is a function it's a converter...
+				result = read(cookie, value);
+				break;
+			}
+
+			// Prevent storing a cookie that we couldn't decode.
+			if (!key && (cookie = read(cookie)) !== undefined) {
+				result[name] = cookie;
+			}
+		}
+
+		return result;
+	};
+
+	config.defaults = {};
+
+	$.removeCookie = function (key, options) {
+		if ($.cookie(key) === undefined) {
+			return false;
+		}
+
+		// Must not alter options, thus extending a fresh object...
+		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+		return !$.cookie(key);
+	};
+
+}));
+
 (function() {
   this.end = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd';
 
@@ -14752,6 +14870,24 @@ if ('undefined' !== typeof window.ParsleyValidator)
     }
   };
 
+  this.save = function(prop, value) {
+    var fields;
+    fields = $.cookie('fields');
+    if (fields) {
+      fields = JSON.parse(fields);
+    } else {
+      fields = {};
+    }
+    fields[prop] = value;
+    console.log(fields);
+    $.removeCookie('fields', {
+      path: '/'
+    });
+    return $.cookie('fields', JSON.stringify(fields), {
+      path: '/'
+    });
+  };
+
   $(document).ready(function() {
     var $intro, $step2, $step3, $step4, $step5, $step6, $step7;
     delay(300, function() {
@@ -14767,6 +14903,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         $(this).mod('disabled', true);
         return e.preventDefault();
       } else {
+        save('agree', true);
         return next(e);
       }
     });
@@ -14781,6 +14918,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         $(this).mod('disabled', true);
         return e.preventDefault();
       } else {
+        save('q1', $step2.find('.textarea').val());
         return next(e);
       }
     });
@@ -14792,10 +14930,12 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $step3 = $('.contest').elem('step').byMod('3');
     $step3.find('.button').on('click', function(e) {
+      save('q2', $step3.find('input[type="radio"]:checked').val());
       return next(e);
     });
     $step4 = $('.contest').elem('step').byMod('4');
     $step4.find('.button').on('click', function(e) {
+      save('q3', $(this).val());
       return next(e);
     });
     $step5 = $('.contest').elem('step').byMod('5');
@@ -14813,11 +14953,17 @@ if ('undefined' !== typeof window.ParsleyValidator)
       return $(this).parents('.wear').mod('innactive', false).mod('active', true).find('.wear__sizes input:first')[0].checked = true;
     });
     $step5.find('.button').on('click', function(e) {
+      var type;
       if ($step5.find('input[name="type"]:checked').length === 0) {
         $step5.find('.error').mod('active', true);
         $(this).mod('disabled', true);
         return e.preventDefault();
       } else {
+        type = $step5.find('input[name="type"]:checked').val();
+        save('type', type);
+        save('size', $step5.find('input[name="size"]:checked').val());
+        $step6.find('.wear').byMod(type).removeClass('hidden');
+        $step7.find('.wear').byMod(type).removeClass('hidden');
         return next(e);
       }
     });
@@ -14830,9 +14976,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
       } else {
         type = 1;
       }
-      $step6.find(".wear__placeholder img[src*='lines']").removeClass('active');
-      $step6.find(".wear__placeholder img[src*='" + type + "_']").removeClass('active');
-      $step6.find(".wear__placeholder img[src*='" + type + "_" + val + "']").addClass('active');
+      $(".wear__placeholder img[src*='" + type + "_']").removeClass('active');
+      $(".wear__placeholder img[src*='" + type + "_" + val + "']").addClass('active');
       if ($step6.find('input[name="vertical"]:checked').length > 0 && $step6.find('input[name="horizont"]:checked').length > 0) {
         $step6.find('.message').mod('active', false);
         return $step6.find('.button').mod('disabled', false);
@@ -14846,6 +14991,10 @@ if ('undefined' !== typeof window.ParsleyValidator)
       } else {
         return $('#Shure').modal();
       }
+    });
+    $('#OK').on('show.bs.modal', function(e) {
+      save('vertical', $step6.find('input[name="vertical"]:checked').val());
+      return save('horizont', $step6.find('input[name="horizont"]:checked').val());
     });
     $('#OK').on('hidden.bs.modal', function(e) {
       return next(e);
@@ -14876,13 +15025,17 @@ if ('undefined' !== typeof window.ParsleyValidator)
       var form;
       form = $step7.find('form').parsley();
       form.validate();
-      console.log(form.isValid());
       if ($step7.find('label.err').length > 0) {
         $step7.find('.error').mod('active', true);
         $(this).mod('disabled', true);
         return e.preventDefault();
       } else {
-        return $('#Shure').modal();
+        $('#Success .email').text($step7.find('input[name="email"]').val());
+        save('address', $step7.find('input[name="address"]').val());
+        save('phone', $step7.find('input[name="phone"]').val());
+        save('email', $step7.find('input[name="email"]').val());
+        $('#Success').modal();
+        return e.preventDefault();
       }
     });
     $('input[name="phone"]').mask('(999) 999-99-99');
