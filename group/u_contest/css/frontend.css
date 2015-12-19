@@ -5222,7 +5222,8 @@ svg g {
   }
 }
 @media (max-width: 768px) {
-  #Shure .button {
+  #Shure .button,
+  #Leave .button {
     width: calc(50% - 20px);
     min-width: 0;
   }

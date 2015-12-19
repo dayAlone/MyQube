@@ -14844,6 +14844,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
     return style.pointerEvents === 'auto';
   })();
 
+  this.leave = false;
+
   this.delay = function(ms, func) {
     return setTimeout(func, ms);
   };
@@ -15040,8 +15042,19 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $('input[name="phone"]').mask('(999) 999-99-99');
     if ($.browser && $.browser.mobile === true) {
-      return $('body').addClass('mobile');
+      $('body').addClass('mobile');
     }
+    $('.button--go').on('click', function(e) {
+      location.href = window.leave;
+      return console.log(leave);
+    });
+    return $('a').on('click', function(e) {
+      if ($(this).parents('.modal').length === 0 && $(this).parents('.contest').length === 0 || $(this).parents('.nav-inner').length > 0) {
+        window.leave = $(this).attr('href');
+        $('#Leave').modal();
+        return e.preventDefault();
+      }
+    });
   });
 
 }).call(this);
