@@ -96,7 +96,7 @@
                 </div>
               </div>
               <div class="col-xs-6">
-                <div class="wear wear--female"><img src="/group/u_contest/images/female.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear wear--female"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__sizes"><span>Выберите размер:</span>
                     <input id="c-44" type="radio" name="size" value="44" checked="checked"/>
                     <label for="c-44">44</label>
@@ -152,7 +152,7 @@
                   <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                   <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
                 </div>
-                <div class="wear wear--female wear--disabled hidden"><img src="/group/u_contest/images/female.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear wear--female wear--disabled hidden"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                   <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
                 </div>
@@ -170,7 +170,7 @@
                 <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                 <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
               </div>
-              <div class="wear wear--female wear--disabled hidden"><img src="/group/u_contest/images/female.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+              <div class="wear wear--female wear--disabled hidden"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                 <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                 <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
               </div>

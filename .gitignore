@@ -5,3 +5,4 @@ bitrix/*
 !bitrix/modules/infracom.analit/
 !bitrix/modules/tatonimus.replica/
 group/u_contest/orders
+upload
