@@ -15001,9 +15001,6 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('#OK').on('hidden.bs.modal', function(e) {
       return next(e);
     });
-    $('#Success').on('hidden.bs.modal', function(e) {
-      return location.href = '/group/1/u_concept/';
-    });
     $step7 = $('.contest').elem('step').byMod('7');
     $step7.find('input[type="text"]').on('keyup', function() {
       var label;
@@ -15048,9 +15045,14 @@ if ('undefined' !== typeof window.ParsleyValidator)
       $('body').addClass('mobile');
     }
     $('.button--go').on('click', function(e) {
-      location.href = window.leave;
-      return console.log(leave);
+      return location.href = window.leave;
     });
+    $('#Success, #Again').on('hidden.bs.modal', function(e) {
+      return location.href = '/group/1/u_concept/';
+    });
+    if ($('.contest').hasMod('locked')) {
+      $('#Again').modal();
+    }
     return $('a').on('click', function(e) {
       if ($(this).parents('.modal').length === 0 && $(this).parents('.contest').length === 0 || $(this).parents('.nav-inner').length > 0) {
         window.leave = $(this).attr('href');

@@ -1,3 +1,13 @@
+<div id="Again" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+      <div class="md-center">
+        <h3 class="black">Вы уже создали дизайн свитшота.</h3>
+        <h4>Правилами предусмотрена толькоодна попытка участия в проекте.<br/><br/>Если Вы еще не получили свою вещь, то в ближайшее время<br/>Вам придет сообщение о статусе заказа. </h4>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="Leave" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>

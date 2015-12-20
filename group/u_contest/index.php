@@ -1,5 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/check.php');
 $page_name="u_concept";?>
 <script type="text/javascript" src="/group/u_contest/js/frontend.js" defer async></script>
 <link rel="stylesheet" href="/group/u_contest/css/frontend.css" media="screen" title="no title" charset="utf-8">
@@ -23,7 +24,7 @@ echo $record->city->name . "\n"; // 'Yekaterinburg'
 */
 if($USER->IsAuthorized()) {
     ?>
-    <div class="contest contest--demo contest--active">
+    <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID()) ? "contest--locked" : "")?>">
       <div class="contest__header">
           <?
             $APPLICATION->IncludeComponent(
@@ -60,7 +61,9 @@ if($USER->IsAuthorized()) {
               1 => "page",
           ),
           "group_id" => 1,
-          "show_logo" => "Y"
+          "show_logo" => "Y",
+          "search" => "n",
+          "search_pos" => "r"
           )
       );?>
       <? require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/blocks.php'); ?>
