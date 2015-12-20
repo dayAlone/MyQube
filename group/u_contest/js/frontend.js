@@ -14881,7 +14881,6 @@ if ('undefined' !== typeof window.ParsleyValidator)
       fields = {};
     }
     fields[prop] = value;
-    console.log(fields);
     $.removeCookie('fields', {
       path: '/'
     });
