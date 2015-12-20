@@ -74,17 +74,18 @@
                 if (!file_exists($dir)) mkdir($dir, 0777);
                 file_put_contents($file, $str);
                 $mail = new PHPMailer;
-                $mail->isHTML(true); 
+                $mail->isHTML(true);
+                $mail->CharSet = "UTF-8";
                 $mail->addAttachment($file);
                 $mail->addAttachment($src, 'preview.png');
                 $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
                 $mail->addAddress('ak@radia.ru', 'Менеджер');
                 $mail->Subject = "Новый заказ: ".$ID.'. '.$USER->GetFullName();
-                $body = "<h1>Новый заказ</h1><br/<br/>";
-                $body .= "<strong>Получатель: ".$USER->GetFullName()."</strong>";
+                $body = "<h1>Новый заказ</h1>";
+                $body .= "<strong>Получатель: ".$USER->GetFullName()."</strong><br/>";
                 foreach ($fields as $key => $field) {
                     if ($labels[$key]) {
-                        $body .= "<strong>".$labels[$key].": ".$field."</strong>";
+                        $body .= "<strong>".$labels[$key].": ".$field."</strong><br/>";
                     }
                 }
                 $mail->Body = $body;
