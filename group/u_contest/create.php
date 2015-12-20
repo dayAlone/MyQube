@@ -1,7 +1,8 @@
 <?
-    require_once ($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include.php");
     require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/check.php');
     require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/vendor/autoload.php');
+    define("MANAGER", "dp@radia.ru");
 	define("NO_KEEP_STATISTIC", true);
 	define("NOT_CHECK_PERMISSIONS", true);
     $labels = array(
@@ -66,7 +67,7 @@
 
             $ID = $raw->Add($array);
 			if (intval($ID) > 0) {
-                CIBlockElement::Delete($ID);
+                //CIBlockElement::Delete($ID);
 
                 $str = date("d.m.Y H:i:s").";".$ID.";".getNumber($fields['horizont'], $fields['vertical']).";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
                 $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
@@ -79,7 +80,7 @@
                 $mail->addAttachment($file);
                 $mail->addAttachment($src, 'preview.png');
                 $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
-                $mail->addAddress('ak@radia.ru', 'Менеджер');
+                $mail->addAddress(MANAGER, 'Менеджер');
                 $mail->Subject = "Новый заказ: ".$ID.'. '.$USER->GetFullName();
                 $body = "<h1>Новый заказ</h1>";
                 $body .= "<strong>Получатель</strong>: ".$USER->GetFullName()."<br/>";
