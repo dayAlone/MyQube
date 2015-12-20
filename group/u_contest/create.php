@@ -82,13 +82,13 @@
                 $mail->addAddress('ak@radia.ru', 'Менеджер');
                 $mail->Subject = "Новый заказ: ".$ID.'. '.$USER->GetFullName();
                 $body = "<h1>Новый заказ</h1>";
-                $body .= "<strong>Получатель: ".$USER->GetFullName()."</strong><br/>";
+                $body .= "<strong>Получатель</strong>: ".$USER->GetFullName()."<br/>";
                 foreach ($fields as $key => $field) {
                     if ($labels[$key]) {
-                        $body .= "<strong>".$labels[$key].": ".$field."</strong><br/>";
+                        $body .= "<strong>".$labels[$key]."</strong>: ".$field."<br/>";
                     }
                 }
-                $mail->Body = $body;
+                $mail->Body = $body.'<br/><br/>';
                 $mail->send();
                 echo 'success';
             }
