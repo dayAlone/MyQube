@@ -15001,6 +15001,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('#OK').on('hidden.bs.modal', function(e) {
       return next(e);
     });
+    $('#Success').on('hidden.bs.modal', function(e) {
+      return location.href = '/group/1/u_concept/';
+    });
     $step7 = $('.contest').elem('step').byMod('7');
     $step7.find('input[type="text"]').on('keyup', function() {
       var label;
