@@ -15048,7 +15048,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('.button--go').on('click', function(e) {
       return location.href = window.leave;
     });
-    $('#Success, #Again').on('hidden.bs.modal', function(e) {
+    $('#Success, #Again').on('hide.bs.modal', function(e) {
+      e.preventDefault();
       return location.href = '/group/1/u_concept/';
     });
     if ($('.contest').hasMod('locked')) {
