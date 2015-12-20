@@ -15036,6 +15036,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         save('address', $step7.find('input[name="address"]').val());
         save('phone', $step7.find('input[name="phone"]').val());
         save('email', $step7.find('input[name="email"]').val());
+        $.get('/group/u_contest/create.php');
         $('#Success').modal();
         return e.preventDefault();
       }
