@@ -69,12 +69,14 @@
                 CIBlockElement::Delete($ID);
 
                 $str = date("d.m.Y H:i:s").";".$ID.";".getNumber($fields['horizont'], $fields['vertical']).";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
-                $file = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/'.$ID.'.csv';
-
+                $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
+                $file = $dir.$ID.'.csv';
+                if (!file_exists($dir)) mkdir($dir, 0777);
                 file_put_contents($file, $str);
                 $mail = new PHPMailer;
+                $mail->isHTML(true); 
                 $mail->addAttachment($file);
-                $mail->addAttachment($src);
+                $mail->addAttachment($src, 'preview.png');
                 $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
                 $mail->addAddress('ak@radia.ru', 'Менеджер');
                 $mail->Subject = "Новый заказ: ".$ID.'. '.$USER->GetFullName();
