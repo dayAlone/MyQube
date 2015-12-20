@@ -4896,7 +4896,7 @@ svg g {
     bottom: -65px;
   }
   .contest__step--5 .wear__checkbox {
-    padding: 0 30%;
+    padding: 0 20%;
     bottom: 30px;
   }
   .contest__step--5 .wear__checkbox label {
@@ -4930,7 +4930,13 @@ svg g {
     filter: alpha(opacity=50);
   }
   .contest__step--5 .wear--man {
-    margin-right: -120px;
+    margin-right: -60px;
+  }
+  .contest__step--5 .wear--man .wear__image,
+  .contest__step--5 .wear--man .wear__down,
+  .contest__step--5 .wear--man .wear__shadow,
+  .contest__step--5 .wear--man .wear__hover {
+    left: 60%;
   }
   .contest__step--5 .wear--man .wear__fade {
     -webkit-transform: translateX(40%);
@@ -4953,7 +4959,13 @@ svg g {
     text-align: right;
   }
   .contest__step--5 .wear--woman {
-    margin-left: -120px;
+    margin-left: -60px;
+  }
+  .contest__step--5 .wear--woman .wear__image,
+  .contest__step--5 .wear--woman .wear__down,
+  .contest__step--5 .wear--woman .wear__shadow,
+  .contest__step--5 .wear--woman .wear__hover {
+    left: 40%;
   }
   .contest__step--5 .wear--woman .wear__fade {
     -webkit-transform: translateX(-40%);
