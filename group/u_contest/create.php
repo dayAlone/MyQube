@@ -69,7 +69,7 @@
 			if (intval($ID) > 0) {
 
                 // Для отладки
-                //CIBlockElement::Delete($ID);
+                CIBlockElement::Delete($ID);
 
 
                 $number = getNumber($fields['horizont'], $fields['vertical']);
