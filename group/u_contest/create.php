@@ -109,7 +109,7 @@
                 $mail->isHTML(true);
                 $mail->CharSet = "UTF-8";
                 $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
-                $mail->addAddress($USER->GetEmail(), $USER->GetFullName());
+                $mail->addAddress($fields['email'], $USER->GetFullName());
                 $mail->Subject = "Ваш свитшот от Kent";
                 $mail->Body = $body;
                 $mail->send();
