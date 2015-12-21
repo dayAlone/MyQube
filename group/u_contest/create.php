@@ -2,7 +2,7 @@
     require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include.php");
     require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/check.php');
     require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/vendor/autoload.php');
-    define("MANAGER", "dp@radia.ru");
+    define("MANAGER", "ak@radia.ru");
 	define("NO_KEEP_STATISTIC", true);
 	define("NOT_CHECK_PERMISSIONS", true);
     $labels = array(
@@ -67,7 +67,11 @@
 
             $ID = $raw->Add($array);
 			if (intval($ID) > 0) {
+
+                // Для отладки
                 //CIBlockElement::Delete($ID);
+
+
                 $number = getNumber($fields['horizont'], $fields['vertical']);
                 $str = date("d.m.Y H:i:s").";".$ID.";".$number.";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
                 $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
