@@ -68,8 +68,8 @@
             $ID = $raw->Add($array);
 			if (intval($ID) > 0) {
                 //CIBlockElement::Delete($ID);
-
-                $str = date("d.m.Y H:i:s").";".$ID.";".getNumber($fields['horizont'], $fields['vertical']).";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
+                $number = getNumber($fields['horizont'], $fields['vertical']);
+                $str = date("d.m.Y H:i:s").";".$ID.";".$number.";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
                 $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
                 $file = $dir.$ID.'.csv';
                 if (!file_exists($dir)) mkdir($dir, 0777);
@@ -89,6 +89,7 @@
                         $body .= "<strong>".$labels[$key]."</strong>: ".$field."<br/>";
                     }
                 }
+                $body .= "<strong>Номер макета</strong>: ".$number."<br/>";
                 $mail->Body = $body.'<br/><br/>';
                 $mail->send();
                 echo 'success';
