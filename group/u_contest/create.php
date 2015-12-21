@@ -72,6 +72,8 @@
                 $str = date("d.m.Y H:i:s").";".$ID.";".$number.";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
                 $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
                 $file = $dir.$ID.'.csv';
+
+                // Письмо менеджеру
                 if (!file_exists($dir)) mkdir($dir, 0777);
                 file_put_contents($file, $str);
                 $mail = new PHPMailer;
@@ -92,6 +94,22 @@
                 $body .= "<strong>Номер макета</strong>: ".$number."<br/>";
                 $mail->Body = $body.'<br/><br/>';
                 $mail->send();
+
+                // Письмо клиенту
+                $body = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/mail-3.html');
+                $body = str_replace('#NAME#', $USER->GetFullName());
+                $body = str_replace('#EMAIL#', $USER->GetEmail());
+                $body = str_replace('#H#', $fields['horizont']);
+                $body = str_replace('#V#', $fields['vertical']);
+                $mail = new PHPMailer;
+                $mail->isHTML(true);
+                $mail->CharSet = "UTF-8";
+                $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
+                $mail->addAddress($USER->GetEmail(), $USER->GetFullName());
+                $mail->Subject = "Ваш свитшот от Kent";
+                $mail->Body = $body;
+                $mail->send();
+
                 echo 'success';
             }
         } else {
