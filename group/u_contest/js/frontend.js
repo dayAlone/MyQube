@@ -15036,7 +15036,12 @@ if ('undefined' !== typeof window.ParsleyValidator)
         save('phone', $step7.find('input[name="phone"]').val());
         save('email', $step7.find('input[name="email"]').val());
         save('finished', true);
-        $.get('/group/u_contest/create.php');
+        $.get('/group/u_contest/create.php', function(data) {
+          if (data === 'exist') {
+            $('#Success').modal('hide');
+            return $('#Again').modal();
+          }
+        });
         $('#Success').modal();
         return e.preventDefault();
       }
