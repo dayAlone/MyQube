@@ -69,7 +69,7 @@
 			if (intval($ID) > 0) {
 
                 // Для отладки
-                CIBlockElement::Delete($ID);
+                //CIBlockElement::Delete($ID);
 
 
                 $number = getNumber($fields['horizont'], $fields['vertical']);
@@ -105,6 +105,7 @@
                 $body = str_replace('#EMAIL#', $USER->GetEmail(), $body);
                 $body = str_replace('#H#', $fields['horizont'], $body);
                 $body = str_replace('#V#', $fields['vertical'], $body);
+                $body = str_replace('#ID#', $ID, $body);
                 $mail = new PHPMailer;
                 $mail->isHTML(true);
                 $mail->CharSet = "UTF-8";
