@@ -101,10 +101,10 @@
 
                 // Письмо клиенту
                 $body = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/mail-3.html');
-                $body = str_replace('#NAME#', $USER->GetFullName());
-                $body = str_replace('#EMAIL#', $USER->GetEmail());
-                $body = str_replace('#H#', $fields['horizont']);
-                $body = str_replace('#V#', $fields['vertical']);
+                $body = str_replace('#NAME#', $USER->GetFullName(), $body);
+                $body = str_replace('#EMAIL#', $USER->GetEmail(), $body);
+                $body = str_replace('#H#', $fields['horizont'], $body);
+                $body = str_replace('#V#', $fields['vertical'], $body);
                 $mail = new PHPMailer;
                 $mail->isHTML(true);
                 $mail->CharSet = "UTF-8";
