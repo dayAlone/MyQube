@@ -85,7 +85,7 @@
                 $mail->CharSet = "UTF-8";
                 $mail->addAttachment($file);
                 $mail->addAttachment($src, 'preview.png');
-                $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
+                $mail->setFrom('mail@myqube.ru', 'MyQube.ru');
                 $mail->addAddress(MANAGER, 'Менеджер');
                 $mail->Subject = "Новый заказ: ".$ID.'. '.$USER->GetFullName();
                 $body = "<h1>Новый заказ</h1>";
@@ -109,7 +109,7 @@
                 $mail = new PHPMailer;
                 $mail->isHTML(true);
                 $mail->CharSet = "UTF-8";
-                $mail->setFrom('mail@myqube.ru', 'Сайт MyQube.ru');
+                $mail->setFrom('mail@myqube.ru', 'MyQube.ru');
                 $mail->addAddress($fields['email'], $USER->GetFullName());
                 $mail->Subject = "Ваш свитшот от Kent";
                 $mail->Body = $body;
