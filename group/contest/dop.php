@@ -19,7 +19,7 @@
 	<?
 		$geiop = CAltasibGeoBase::GetAddres();
 		if ($geiop['CITY_NAME'] == 'Екатеринбург' || $USER->IsAdmin()) {?>
-			<a href="/group/1/u_contest/" style='margin-top: 5px;display: inline-block;z-index: 1;padding: 0 20px;'><img src="/group/u_contest/images/big-banner.jpg" alt="" width='100%'/></a>
+			<a href="/group/1/u_contest/" style='margin-top: 5px;display: inline-block;z-index: 1;position:relative;padding: 0 20px;'><img src="/group/u_contest/images/big-banner.jpg" alt="" width='100%'/></a>
 		<?}
 	?>
 	<div class="flex-between" id="block-wrapper" data-count="<?=$postsCounter?>"><? include("ajax_contest.php");?> </div>
