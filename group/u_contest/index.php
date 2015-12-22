@@ -9,7 +9,7 @@ $page_name="u_concept";?>
 <?
 
 
-/*
+
 require_once 'vendor/autoload.php';
 use GeoIp2\WebService\Client;
 if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -21,9 +21,10 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 }
 $client = new Client(107700, 'QZ51sMdTQode');
 $record = $client->city($ip);
-echo $record->city->name . "\n"; // 'Yekaterinburg'
-*/
+//echo $record->city->name . "\n"; // 'Yekaterinburg'
+
 $geiop = CAltasibGeoBase::GetAddres();
+var_dump($record->city->name, $geiop['CITY_NAME']);
 if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == 'Екатеринбург' || $USER->IsAdmin())) {
     ?>
     <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID()) ? "contest--locked" : "")?>">
