@@ -219,7 +219,7 @@
 							if ($page_name!=="contest" && ($geiop['CITY_NAME'] == 'Екатеринбург' || $USER->IsAdmin())) {?>
 							<div class="banner" id="banner_4">
 								<div class="banner_ins">
-									<a class="banner_a" href="/group/1/u_contest/"><img width="" src="/group/u_contest/images/small-banner.jpg"/></a>
+									<a class="banner_a" href="/group/1/u_contest/"><img width="180" src="/group/u_contest/images/small-banner.jpg"/></a>
 								</div>
 							</div>
 							<?}
