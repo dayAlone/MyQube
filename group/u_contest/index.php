@@ -8,8 +8,10 @@ $page_name="u_concept";?>
 <link rel="stylesheet" href="/css/font-awesome_concept.min.css">
 <?
 
-$arDataC = CAltasibGeoBase::deCodeJSON($APPLICATION->get_cookie("ALTASIB_GEOBASE_CODE"));
-print_r($arDataC);
+$arData = CAltasibGeoBase::GetAddres();
+var_dump($arData);
+$arData = CAltasibGeoBase::GetCodeByAddr();
+var_dump($arData);
 /*
 require_once 'vendor/autoload.php';
 use GeoIp2\WebService\Client;
