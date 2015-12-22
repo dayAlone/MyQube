@@ -8,8 +8,7 @@ $page_name="u_concept";?>
 <link rel="stylesheet" href="/css/font-awesome_concept.min.css">
 <?
 
-$arData = CAltasibGeoBase::GetAddres();
-var_dump($arData['CITY_NAME']);
+
 /*
 require_once 'vendor/autoload.php';
 use GeoIp2\WebService\Client;
@@ -24,7 +23,8 @@ $client = new Client(107700, 'QZ51sMdTQode');
 $record = $client->city($ip);
 echo $record->city->name . "\n"; // 'Yekaterinburg'
 */
-if($USER->IsAuthorized()) {
+$geiop = CAltasibGeoBase::GetAddres();
+if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == 'Екатеринбург' || $USER->IsAdmin())) {
     ?>
     <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID()) ? "contest--locked" : "")?>">
       <div class="contest__header">
