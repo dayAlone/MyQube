@@ -2,6 +2,8 @@
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
+define('CITY_NAME', 'Москва');
+
 AddEventHandler("main", "OnAfterUserLogin", Array("OnAfterUserLogin", "AuthRemember"));
 AddEventHandler('main', 'OnBeforeProlog', Array("OnBeforeProlog", 'CustomSetLastActivityDate'));
 AddEventHandler("main", "OnBeforeProlog", Array("OnBeforeProlog", "MyOnBeforePrologHandler"));
@@ -169,7 +171,7 @@ class OnBeforeProlog {
 		if(!empty($_GET["backurl"])) {
 			$backurl = "&backurl=".$_GET["backurl"];
 		}
-		
+
 		if(!$USER->IsAuthorized() && empty($_GET["POST_ID"]) && !empty($Dir[1]) && $Dir[1]!=='group' && $Dir[1]!=='bitrix' && !$socAuth && empty($backurl)) {
 			LocalRedirect("/?backurl=".$_SERVER["REQUEST_URI"]);
 		}

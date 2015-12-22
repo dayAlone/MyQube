@@ -18,7 +18,7 @@
 ?>
 	<?
 		$geiop = CAltasibGeoBase::GetAddres();
-		if ($geiop['CITY_NAME'] == 'Екатеринбург' || $USER->IsAdmin()) {?>
+		if ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin()) {?>
 			<a href="/group/1/u_contest/" style='margin-top: 5px;display: inline-block;z-index: 1;position:relative;padding: 0 20px;'><img src="/group/u_contest/images/big-banner.jpg" alt="" width='100%'/></a>
 		<?}
 	?>
