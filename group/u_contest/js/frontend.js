@@ -14998,8 +14998,14 @@ if ('undefined' !== typeof window.ParsleyValidator)
       }
     });
     $('#OK').on('show.bs.modal', function(e) {
-      save('vertical', $step6.find('input[name="vertical"]:checked').val());
-      return save('horizont', $step6.find('input[name="horizont"]:checked').val());
+      var h, url, v;
+      h = $step6.find('input[name="vertical"]:checked').val();
+      v = $step6.find('input[name="horizont"]:checked').val();
+      save('vertical', h);
+      save('horizont', v);
+      url = 'http://' + location.hostname + '/group/1/u_contest/?v=' + v + '&=h' + h;
+      $('.share').byMod('fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + url);
+      return $('.share').byMod('vk').attr('href', 'http://vk.com/share.php?url=' + url);
     });
     $('#OK').on('hidden.bs.modal', function(e) {
       return next(e);
