@@ -14901,6 +14901,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('.modal').on('shown.bs.modal', function(e) {
       return delay(300, initScroll);
     });
+    if ($('.contest').length === 0) {
+      $('.main').attr('style', 'padding-left: 0 !important');
+    }
     $intro = $('.contest').elem('intro');
     $intro.find('.button').on('click', function(e) {
       if (!$intro.find('.checkbox').is(':checked')) {

@@ -12,11 +12,11 @@ AddEventHandler("iblock", "OnBeforeIBlockElementDelete", "NWCommentsCounterDel")
 class OnAfterUserLogin {
 	function AuthRemember(&$arFields) {
 		if($arFields['USER_ID'] > 0) {
-			global $APPLICATION;			
+			global $APPLICATION;
 			if($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 				$rsUser = CUser::GetByLogin($arFields['LOGIN']);
 				if($arUser = $rsUser->Fetch()) {
-					if($arUser['UF_INVITE_STATUS'] != 1) {						
+					if($arUser['UF_INVITE_STATUS'] != 1) {
 						$contact_type_ret = array(
 							28 => 1,
 							29 => 2,
@@ -25,7 +25,7 @@ class OnAfterUserLogin {
 							32 => 5
 						);
 						$Fields["UF_INVITE_STATUS"] = 1;
-						CustomUser::UserUpdate($Fields);			
+						CustomUser::UserUpdate($Fields);
 						CModule::IncludeModule("iblock");
 						CModule::IncludeModule("highloadblock");
 						$data = array(
@@ -38,18 +38,18 @@ class OnAfterUserLogin {
 							"UF_TYPE" => $contact_type_ret[$arUser['UF_STATUS']],
 							"UF_TYPE_2" => $contact_type_ret[$arUser['UF_STATUS']]
 						);
-						$hlblock = HL\HighloadBlockTable::getById(4)->fetch(); 
+						$hlblock = HL\HighloadBlockTable::getById(4)->fetch();
 						$entity = HL\HighloadBlockTable::compileEntity($hlblock);
-						$entity_data_class = $entity->getDataClass();		 
+						$entity_data_class = $entity->getDataClass();
 						$result = $entity_data_class::add($data);
 					}
 				}
 			}
 			/*if($arFields['USER_ID'] > 0) {
 				$APPLICATION->set_cookie("MQ_AUTH_REMEMBER", $arFields['USER_ID'], time()+60*60*24*3,"/");
-				
+
 				if(empty($arFields['LAST_LOGIN'])) {
-					
+
 				}
 			}*/
 		}
@@ -69,7 +69,7 @@ class OnBeforeProlog {
 		global $APPLICATION;
 		if($_SESSION['BITRIX_SM_MQ_AUTH_REMOVE'])
 			$APPLICATION->set_cookie("MQ_AUTH_REMEMBER", "", time()-60,"/");
-		
+
 		if(!$USER->IsAuthorized()) {
 			if($UserId = $APPLICATION->get_cookie("MQ_AUTH_REMEMBER")) {
 				$USER->Authorize($UserId);
@@ -84,13 +84,13 @@ class OnBeforeProlog {
 			p - Parent User
 			d - Create user date
 		*/
-		
+
 		$Dir = explode("/",$_SERVER["REQUEST_URI"]);
 		$Query_string = explode("&",$_SERVER["QUERY_STRING"]);
 		$Query = explode("=",$Query_string[0]);
 		$authString = explode("?",$_SERVER["REQUEST_URI"]);
 		if($authString[0]=='/vk.php'||$authString[0]=='/facebook.php'||$authString[0]=='/google.php'||$authString[0]=='/app.php'||$authString[0]=='/mail.php'||$Dir[1]=='unsubscribe') $socAuth = true;
-		
+
 		if($_GET["AUTH_SOCNET"]) {
 			$Fields = array("UF_AUTH_SOCNET"=>"1");
 			CustomUser::UserUpdate($Fields);
@@ -100,8 +100,8 @@ class OnBeforeProlog {
 				<div class=\"after-login-message-inner\">
 					<h4>Для удобства использования социальной сети вы можете авторизоваться через:</h4>";
 					$APPLICATION->IncludeComponent(
-						"bitrix:system.auth.form", 
-						"myqube", 
+						"bitrix:system.auth.form",
+						"myqube",
 						array(
 							"REGISTER_URL" => "/club/group/search/",
 							"PROFILE_URL" => "/user/profile/",
@@ -113,12 +113,12 @@ class OnBeforeProlog {
 					);
 			echo "<div class=\"after-login-message-n\"><a href=\"?AUTH_SOCNET=N\">ОТКАЗАТЬСЯ</a></div>
 				</div>
-			</div>";		
+			</div>";
 		}
 		if(isset($_GET["token"])){
 			$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $_GET["token"], time()+60*60*24*30*12*4,"/");
-		}	
-		
+		}
+
 		// Редиректы со старого сайта
 		if($Dir[1] == "personal") {
 			LocalRedirect(str_replace("personal", "user", $_SERVER["REQUEST_URI"]));
@@ -157,41 +157,42 @@ class OnBeforeProlog {
 			}
 		}
 		// Редиректы со старого сайта
-		
+
 		if($Dir[1] == "group" && $Dir[2] == 1 && $Dir[3] !== "post" && !empty($Dir[3]))
 			$_SESSION["BackFromDetail"]["group_6"]["nPageSize"] = 1;
-		
-		/*if((!$USER->IsAdmin() || !CSite::InGroup(array(8,9))) && $Dir[1] != "staff" && $Dir[1] != "amplifiers" && $Dir[1] != "bitrix" && $_SERVER["HTTP_X_REAL_IP"] != "83.219.142.133" && $_SERVER["HTTP_X_REAL_IP"] != "178.236.242.146" && $_SERVER["HTTP_X_REAL_IP"] != "94.159.47.38" && $_SERVER["HTTP_X_REAL_IP"] != "213.33.231.234" && $_SERVER["HTTP_X_REAL_IP"] != "95.129.169.203‏" && $_SERVER["HTTP_X_REAL_IP"] != "5.142.183.206" && $USER->GetID() != 223){		
+
+		/*if((!$USER->IsAdmin() || !CSite::InGroup(array(8,9))) && $Dir[1] != "staff" && $Dir[1] != "amplifiers" && $Dir[1] != "bitrix" && $_SERVER["HTTP_X_REAL_IP"] != "83.219.142.133" && $_SERVER["HTTP_X_REAL_IP"] != "178.236.242.146" && $_SERVER["HTTP_X_REAL_IP"] != "94.159.47.38" && $_SERVER["HTTP_X_REAL_IP"] != "213.33.231.234" && $_SERVER["HTTP_X_REAL_IP"] != "95.129.169.203‏" && $_SERVER["HTTP_X_REAL_IP"] != "5.142.183.206" && $USER->GetID() != 223){
 			die("<img src='http://www.trizacautomation.com/Website%20Under%20Construction.jpg' style='position: fixed; top: 0; right: 0; left: 0; bottom: 0; width: 100%; height: 100%;'>");
 		}*/
 		$CurentUser = array();
-			
+
 		if(!empty($_GET["backurl"])) {
 			$backurl = "&backurl=".$_GET["backurl"];
 		}
+		
 		if(!$USER->IsAuthorized() && empty($_GET["POST_ID"]) && !empty($Dir[1]) && $Dir[1]!=='group' && $Dir[1]!=='bitrix' && !$socAuth && empty($backurl)) {
 			LocalRedirect("/?backurl=".$_SERVER["REQUEST_URI"]);
 		}
 		if(!$USER->IsAdmin()){
 			$CurentUserGroup = CUser::GetUserGroup($USER->GetID());
 			if(preg_match("#^/staff/#",$_SERVER["REQUEST_URI"])){
-						
+
 				if(!in_array(9,$CurentUserGroup)){
 					LocalRedirect("/");
 				}
-				
+
 			} else if(preg_match("#^/amplifiers/#",$_SERVER["REQUEST_URI"])){
-				
+
 				if(!in_array(8,$CurentUserGroup)){
 					LocalRedirect("/");
 				}
 
 
-				
+
 			} else if($Dir[1] == "group" && $Dir[2] == 1){
 				if($USER->IsAuthorized()){
 					$CurentUser = CUser::GetByID($USER->GetID())->Fetch();
-					
+
 					if(!in_array(1,$CurentUser["UF_GROUPS"])) { // не член 1 группы
 						if(empty($backurl) && !empty($Dir[3])) {
 							LocalRedirect("/group/1/?backurl=".$_SERVER["REQUEST_URI"]);
@@ -199,12 +200,12 @@ class OnBeforeProlog {
 						if(strlen($CurentUser["PERSONAL_BIRTHDAY"]) > 0){ // ДатаРождения заполнена
 							if(CustomUser::UserCheckFields()) { // все поля заполнены корректно
 								CustomUser::UserUpdate(array("UF_GROUPS" => array(1)));
-								CModule::IncludeModule("iblock");								
+								CModule::IncludeModule("iblock");
 								$usersInGroup = CIBlockElement::GetProperty(4, 1, array("sort" => "asc"), Array("CODE"=>"USERS"))->Fetch();
 								$usersInGroup["VALUE"]++;
 								CIBlockElement::SetPropertyValues(1, 4, $usersInGroup["VALUE"], "USERS");
 								LocalRedirect("/group/1/".$backurl);
-							} elseif(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены						
+							} elseif(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены
 								CustomUser::UserUpdate(array("UF_YOU_HAVE_18" => true));
 								if($_GET["message"] !== "checking_user_fields") {
 									LocalRedirect("/group/1/?message=checking_user_fields".$backurl);
@@ -226,7 +227,7 @@ class OnBeforeProlog {
 					} elseif(!empty($_GET["message"])) {
 						LocalRedirect("/group/1/".$backurl);
 					}
-				} elseif(!empty($Dir[3]) && empty($_GET["POST_ID"]) && empty($backurl) && $Dir[3] !== "u_concept" && $Dir[3] !== "concept.ural2015") {
+				} elseif(!empty($Dir[3]) && empty($_GET["POST_ID"]) && empty($backurl) && $Dir[3] !== "u_contest" && $Dir[3] !== "u_concept" && $Dir[3] !== "concept.ural2015") {
 						LocalRedirect("/?backurl=".$_SERVER["REQUEST_URI"]);
 				}
 			}
@@ -255,11 +256,11 @@ function NWCommentsCounter(&$arFields)
 		$Res = 	CIBlockElement::GetByID($post_id_tmp);
 		if ($arItem = $Res->GetNext()) {
 			$infoblock_id_tmp = $arItem["IBLOCK_ID"];
-			
+
 			$res =CIBlockElement::GetProperty($infoblock_id_tmp,$post_id_tmp,Array(),Array("CODE" => "COMMENTS_COUNT"));
 			$ob = $res->GetNext();
 			CIBlockElement::SetPropertyValuesEx($post_id_tmp, false, Array("COMMENTS_COUNT"=>$ob["VALUE"]+1));
-		
+
 			/*$fr = fopen($_SERVER['DOCUMENT_ROOT']."/logg.txt", 'a');
 				fputs($fr, "???".$post_id_tmp."???".$infoblock_id_tmp."^^^".var_export($res, true));
 				fclose($fr);*/
@@ -271,20 +272,20 @@ function NWCommentsCounter(&$arFields)
 		$Res = 	CIBlockElement::GetByID($post_id_tmp);
 		if ($arItem = $Res->GetNext()) {
 			$infoblock_id_tmp = $arItem["IBLOCK_ID"];
-			
+
 			$res =CIBlockElement::GetProperty($infoblock_id_tmp,$post_id_tmp,Array(),Array("CODE" => "LIKES"));
 			$ob = $res->GetNext();
 			CIBlockElement::SetPropertyValuesEx($post_id_tmp, false, Array("LIKES"=>$ob["VALUE"]+1));
-		
+
 			/*$fr = fopen($_SERVER['DOCUMENT_ROOT']."/logg.txt", 'a');
 				fputs($fr, "???".$post_id_tmp."???".$infoblock_id_tmp."^^^".var_export($arFields, true));
 				fclose($fr);*/
-		}	
+		}
 	}
 	else if($arFields["IBLOCK_ID"]==20)
-	{	
+	{
 		include_once($_SERVER["DOCUMENT_ROOT"]."/tmp/phpqrcode/qrlib.php");
-		QRcode::png("http://myqube.ru/QR/".$arFields["NAME"]."/", $_SERVER["DOCUMENT_ROOT"]."/upload/qr/qr_".$arFields["NAME"].".png", "L", 7, 7);	
+		QRcode::png("http://myqube.ru/QR/".$arFields["NAME"]."/", $_SERVER["DOCUMENT_ROOT"]."/upload/qr/qr_".$arFields["NAME"].".png", "L", 7, 7);
 		$arLoadProductArray = Array(
 		  "PREVIEW_PICTURE" => CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"]."/upload/qr/qr_".$arFields["NAME"].".png")
 		  );
@@ -295,11 +296,11 @@ function NWCommentsCounter(&$arFields)
 function NWCommentsCounterDel($post_id_tmp)
 {
 	$Res = 	CIBlockElement::GetByID($post_id_tmp);
-	if ($arItem = $Res->GetNext()) {	
-		$infoblock_id_tmp = $arItem["IBLOCK_ID"];	
+	if ($arItem = $Res->GetNext()) {
+		$infoblock_id_tmp = $arItem["IBLOCK_ID"];
 		$db_props = CIBlockElement::GetProperty($infoblock_id_tmp,$post_id_tmp);
 		if($ar_props = $db_props->Fetch())
-		{	
+		{
 			if($infoblock_id_tmp==6)
 			{
 				$arr_t=Array("CODE" => "LIKES");
@@ -314,10 +315,10 @@ function NWCommentsCounterDel($post_id_tmp)
 			{
 				$post_id = $ar_props["VALUE"];
 				$Res_1 = 	CIBlockElement::GetByID($post_id);
-				if ($arItem_1 = $Res_1->GetNext()) {	
+				if ($arItem_1 = $Res_1->GetNext()) {
 					$res_1 =CIBlockElement::GetProperty($arItem_1["IBLOCK_ID"],$post_id,Array(),Array("CODE" => $str_t));
 					$ob = $res_1->GetNext();
-					
+
 					/*$fr = fopen($_SERVER['DOCUMENT_ROOT']."/logg.txt", 'a');
 					fputs($fr, "???".$post_id_tmp."!!!".$post_id."???".var_export($ob, true));
 					fclose($fr);*/
@@ -325,22 +326,22 @@ function NWCommentsCounterDel($post_id_tmp)
 				CIBlockElement::SetPropertyValuesEx($post_id, false, Array($str_t=>max(intval($ob["VALUE"])-1,0)));
 			}
 		}
-	}	
+	}
 }
 class CustomUser {
-	
+
 	public static $TextError = "";
-	
+
 	public static function CheckBirthday($Date){
 		return strtotime(date("d.m").".".(date("Y")-18)." ".date("H:i:s")) > strtotime($Date) ? 1 : 0;
 	}
-	
+
 	function AddUserGroupClosedCommunity($Fields){
 		if($Fields["USER_ID"] > 0 && $Fields["UF_YOU_HAVE_18"] == 1){
 			if(CModule::IncludeModule("socialnetwork")){
 				CSocNetUserToGroup::Add(
 					array(
-						"USER_ID" => $Fields["USER_ID"], 
+						"USER_ID" => $Fields["USER_ID"],
 						"GROUP_ID" => 6,
 						"ROLE" => SONET_ROLES_USER,
 						"=DATE_CREATE" => $GLOBALS["DB"]->CurrentTimeFunction(),
@@ -353,7 +354,7 @@ class CustomUser {
 			}
 		}
 	}
-	
+
 	public static function UserYouHave18(){
 		global $USER;
 		$Query = CUser::GetList(
@@ -364,7 +365,7 @@ class CustomUser {
 		)->Fetch();
 		return $Query["UF_YOU_HAVE_18"] == 1 ? true : false;
 	}
-	
+
 	public static function UserCheckFields($Fields = "", $Value = ""){
 		global $USER;
 		$Flag = false;
@@ -393,15 +394,15 @@ class CustomUser {
 		}
 		if(!$USER->IsAuthorized())
 			$Flag = false;
-		
+
 		return $Flag;
 	}
-	
+
 	public static function ExistenceUserLogin($Login = ""){
 		$Query = CUser::GetByLogin($Login)->Fetch();
 		return (empty($Query) ? 0 : $Query["ID"]);
 	}
-	
+
 	public static function ExistenceVKProfile($Profile = ""){
 		$sort_by = "ID";
 		$sort_ord = "ASC";
@@ -409,11 +410,11 @@ class CustomUser {
 		   "UF_VK_PROFILE" => $Profile
 		);
 		$dbUsers = CUser::GetList($sort_by, $sort_ord, $arFilter);
-		while($arUser = $dbUsers->Fetch()) 
+		while($arUser = $dbUsers->Fetch())
 			$userID = $arUser["ID"];
 		return (empty($userID) ? 0 : $userID);
 	}
-	
+
 	public static function ExistenceFBProfile($Profile = ""){
 		$sort_by = "ID";
 		$sort_ord = "ASC";
@@ -421,11 +422,11 @@ class CustomUser {
 		   "UF_FB_PROFILE" => $Profile
 		);
 		$dbUsers = CUser::GetList($sort_by, $sort_ord, $arFilter);
-		while($arUser = $dbUsers->Fetch()) 
+		while($arUser = $dbUsers->Fetch())
 			$userID = $arUser["ID"];
 		return (empty($userID) ? 0 : $userID);
 	}
-	
+
 	public static function ExistenceGPProfile($Profile = ""){
 		$sort_by = "ID";
 		$sort_ord = "ASC";
@@ -433,14 +434,14 @@ class CustomUser {
 		   "UF_GP_PROFILE" => $Profile
 		);
 		$dbUsers = CUser::GetList($sort_by, $sort_ord, $arFilter);
-		while($arUser = $dbUsers->Fetch()) 
+		while($arUser = $dbUsers->Fetch())
 			$userID = $arUser["ID"];
 		return (empty($userID) ? 0 : $userID);
 	}
-	
+
 	public static function NewUser($Fields = array()){
 		$User = new CUser;
-		$Id = $User->Add($Fields);		
+		$Id = $User->Add($Fields);
 		if(intval($Id) > 0) {
 			CModule::IncludeModule("iblock");
 			$el_log = new CIBlockElement;
@@ -473,13 +474,13 @@ class CustomUser {
 		} else
 			return 0;
 	}
-	
+
 	public static function UserUpdate($Fields = array()){
 		global $USER;
 		$User = new CUser;
 		if($USER->IsAuthorized()){
 			$User->Update($USER->GetID(),$Fields);
-		}		
+		}
 		CModule::IncludeModule("iblock");
 		$el_log = new CIBlockElement;
 		$PROP_log = array();
@@ -496,7 +497,7 @@ class CustomUser {
 		);
 		$el_log->Add($arLoadProductArray_log);
 	}
-	
+
 	public static function AnotherUserUpdate($id, $Fields = array()){
 		global $USER;
 		$User = new CUser;
@@ -518,7 +519,7 @@ class CustomUser {
 		$el_log->Add($arLoadProductArray_log);
 		return $res;
 	}
-	
+
 	public static function SearchUser($Filter = array(),$Fields = array()){
 		$Result = array();
 		$Query = CUser::GetList(
@@ -532,7 +533,7 @@ class CustomUser {
 		}
 		return $Result;
 	}
-	
+
 	public static function Set($Data){
 		global $USER;
 		if(!CModule::IncludeModule("iblock")){return false;}
@@ -541,7 +542,7 @@ class CustomUser {
 		$NewElement = new CIBlockElement;
 		$Id = 0;
 		$Password = date("His");
-		
+
 		if($Data["INFO"] == 1){
 			$Id = $NewElement->Add(array(
 				"NAME" => date("d.m.Y H:i:s"),
@@ -562,13 +563,13 @@ class CustomUser {
 					"125" => $Data["SOURSE"] //Источник данных app_staff или app_amplifier или web_staff или любая другая метка
 				)
 			));
-			
+
 			if(!intval($Id)){
 				self::$TextError = $User->LAST_ERROR;
 			}
 			return (intval($Id) > 0 ? true : false);
 		}
-		
+
 		$Fields = Array(
 			"NAME" => $Data["NAME"],
 			"LAST_NAME" => $Data["LAST_NAME"],
@@ -599,9 +600,9 @@ class CustomUser {
 			"UF_PRIVATE_MYGROUPS" => 9,
 			"UF_GROUPS" => array(1)
 		);
-		
+
 		$Id = $User->Add($Fields);
-		if(intval($Id)){			
+		if(intval($Id)){
 			$el_log = new CIBlockElement;
 			$PROP_log = array();
 			$PROP_log["ID"] = $id;
@@ -635,7 +636,7 @@ class CustomUser {
 			} elseif($userFields["PERSONAL_CITY"] == "Екатеринбург") {
 				CEvent::Send("NEW_USER", "s1", $eventFields);
 			} else {
-				CEvent::Send("NEW_USER_NEW", "s1", $eventFields);					
+				CEvent::Send("NEW_USER_NEW", "s1", $eventFields);
 			}
 		} else {
 			self::$TextError = $User->LAST_ERROR;
