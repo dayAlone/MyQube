@@ -5387,6 +5387,7 @@ svg g {
   margin: 0 auto;
   padding: 15px 15px 30px;
   position: relative;
+  overflow: hidden;
 }
 .contest__comments .comment {
   width: 100%;
