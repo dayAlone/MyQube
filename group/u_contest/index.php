@@ -7,12 +7,7 @@ $page_name="u_concept";?>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2:100,400,300,600,700&amp;subset=latin,cyrillic"/>
 <link rel="stylesheet" href="/css/font-awesome_concept.min.css">
 <?
-$APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/images/design_dev_".$_GET['v']."_".$_GET['v'].'.png');
-$APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/");
-//$APPLICATION->SetPageProperty("title", "Заголовок для шера");
-//$APPLICATION->SetPageProperty("description", "Текст для шера");
-$APPLICATION->SetPageProperty("og:title", "Заголовок для шера");
-$APPLICATION->SetPageProperty("og:description", "Текст для шера");
+
 /*
 require_once 'vendor/autoload.php';
 use GeoIp2\WebService\Client;
@@ -115,5 +110,11 @@ if($USER->IsAuthorized()) {
 } else {
     require($_SERVER["DOCUMENT_ROOT"].'/group/u_concept/teaser.php');
 }
+$APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/images/design_dev_".$_GET['v']."_".$_GET['v'].'.png');
+$APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/");
+//$APPLICATION->SetPageProperty("title", "Заголовок для шера");
+//$APPLICATION->SetPageProperty("description", "Текст для шера");
+$APPLICATION->SetPageProperty("og:title", "Заголовок для шера");
+$APPLICATION->SetPageProperty("og:description", "Текст для шера");
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
 ?>
