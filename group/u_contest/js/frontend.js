@@ -14850,6 +14850,10 @@ if ('undefined' !== typeof window.ParsleyValidator)
     return setTimeout(func, ms);
   };
 
+  this.interval = function(ms, func) {
+    return setInterval(func, ms);
+  };
+
   this.size = function() {
     return console.log('size');
   };
@@ -14890,7 +14894,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
   };
 
   $(document).ready(function() {
-    var $intro, $step2, $step3, $step4, $step5, $step6, $step7;
+    var $intro, $step2, $step3, $step4, $step5, $step6, $step7, setCount, timer;
     delay(300, function() {
       return size();
     });
@@ -15060,6 +15064,31 @@ if ('undefined' !== typeof window.ParsleyValidator)
     if ($('.contest').hasMod('locked')) {
       $('#Again').modal();
     }
+    setCount = function(i) {
+      $('.comments').elem('trigger').find('.count').text('(' + i + ')');
+      return $('.comments').data('count', i);
+    };
+    timer = false;
+    setCount($('.comment').length);
+    $('.comment_submit_button').on('click', function() {
+      return timer = interval(200, function() {
+        if ($('.comments').data('count') !== $('.comment').length) {
+          setCount($('.comment').length);
+          return clearInterval(timer);
+        }
+      });
+    });
+    $('.comments').elem('trigger').on('click', function(e) {
+      if (!$('.comments').hasMod('active')) {
+        $('.comments').mod('active', true);
+        $('html, body').stop().animate({
+          scrollTop: $(window).scrollTop() + $(this).offset().top
+        }, '500', 'swing');
+      } else {
+        $('.comments').mod('active', false);
+      }
+      return e.preventDefault();
+    });
     return $('a').on('click', function(e) {
       if ($(this).parents('.modal').length === 0 && $(this).parents('.contest').length === 0 || $(this).parents('.nav-inner').length > 0) {
         window.leave = $(this).attr('href');

@@ -27,6 +27,7 @@ if($USER->IsAuthorized()) {
     <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID()) ? "contest--locked" : "")?>">
       <div class="contest__header">
           <?
+            /*
             $APPLICATION->IncludeComponent(
                 "bitrix:main.share",
                 "myqube_uconcept",
@@ -38,14 +39,16 @@ if($USER->IsAuthorized()) {
                         1 => "vk",
                         2 => "Google",
                     ),
-                    "PAGE_URL" => "/group/1/u_contest/",
+                    "PAGE_URL" => "/group/1/u_conсept/",
                     "PAGE_TITLE" => "U_CONTEST",
                     "PAGE_IMAGE" => "http://myqube.ru/upload/Concept-Ural_sharing_960.jpg",
                     "SHORTEN_URL_LOGIN" => "",
                     "SHORTEN_URL_KEY" => ""
                 ),
                 false
-            );?>
+            );
+            */
+        ?>
       </div>
       <?
       $APPLICATION->IncludeComponent("bitrix:menu", "top_line", Array(
@@ -67,6 +70,40 @@ if($USER->IsAuthorized()) {
           )
       );?>
       <? require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/blocks.php'); ?>
+      <div class='contest__comments comments'>
+            <div class='center'>
+                <a href='#' class='comments__trigger'>
+                    <span class='show'><span class='text'>Показать комментарии</span> <span class='count'>(0)</span></span>
+                    <span class='h'><span class='text'>Скрыть комментарии</span></span>
+
+                </a>
+            </div>
+
+            <div class='comments__list'>
+                <?
+                $APPLICATION->IncludeComponent("smsmedia:comments", "myqube_event", Array(
+            			"OBJECT_ID" => "u_contest",	// ID объекта комментирования
+            			"OBJECT_ID_W" => "u_contest",
+            			"IBLOCK_TYPE" => "comments",	// Тип инфоблока
+            			"COMMENTS_IBLOCK_ID" => "5",	// ID инфоблока, в котором хранятся комментарии
+            			"LEFT_MARGIN" => "",	// Отступ для дочерних комментариев
+            			"SHOW_USERPIC" => "Y",	// Показывать аватар
+            			"SHOW_DATE" => "Y",	// Показывать дату комментария
+            			"SHOW_COUNT" => "Y",	// Показывать количество комментариев
+            			"CACHE_TYPE" => "A",	// Тип кеширования
+            			"CACHE_TIME" => "3600",	// Время кеширования (сек.)
+            			"NO_FOLLOW" => "Y",	// Добавить атрибут rel="nofollow" к ссылкам в комментариях
+            			"NO_INDEX" => "Y",	// Не индексировать комментрии
+            			"NON_AUTHORIZED_USER_CAN_COMMENT" => "N",	// Разрешить неавторизованным пользователям добавлять комменарии
+            			"USE_CAPTCHA" => "N",	// Показывать капчу для неавторизованных пользователей
+            			"AUTH_PATH" => "/auth/",	// Путь до страницы авторизации
+            			"COMPONENT_TEMPLATE" => "myqube"
+            		),
+            		false
+            	);?>
+            </div>
+      </div>
+
     </div>
     <?
     require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/modals.php');

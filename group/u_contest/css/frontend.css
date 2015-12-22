@@ -4624,6 +4624,7 @@ a:hover {
 body,
 html {
   -webkit-font-smoothing: antialiased;
+  height: initial;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.25), only screen and (min-device-pixel-ratio: 1.25), only screen and (min-resolution: 200dpi), only screen and (min-resolution: 1.25dppx) {
 }
@@ -5360,6 +5361,7 @@ svg g {
   display: inline-block;
   vertical-align: middle;
   margin-top: 10px;
+  width: 100%;
 }
 .contest__intro p {
   font-size: 17px;
@@ -5379,6 +5381,116 @@ svg g {
 }
 .contest__intro span {
   color: #e6612d;
+}
+.contest__comments {
+  max-width: 630px;
+  margin: 0 auto;
+  padding: 15px 15px 30px;
+  position: relative;
+}
+.contest__comments .comment {
+  width: 100%;
+}
+.contest__comments .comments__trigger {
+  font-size: 16px;
+}
+.contest__comments .comments__trigger .text {
+  color: #e6612d;
+  display: inline-block;
+  background-image: -webkit-linear-gradient(left, rgba(230,97,45,0.5) 70%, transparent 70%);
+  background-image: -moz-linear-gradient(left, rgba(230,97,45,0.5) 70%, transparent 70%);
+  background-image: -o-linear-gradient(left, rgba(230,97,45,0.5) 70%, transparent 70%);
+  background-image: -ms-linear-gradient(left, rgba(230,97,45,0.5) 70%, transparent 70%);
+  background-image: linear-gradient(to right, rgba(230,97,45,0.5) 70%, transparent 70%);
+  background-repeat: repeat-x;
+  -webkit-background-size: 7px 1px;
+  -moz-background-size: 7px 1px;
+  background-size: 7px 1px;
+  background-position: 0 100%;
+  background-position: 0 18px;
+}
+.contest__comments .comments__trigger .text:hover {
+  text-decoration: none;
+}
+.contest__comments .comments__trigger .show,
+.contest__comments .comments__trigger .h {
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.contest__comments .comments__trigger .h {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.contest__comments .comments__list {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  bottom: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-transition: 0.3s opacity 0.3s, 0.3s bottom 0.3s;
+  -moz-transition: 0.3s opacity 0.3s, 0.3s bottom 0.3s;
+  -o-transition: 0.3s opacity 0.3s, 0.3s bottom 0.3s;
+  -ms-transition: 0.3s opacity 0.3s, 0.3s bottom 0.3s;
+  transition: 0.3s opacity 0.3s, 0.3s bottom 0.3s;
+}
+.contest__comments.comments--active .comments__trigger .show {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.contest__comments.comments--active .comments__trigger .h {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.contest__comments.comments--active .comments__list {
+  position: relative;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none;
+  left: 0;
+  visibility: visible;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.contest__comments #TEXT {
+  width: 100%;
+  height: 100px;
+  font-size: 11px;
+}
+.contest__comments .gallery_comm_item_info {
+  width: calc(100% - 70px) !important;
+}
+div.contest__comments .gallery_comm_item_avatar_online {
+  width: 20px;
+  height: 20px;
+}
+.contest__comments .gallery_comm_item_text {
+  margin-top: 0;
+}
+.contest__comments .otvet a {
+  font-size: 10px;
+  position: relative;
+  top: -4px;
 }
 .button {
   background-color: #e6612d;
