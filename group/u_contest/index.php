@@ -24,6 +24,7 @@ $record = $client->city($ip);
 //echo $record->city->name . "\n"; // 'Yekaterinburg'
 */
 $geiop = CAltasibGeoBase::GetAddres();
+var_dump($geiop['CITY_NAME']);
 ?><div data-city='<?=$geiop['CITY_NAME']?>'></div><?
 if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == 'Екатеринбург' || $USER->IsAdmin())) {
     ?>
