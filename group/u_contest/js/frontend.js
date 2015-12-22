@@ -15006,7 +15006,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
       v = $step6.find('input[name="horizont"]:checked').val();
       save('vertical', h);
       save('horizont', v);
-      url = 'http://' + location.hostname + '/group/1/u_contest/?v=' + v + '&=h' + h;
+      url = 'http://' + location.hostname + '/group/1/u_contest/?v=' + v + '&h=' + h;
       $('.share').byMod('fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + url);
       return $('.share').byMod('vk').attr('href', 'http://vk.com/share.php?url=' + url);
     });
