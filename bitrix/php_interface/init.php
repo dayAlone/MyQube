@@ -2,7 +2,7 @@
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
-define('CITY_NAME', 'Екатеринбург');
+define('CITY_NAME', 'Москва');
 
 AddEventHandler("main", "OnAfterUserLogin", Array("OnAfterUserLogin", "AuthRemember"));
 AddEventHandler('main', 'OnBeforeProlog', Array("OnBeforeProlog", 'CustomSetLastActivityDate'));
