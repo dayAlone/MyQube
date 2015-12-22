@@ -111,7 +111,7 @@ if($USER->IsAuthorized()) {
     require($_SERVER["DOCUMENT_ROOT"].'/group/u_concept/teaser.php');
 }
 $APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/images/design_dev_".$_REQUEST['v']."_".$_REQUEST['h'].'.png');
-//$APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/");
+$APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/?v=".$_REQUEST['v']."&h=".$_REQUEST['h']);
 //$APPLICATION->SetPageProperty("title", "Заголовок для шера");
 //$APPLICATION->SetPageProperty("description", "Текст для шера");
 $APPLICATION->SetPageProperty("og:title", "Заголовок для шера");
