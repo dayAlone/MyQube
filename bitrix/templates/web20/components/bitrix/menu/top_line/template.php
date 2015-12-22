@@ -2,7 +2,7 @@
 <?if($arParams["group_id"] && $arParams["show_logo"] == "Y"){?>
 <style>
 #nav_1 .nav-inner{
-	margin:0 auto;	
+	margin:0 auto;
 }
 </style>
 <?}?>
@@ -13,8 +13,8 @@
 		?>
 		<?if($arParams["search"] == "y" && $arParams["search_pos"] == "l") {?>
 			<?$APPLICATION->IncludeComponent(
-				"bitrix:search.form", 
-				"myqube_search_group", 
+				"bitrix:search.form",
+				"myqube_search_group",
 				array(
 					"COMPONENT_TEMPLATE" => "myqube_search_group",
 					"PAGE" => $APPLICATION->GetCurPage(),
@@ -49,7 +49,6 @@
 			<?else:?>
 				<div class="item"><a href="<?=$link?>"><?=mb_strtoupper($arItem["TEXT"])?></a></div>
 			<?endif?>
-			
 		<?endforeach?>
 		<?endif?>
 		<?if($arParams["LAST_LINK"]) {?>
@@ -57,8 +56,8 @@
 		<?}?>
 		<?if($arParams["search"] == "y" && $arParams["search_pos"] == "r") {?>
 			<?$APPLICATION->IncludeComponent(
-				"bitrix:search.form", 
-				"myqube_search_group", 
+				"bitrix:search.form",
+				"myqube_search_group",
 				array(
 					"COMPONENT_TEMPLATE" => "myqube_search_group",
 					"PAGE" => $APPLICATION->GetCurPage(),
