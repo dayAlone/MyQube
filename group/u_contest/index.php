@@ -9,9 +9,7 @@ $page_name="u_concept";?>
 <?
 
 $arData = CAltasibGeoBase::GetAddres();
-var_dump($arData);
-$arData = CAltasibGeoBase::GetCodeByAddr();
-var_dump($arData);
+var_dump($arData['CITY_NAME']);
 /*
 require_once 'vendor/autoload.php';
 use GeoIp2\WebService\Client;
