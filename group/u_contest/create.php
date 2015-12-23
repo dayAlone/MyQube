@@ -57,7 +57,7 @@
                 $props[strtoupper($key)] = $field;
             }
             $props['NUMBER'] = $number;
-            $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.png';
+            $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.jpg';
             $raw   = new CIBlockElement;
 			$array = Array(
 				"ACTIVE"    => "Y",
@@ -107,6 +107,7 @@
                 $body = str_replace('#EMAIL#', $USER->GetEmail(), $body);
                 $body = str_replace('#H#', $fields['horizont'], $body);
                 $body = str_replace('#V#', $fields['vertical'], $body);
+                $body = str_replace('#G#', $fields['type'], $body);
                 $body = str_replace('#ID#', $ID, $body);
                 $mail = new PHPMailer;
                 $mail->isHTML(true);
