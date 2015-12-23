@@ -49,12 +49,14 @@
         CModule::IncludeModule("iblock");
 
         if (!checkExist($user)) {
+            $number = getNumber($fields['horizont'], $fields['vertical']);
             $props = array();
             $props['USER'] = $user;
             $fields = json_decode($_COOKIE['fields'], true);
             foreach ($fields as $key => $field) {
                 $props[strtoupper($key)] = $field;
             }
+            $props['NUMBER'] = $number;
             $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.png';
             $raw   = new CIBlockElement;
 			$array = Array(
@@ -72,7 +74,7 @@
                 //CIBlockElement::Delete($ID);
 
 
-                $number = getNumber($fields['horizont'], $fields['vertical']);
+
                 $str = date("d.m.Y H:i:s").";".$ID.";".$number.";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
                 $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
                 $file = $dir.$ID.'.csv';
