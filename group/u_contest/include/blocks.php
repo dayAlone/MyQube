@@ -82,7 +82,7 @@
             <h1>Выбор свитшота</h1>
             <div class="row">
               <div class="col-xs-6">
-                <div class="wear wear--man"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear wear--male"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__sizes"><span>Выберите размер:</span>
                     <input id="c-48" type="radio" name="size" value="48" checked="checked"/>
                     <label for="c-48">48</label>
@@ -90,7 +90,7 @@
                     <label for="c-50">50</label>
                   </div>
                   <div class="wear__checkbox">
-                    <input id="man" type="radio" name="type" value="man" class="radio"/>
+                    <input id="man" type="radio" name="type" value="male" class="radio"/>
                     <label for="man">Мужской</label>
                   </div>
                 </div>
@@ -148,7 +148,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-sm-pull-3 col-xs-12">
-                <div class="wear wear--man wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear wear--male wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                   <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
                 </div>
@@ -166,7 +166,7 @@
           <h1 class="center">Подтверждение</h1>
           <div class="row">
             <div class="col-sm-5 col-sm-pull-1 col-xs-12">
-              <div class="wear wear--man wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+              <div class="wear wear--male wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
                 <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                 <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
               </div>

@@ -57,7 +57,7 @@
                 $props[strtoupper($key)] = $field;
             }
             $props['NUMBER'] = $number;
-            $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.png';
+            $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.png';
             $raw   = new CIBlockElement;
 			$array = Array(
 				"ACTIVE"    => "Y",

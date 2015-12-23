@@ -15001,12 +15001,13 @@ if ('undefined' !== typeof window.ParsleyValidator)
       }
     });
     $('#OK').on('show.bs.modal', function(e) {
-      var h, url, v;
+      var h, type, url, v;
       h = $step6.find('input[name="vertical"]:checked').val();
       v = $step6.find('input[name="horizont"]:checked').val();
+      type = $step5.find('input[name="type"]:checked').val();
       save('vertical', h);
       save('horizont', v);
-      url = encodeURIComponent('http://' + location.hostname + '/group/1/u_contest/?v=' + v + '&h=' + h);
+      url = encodeURIComponent('http://' + location.hostname + '/group/1/u_contest/?g=' + type(+'&v=' + v + '&h=' + h));
       $('.share').byMod('fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + url);
       return $('.share').byMod('vk').attr('href', 'http://vk.com/share.php?url=' + url);
     });
