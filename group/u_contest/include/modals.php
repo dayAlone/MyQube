@@ -3,7 +3,7 @@
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Вы уже создали дизайн свитшота.</h3>
-        <h4>Правилами предусмотрена толькоодна попытка участия в проекте.<br/><br/>Если Вы еще не получили свою вещь, то в ближайшее время<br/>Вам придет сообщение о статусе заказа. </h4>
+        <h4>Правилами предусмотрена только одна попытка участия в проекте.<br/><br/>Если Вы еще не получили свою вещь, то в ближайшее время<br/>Вам придет сообщение о статусе заказа. </h4>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
         <h4>
           На ваш e-mail <strong class='email'>lemesgev.sergey@gmail.com</strong> отправлено письмо<br/>с подробной  информацией о заказe.<br/><br/>
           Мы всегда рады Вас видеть в закрытой группе Kent Lab.
-        </h4><a href="/" class="button">узнать больше о U_concept</a>
+        </h4><a href="/group/1/u_concept/" class="button">узнать больше о U_concept</a>
       </div>
     </div>
   </div>
