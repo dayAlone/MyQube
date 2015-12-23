@@ -30,6 +30,7 @@ if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin(
     ?>
     <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID()) ? "contest--locked" : "")?>">
       <div class="contest__header">
+          <span>*ю_концепт</span>
           <?
             /*
             $APPLICATION->IncludeComponent(

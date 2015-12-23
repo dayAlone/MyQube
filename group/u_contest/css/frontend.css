@@ -4757,45 +4757,57 @@ svg g {
   font-weight: 300;
   font-family: 'Exo 2', sans-serif;
 }
-.contest .contest__header {
+.contest__header {
   height: 108px;
   width: 100%;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
   background-image: url("/group/u_contest/images/header-480.jpg");
 }
 @media (min-width: 480px) {
-  .contest .contest__header {
+  .contest__header {
     background-image: url("/group/u_contest/images/header-640.jpg");
   }
 }
 @media (min-width: 640px) {
-  .contest .contest__header {
+  .contest__header {
     background-image: url("/group/u_contest/images/header-750.jpg");
   }
 }
 @media (min-width: 750px) {
-  .contest .contest__header {
+  .contest__header {
     background-image: url("/group/u_contest/images/header-970.jpg");
   }
 }
 @media (min-width: 970px) {
-  .contest .contest__header {
+  .contest__header {
     background-image: url("/group/u_contest/images/header-1170.jpg");
   }
 }
 @media (min-width: 1170px) {
-  .contest .contest__header {
+  .contest__header {
     background-image: url("/group/u_contest/images/header-1650.jpg");
   }
 }
 @media (min-width: 1650px) {
-  .contest .contest__header {
+  .contest__header {
     background-image: url("/group/u_contest/images/header-1920.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
   }
+}
+.contest__header span {
+  position: absolute;
+  bottom: 0;
+  text-transform: uppercase;
+  font-size: 11px;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  bottom: 10px;
+  right: 10px;
 }
 .contest__features {
   margin: 30px 0;
