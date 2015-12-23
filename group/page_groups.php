@@ -196,8 +196,11 @@
 					$arFields["PROPERTIES"] = $ob->GetProperties();
 					$file = CFile::ResizeImageGet($arFields["PREVIEW_PICTURE"], array("width" => 180, "height" => 160), BX_RESIZE_IMAGE_EXACT);
 					$arFields["src"] = $file["src"];
-					if(!isset($arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][0]))
-						$arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][] = $arFields;
+					if ($arFields["PROPERTIES"]["POSITION"]["ONLY"]["XML_VALUE"] == 'Y' && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin()) || !isset($arFields["PROPERTIES"]["POSITION"]["ONLY"]["XML_VALUE"])) {
+							if(!isset($arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][0]))
+								$arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][] = $arFields;
+					}
+
 				}?>
 
 				<div id="content_left_wrapper" <?if($page_name!="lenta"&&$_GET["about"]!=1){?>class="thin"<?}?>>
@@ -217,13 +220,13 @@
 							<?}?>
 						<?}?>
 						<?
-							if ($page_name!=="contest" && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) {?>
+							/*if ($page_name!=="contest" && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) {?>
 							<div class="banner" id="banner_4">
 								<div class="banner_ins">
 									<a class="banner_a" href="/group/1/u_contest/"><img width="180" src="/group/u_contest/images/small-banner.jpg"/></a>
 								</div>
 							</div>
-							<?}
+							<?}*/
 						?>
 					</div>
 				</div>
