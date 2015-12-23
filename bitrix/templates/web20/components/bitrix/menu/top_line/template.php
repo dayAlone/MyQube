@@ -1,3 +1,4 @@
+<? $geiop = CAltasibGeoBase::GetAddres();?>
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?if($arParams["group_id"] && $arParams["show_logo"] == "Y"){?>
 <style>
@@ -37,7 +38,7 @@
 				$section = preg_replace("/^#group##group_id##?(\w*)#?$/","$1",$section_1);
 			else
 				$section = preg_replace("/^#user##user##?(\w*)#?$/","$1",$section_1);
-			if(!$USER->IsAdmin()&&($section=="contest"))continue;
+			if((!$USER->IsAdmin() || $geiop['CITY_NAME'] != CITY_NAME) && $section=="contest") continue;
 			//echo $section."!!!";
 			if(!$arItem["SELECTED"]&&$section=="#personal#contest#"&&!$arParams["group_id"])continue;
 			//echo $section;

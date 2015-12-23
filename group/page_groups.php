@@ -1,3 +1,4 @@
+<? $geiop = CAltasibGeoBase::GetAddres();?>
 <link type="text/css" rel="stylesheet" href="/css/group.css">
 		<script type="text/javascript" src="/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="/js/plugins/jquery.slimscroll/jquery.slimscroll.min.js"></script>
@@ -87,6 +88,7 @@
 			"MAX_LEVEL"	=>	"1",
 			"CHILD_MENU_TYPE"	=>	"left",
 			"USE_EXT"	=>	"Y",
+			"CACHE_NOTES" => $geiop['CITY_NAME'],
 			"MENU_CACHE_TYPE" => "A",
 			"MENU_CACHE_TIME" => "3600",
 			"MENU_CACHE_USE_GROUPS" => "Y",
@@ -215,7 +217,6 @@
 							<?}?>
 						<?}?>
 						<?
-							$geiop = CAltasibGeoBase::GetAddres();
 							if ($page_name!=="contest" && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) {?>
 							<div class="banner" id="banner_4">
 								<div class="banner_ins">
