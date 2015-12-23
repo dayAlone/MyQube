@@ -196,16 +196,17 @@
 					$arFields["PROPERTIES"] = $ob->GetProperties();
 					$file = CFile::ResizeImageGet($arFields["PREVIEW_PICTURE"], array("width" => 180, "height" => 160), BX_RESIZE_IMAGE_EXACT);
 					$arFields["src"] = $file["src"];
-					if ($arFields["PROPERTIES"]["POSITION"]["ONLY"]["XML_VALUE"] == 'Y' && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin()) || !isset($arFields["PROPERTIES"]["POSITION"]["ONLY"]["XML_VALUE"])) {
-							if(!isset($arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][0]))
-								$arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][] = $arFields;
+					if (($arFields["PROPERTIES"]["ONLY"]["VALUE_XML_ID"] == 'Y' && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) || !$arFields["PROPERTIES"]["ONLY"]["VALUE_XML_ID"]) {
+						if(!isset($arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][0])) {
+							$arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][] = $arFields;
+						}
 					}
 
 				}?>
 
 				<div id="content_left_wrapper" <?if($page_name!="lenta"&&$_GET["about"]!=1){?>class="thin"<?}?>>
 					<div id="content_left" <?if($page_name!="lenta"&&$_GET["about"]!=1){?>class="thin"<?}?>>
-						<?for($i=1;$i<=3;$i++) {
+						<?for($i=1;$i<=4;$i++) {
 							if(isset($arBanner[$i])) {?>
 								<div class="banner" id="banner_<?=$i?>">
 									<div class="banner_ins">
