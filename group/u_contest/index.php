@@ -116,7 +116,7 @@ if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin(
 }
 if (isset($_REQUEST['v']) && isset($_REQUEST['h']) && isset($_REQUEST['g'])) {
     $APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/images/sharing/".$_REQUEST['g']."/".$_REQUEST['g']."_design_dev_".$_REQUEST['v']."_".$_REQUEST['h'].'.jpg');
-    $APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/?v=".$_REQUEST['v']."&h=".$_REQUEST['h']);
+    $APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/?g=".$_REQUEST['g']."&v=".$_REQUEST['v']."&h=".$_REQUEST['h']);
     //$APPLICATION->SetPageProperty("title", "Заголовок для шера");
     //$APPLICATION->SetPageProperty("description", "Текст для шера");
     $APPLICATION->SetPageProperty("og:title", "Заголовок для шера");
