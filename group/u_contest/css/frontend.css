@@ -5780,13 +5780,6 @@ div.contest__comments .gallery_comm_item_avatar_online {
   -ms-transform: translateX(-50%) translateY(-50%) translateZ(0);
   transform: translateX(-50%) translateY(-50%) translateZ(0);
 }
-.wear__image {
-  -webkit-transform: translateX(-50.5%) translateY(-50%);
-  -moz-transform: translateX(-50.5%) translateY(-50%);
-  -o-transform: translateX(-50.5%) translateY(-50%);
-  -ms-transform: translateX(-50.5%) translateY(-50%);
-  transform: translateX(-50.5%) translateY(-50%);
-}
 .wear__placeholder,
 .wear__text {
   width: 100px;
