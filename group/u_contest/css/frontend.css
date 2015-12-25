@@ -5658,8 +5658,8 @@ div.contest__comments .gallery_comm_item_avatar_online {
   margin-top: 95px;
 }
 .wear--female .wear__placeholder {
-  width: 90px;
-  margin-top: -43px;
+  width: 91px;
+  margin-top: -44px;
 }
 .wear--female .wear__text {
   width: 80px;
@@ -5783,6 +5783,16 @@ div.contest__comments .gallery_comm_item_avatar_online {
   width: 100px;
   z-index: 50;
   height: 78px;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
   margin-top: -40px;
 }
 .wear__placeholder img,
