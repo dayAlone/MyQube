@@ -5657,18 +5657,6 @@ div.contest__comments .gallery_comm_item_avatar_online {
 .wear--female .wear__down {
   margin-top: 95px;
 }
-.wear--female .wear__placeholder,
-.wear--female .wear__text {
-  -webkit-transform: scale(0.86) translateX(-50%) translateY(-50%) translateZ(0);
-  -moz-transform: scale(0.86) translateX(-50%) translateY(-50%) translateZ(0);
-  -o-transform: scale(0.86) translateX(-50%) translateY(-50%) translateZ(0);
-  -ms-transform: scale(0.86) translateX(-50%) translateY(-50%) translateZ(0);
-  transform: scale(0.86) translateX(-50%) translateY(-50%) translateZ(0);
-  margin-left: -6px;
-}
-.wear--female .wear__text {
-  margin-left: -3px;
-}
 .wear__sizes {
   position: absolute;
   opacity: 0;
