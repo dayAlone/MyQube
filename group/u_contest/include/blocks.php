@@ -114,7 +114,7 @@
         <div class="contest__question contest__step contest__step--6">
           <div class="center">
             <h1>Дизайн</h1>
-            <div class="message visible-xs visible-sm">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
+            <div class="message visible-xs">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
             <div class="row">
               <div class="col-sm-3 col-xs-6"><img src="/group/u_contest/images/svg/horizont.svg" alt="" class="icon"/><br/>
                 <div class="pattern">
@@ -153,7 +153,7 @@
                   <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
                   <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
                 </div>
-                <div class="message visible-md visible-lg">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
+                <div class="message visible-md visible-lg visible-sm">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
               </div>
             </div>
             <button type="submit" class="button">Подтвердить</button>
