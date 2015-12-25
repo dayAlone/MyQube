@@ -45,16 +45,13 @@
           <form method="POST" action="/">
             <div class="row md-center">
               <div class="col-xs-12 col-sm-4">
-                <input id="r-1" type="radio" name="design" value="Неудовлетворительно" class="radio"/><br/>
-                <label for="r-1">Неудовлетворительно</label>
+                <input id="r-1" type="radio" name="design" value="Неудовлетворительно" class="radio"/><label for="r-1"><span>Неудовлетворительно</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="r-2" type="radio" name="design" value="Хорошо" class="radio"/><br/>
-                <label for="r-2">Хорошо</label>
+                <input id="r-2" type="radio" name="design" value="Хорошо" class="radio"/><label for="r-2"><span>Хорошо</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="r-3" type="radio" name="design" value="Превосходно" checked="checked" class="radio"/><br/>
-                <label for="r-3">Превосходно</label>
+                <input id="r-3" type="radio" name="design" value="Превосходно" checked="checked" class="radio"/><label for="r-3"><span>Превосходно</span></label>
               </div>
             </div>
             <div class="center"><br/>
