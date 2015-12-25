@@ -15078,7 +15078,6 @@ if ('undefined' !== typeof window.ParsleyValidator)
       $('.comments').elem('trigger').find('.count').text('(' + i + ')');
       return $('.comments').data('count', i);
     };
-    $('#Success').modal();
     timer = false;
     setCount($('.comment').length);
     $('.comment_submit_button').on('click', function() {
