@@ -26,7 +26,7 @@
         <h4>
           На ваш e-mail <strong class='email'>lemesgev.sergey@gmail.com</strong> отправлено письмо<br/>с подробной  информацией о заказe.<br/><br/>
           Мы всегда рады Вас видеть в закрытой группе Kent Lab.
-        </h4><a href="/group/1/u_concept/" class="button">узнать больше о U_concept</a>
+      </h4><a href="/group/1/u_concept/" class="button"><span className='hidden-xs'>узнать больше </span>о U_concept</a>
       </div>
     </div>
   </div>

@@ -5204,6 +5204,9 @@ svg g {
   width: 20px;
   height: 20px;
 }
+.contest__step input:focus {
+  outline: 0;
+}
 .contest__step input[type='radio'].radio {
   display: inline-block;
   vertical-align: middle;
@@ -5627,15 +5630,6 @@ div.contest__comments .gallery_comm_item_avatar_online {
 }
 .wear--female .wear__down {
   margin-top: 95px;
-}
-.wear--female .wear__placeholder,
-.wear--female .wear__text {
-  -webkit-transform: scale(0.85) translateX(-50%) translateY(-50%);
-  -moz-transform: scale(0.85) translateX(-50%) translateY(-50%);
-  -o-transform: scale(0.85) translateX(-50%) translateY(-50%);
-  -ms-transform: scale(0.85) translateX(-50%) translateY(-50%);
-  transform: scale(0.85) translateX(-50%) translateY(-50%);
-  margin-left: -6px;
 }
 .wear__sizes {
   position: absolute;
