@@ -5613,6 +5613,11 @@ div.contest__comments .gallery_comm_item_avatar_online {
   width: 100%;
   position: relative;
   min-width: 447px;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .wear__hover {
   -webkit-transition-property: opacity;
