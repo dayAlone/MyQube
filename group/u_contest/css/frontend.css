@@ -5657,6 +5657,7 @@ div.contest__comments .gallery_comm_item_avatar_online {
 .wear--female .wear__down {
   margin-top: 95px;
 }
+<<<<<<< HEAD
 .wear--female .wear__placeholder {
   width: 90px;
   margin-top: -43px;
@@ -5664,6 +5665,8 @@ div.contest__comments .gallery_comm_item_avatar_online {
 .wear--female .wear__text {
   width: 80px;
 }
+=======
+>>>>>>> c9cc7f93413b2db0d7257135961b1bea06265bc3
 .wear__sizes {
   position: absolute;
   opacity: 0;
