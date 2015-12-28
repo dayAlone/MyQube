@@ -5534,6 +5534,18 @@ div.contest__comments .gallery_comm_item_avatar_online {
   position: relative;
   top: -4px;
 }
+.detail_page nav {
+  right: 0;
+  top: 156px;
+}
+.detail_page nav a b {
+  margin-top: -5px;
+}
+@media (max-width: 768px) {
+  .detail_page {
+    display: none;
+  }
+}
 .button {
   background-color: #e6612d;
   border: 0;

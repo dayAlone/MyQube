@@ -15071,6 +15071,18 @@ if ('undefined' !== typeof window.ParsleyValidator)
       e.preventDefault();
       return location.href = '/group/1/u_concept/';
     });
+    $('a.photo_list_like').click(function(e) {
+      var path;
+      e.preventDefault();
+      $(this).toggleClass('like_active');
+      path = host_url + '/group/lenta/like_post.php';
+      return $.get(path, {
+        post_id: $(this).attr('id'),
+        like: Number($(this).hasClass('like_active'))
+      }, function(data) {
+        return console.log(data);
+      });
+    });
     if ($('.contest').hasMod('locked')) {
       $('#Again').modal();
     }
@@ -15097,6 +15109,11 @@ if ('undefined' !== typeof window.ParsleyValidator)
       } else {
         $('.comments').mod('active', false);
       }
+      return e.preventDefault();
+    });
+    $('.detail_page nav .close_nav').on('click', function(e) {
+      window.leave = $(this).attr('href');
+      $('#Leave').modal();
       return e.preventDefault();
     });
     return $('a').on('click', function(e) {
