@@ -78,21 +78,21 @@ if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin(
           </nav>
       </div>
       <?$APPLICATION->IncludeComponent("bitrix:menu", "top_line", Array(
-          "ROOT_MENU_TYPE"	=>	"left",
-          "MAX_LEVEL"	=>	"1",
-          "CHILD_MENU_TYPE"	=>	"left",
-          "USE_EXT"	=>	"Y",
-          "MENU_CACHE_TYPE" => "A",
-          "MENU_CACHE_TIME" => "3600",
+          "ROOT_MENU_TYPE"	      =>	"left",
+          "MAX_LEVEL"	          =>	"1",
+          "CHILD_MENU_TYPE"	      =>	"left",
+          "USE_EXT"	              =>	"Y",
+          "MENU_CACHE_TYPE"       => "A",
+          "MENU_CACHE_TIME"       => "3600",
           "MENU_CACHE_USE_GROUPS" => "Y",
-          "MENU_CACHE_GET_VARS" => array(
+          "MENU_CACHE_GET_VARS"   => array(
               0 => "SECTION_ID",
               1 => "page",
           ),
-          "group_id" => 1,
-          "show_logo" => "Y",
-          "search" => "n",
-          "search_pos" => "r"
+          "group_id"              => 1,
+          "show_logo"             => "Y",
+          "search"                => "n",
+          "search_pos"            => "r"
           )
       );?>
       <? require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/blocks.php'); ?>
@@ -108,22 +108,22 @@ if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin(
             <div class='comments__list'>
                 <?
                 $APPLICATION->IncludeComponent("smsmedia:comments", "myqube_event", Array(
-            			"OBJECT_ID" => "u_contest",	// ID объекта комментирования
-            			"OBJECT_ID_W" => "u_contest",
-            			"IBLOCK_TYPE" => "comments",	// Тип инфоблока
-            			"COMMENTS_IBLOCK_ID" => "5",	// ID инфоблока, в котором хранятся комментарии
-            			"LEFT_MARGIN" => "",	// Отступ для дочерних комментариев
-            			"SHOW_USERPIC" => "Y",	// Показывать аватар
-            			"SHOW_DATE" => "Y",	// Показывать дату комментария
-            			"SHOW_COUNT" => "Y",	// Показывать количество комментариев
-            			"CACHE_TYPE" => "A",	// Тип кеширования
-            			"CACHE_TIME" => "3600",	// Время кеширования (сек.)
-            			"NO_FOLLOW" => "Y",	// Добавить атрибут rel="nofollow" к ссылкам в комментариях
-            			"NO_INDEX" => "Y",	// Не индексировать комментрии
+            			"OBJECT_ID"                       => "u_contest",	// ID объекта комментирования
+            			"OBJECT_ID_W"                     => "u_contest",
+            			"IBLOCK_TYPE"                     => "comments",	// Тип инфоблока
+            			"COMMENTS_IBLOCK_ID"              => "5",	 // ID инфоблока, в котором хранятся комментарии
+            			"LEFT_MARGIN"                     => "",	// Отступ для дочерних комментариев
+            			"SHOW_USERPIC"                    => "Y",	// Показывать аватар
+            			"SHOW_DATE"                       => "Y",	// Показывать дату комментария
+            			"SHOW_COUNT"                      => "Y",	// Показывать количество комментариев
+            			"CACHE_TYPE"                      => "A",	// Тип кеширования
+            			"CACHE_TIME"                      => "3600",// Время кеширования (сек.)
+            			"NO_FOLLOW"                       => "Y",	// Добавить атрибут rel="nofollow" к ссылкам в комментариях
+            			"NO_INDEX"                        => "Y",	// Не индексировать комментрии
             			"NON_AUTHORIZED_USER_CAN_COMMENT" => "N",	// Разрешить неавторизованным пользователям добавлять комменарии
-            			"USE_CAPTCHA" => "N",	// Показывать капчу для неавторизованных пользователей
-            			"AUTH_PATH" => "/auth/",	// Путь до страницы авторизации
-            			"COMPONENT_TEMPLATE" => "myqube"
+            			"USE_CAPTCHA"                     => "N",	// Показывать капчу для неавторизованных пользователей
+            			"AUTH_PATH"                       => "/auth/",	// Путь до страницы авторизации
+            			"COMPONENT_TEMPLATE"              => "myqube"
             		),
             		false
             	);?>

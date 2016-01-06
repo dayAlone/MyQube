@@ -1,16 +1,17 @@
 
       <div class="contest__content">
         <div class="contest__step contest__intro center contest__step--active">
-          <h1>U_creative</h1>
+
+          <h1>U_creative<sup>**</sup></h1>
           <p>
             Участники проекта U_CONCEPT успешно создали арт-проекты.<br>
             Пришла Ваша очередь показать свои творческие таланты. <br>
-            Место проведения проекта <nobr>– <span>г. Екатеринбург.</span></nobr>
+            Место проведения проекта <nobr>– <span>г. Екатеринбург, с 14.01.2016 г. по 30.01.2016 г.</span></nobr>
           </p>
           <div class="row contest__features">
             <div class="col-xs-12 col-sm-4 feature">
               <div class="feature__image"><img src="/group/u_contest/images/icon-1.png" alt="" width="130"/></div>
-              <div class="feature__text">Ответьте на несколько<br/> простых вопросов.</div>
+              <div class="feature__text">Ответьте на несколько простых вопросов. Сделать это будет проще, если зайти в&nbsp;раздел <a href='/group/1/about/' target='_blank'>о бренде</a> на KENT LAB.</div>
             </div>
             <div class="col-xs-12 col-sm-4 feature">
               <div class="feature__image"><img src="/group/u_contest/images/icon-2.png" alt="" width="130"/></div>
@@ -26,32 +27,49 @@
             <label for="agree">Я согласен с <a href="#Rules" data-toggle="modal">правилами участия</a></label><br/>
             <button type="submit" class="button">начать</button><br/>
             <div class="error">Пожалуйста, подтвердите свое согласие<br/>с правилами участия, чтобы продолжить.</div>
-          </form><br/><small>*Доставка осуществляется только в городе Екатеринбург.</small>
+        </form><small>*Доставка осуществляется только в городе Екатеринбург.<br/>**Ю_КРЕАТИВ</small>
         </div>
         <div class="contest__question contest__step contest__step--2">
-          <h1 class="center">ВОПРОСЫ. <span>1/3</span></h1>
-          <h3 class="center">Откуда вы узнали о сигаретах Kent Explore?</h3>
-          <form method="POST" action="/">
-            <textarea placeholder="Напишите свой ответ" class="textarea"></textarea>
-            <div class="center"><br/>
-              <button type="submit" class="button">ответить</button><br/>
-              <div class="error">Пожалуйста, ответьте на вопрос<br/>для продолжения участия. </div>
+            <div class='contest__description center'>
+                Для Вашего удобства предлагаем ознакомиться<br/> с информацией <a href='/group/1/about/' target='_blank'>о бренде</a> на KENT LAB
             </div>
-          </form>
-        </div>
-        <div class="contest__question contest__step contest__step--3">
-          <h1 class="center">ВОПРОСЫ. <span>2/3</span></h1>
-          <h3 class="center">Как бы Вы оценили дизайн Kent Explore?</h3>
+          <h1 class="center">ВОПРОСЫ. <span>1/3</span></h1>
+          <h3 class="center">Какой фильтр используется в новом Kent Эксплор?</h3>
           <form method="POST" action="/">
             <div class="row md-center">
               <div class="col-xs-12 col-sm-4">
-                <input id="r-1" type="radio" name="design" value="Неудовлетворительно" class="radio"/><label for="r-1"><span>Неудовлетворительно</span></label>
+                <input id="q-1-1" type="radio" name="q-1" value="0" class="radio"/><label for="q-1-1"><span>Taste+ Nano-Carbon<sup>*</sup></span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="r-2" type="radio" name="design" value="Хорошо" class="radio"/><label for="r-2"><span>Хорошо</span></label>
+                <input id="q-1-2" type="radio" name="q-1" value="1" class="radio"/><label for="q-1-2"><span>Моноацетатный<br/ >фильтр</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="r-3" type="radio" name="design" value="Превосходно" checked="checked" class="radio"/><label for="r-3"><span>Превосходно</span></label>
+                <input id="q-1-3" type="radio" name="q-1" value="2" checked="checked" class="radio"/><label for="q-1-3"><span>Carbon Nano</span></label>
+              </div>
+            </div>
+            <div class="center"><br/>
+              <button type="submit" class="button">ответить</button><br/>
+
+            </div>
+          </form>
+          <small>*Тейст+ Нано-Карбон</small>
+        </div>
+        <div class="contest__question contest__step contest__step--3">
+          <div class='contest__description center'>
+              Для Вашего удобства предлагаем ознакомиться<br/> с информацией <a href='/group/1/about/' target='_blank'>о бренде</a> на KENT LAB
+          </div>
+          <h1 class="center">ВОПРОСЫ. <span>2/3</span></h1>
+          <h3 class="center">Как называется формат нового Kent Эксплор?</h3>
+          <form method="POST" action="/">
+            <div class="row md-center">
+              <div class="col-xs-12 col-sm-4">
+                <input id="q-2-1" type="radio" name="q-2" value="0" class="radio"/><label for="q-2-1"><span>Супертонкий</span></label>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <input id="q-2-2" type="radio" name="q-2" value="1" class="radio"/><label for="q-2-2"><span>Премиальный<br/>удлиненный</span></label>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <input id="q-2-3" type="radio" name="q-2" value="2" checked="checked" class="radio"/><label for="q-2-3"><span>Классический</span></label>
               </div>
             </div>
             <div class="center"><br/>
@@ -60,18 +78,32 @@
           </form>
         </div>
         <div class="contest__question contest__step contest__step--4">
+          <div class='contest__description center'>
+              Для Вашего удобства предлагаем ознакомиться<br/> с информацией <a href='/group/1/about/' target='_blank'>о бренде</a> на KENT LAB
+          </div>
           <h1 class="center">ВОПРОСЫ. <span>3/3</span></h1>
-          <h3 class="center">Успели ли Вы оценить вкус Kent Explore?</h3>
+          <h3 class="center">Какая технология используется для уменьшения<br/> табачного запаха в новом Kent Эксплор?</h3>
           <form method="POST" action="/">
-            <div class="row center">
-              <div class="col-xs-6">
-                <button type="submit" name="check" value="Да" class="button button--small">Да</button>
+            <div class="row md-center">
+              <div class="col-xs-12 col-sm-4">
+                <input id="q-3-1" type="radio" name="q-3" value="0" class="radio"/><label for="q-3-1"><span>Balanced Smoke Smell<sup>*</sup></span></label>
               </div>
-              <div class="col-xs-6">
-                <button type="submit" name="check" value="Нет" class="button button--small">Нет</button>
+              <div class="col-xs-12 col-sm-4">
+                <input id="q-3-2" type="radio" name="q-3" value="1" class="radio"/><label for="q-3-2"><span>Less Odor Technology<sup>**</sup></span></label>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <input id="q-3-3" type="radio" name="q-3" value="2" checked="checked" class="radio"/><label for="q-3-3"><span>Less Smoke Smell<sup>***</sup></span></label>
               </div>
             </div>
+            <div class="center"><br/>
+              <button type="submit" class="button">ответить</button>
+            </div>
           </form>
+          <small>
+              *Сбалансированный запах табачного дыма<br/>
+              **Технология уменьшения запаха табачного дыма<br/>
+              ***Меньше запаха табачного дыма
+          </small>
         </div>
         <div class="contest__question contest__step contest__step--5">
           <!--.contest__step--active-->

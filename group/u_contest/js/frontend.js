@@ -14921,20 +14921,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $step2 = $('.contest').elem('step').byMod('2');
     $step2.find('.button').on('click', function(e) {
-      if ($step2.find('.textarea').val().length === 0) {
-        $step2.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        save('q1', $step2.find('.textarea').val());
-        return next(e);
-      }
-    });
-    $step2.find('.textarea').on('keydown', function(e) {
-      if ($step2.find('.error').mod('active') === true) {
-        $step2.find('.error').mod('active', false);
-        return $step2.find('.button').mod('disabled', false);
-      }
+      save('q1', $step2.find('input[type="radio"]:checked').val());
+      return next(e);
     });
     $step3 = $('.contest').elem('step').byMod('3');
     $step3.find('.button').on('click', function(e) {
@@ -14943,7 +14931,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $step4 = $('.contest').elem('step').byMod('4');
     $step4.find('.button').on('click', function(e) {
-      save('q3', $(this).val());
+      save('q3', $step4.find('input[type="radio"]:checked').val());
       return next(e);
     });
     $step5 = $('.contest').elem('step').byMod('5');
