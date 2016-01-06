@@ -28,7 +28,7 @@ $geiop = CAltasibGeoBase::GetAddres();
 ?><div data-city='<?=$geiop['CITY_NAME']?>'></div><?
 if($USER->IsAuthorized() && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) {
     ?>
-    <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID()) ? "contest--locked" : "")?>">
+    <div class="contest contest--demo contest--active <?=(checkExist($USER->GetID(), $USER->GetEmail()) ? "contest--locked" : "")?>">
       <div class="contest__header">
           <span>*ю_концепт</span>
           <?

@@ -1,9 +1,20 @@
+<div id="Error" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+      <div class="md-center">
+        <h3 class="black">Спасибо за участие!</h3>
+        <h4>К сожалению, в ваших ответах была допущена ошибка.
+            <br/><br/>
+        Следите за обновлениями в закрытой группе <a href='/group/1/'>KENT LAB</a>.</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="Again" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
     <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
       <div class="md-center">
-        <h3 class="black">Вы уже создали дизайн свитшота.</h3>
-        <h4>Правилами предусмотрена только одна попытка участия в проекте.<br/><br/>Если Вы еще не получили свою вещь, то в ближайшее время<br/>Вам придет сообщение о статусе заказа. </h4>
+        <h3 class="black">Правилами предусмотрена только одна попытка<br/> участия в викторине.</h3>
       </div>
     </div>
   </div>
@@ -49,7 +60,7 @@
         <h3 class="black">Отличная работа</h3>
         <h4>Осталось сделать всего несколько шагов, чтобы стать<br/>обладателем  свитшота авторского дизайна.</h4>
       </div>
-      <div class="center"><a href="#" data-dismiss="modal" class="button">Продолжить</a></div>
+      <div class="center"><a href="#" data-dismiss="modal" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Продолжить</a></div>
     </div>
   </div>
 </div>

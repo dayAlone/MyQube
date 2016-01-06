@@ -5,12 +5,18 @@
     define("MANAGER", "ak@radia.ru");
 	define("NO_KEEP_STATISTIC", true);
 	define("NOT_CHECK_PERMISSIONS", true);
+    CModule::IncludeModule("iblock");
     $labels = array(
-        'type' => 'Тип',
-        'size' => 'Размер',
+        'type'    => 'Тип',
+        'size'    => 'Размер',
         'address' => 'Адрес',
-        'phone' => 'Телефон',
-        'email' => 'Эл. почта'
+        'phone'   => 'Телефон',
+        'email'   => 'Эл. почта'
+    );
+    $answers = array(
+        1 => 0,
+        2 => 1,
+        3 => 2
     );
     function getNumber($h, $v) {
         switch ($h) {
@@ -44,36 +50,62 @@
         }
     }
 
+    function getSections() {
+        CModule::IncludeModule("iblock");
+        $obCache  = new CPHPCache;
+        $lifeTime = 60 * 60 * 2;
+        $cacheId  = 'u_contest_sections';
+        if($obCache->InitCache($lifeTime, $cacheId, "/")) {
+            $vars = $obCache->GetVars();
+            return $vars["SECTIONS"];
+        } else {
+            $data = array();
+            $arFilter = array('IBLOCK_ID' => IBLOCK_ID);
+            $raw = CIBlockSection::GetList(array('ID' => 'ASC'), $arFilter);
+            while ($item = $raw->Fetch()) {
+                $data[$item['CODE']] = $item['ID'];
+            }
+            $obCache->StartDataCache($lifeTime, $cacheId, "/");
+            $obCache->EndDataCache(array("SECTIONS" => $data));
+            return $data;
+        }
+    }
+
     if($USER->IsAuthorized()) {
         $user = $USER->GetID();
-        CModule::IncludeModule("iblock");
+        $email = $USER->GetEmail();
+        $sections = getSections();
+        $current = checkExist($user, $email);
+        $result = 'success';
+        if (intval($current['ID']) > 0) {
 
-        if (!checkExist($user)) {
-            $number = getNumber($fields['horizont'], $fields['vertical']);
             $props = array();
-            $props['USER'] = $user;
             $fields = json_decode($_COOKIE['fields'], true);
+            for ($i=1; $i < 4; $i++) {
+                if (!$fields['q'.$i]) $fields['q'.$i] = 'N';
+                else if (intval($fields['q'.$i]) !== $answers[$i]) $result = 'error';
+                else $fields['q'.$i] = 'Y';
+            }
+
             foreach ($fields as $key => $field) {
                 $props[strtoupper($key)] = $field;
             }
-            $props['NUMBER'] = $number;
-            $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.jpg';
-            $raw   = new CIBlockElement;
-			$array = Array(
-				"ACTIVE"    => "Y",
-                "NAME"      => "Заказ: ".$USER->GetFullName(),
-				"IBLOCK_ID" => IBLOCK_ID,
-                "PROPERTY_VALUES" => $props,
-                "PREVIEW_PICTURE" => CFile::MakeFileArray($src)
-			);
 
-            $ID = $raw->Add($array);
-			if (intval($ID) > 0) {
+            if ($fields['type'] && $fields['horizont'] && $fields['vertical']) {
+                $number = getNumber($fields['horizont'], $fields['vertical']);
+                $props['NUMBER'] = $number;
+                $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.jpg';
+                $raw = new CIBlockElement;
+                $raw->Update($current['ID'], array('PREVIEW_PICTURE' => CFile::MakeFileArray($src)));
+            }
+            CIBlockElement::SetPropertyValuesEx($current['ID'], false, $props);
+
+			if ($fields['email'] && $fields['phone'] && $fields['address']) {
 
                 // Для отладки
                 //CIBlockElement::Delete($ID);
-
-
+                $raw = new CIBlockElement;
+                $raw->Update($current['ID'], array("IBLOCK_SECTION_ID" => $sections['success']));
 
                 $str = date("d.m.Y H:i:s").";".$ID.";".$number.";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
                 $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
@@ -104,7 +136,7 @@
                 // Письмо клиенту
                 $body = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/mail-3.html');
                 $body = str_replace('#NAME#', $USER->GetFullName(), $body);
-                $body = str_replace('#EMAIL#', $USER->GetEmail(), $body);
+                $body = str_replace('#EMAIL#', $fields['email'], $body);
                 $body = str_replace('#H#', $fields['horizont'], $body);
                 $body = str_replace('#V#', $fields['vertical'], $body);
                 $body = str_replace('#G#', $fields['type'], $body);
@@ -121,7 +153,20 @@
                 echo 'success';
             }
         } else {
-            echo 'exist';
+            $props = array();
+            $props['USER'] = $user;
+
+            $array = Array(
+				"ACTIVE"            => "Y",
+                "NAME"              => "Заказ: ".$USER->GetFullName(),
+				"IBLOCK_ID"         => IBLOCK_ID,
+                "PROPERTY_VALUES"   => $props,
+                "IBLOCK_SECTION_ID" => $sections['inprocess']
+			);
+            $raw = new CIBlockElement;
+            $ID = $raw->Add($array);
         }
+
+        echo $result;
     }
 ?>

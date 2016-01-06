@@ -1,6 +1,6 @@
 
       <div class="contest__content">
-        <div class="contest__step contest__intro center contest__step--active">
+        <div class="contest__step contest__intro center contest__step--1 contest__step--active">
 
           <h1>U_creative<sup>**</sup></h1>
           <p>
@@ -25,7 +25,7 @@
           <form method="POST" action="/">
             <input id="agree" type="checkbox" name="agreement" class="checkbox"/>
             <label for="agree">Я согласен с <a href="#Rules" data-toggle="modal">правилами участия</a></label><br/>
-            <button type="submit" class="button">начать</button><br/>
+            <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />начать</button><br/>
             <div class="error">Пожалуйста, подтвердите свое согласие<br/>с правилами участия, чтобы продолжить.</div>
         </form><small>*Доставка осуществляется только в городе Екатеринбург.<br/>**Ю_КРЕАТИВ</small>
         </div>
@@ -48,7 +48,7 @@
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button">ответить</button><br/>
+              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
 
             </div>
           </form>
@@ -73,7 +73,7 @@
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button">ответить</button>
+              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button>
             </div>
           </form>
         </div>
@@ -96,7 +96,7 @@
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button">ответить</button>
+              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button>
             </div>
           </form>
           <small>
@@ -139,7 +139,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="button">Следующий шаг</button><br/>
+            <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Следующий шаг</button><br/>
             <div class="error">Пожалуйста, выберите свитшот,<br/>чтобы перейти к его оформлению</div>
           </div>
         </div>
@@ -188,7 +188,7 @@
                 <div class="message visible-md visible-lg visible-sm">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
               </div>
             </div>
-            <button type="submit" class="button">Подтвердить</button>
+            <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Подтвердить</button>
           </div>
         </div>
         <div class="contest__question contest__step contest__step--7">
@@ -222,7 +222,7 @@
                     <input id="email" type="email" name="email" data-parsley-trigger="change" required="required"/>
                   </div>
                 </div>
-                <button type="submit" class="button">Подтвердить</button>
+                <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Подтвердить</button>
               </form>
               <div class="error">Пожалуйста, укажите свои контактные данные</div>
             </div>

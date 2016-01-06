@@ -14871,13 +14871,29 @@ if ('undefined' !== typeof window.ParsleyValidator)
 
   this.next = function(e) {
     if ($('.contest').hasMod('demo')) {
-      e.preventDefault();
-      return $('.contest').elem('step').byMod('active').mod('active', false).next().mod('active', true);
+      if (e) {
+        $(e.target).mod('innactive', true);
+        e.preventDefault();
+      }
+      return $.get('/group/u_contest/create.php', function(data) {
+        $(e.target).mod('innactive', false);
+        console.log(data);
+        if (data !== 'error') {
+          return $('.contest').elem('step').byMod('active').mod('active', false).next().mod('active', true);
+        } else {
+          return $('#Error').modal();
+        }
+      });
     }
   };
 
   this.save = function(prop, value) {
     var fields;
+    if ($('.contest').elem('step').byMod('active').hasMod('1')) {
+      $.removeCookie('fields', {
+        path: '/'
+      });
+    }
     fields = $.cookie('fields');
     if (fields) {
       fields = JSON.parse(fields);
@@ -15038,12 +15054,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         save('phone', $step7.find('input[name="phone"]').val());
         save('email', $step7.find('input[name="email"]').val());
         save('finished', true);
-        $.get('/group/u_contest/create.php', function(data) {
-          if (data === 'exist') {
-            $('#Success').modal('hide');
-            return $('#Again').modal();
-          }
-        });
+        $.get('/group/u_contest/create.php');
         $('#Success').modal();
         return e.preventDefault();
       }
@@ -15055,9 +15066,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('.button--go').on('click', function(e) {
       return location.href = window.leave;
     });
-    $('#Success, #Again').on('hide.bs.modal', function(e) {
+    $('#Success, #Again, #Error').on('hide.bs.modal', function(e) {
       e.preventDefault();
-      return location.href = '/group/1/u_concept/';
+      return location.href = '/group/1/';
     });
     $('a.photo_list_like').click(function(e) {
       var path;
