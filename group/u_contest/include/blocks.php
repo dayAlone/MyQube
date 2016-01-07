@@ -44,12 +44,12 @@
                 <input id="q-1-2" type="radio" name="q-1" value="1" class="radio"/><label for="q-1-2"><span>Моноацетатный<br/ >фильтр</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="q-1-3" type="radio" name="q-1" value="2" checked="checked" class="radio"/><label for="q-1-3"><span>Carbon Nano</span></label>
+                <input id="q-1-3" type="radio" name="q-1" value="2" class="radio"/><label for="q-1-3"><span>Carbon Nano</span></label>
               </div>
             </div>
             <div class="center"><br/>
               <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
-
+              <div class="error">Вам необходимо выбрать один из вариантов ответа, чтобы продолжить.</div>
             </div>
           </form>
           <small>*Тейст+ Нано-Карбон</small>
@@ -69,11 +69,12 @@
                 <input id="q-2-2" type="radio" name="q-2" value="1" class="radio"/><label for="q-2-2"><span>Премиальный<br/>удлиненный</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="q-2-3" type="radio" name="q-2" value="2" checked="checked" class="radio"/><label for="q-2-3"><span>Классический</span></label>
+                <input id="q-2-3" type="radio" name="q-2" value="2" class="radio"/><label for="q-2-3"><span>Классический</span></label>
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button>
+              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
+              <div class="error">Вам необходимо выбрать один из вариантов ответа, чтобы продолжить.</div>
             </div>
           </form>
         </div>
@@ -92,11 +93,12 @@
                 <input id="q-3-2" type="radio" name="q-3" value="1" class="radio"/><label for="q-3-2"><span>Less Odor Technology<sup>**</sup></span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="q-3-3" type="radio" name="q-3" value="2" checked="checked" class="radio"/><label for="q-3-3"><span>Less Smoke Smell<sup>***</sup></span></label>
+                <input id="q-3-3" type="radio" name="q-3" value="2" class="radio"/><label for="q-3-3"><span>Less Smoke Smell<sup>***</sup></span></label>
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button>
+              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
+              <div class="error">Вам необходимо выбрать один из вариантов ответа, чтобы продолжить.</div>
             </div>
           </form>
           <small>

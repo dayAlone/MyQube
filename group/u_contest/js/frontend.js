@@ -14936,19 +14936,49 @@ if ('undefined' !== typeof window.ParsleyValidator)
       return $intro.find('.button').mod('disabled', false);
     });
     $step2 = $('.contest').elem('step').byMod('2');
+    $step2.find('input[type="radio"]').on('change', function(e) {
+      $step2.find('.button').mod('disabled', false);
+      return $step2.find('.error').mod('active', false);
+    });
     $step2.find('.button').on('click', function(e) {
-      save('q1', $step2.find('input[type="radio"]:checked').val());
-      return next(e);
+      if ($step2.find('input[type="radio"]:checked').length === 0) {
+        $step2.find('.error').mod('active', true);
+        $(this).mod('disabled', true);
+        return e.preventDefault();
+      } else {
+        save('q1', $step2.find('input[type="radio"]:checked').val());
+        return next(e);
+      }
     });
     $step3 = $('.contest').elem('step').byMod('3');
+    $step3.find('input[type="radio"]').on('change', function(e) {
+      $step3.find('.button').mod('disabled', false);
+      return $step3.find('.error').mod('active', false);
+    });
     $step3.find('.button').on('click', function(e) {
-      save('q2', $step3.find('input[type="radio"]:checked').val());
-      return next(e);
+      if ($step3.find('input[type="radio"]:checked').length === 0) {
+        $step3.find('.error').mod('active', true);
+        $(this).mod('disabled', true);
+        return e.preventDefault();
+      } else {
+        save('q2', $step3.find('input[type="radio"]:checked').val());
+        return next(e);
+      }
     });
     $step4 = $('.contest').elem('step').byMod('4');
+    $step4.find('input[type="radio"]').on('change', function(e) {
+      $step4.find('.button').mod('disabled', false);
+      return $step4.find('.error').mod('active', false);
+    });
     $step4.find('.button').on('click', function(e) {
-      save('q3', $step4.find('input[type="radio"]:checked').val());
-      return next(e);
+      if ($step4.find('input[type="radio"]:checked').length === 0) {
+        $step4.find('.error').mod('active', true);
+        $(this).mod('disabled', true);
+        return e.preventDefault();
+      } else {
+        save('q3', $step4.find('input[type="radio"]:checked').val());
+        return next(e);
+      }
     });
     $step5 = $('.contest').elem('step').byMod('5');
     $('.wear').elem('image').on('click', function(e) {

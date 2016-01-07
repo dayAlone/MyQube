@@ -4912,9 +4912,9 @@ svg g {
     display: block;
   }
 }
-.contest__step--2 button,
-.contest__step--3 button,
-.contest__step--4 button {
+.contest__step--2 .error,
+.contest__step--3 .error,
+.contest__step--4 .error {
   margin-bottom: 40px;
 }
 .contest__step--2 label,
