@@ -78,14 +78,22 @@
         $current = checkExist($user, $email);
         $result = 'success';
         if (intval($current['ID']) > 0) {
-
+            $ID = $current['ID'];
             $props = array();
             $fields = json_decode($_COOKIE['fields'], true);
             for ($i=1; $i < 4; $i++) {
-                if (!$fields['q'.$i]) $fields['q'.$i] = 'N';
-                else if (intval($fields['q'.$i]) !== $answers[$i]) $result = 'error';
-                else $fields['q'.$i] = 'Y';
+                if (!isset($fields['q'.$i])) {
+                    $fields['q'.$i] = 'N';
+                }
+                else if (intval($fields['q'.$i]) !== $answers[$i]) {
+                    $result = 'error';
+                    $fields['q'.$i] = 'N';
+                }
+                else {
+                    $fields['q'.$i] = 'Y';
+                }
             }
+            if ($_REQUEST['debug']) var_dump($fields);
 
             foreach ($fields as $key => $field) {
                 $props[strtoupper($key)] = $field;
