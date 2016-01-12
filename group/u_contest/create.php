@@ -16,7 +16,7 @@
     $answers = array(
         1 => 0,
         2 => 1,
-        3 => 2
+        3 => 0
     );
     function getNumber($h, $v) {
         switch ($h) {
