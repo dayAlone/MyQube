@@ -197,6 +197,7 @@
 					$file = CFile::ResizeImageGet($arFields["PREVIEW_PICTURE"], array("width" => 180, "height" => 160), BX_RESIZE_IMAGE_EXACT);
 					$arFields["src"] = $file["src"];
 					if (($arFields["PROPERTIES"]["ONLY"]["VALUE_XML_ID"] == 'Y' && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) || !$arFields["PROPERTIES"]["ONLY"]["VALUE_XML_ID"]) {
+						if (in_array($page_name, array_values($arFields["PROPERTIES"]["EXCEPT"]["VALUE"]))) continue;
 						if(!isset($arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][0])) {
 							$arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][] = $arFields;
 						}
