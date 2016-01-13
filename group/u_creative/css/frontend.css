@@ -4770,6 +4770,8 @@ svg g {
     position: relative;
     width: 100%;
     margin-top: 30px;
+    float: left;
+    width: 100%;
   }
 }
 .contest--teaser {
