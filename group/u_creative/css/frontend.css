@@ -4779,7 +4779,7 @@ svg g {
   padding-top: 250px;
   text-align: center;
 }
-@media (max-width: 750px) {
+@media (max-width: 965px) {
   .contest--teaser {
     -webkit-background-size: 1350px auto;
     -moz-background-size: 1350px auto;
