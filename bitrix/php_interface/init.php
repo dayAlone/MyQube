@@ -229,7 +229,7 @@ class OnBeforeProlog {
 					} elseif(!empty($_GET["message"])) {
 						LocalRedirect("/group/1/".$backurl);
 					}
-				} elseif(!empty($Dir[3]) && empty($_GET["POST_ID"]) && empty($backurl) && $Dir[3] !== "u_contest" && $Dir[3] !== "u_concept" && $Dir[3] !== "concept.ural2015") {
+				} elseif(!empty($Dir[3]) && empty($_GET["POST_ID"]) && empty($backurl) && $Dir[4] !== "u_creative" && $Dir[3] !== "u_concept" && $Dir[3] !== "concept.ural2015") {
 						LocalRedirect("/?backurl=".$_SERVER["REQUEST_URI"]);
 				}
 			}

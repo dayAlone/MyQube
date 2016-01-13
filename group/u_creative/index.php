@@ -134,7 +134,7 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
     <?
     require($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/modals.php');
 } else {
-    require($_SERVER["DOCUMENT_ROOT"].'/group/u_concept/teaser.php');
+    require($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/teaser.php');
 }
 if (isset($_REQUEST['v']) && isset($_REQUEST['h']) && isset($_REQUEST['g'])) {
     $APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_creative/images/sharing/".$_REQUEST['g']."/".$_REQUEST['g']."_design_dev_".$_REQUEST['v']."_".$_REQUEST['h'].'.jpg');

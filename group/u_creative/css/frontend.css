@@ -4763,6 +4763,17 @@ svg g {
   background-repeat: no-repeat;
   padding-top: 250px;
 }
+.contest--teaser .contest__teaser {
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+.contest--teaser .contest__teaser img {
+  margin-bottom: 15px;
+}
+.contest--teaser .contest__teaser span {
+  display: inline-block;
+  max-width: 90%;
+}
 .contest--teaser .contest__content {
   max-width: 600px;
 }
@@ -4771,6 +4782,7 @@ svg g {
   max-width: 95%;
   margin: 0 auto;
   line-height: 24px;
+  margin-bottom: 30px;
 }
 .contest__header {
   height: 108px;
