@@ -4757,11 +4757,68 @@ svg g {
   font-weight: 300;
   font-family: 'Exo 2', sans-serif;
 }
+.contest-info {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+@media (max-width: 750px) {
+  .contest-info {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+  }
+}
 .contest--teaser {
   background-image: url("/group/u_creative/images/teaser-bg.jpg");
   background-position: top center;
   background-repeat: no-repeat;
   padding-top: 250px;
+  text-align: center;
+}
+@media (max-width: 750px) {
+  .contest--teaser {
+    -webkit-background-size: 1350px auto;
+    -moz-background-size: 1350px auto;
+    background-size: 1350px auto;
+    background-position: 50% -30px;
+    text-align: left;
+    padding: 100px 20px;
+  }
+  .contest--teaser .row {
+    padding: 0 10px;
+  }
+  .contest--teaser .row > div + div {
+    margin-top: 20px;
+  }
+  .contest--teaser .row br {
+    display: none;
+  }
+  .contest--teaser .row img {
+    width: auto !important;
+    max-width: 25%;
+    display: inline-block;
+    margin-right: 35px;
+    vertical-align: middle;
+    margin-bottom: 0;
+  }
+  .contest--teaser .row span {
+    max-width: calc(75% - 40px) !important;
+    font-size: 17px;
+    line-height: 1.2;
+    vertical-align: middle;
+  }
+}
+@media (max-width: 320px) {
+  .contest--teaser .row img {
+    max-width: 22%;
+  }
+  .contest--teaser .row span {
+    font-size: 14px;
+  }
 }
 .contest--teaser .contest__teaser {
   font-size: 14px;
