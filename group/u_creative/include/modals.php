@@ -1,6 +1,6 @@
 <div id="Error" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Спасибо за участие!</h3>
         <h4>К сожалению, в ваших ответах была допущена ошибка.
@@ -12,7 +12,7 @@
 </div>
 <div id="Again" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Правилами предусмотрена только одна попытка<br/> участия в викторине.</h3>
       </div>
@@ -21,7 +21,7 @@
 </div>
 <div id="Leave" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Вы действительно хотите прекратить<br/>свое участие?</h3>
         <h4>Если Вы покинете эту страницу, то не сможете <br/>получить свитшот авторского дизайна. </h4><a href="#" data-dismiss="modal" class="button">Нет</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="button button--go">Да</a>
@@ -31,7 +31,7 @@
 </div>
 <div id="Success" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Спасибо за участие!</h3>
         <h4>
@@ -44,7 +44,7 @@
 </div>
 <div id="Shure" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Вы уверены в своем выборе?</h3>
         <h4>Напоминаем, что после утвердительного ответа Вы не сможете <br/>повторно создать дизайн для свитшота.</h4>
@@ -55,18 +55,18 @@
 </div>
 <div id="OK" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="md-center">
         <h3 class="black">Отличная работа</h3>
         <h4>Осталось сделать всего несколько шагов, чтобы стать<br/>обладателем  свитшота авторского дизайна.</h4>
       </div>
-      <div class="center"><a href="#" data-dismiss="modal" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Продолжить</a></div>
+      <div class="center"><a href="#" data-dismiss="modal" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />Продолжить</a></div>
     </div>
   </div>
 </div>
 <div id="Rules" tabindex="-1" role="dialog" aria-labelledby="Form" class="modal fade">
   <div role="document" class="modal-dialog">
-    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_contest/images/close.png"/></a>
+    <div class="modal-content"><a href="#" data-dismiss="modal" class="close">Закрыть<img src="/group/u_creative/images/close.png"/></a>
       <div class="scroll">
         <h3>УСЛОВИЯ УЧАСТИЯ В ВИКТОРИНЕ «U_CREATIVE»</h3>
         <h4>I. ОБЩИЕ ПОЛОЖЕНИЯ</h4>

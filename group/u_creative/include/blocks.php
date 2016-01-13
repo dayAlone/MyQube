@@ -10,22 +10,22 @@
           </p>
           <div class="row contest__features">
             <div class="col-xs-12 col-sm-4 feature">
-              <div class="feature__image"><img src="/group/u_contest/images/icon-1.png" alt="" width="130"/></div>
+              <div class="feature__image"><img src="/group/u_creative/images/icon-1.png" alt="" width="130"/></div>
               <div class="feature__text">Ответьте на несколько простых вопросов. Сделать это будет проще, если зайти в&nbsp;раздел <a href='/group/1/about/' target='_blank'>о бренде</a> на KENT LAB.</div>
             </div>
             <div class="col-xs-12 col-sm-4 feature">
-              <div class="feature__image"><img src="/group/u_contest/images/icon-2.png" alt="" width="130"/></div>
+              <div class="feature__image"><img src="/group/u_creative/images/icon-2.png" alt="" width="130"/></div>
               <div class="feature__text">Создайте уникальный дизайн<br/> для свитшота.</div>
             </div>
             <div class="col-xs-12 col-sm-4 feature">
-              <div class="feature__image"><img src="/group/u_contest/images/icon-3.png" alt="" width="122"/></div>
+              <div class="feature__image"><img src="/group/u_creative/images/icon-3.png" alt="" width="122"/></div>
               <div class="feature__text">Получите авторскую вещь<br/>в качестве комплимента*. </div>
             </div>
           </div>
           <form method="POST" action="/">
             <input id="agree" type="checkbox" name="agreement" class="checkbox"/>
             <label for="agree">Я согласен с <a href="#Rules" data-toggle="modal">правилами участия</a></label><br/>
-            <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />начать</button><br/>
+            <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />начать</button><br/>
             <div class="error">Пожалуйста, подтвердите свое согласие<br/>с правилами участия, чтобы продолжить.</div>
         </form><small>*Доставка осуществляется только в городе Екатеринбург.<br/>**Ю_КРЕАТИВ</small>
         </div>
@@ -48,7 +48,7 @@
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
+              <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />ответить</button><br/>
               <div class="error">Вам необходимо выбрать один из вариантов ответа, чтобы продолжить.</div>
             </div>
           </form>
@@ -73,7 +73,7 @@
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
+              <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />ответить</button><br/>
               <div class="error">Вам необходимо выбрать один из вариантов ответа, чтобы продолжить.</div>
             </div>
           </form>
@@ -97,7 +97,7 @@
               </div>
             </div>
             <div class="center"><br/>
-              <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />ответить</button><br/>
+              <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />ответить</button><br/>
               <div class="error">Вам необходимо выбрать один из вариантов ответа, чтобы продолжить.</div>
             </div>
           </form>
@@ -113,7 +113,7 @@
             <h1>Выбор свитшота</h1>
             <div class="row">
               <div class="col-xs-6">
-                <div class="wear wear--male"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear wear--male"><img src="/group/u_creative/images/man.png" alt="" class="wear__image"/><img src="/group/u_creative/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_creative/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_creative/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_creative/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__sizes"><span>Выберите размер:</span>
                     <input id="c-48" type="radio" name="size" value="48" checked="checked"/>
                     <label for="c-48">48</label>
@@ -127,7 +127,7 @@
                 </div>
               </div>
               <div class="col-xs-6">
-                <div class="wear wear--female"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear wear--female"><img src="/group/u_creative/images/woman.png" alt="" class="wear__image"/><img src="/group/u_creative/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_creative/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_creative/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_creative/images/shadow.png" alt="" class="wear__fade"/>
                   <div class="wear__sizes"><span>Выберите размер:</span>
                     <input id="c-44" type="radio" name="size" value="44" checked="checked"/>
                     <label for="c-44">44</label>
@@ -141,7 +141,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Следующий шаг</button><br/>
+            <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />Следующий шаг</button><br/>
             <div class="error">Пожалуйста, выберите свитшот,<br/>чтобы перейти к его оформлению</div>
           </div>
         </div>
@@ -150,60 +150,60 @@
             <h1>Дизайн</h1>
             <div class="message visible-xs">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
             <div class="row">
-              <div class="col-sm-3 col-xs-6"><img src="/group/u_contest/images/svg/horizont.svg" alt="" class="icon"/><br/>
+              <div class="col-sm-3 col-xs-6"><img src="/group/u_creative/images/svg/horizont.svg" alt="" class="icon"/><br/>
                 <div class="pattern">
                   <input id="h-1" type="radio" name="horizont" value="1"/>
-                  <label style="background-image: url(/group/u_contest/images/p-4.jpg)" for="h-1"></label>
+                  <label style="background-image: url(/group/u_creative/images/p-4.jpg)" for="h-1"></label>
                 </div>
                 <div class="pattern">
                   <input id="h-2" type="radio" name="horizont" value="2"/>
-                  <label style="background-image: url(/group/u_contest/images/p-6.jpg)" for="h-2"></label>
+                  <label style="background-image: url(/group/u_creative/images/p-6.jpg)" for="h-2"></label>
                 </div>
                 <div class="pattern">
                   <input id="h-3" type="radio" name="horizont" value="3"/>
-                  <label style="background-image: url(/group/u_contest/images/p-5.jpg)" for="h-3"></label>
+                  <label style="background-image: url(/group/u_creative/images/p-5.jpg)" for="h-3"></label>
                 </div>
               </div>
-              <div class="col-sm-3 col-sm-push-6 col-xs-6"><img src="/group/u_contest/images/svg/vertical.svg" alt="" class="icon"/><br/>
+              <div class="col-sm-3 col-sm-push-6 col-xs-6"><img src="/group/u_creative/images/svg/vertical.svg" alt="" class="icon"/><br/>
                 <div class="pattern">
                   <input id="v-1" type="radio" name="vertical" value="1"/>
-                  <label style="background-image: url(/group/u_contest/images/p-3.jpg)" for="v-1"></label>
+                  <label style="background-image: url(/group/u_creative/images/p-3.jpg)" for="v-1"></label>
                 </div>
                 <div class="pattern">
                   <input id="v-2" type="radio" name="vertical" value="2"/>
-                  <label style="background-image: url(/group/u_contest/images/p-2.jpg)" for="v-2"></label>
+                  <label style="background-image: url(/group/u_creative/images/p-2.jpg)" for="v-2"></label>
                 </div>
                 <div class="pattern">
                   <input id="v-3" type="radio" name="vertical" value="3"/>
-                  <label style="background-image: url(/group/u_contest/images/p-1.jpg)" for="v-3"></label>
+                  <label style="background-image: url(/group/u_creative/images/p-1.jpg)" for="v-3"></label>
                 </div>
               </div>
               <div class="col-sm-6 col-sm-pull-3 col-xs-12">
-                <div class="wear wear--male wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
-                  <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
-                  <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
+                <div class="wear wear--male wear--disabled hidden"><img src="/group/u_creative/images/man.png" alt="" class="wear__image"/><img src="/group/u_creative/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_creative/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_creative/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_creative/images/shadow.png" alt="" class="wear__fade"/>
+                  <div class="wear__text"><img src="/group/u_creative/images/design_lines.png" alt=""/></div>
+                  <div class="wear__placeholder"><img src="/group/u_creative/images/design_1_1.png" alt=""/><img src="/group/u_creative/images/design_1_2.png" alt=""/><img src="/group/u_creative/images/design_1_3.png" alt=""/><img src="/group/u_creative/images/design_2_1.png" alt=""/><img src="/group/u_creative/images/design_2_2.png" alt=""/><img src="/group/u_creative/images/design_2_3.png" alt=""/></div>
                 </div>
-                <div class="wear wear--female wear--disabled hidden"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
-                  <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
-                  <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
+                <div class="wear wear--female wear--disabled hidden"><img src="/group/u_creative/images/woman.png" alt="" class="wear__image"/><img src="/group/u_creative/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_creative/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_creative/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_creative/images/shadow.png" alt="" class="wear__fade"/>
+                  <div class="wear__text"><img src="/group/u_creative/images/design_lines.png" alt=""/></div>
+                  <div class="wear__placeholder"><img src="/group/u_creative/images/design_1_1.png" alt=""/><img src="/group/u_creative/images/design_1_2.png" alt=""/><img src="/group/u_creative/images/design_1_3.png" alt=""/><img src="/group/u_creative/images/design_2_1.png" alt=""/><img src="/group/u_creative/images/design_2_2.png" alt=""/><img src="/group/u_creative/images/design_2_3.png" alt=""/></div>
                 </div>
                 <div class="message visible-md visible-lg visible-sm">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
               </div>
             </div>
-            <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Подтвердить</button>
+            <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />Подтвердить</button>
           </div>
         </div>
         <div class="contest__question contest__step contest__step--7">
           <h1 class="center">Подтверждение</h1>
           <div class="row">
             <div class="col-sm-5 col-sm-pull-1 col-xs-12">
-              <div class="wear wear--male wear--disabled hidden"><img src="/group/u_contest/images/man.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
-                <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
-                <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
+              <div class="wear wear--male wear--disabled hidden"><img src="/group/u_creative/images/man.png" alt="" class="wear__image"/><img src="/group/u_creative/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_creative/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_creative/images/men-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_creative/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear__text"><img src="/group/u_creative/images/design_lines.png" alt=""/></div>
+                <div class="wear__placeholder"><img src="/group/u_creative/images/design_1_1.png" alt=""/><img src="/group/u_creative/images/design_1_2.png" alt=""/><img src="/group/u_creative/images/design_1_3.png" alt=""/><img src="/group/u_creative/images/design_2_1.png" alt=""/><img src="/group/u_creative/images/design_2_2.png" alt=""/><img src="/group/u_creative/images/design_2_3.png" alt=""/></div>
               </div>
-              <div class="wear wear--female wear--disabled hidden"><img src="/group/u_contest/images/woman.png" alt="" class="wear__image"/><img src="/group/u_contest/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_contest/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_contest/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_contest/images/shadow.png" alt="" class="wear__fade"/>
-                <div class="wear__text"><img src="/group/u_contest/images/design_lines.png" alt=""/></div>
-                <div class="wear__placeholder"><img src="/group/u_contest/images/design_1_1.png" alt=""/><img src="/group/u_contest/images/design_1_2.png" alt=""/><img src="/group/u_contest/images/design_1_3.png" alt=""/><img src="/group/u_contest/images/design_2_1.png" alt=""/><img src="/group/u_contest/images/design_2_2.png" alt=""/><img src="/group/u_contest/images/design_2_3.png" alt=""/></div>
+              <div class="wear wear--female wear--disabled hidden"><img src="/group/u_creative/images/woman.png" alt="" class="wear__image"/><img src="/group/u_creative/images/fade.png" alt="" class="wear__hover"/><img src="/group/u_creative/images/man-shadow.png" alt="" class="wear__down"/><img src="/group/u_creative/images/women-shadow-normal.png" alt="" class="wear__shadow"/><img src="/group/u_creative/images/shadow.png" alt="" class="wear__fade"/>
+                <div class="wear__text"><img src="/group/u_creative/images/design_lines.png" alt=""/></div>
+                <div class="wear__placeholder"><img src="/group/u_creative/images/design_1_1.png" alt=""/><img src="/group/u_creative/images/design_1_2.png" alt=""/><img src="/group/u_creative/images/design_1_3.png" alt=""/><img src="/group/u_creative/images/design_2_1.png" alt=""/><img src="/group/u_creative/images/design_2_2.png" alt=""/><img src="/group/u_creative/images/design_2_3.png" alt=""/></div>
               </div>
               <?/*
               <div class="shares">
@@ -231,7 +231,7 @@
                     <input id="email" type="email" name="email" data-parsley-trigger="change" required="required"/>
                   </div>
                 </div>
-                <button type="submit" class="button"><img src="/group/u_contest/images/loading.gif" width="30" alt="" />Подтвердить</button>
+                <button type="submit" class="button"><img src="/group/u_creative/images/loading.gif" width="30" alt="" />Подтвердить</button>
               </form>
               <div class="error">Пожалуйста, укажите свои контактные данные</div>
             </div>

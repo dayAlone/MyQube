@@ -1,9 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/check.php');
+require($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/check.php');
 $page_name="u_concept";?>
-<script type="text/javascript" src="/group/u_contest/js/frontend.js" defer async></script>
-<link rel="stylesheet" href="/group/u_contest/css/frontend.css" media="screen" title="no title" charset="utf-8">
+<script type="text/javascript" src="/group/u_creative/js/frontend.js" defer async></script>
+<link rel="stylesheet" href="/group/u_creative/css/frontend.css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2:100,400,300,600,700&amp;subset=latin,cyrillic"/>
 <link rel="stylesheet" href="/css/font-awesome_concept.min.css">
 <?
@@ -45,7 +45,7 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
                         2 => "Google",
                     ),
                     "PAGE_URL" => "/group/1/u_conсept/",
-                    "PAGE_TITLE" => "U_CONTEST",
+                    "PAGE_TITLE" => "u_creative",
                     "PAGE_IMAGE" => "http://myqube.ru/upload/Concept-Ural_sharing_960.jpg",
                     "SHORTEN_URL_LOGIN" => "",
                     "SHORTEN_URL_KEY" => ""
@@ -95,7 +95,7 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
           "search_pos"            => "r"
           )
       );?>
-      <? require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/blocks.php'); ?>
+      <? require($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/blocks.php'); ?>
       <div class='contest__comments comments'>
             <div class='center'>
                 <a href='#' class='comments__trigger'>
@@ -108,8 +108,8 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
             <div class='comments__list'>
                 <?
                 $APPLICATION->IncludeComponent("smsmedia:comments", "myqube_event", Array(
-            			"OBJECT_ID"                       => "u_contest",	// ID объекта комментирования
-            			"OBJECT_ID_W"                     => "u_contest",
+            			"OBJECT_ID"                       => "u_creative",	// ID объекта комментирования
+            			"OBJECT_ID_W"                     => "u_creative",
             			"IBLOCK_TYPE"                     => "comments",	// Тип инфоблока
             			"COMMENTS_IBLOCK_ID"              => "5",	 // ID инфоблока, в котором хранятся комментарии
             			"LEFT_MARGIN"                     => "",	// Отступ для дочерних комментариев
@@ -132,13 +132,13 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
 
     </div>
     <?
-    require($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/modals.php');
+    require($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/modals.php');
 } else {
     require($_SERVER["DOCUMENT_ROOT"].'/group/u_concept/teaser.php');
 }
 if (isset($_REQUEST['v']) && isset($_REQUEST['h']) && isset($_REQUEST['g'])) {
-    $APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/images/sharing/".$_REQUEST['g']."/".$_REQUEST['g']."_design_dev_".$_REQUEST['v']."_".$_REQUEST['h'].'.jpg');
-    $APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_contest/?g=".$_REQUEST['g']."&v=".$_REQUEST['v']."&h=".$_REQUEST['h']);
+    $APPLICATION->SetPageProperty("og:image", "http://".$_SERVER['SERVER_NAME']."/group/u_creative/images/sharing/".$_REQUEST['g']."/".$_REQUEST['g']."_design_dev_".$_REQUEST['v']."_".$_REQUEST['h'].'.jpg');
+    $APPLICATION->SetPageProperty("og:url", "http://".$_SERVER['SERVER_NAME']."/group/u_creative/?g=".$_REQUEST['g']."&v=".$_REQUEST['v']."&h=".$_REQUEST['h']);
     //$APPLICATION->SetPageProperty("title", "Заголовок для шера");
     //$APPLICATION->SetPageProperty("description", "Текст для шера");
     $APPLICATION->SetPageProperty("og:title", "Заголовок для шера");

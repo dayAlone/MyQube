@@ -1,7 +1,7 @@
 <?
     require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include.php");
-    require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/include/check.php');
-    require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/vendor/autoload.php');
+    require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/check.php');
+    require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/vendor/autoload.php');
     define("MANAGER", "ak@radia.ru");
 	define("NO_KEEP_STATISTIC", true);
 	define("NOT_CHECK_PERMISSIONS", true);
@@ -55,7 +55,7 @@
         CModule::IncludeModule("iblock");
         $obCache  = new CPHPCache;
         $lifeTime = 60 * 60 * 2;
-        $cacheId  = 'u_contest_sections';
+        $cacheId  = 'u_creative_sections';
         if($obCache->InitCache($lifeTime, $cacheId, "/")) {
             $vars = $obCache->GetVars();
             return $vars["SECTIONS"];
@@ -103,7 +103,7 @@
             if ($fields['type'] && $fields['horizont'] && $fields['vertical']) {
                 $number = getNumber($fields['horizont'], $fields['vertical']);
                 $props['NUMBER'] = $number;
-                $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.jpg';
+                $src = $_SERVER["DOCUMENT_ROOT"].'/group/u_creative/images/email/'.$fields['type'].'/'.$fields['type'].'_design_dev_'.$fields['horizont'].'_'.$fields['vertical'].'.jpg';
                 $raw = new CIBlockElement;
                 $raw->Update($current['ID'], array('PREVIEW_PICTURE' => CFile::MakeFileArray($src)));
             }
@@ -117,7 +117,7 @@
                 $raw->Update($current['ID'], array("IBLOCK_SECTION_ID" => $sections['success']));
 
                 $str = date("d.m.Y H:i:s").";".$ID.";".$number.";".$fields['size'].";".$fields['type'].";".$USER->GetFullName().";+7".preg_replace('/[^0-9]/', '', $fields['phone']).";доставка;".$fields['address'].";new;\n";
-                $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_contest/orders/';
+                $dir = $_SERVER["DOCUMENT_ROOT"].'/group/u_creative/orders/';
                 $file = $dir.$ID.'.csv';
 
                 // Письмо менеджеру
@@ -143,7 +143,7 @@
                 $mail->send();
 
                 // Письмо клиенту
-                $body = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/group/u_contest/mail-3.html');
+                $body = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/mail-3.html');
                 $body = str_replace('#NAME#', $USER->GetFullName(), $body);
                 $body = str_replace('#EMAIL#', $fields['email'], $body);
                 $body = str_replace('#H#', $fields['horizont'], $body);
