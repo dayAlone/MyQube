@@ -61,10 +61,10 @@ $arUrlRewrite = array(
 		"PATH" => "/group/u_concept/index.php",
 	),
 	array(
-		"CONDITION" => "#^/group/([0-9]+)/u_contest/?#",
+		"CONDITION" => "#^/group/([0-9]+)/u_creative/?#",
 		"RULE" => "GROUP_ID=\$1",
 		"ID" => "",
-		"PATH" => "/group/u_contest/index.php",
+		"PATH" => "/group/u_creative/index.php",
 	),
 	array(
 		"CONDITION" => "#^/user/groups/all-groups/?#",

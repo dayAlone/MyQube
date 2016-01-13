@@ -6,6 +6,7 @@
 	define("NO_KEEP_STATISTIC", true);
 	define("NOT_CHECK_PERMISSIONS", true);
     CModule::IncludeModule("iblock");
+
     $labels = array(
         'type'    => 'Тип',
         'size'    => 'Размер',
