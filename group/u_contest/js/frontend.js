@@ -14881,7 +14881,10 @@ if ('undefined' !== typeof window.ParsleyValidator)
         if (data !== 'error') {
           return $('.contest').elem('step').byMod('active').mod('active', false).next().mod('active', true);
         } else {
-          return $('#Error').modal();
+          $('#Error').modal();
+          if (window.yaCounter34335385) {
+            return window.yaCounter34335385.reachGoal('u_creative_error');
+          }
         }
       });
     }
@@ -14928,6 +14931,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
         return e.preventDefault();
       } else {
         save('agree', true);
+        if (window.yaCounter34335385) {
+          window.yaCounter34335385.reachGoal('u_creative_start');
+        }
         return next(e);
       }
     });
@@ -15086,6 +15092,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
         save('finished', true);
         $.get('/group/u_contest/create.php');
         $('#Success').modal();
+        if (window.yaCounter34335385) {
+          window.yaCounter34335385.reachGoal('u_creative_finish');
+        }
         return e.preventDefault();
       }
     });
