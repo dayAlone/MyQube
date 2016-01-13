@@ -28,6 +28,10 @@
     }
     .body {
         min-width: 0 !important;
+        background-color: black;
+    }
+    body {
+        background-color: black
     }
     div.main {
         padding-left: 0 !important;
