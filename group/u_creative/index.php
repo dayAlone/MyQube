@@ -56,9 +56,9 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
         ?>
       </div>
       <div class='detail_page'>
-          <?/*<nav class="detail_page_nav">
+          <nav class="detail_page_nav">
               <a href="/group/1/" class="close_nav"><span class="icon_close"></span><b>Закрыть конкурс</b><div class="clear"></div></a>
-              <?
+              <?/*
               $APPLICATION->IncludeComponent(
                   "bitrix:main.share",
                   "myqube",
@@ -70,12 +70,12 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
                       "SHORTEN_URL_LOGIN" => "",
                       "SHORTEN_URL_KEY" => ""
                   )
-              );?>
+              );*/?>
               <?
               $res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => "1000005000010000", "PROPERTY_USER" => $USER->GetID() ),array());
               ?>
               <a class="photo_list_like <?=($res_like>0)?"like_active":""?>" id="like_post_1000005000010000"></a>
-          </nav>*/?>
+          </nav>
       </div>
       <?$APPLICATION->IncludeComponent("bitrix:menu", "top_line", Array(
           "ROOT_MENU_TYPE"	      =>	"left",
