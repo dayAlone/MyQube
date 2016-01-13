@@ -14875,7 +14875,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         $(e.target).mod('innactive', true);
         e.preventDefault();
       }
-      return $.get('/group/u_creative/create.php', function(data) {
+      return $.get('/group/u_contest/create.php', function(data) {
         $(e.target).mod('innactive', false);
         console.log(data);
         if (data !== 'error') {
@@ -14883,6 +14883,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         } else {
           $('#Error').modal();
           if (window.yaCounter34335385) {
+            console.log('u_creative_error');
             return window.yaCounter34335385.reachGoal('u_creative_error');
           }
         }
@@ -14933,6 +14934,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
         save('agree', true);
         if (window.yaCounter34335385) {
           window.yaCounter34335385.reachGoal('u_creative_start');
+          console.log('u_creative_start');
         }
         return next(e);
       }
@@ -15047,7 +15049,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
       t = $step5.find('input[name="type"]:checked').val();
       save('vertical', h);
       save('horizont', v);
-      url = encodeURIComponent('http://' + location.hostname + '/group/1/u_creative/?g=' + t + '&v=' + v + '&h=' + h);
+      url = encodeURIComponent('http://' + location.hostname + '/group/1/u_contest/?g=' + t + '&v=' + v + '&h=' + h);
       $('.share').byMod('fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + url);
       return $('.share').byMod('vk').attr('href', 'http://vk.com/share.php?url=' + url);
     });
@@ -15090,10 +15092,11 @@ if ('undefined' !== typeof window.ParsleyValidator)
         save('phone', $step7.find('input[name="phone"]').val());
         save('email', $step7.find('input[name="email"]').val());
         save('finished', true);
-        $.get('/group/u_creative/create.php');
+        $.get('/group/u_contest/create.php');
         $('#Success').modal();
         if (window.yaCounter34335385) {
           window.yaCounter34335385.reachGoal('u_creative_finish');
+          console.log('u_creative_finish');
         }
         return e.preventDefault();
       }
