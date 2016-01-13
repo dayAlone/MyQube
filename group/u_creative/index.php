@@ -72,9 +72,9 @@ if($USER->IsAuthorized()) {// && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsA
                   )
               );*/?>
               <?
-              $res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => "1000005000010000", "PROPERTY_USER" => $USER->GetID() ),array());
+              $res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => "32332", "PROPERTY_USER" => $USER->GetID() ),array());
               ?>
-              <a class="photo_list_like <?=($res_like>0)?"like_active":""?>" id="like_post_1000005000010000"></a>
+              <a class="photo_list_like <?=($res_like>0)?"like_active":""?>" id="like_post_32332"></a>
           </nav>
       </div>
       <?$APPLICATION->IncludeComponent("bitrix:menu", "top_line", Array(
