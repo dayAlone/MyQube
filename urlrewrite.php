@@ -1,6 +1,12 @@
 <?
 $arUrlRewrite = array(
 	array(
+		"CONDITION" => "#^/group/([0-9]+)/contest/u_creative/?#",
+		"RULE" => "GROUP_ID=\$1",
+		"ID" => "",
+		"PATH" => "/group/u_creative/index.php",
+	),
+	array(
 		"CONDITION" => "#^/group/([0-9]+)/contest/([0-9]+)/?#",
 		"RULE" => "GROUP_ID=\$1&POST_ID=\$2",
 		"ID" => "",
@@ -60,12 +66,7 @@ $arUrlRewrite = array(
 		"ID" => "",
 		"PATH" => "/group/u_concept/index.php",
 	),
-	array(
-		"CONDITION" => "#^/group/([0-9]+)/u_creative/?#",
-		"RULE" => "GROUP_ID=\$1",
-		"ID" => "",
-		"PATH" => "/group/u_creative/index.php",
-	),
+
 	array(
 		"CONDITION" => "#^/user/groups/all-groups/?#",
 		"RULE" => "filter=all-groups",

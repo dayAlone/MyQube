@@ -19,7 +19,7 @@
 	<?
 		$geiop = CAltasibGeoBase::GetAddres();
 		if (($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin()) && strtotime('30.01.2016') > time()) {?>
-			<a href="/group/1/u_creative/" style='margin-top: 5px;display: inline-block;z-index: 1;position:relative;padding: 0 20px;'><img src="/group/u_creative/images/big-banner.jpg" alt="" style="border-radius: 8px;" width='100%'/></a>
+			<a href="/group/1/contest/u_creative/" style='margin-top: 5px;display: inline-block;z-index: 1;position:relative;padding: 0 20px;'><img src="/group/u_creative/images/big-banner.jpg" alt="" style="border-radius: 8px;" width='100%'/></a>
 		<?}
 	?>
 	<div class="flex-between" id="block-wrapper" data-count="<?=$postsCounter?>"><? include("ajax_contest.php");?> </div>
