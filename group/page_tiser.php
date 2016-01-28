@@ -5,23 +5,33 @@ if(strripos($_SERVER["HTTP_REFERER"], "facebook"))
 	$soc_network = "facebook";
 if(strripos($_SERVER["HTTP_REFERER"], "google"))
 	$soc_network = "google";
-
-
 if($strripos = strripos($_SERVER["REQUEST_URI"], "?")) {
 	$backurl = "/?backurl=".substr($_SERVER["REQUEST_URI"], 0, $strripos);
 } else {
 	$backurl = "/?backurl=".$_SERVER["REQUEST_URI"];
 }
-$res = CIBlockElement::GetList(array(), array("ID" => $_GET["POST_ID"]));
-while($arRes = $res->GetNextElement()){
-	$arItem = $arRes->GetFields();
-	$arItem["PROPERTIES"] = $arRes->GetProperties();
-	$arPost = $arItem;
+$obCache = new CPHPCache();
+$cacheLifetime = 86400*7;
+$cacheID = 'TeaserItems'.$_GET["POST_ID"];
+$cachePath = '/'.$cacheID;
+
+if($obCache->InitCache($cacheLifetime, $cacheID, $cachePath) )
+{
+   $vars = $obCache->GetVars();
+   $arPost = $vars['arPost'];
 }
+elseif( $obCache->StartDataCache()  )
+{
+   $res = CIBlockElement::GetList(array(), array("ID" => $_GET["POST_ID"]));
+   while($arRes = $res->GetNextElement()){
+	   	$arItem = $arRes->GetFields();
+	   	$arItem["PROPERTIES"] = $arRes->GetProperties();
+	   	$arPost = $arItem;
+   }
+   $obCache->EndDataCache(array('arPost' => $arPost));
+}
+
 $ogImage = CFile::ResizeImageGet($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"], array('width'=>600, 'height'=>600), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-<title><?=$arPost["NAME"]?></title>
-<meta name="description" content="<?=$arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]?>">
-<link rel="image_src" href="http://myqube.ru<?=$ogImage["src"]?>" />
 <?
 $APPLICATION->SetPageProperty("title", $arPost["NAME"]);
 $APPLICATION->SetPageProperty("description", $arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]);
@@ -31,27 +41,43 @@ $APPLICATION->SetPageProperty("og:image", "http://myqube.ru".str_replace(' ','%2
 $APPLICATION->SetPageProperty("og:url", "http://myqube.ru".$_SERVER["REQUEST_URI"]);
 
 if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
-
-
 	<script>
 		$(document).ready(function(){$.get("http://myqube.ru<?=$_SERVER["REQUEST_URI"]?>?utm_source=google&utm_medium=teaser&utm_term=<?=$soc_network?>&utm_campaign=<?=$arPost["ID"]?>",function(data){});});
 	</script>
-	<div class="ntiser-body-wrapper">
-		<img src="/images/logo-nteaser.png" alt="MyQube" class="ntiser-logo">
-		<div class="ntiser-body">
-			<div class="ntiser-img nomobile"></div>
-			<div class="ntiser-text">
-				<h1><?=$arPost["NAME"]?></h1>
-				<div class="ntiser-img mobile-block"></div>
-				<p class="nteaser-text-big"><?=$arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]?></p>
-				<div class="center">
-					<button onclick="location.href='/group/<?=$_GET["GROUP_ID"].$backurl?>'"><?=$arPost['IBLOCK_ID'] == 7 ? "К фотоотчёту" : "Читать далее"?></button>
+	<?/*
+		<?$APPLICATION->IncludeComponent(
+			"bitrix:system.auth.form",
+			"teaser",
+			array(
+				"REGISTER_URL" => "/club/group/search/",
+				"PROFILE_URL" => "/user/profile/",
+				"FORGOT_PASSWORD_URL" => "",
+				"SHOW_ERRORS" => "Y",
+				"ONLY_SOCNET" => "Y"
+			),
+			false
+		);?>
+
+	*/
+	$image = 'http://myqube.ru/'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
+	?>
+	<link type="text/css" rel="stylesheet" href="/layout/css/teaser.css">
+	<div class='teaser'>
+		<?=(isset($_REQUEST['bg']) ? "<div class='teaser__background' style='background-image: url(".$image.")'></div>":"")?>
+		<div class='teaser__content'>
+			<div class='teaser__logo'><img src="/layout/images/svg/logo.svg" alt="" width="97" height="30"/></div>
+			<div class='teaser__wrapper'>
+				<div class='teaser__image' style='background-image: url(<?=$image?>)'></div>
+				<div class='teaser__description'>
+					<h1 class='teaser__title'><?=$arPost["NAME"]?></h1>
+					<div class='teaser__text'>
+						<?=$arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]?>
+					</div>
+
 				</div>
-
 			</div>
-			<div class="nteaser-text-small">Материал доступен только зарегистрированным пользователям</div>
-		</div>
 
+		</div>
 	</div>
 <?} else {?>
 
