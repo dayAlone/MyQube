@@ -3824,8 +3824,13 @@ body {
   color: #00d2f0;
   padding: 8px 5px;
   width: 100%;
-  margin: 40px auto 0;
   max-width: 230px;
+  margin: 25px auto 0;
+}
+@media (min-width: 480px) {
+  .teaser .login--social {
+    margin: 40px auto 0;
+  }
 }
 @media (min-width: 768px) {
   .teaser .login--social {
