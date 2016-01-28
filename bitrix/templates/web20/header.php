@@ -20,7 +20,7 @@ if (!$USER->IsAuthorized() && $dir != "/"){
 			<?$APPLICATION->ShowHead()?>
 			<title><?$APPLICATION->ShowTitle()?></title>
 			<?$Dir = explode("/",$_SERVER["REQUEST_URI"]);
-			if ($USER->IsAuthorized() && $Dir[3] === 'post') {?>
+			if (!$USER->IsAuthorized() && $Dir[3] === 'post') {?>
 				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 			<?} elseif($Dir[3] !== "explore" && $Dir[4] !== "u_creative") {
 				echo '<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no">';
