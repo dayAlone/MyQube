@@ -73,7 +73,19 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 					<div class='teaser__text'>
 						<?=$arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]?>
 					</div>
-
+					<div class='login login--social'>
+						Чтобы читать дальше,<br>авторизируйтесь через соцсеть
+						<br>
+						<a href="#" class='login__link login__link--fb'>
+							<img src="/layout/images/svg/fb.svg" alt="" />
+						</a>
+						<a href="#" class='login__link login__link--vk'>
+							<img src="/layout/images/svg/vk.svg" alt="" />
+						</a>
+						<a href="#" class='login__link login__link--gp'>
+							<img src="/layout/images/svg/gp.svg" alt="" />
+						</a>
+					</div>
 				</div>
 			</div>
 

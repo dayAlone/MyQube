@@ -20,10 +20,13 @@ if (!$USER->IsAuthorized() && $dir != "/"){
 			<?$APPLICATION->ShowHead()?>
 			<title><?$APPLICATION->ShowTitle()?></title>
 			<?$Dir = explode("/",$_SERVER["REQUEST_URI"]);
-			if($Dir[3] !== "explore" && $Dir[4] !== "u_creative")
+			if ($USER->IsAuthorized() && $Dir[3] === 'post') {?>
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+			<?} elseif($Dir[3] !== "explore" && $Dir[4] !== "u_creative") {
 				echo '<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no">';
-			else
-				echo '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">';	?>
+			} else {
+				echo '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">';
+			}?>
 			<link rel="shortcut icon" href="/images/q.png" type="image/png">
         	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->
             <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
