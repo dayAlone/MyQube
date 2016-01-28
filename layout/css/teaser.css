@@ -3700,7 +3700,6 @@ body {
   -webkit-filter: blur(10px);
 }
 .teaser__content {
-  max-width: 940px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -3709,6 +3708,8 @@ body {
   -o-transform: translateX(-50%) translateY(-50%);
   -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+  width: 940px;
+  margin-top: -50px;
 }
 .teaser__image {
   width: 50%;
