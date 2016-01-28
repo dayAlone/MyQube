@@ -2,10 +2,10 @@
 define("DBPersistent", false);
 $DBType = "mysql";
 $DBHost = "localhost";
-$DBLogin = "root";
-$DBPassword = "root";
-$DBName = "bitrix_29";
-$DBDebug = true;
+$DBLogin = "myqube_db_user";
+$DBPassword = "!sd1As4IoG";
+$DBName = "bitrix_62";
+$DBDebug = false;
 $DBDebugToFile = false;
 
 define("DELAY_DB_CONNECT", true);

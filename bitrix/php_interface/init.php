@@ -171,7 +171,6 @@ class OnBeforeProlog {
 		if(!empty($_GET["backurl"])) {
 			$backurl = "&backurl=".$_GET["backurl"];
 		}
-
 		if(!$USER->IsAuthorized() && empty($_GET["POST_ID"]) && !empty($Dir[1]) && $Dir[1]!=='group' && $Dir[1]!=='bitrix' && !$socAuth && empty($backurl)) {
 			LocalRedirect("/?backurl=".$_SERVER["REQUEST_URI"]);
 		}
@@ -203,9 +202,9 @@ class OnBeforeProlog {
 							if(CustomUser::UserCheckFields()) { // все поля заполнены корректно
 								CustomUser::UserUpdate(array("UF_GROUPS" => array(1)));
 								CModule::IncludeModule("iblock");
-								$usersInGroup = CIBlockElement::GetProperty(4, 1, array("sort" => "asc"), Array("CODE"=>"USERS"))->Fetch();
-								$usersInGroup["VALUE"]++;
-								CIBlockElement::SetPropertyValues(1, 4, $usersInGroup["VALUE"], "USERS");
+								$filter = Array	("UF_GROUPS" => 1); 
+								$rsUsers = CUser::GetList(($by="LAST_NAME"), ($order="asc"), $filter,array('NAV_PARAMS' => array("nTopCount" => 0))); 
+								CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
 								LocalRedirect("/group/1/".$backurl);
 							} elseif(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены
 								CustomUser::UserUpdate(array("UF_YOU_HAVE_18" => true));

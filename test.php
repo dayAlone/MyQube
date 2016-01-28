@@ -19,19 +19,20 @@ use Bitrix\Main\Entity;?>
 	$emails = array();
 	$fh = fopen($_FILES['file']['tmp_name'], 'r+');
 	$i = 0;
-	while(($row = fgetcsv($fh, 8192)) !== FALSE ) {/*
+	while(($row = fgetcsv($fh, 8192)) !== FALSE ) {
 		//if($i > 4030) {
-		$arUser = $USER->GetByLogin($row[8])->Fetch();
+		$arUser = $USER->GetByLogin($row[6])->Fetch();
 		$emails = array();
 		$pass = mt_rand(10000000, 99999999);
+		echo str_replace("/", ".", $row[1]);
 		$emails = array(
 			"PERSONAL_BIRTHDAY" => date("d.m.Y", strtotime($row[0])),
-			"DATE_REGISTER" => $row[1],
+			"DATE_REGISTER" => str_replace("/", ".", $row[1]),
 			"EMAIL" => $row[2],
 			"NAME" => $row[3],
-			"LAST_NAME" => $row[5],
-			"SECOND_NAME" => $row[6],
-			"PERSONAL_MOBILE" => $row[7],
+			"LAST_NAME" => $row[4],
+			//"SECOND_NAME" => $row[6],
+			"PERSONAL_MOBILE" => $row[5],
 			"UF_USER_PARENT" => $arUser["ID"],
 			"LOGIN" => $row[2],
 			"PASSWORD" => $pass,
@@ -40,7 +41,7 @@ use Bitrix\Main\Entity;?>
 			"UF_YOU_HAVE_18" => 1,
 			"UF_IAGREE" => 1
 		);
-		$Hash = md5($row[7].$arUser["ID"].time());
+		$Hash = md5($row[5].$arUser["ID"].time());
 		$emails["UF_TOKEN"] = $Hash;
 		$emails["UF_HASH"] = $Hash;
 		$email[] = $emails;
@@ -74,7 +75,7 @@ use Bitrix\Main\Entity;?>
 			echo $user->LAST_ERROR; echo "<br>";
 			echo $i; echo "<br>";
 			echo $row[2]; echo "<br>";
-			
+
 			$data = array(
 			   "UF_EMAIL" => $emails["EMAIL"],
 			   "UF_INT" => $i,
@@ -88,9 +89,9 @@ use Bitrix\Main\Entity;?>
 			$ID = $result->getId();	//$result->getErrorMessages()[0];
 		}
 		$i++;
-		//}*/
-		
-		//if($i > 4030) {
+		//}
+
+		/*if($i > 4030) {
 		$emails = array(
 			"UF_USER_PARENT" => $row[1]
 		);
@@ -102,7 +103,7 @@ use Bitrix\Main\Entity;?>
 			echo $i; echo "<br>";
 			echo $row[0]; echo "<br>";
 		}
-		$i++;
+		$i++;*/
 	}
 	echo count($email);
 	echo "<pre>"; print_r($email); echo "</pre>";

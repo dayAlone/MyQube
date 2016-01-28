@@ -8,6 +8,53 @@ use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 global $USER;
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+define("HLBLOCK_KPIAMPLIFIER", "2");//Лог и KPI
+
+$arUserType[1] = array("1"=>"33", "2"=>"34", "3"=>"35", "4"=>"36", "5"=>"37");
+$arUserType[2] = array("1"=>"38", "2"=>"39", "3"=>"40", "4"=>"41", "5"=>"42");
+
+$arUserTypeR[1] = array("33"=>"1", "34"=>"2", "35"=>"3", "36"=>"4", "37"=>"5");
+$arUserTypeR[2] = array("38"=>"1", "39"=>"2", "40"=>"3", "41"=>"4", "42"=>"5");
+
+/**
+ * Check last user type in logs
+ * @param $userID
+ *
+ * @return string
+ */
+function getUserType($userID)
+{
+	global $USER;
+
+	$hbKPI     = HL\HighloadBlockTable::getById(HLBLOCK_KPIAMPLIFIER)->fetch();
+	$entityKPI = HL\HighloadBlockTable::compileEntity($hbKPI);
+	$entity_data_class    = $entityKPI->getDataClass();
+
+	$arUserType2R = array("38"=>"1", "39"=>"2", "40"=>"3", "41"=>"4", "42"=>"5");
+	$rsDataHLAll = $entity_data_class::getList(array(
+		"select" => array("*"),
+		"order" => array("ID" => "DESC"),
+		"filter" => array("UF_AMPLIFIER"=>$USER->GetID(), "UF_USER"=>IntVal($userID))
+	));
+	if($ar_fieldsGoodAll = $rsDataHLAll->Fetch())
+	{
+		return $arUserType2R[$ar_fieldsGoodAll['UF_TYPE_2']];
+	}
+	else
+	{
+		return '2';
+	}
+}
+
+
+$hbKPI     = HL\HighloadBlockTable::getById(HLBLOCK_KPIAMPLIFIER)->fetch();
+$entityKPI = HL\HighloadBlockTable::compileEntity($hbKPI);
+$logKPI    = $entityKPI->getDataClass();
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 //checkauth
 if($_REQUEST["mode"] == "checkauth") {
 	$rsUser = $USER->GetByLogin($_SERVER['PHP_AUTH_USER']);
@@ -189,7 +236,33 @@ if($_REQUEST["mode"] == "new_contact") {
 	if(!$USER->IsAuthorized()) {
 		exit();
 	}
+	$logKPI::add(
+				array(
+					'UF_USER' => 0,
+					'UF_AMPLIFIER' => $USER->GetID(),
+					'UF_EVENT' => 0,
+					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+					'UF_ACTION_CODE' => 99,
+					'UF_ACTION_TEXT' => json_encode($_REQUEST),
+					'UF_TYPE' => 35,
+					'UF_TYPE_2' => 40,
+					"UF_PARENT" => file_get_contents('php://input')
+				)
+			);
 	$json = json_decode(file_get_contents('php://input'), true);
+	$logKPI::add(
+				array(
+					'UF_USER' => 0,
+					'UF_AMPLIFIER' => $USER->GetID(),
+					'UF_EVENT' => 0,
+					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+					'UF_ACTION_CODE' => 99,
+					'UF_ACTION_TEXT' => json_encode($_REQUEST),
+					'UF_TYPE' => 35,
+					'UF_TYPE_2' => 40,
+					"UF_PARENT" => json_encode($json)
+				)
+			);
 	if(!isset($json)) {
 		print json_encode(array(
 			array(
@@ -230,6 +303,9 @@ if($_REQUEST["mode"] == "new_contact") {
 	);
 	foreach($json as $key => $val) {
 		if($val["contact_type"] == 0) $val["contact_type"] = 1;
+		$groups = array(1);
+		if($val["INFO"] == 1)
+			$groups = array();
 		$Fields = array(
 			"NAME" => $val["NAME"],
 			"LAST_NAME" => $val["LAST_NAME"],
@@ -246,14 +322,14 @@ if($_REQUEST["mode"] == "new_contact") {
 			"UF_MARK_1" => $val["UF_MARK_1"],
 			"UF_MARK_2" => $val["UF_MARK_2"],
 			"ADMIN_NOTES" => $val["ADMIN_NOTES"],
-			"INFO" => $val["INFO"],
+			"UF_INFO" => $val["INFO"],
 			"UF_IAGREE" => 1,
 			"UF_YOU_HAVE_18" => 1,
 			"UF_DO_YOU_SMOKE" => 1,
 			"UF_EVENT" => $val["UF_EVENT"],
 			"UF_APP_ID" => $val["app_id"],
 			"UF_STATUS" => $contact_type[$val["contact_type"]],
-			"UF_GROUPS" => array(1)
+			"UF_GROUPS" => $groups
 		);
 		if(!empty($val["PARENT_NAME"])) {
 			$arUser = $USER->GetByLogin($val["PARENT_NAME"])->Fetch();
@@ -268,11 +344,12 @@ if($_REQUEST["mode"] == "new_contact") {
 		$ID = $user->Add($Fields);
 
 		if(intval($ID) > 0) {
+
 			$el_log = new CIBlockElement;
 			$PROP_log = array();
 			$PROP_log["ID"] = $ID;
 			$PROP_log["PERSONAL_BIRTHDAY"] = $val["PERSONAL_BIRTHDAY"];
-			$PROP_log["PARENT_USER"] = $USER->GetID();
+			$PROP_log["PARENT_USER"] = $Fields["UF_USER_PARENT"];
 			$PROP_log["UF_IAGREE"] = $status[$val["UF_IAGREE"]];
 			$PROP_log["UF_YOU_HAVE_18"] = $status[$val["UF_YOU_HAVE_18"]];
 			$PROP_log["UF_DO_YOU_SMOKE"] = $status[$val["UF_DO_YOU_SMOKE"]];
@@ -347,6 +424,44 @@ if($_REQUEST["mode"] == "new_contact") {
 			$entity = HL\HighloadBlockTable::compileEntity($hlblock);
 			$entity_data_class = $entity->getDataClass();
 			$result = $entity_data_class::add($data);
+
+
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/*			unset($UF_TYPE);
+			$UF_TYPE = 2;
+			if(strlen(trim($val["EMAIL"]))>0)
+			{
+				$UF_TYPE = 3;
+			}
+			if (strlen(trim($val["UF_FB"])) > 0 || strlen(trim($val["UF_G_PLUS"])) > 0 || strlen(trim($val["UF_VK"])) > 0)
+			{
+				$UF_TYPE = 4;
+			}*/
+			CEventLog::Add(array(
+				"SEVERITY" => "SECURITY",
+				"AUDIT_TYPE_ID" => "TESTER",
+				"MODULE_ID" => "iblock",
+				"ITEM_ID" => $val["ID"],
+				"DESCRIPTION" => json_encode($val),
+			));
+
+			$logKPI::add(
+				array(
+					'UF_USER' => $ID,
+					'UF_AMPLIFIER' => $USER->GetID(),
+					'UF_EVENT' => $val["UF_EVENT"],
+					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+					'UF_ACTION_CODE' => 101,
+					'UF_ACTION_TEXT' => "add",
+					'UF_TYPE' => $arUserType[1][$val["contact_type"]],
+					'UF_TYPE_2' => $arUserType[2][$val["contact_type"]],
+					"UF_PARENT" => json_encode($val)
+				)
+			);
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 		}
 
 		if(intval($ID) > 0)
@@ -415,6 +530,16 @@ if($_REQUEST["mode"] == "update_contact") {
 		"N" => 0
 	);
 	foreach($json as $key => $val) {
+
+
+		CEventLog::Add(array(
+			"SEVERITY" => "SECURITY",
+			"AUDIT_TYPE_ID" => "TESTER",
+			"MODULE_ID" => "iblock",
+			"ITEM_ID" => $val["ID"],
+			"DESCRIPTION" => json_encode($val),
+		));
+
 		$Fields = array(
 			"NAME" => $val["NAME"],
 			"LAST_NAME" => $val["LAST_NAME"],
@@ -477,6 +602,73 @@ if($_REQUEST["mode"] == "update_contact") {
 		$result = $entity_data_class::add($data);
 
 		if(intval($ID) > 0)
+		{
+
+
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/*			$logKPI::add(
+				array(
+					'UF_USER' => IntVal($val["ID"]),
+					'UF_AMPLIFIER' => $USER->GetID(),
+					'UF_EVENT' => '0',
+					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+					'UF_ACTION_CODE' => 102,
+					'UF_ACTION_TEXT' => "update",
+					'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+					'UF_TYPE_2' =>  $arUserType[2][getUserType(IntVal($val["ID"]))]
+				)
+			);*/
+
+			/*if($val["contact_type"]=='5')
+			{*/
+				$logKPI::add(
+					array(
+						'UF_USER' => IntVal($val["ID"]),
+						'UF_AMPLIFIER' => $USER->GetID(),
+						'UF_EVENT' => '0',
+						'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+						'UF_ACTION_CODE' => 103,
+						'UF_ACTION_TEXT' => "change_status",
+						'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+						'UF_TYPE_2' =>  $arUserType[2][$val["contact_type"]]
+					)
+				);
+		/*	}
+			elseif(strlen($val["EMAIL"])>0)
+			{
+				$UF_TYPE = 3;
+				$logKPI::add(
+					array(
+						'UF_USER' => IntVal($val["ID"]),
+						'UF_AMPLIFIER' => $USER->GetID(),
+						'UF_EVENT' => '0',
+						'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+						'UF_ACTION_CODE' => 103,
+						'UF_ACTION_TEXT' => "change_status",
+						'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+						'UF_TYPE_2' =>  $arUserType[2][$UF_TYPE]
+					)
+				);
+			}
+			elseif (strlen(trim($val["UF_FB"])) > 0 || strlen(trim($val["UF_G_PLUS"])) > 0 || strlen(trim($val["UF_VK"])) > 0)
+			{
+				$UF_TYPE = 4;
+				$logKPI::add(
+					array(
+						'UF_USER' => IntVal($val["ID"]),
+						'UF_AMPLIFIER' => $USER->GetID(),
+						'UF_EVENT' => '0',
+						'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+						'UF_ACTION_CODE' => 103,
+						'UF_ACTION_TEXT' => "change_status",
+						'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+						'UF_TYPE_2' =>  $arUserType[2][$UF_TYPE]
+					)
+				);
+			}*/
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 			$res[] = array(
 				"status" => "OK",
 				"status_msg" => "UserUpdate",
@@ -485,12 +677,15 @@ if($_REQUEST["mode"] == "update_contact") {
 				"ID" => $val["ID"],
 				"type" => $val["contact_type"] ? $val["contact_type"] : 0
 			);
+		}
 		else
+		{
 			$res[] = array(
 				"status" => "ERROR",
 				"status_msg" => strip_tags($user->LAST_ERROR),
 				"app_id" => $val["app_id"] ? $val["app_id"] : 0
 			);
+		}
 	}
 	print json_encode($res, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
@@ -643,6 +838,14 @@ if($_REQUEST["mode"] == "get_event_list") {
 				$kpiRes["PROPERTIES"] = $obKpiRes->GetProperties();
 			}
 		}
+
+		if($event["PROPERTIES"]["CREATED_USER_ID"]["VALUE"] > 0)
+		{
+			$rsCreatedUser = CUser::GetByID($event["PROPERTIES"]["CREATED_USER_ID"]["VALUE"]);
+			$arCreatedUser = $rsCreatedUser->Fetch();
+		}
+
+
 		$events[] = array(
 			"ID" => $event["FIELDS"]["ID"],
 			"NAME" => addslashes($event["FIELDS"]["NAME"]),
@@ -652,6 +855,13 @@ if($_REQUEST["mode"] == "get_event_list") {
 			"USERS" => $event["PROPERTIES"]["USERS"]["VALUE"] ? $event["PROPERTIES"]["USERS"]["VALUE"] : array(),
 			"PLACE_EVENT" => $event["PROPERTIES"]["PLACE_EVENT"]["VALUE"] ? $event["PROPERTIES"]["PLACE_EVENT"]["VALUE"] : "",
 			"CLUB_NAME" => ($event["PROPERTIES"]["CLUB_NAME"]["VALUE"] ? addslashes($event["PROPERTIES"]["CLUB_NAME"]["VALUE"]) : ""),
+
+
+			"CREATED_USER_ID" => $event["PROPERTIES"]["CREATED_USER_ID"]["VALUE"],
+			"CREATED_USER_LOGIN" => (($event["PROPERTIES"]["CREATED_USER_ID"]["VALUE"] > 0) ? $arCreatedUser['LOGIN'] : ""),
+			"LINK" => $event["PROPERTIES"]["LINK"]["VALUE"],
+
+
 			"kpi" => array(
 				0 => array(
 					"type" => 1,
@@ -792,6 +1002,25 @@ if($_REQUEST["mode"] == "put_photo") {
 	$entity = HL\HighloadBlockTable::compileEntity($hlblock);
 	$entity_data_class = $entity->getDataClass();
 	$result = $entity_data_class::add($data);
+
+
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// Запись в лог об изменение статуса пользователя
+	$logKPI::add(
+		array(
+			'UF_USER' => IntVal($_REQUEST['UF_USER']),
+			'UF_AMPLIFIER' => $USER->GetID(),
+			'UF_EVENT' => $_REQUEST['UF_EVENT'] ? $_REQUEST['UF_EVENT'] : 0,
+			'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+			'UF_ACTION_CODE' => 103,
+			'UF_ACTION_TEXT' => "change_status",
+			'UF_TYPE' => $arUserType[1][getUserType(IntVal($_REQUEST['UF_USER']))],
+			'UF_TYPE_2' => $arUserType[2][5]
+
+
+		)
+	);
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	if($res)
 		print json_encode(array(

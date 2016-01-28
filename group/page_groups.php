@@ -1,4 +1,3 @@
-<? $geiop = CAltasibGeoBase::GetAddres();?>
 <link type="text/css" rel="stylesheet" href="/css/group.css">
 		<script type="text/javascript" src="/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="/js/plugins/jquery.slimscroll/jquery.slimscroll.min.js"></script>
@@ -83,23 +82,25 @@
 			</div>
 		</header>
 
-		<?$APPLICATION->IncludeComponent("bitrix:menu", "top_line", Array(
-			"ROOT_MENU_TYPE"	=>	"left",
-			"MAX_LEVEL"	=>	"1",
-			"CHILD_MENU_TYPE"	=>	"left",
-			"USE_EXT"	=>	"Y",
-			"CACHE_NOTES" => $geiop['CITY_NAME'],
-			"MENU_CACHE_TYPE" => "A",
-			"MENU_CACHE_TIME" => "3600",
+		<?
+		$geiop = CAltasibGeoBase::GetAddres();
+		$APPLICATION->IncludeComponent("bitrix:menu", "top_line", Array(
+			"ROOT_MENU_TYPE"	    =>	"left",
+			"MAX_LEVEL"	            =>	"1",
+			"CHILD_MENU_TYPE"	    =>	"left",
+			"USE_EXT"	            =>	"Y",
+			"MENU_CACHE_TYPE"       => "A",
+			"MENU_CACHE_TIME"       => "3600",
+			"MENU_CACHE_NOTES"      => $geiop['CITY_NAME'],
 			"MENU_CACHE_USE_GROUPS" => "Y",
-			"MENU_CACHE_GET_VARS" => array(
-				0 => "SECTION_ID",
-				1 => "page",
+			"MENU_CACHE_GET_VARS"   => array(
+				0                   => "SECTION_ID",
+				1                   => "page",
 			),
-			"group_id" => $_GET["GROUP_ID"],
-			"show_logo" => "Y",
-			"search" => "y",
-			"search_pos" => "r"
+			"group_id"              => $_GET["GROUP_ID"],
+			"show_logo"             => "Y",
+			"search"                => "y",
+			"search_pos"            => "r"
 			)
 		);?>
 
@@ -202,7 +203,6 @@
 							$arBanner[intval($arFields["PROPERTIES"]["POSITION"]["VALUE"])][] = $arFields;
 						}
 					}
-
 				}?>
 
 				<div id="content_left_wrapper" <?if($page_name!="lenta"&&$_GET["about"]!=1){?>class="thin"<?}?>>
@@ -221,15 +221,6 @@
 								</div>
 							<?}?>
 						<?}?>
-						<?
-							/*if ($page_name!=="contest" && ($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin())) {?>
-							<div class="banner" id="banner_4">
-								<div class="banner_ins">
-									<a class="banner_a" href="/group/1/u_contest/"><img width="180" src="/group/u_contest/images/small-banner.jpg"/></a>
-								</div>
-							</div>
-							<?}*/
-						?>
 					</div>
 				</div>
 

@@ -14917,6 +14917,14 @@ if ('undefined' !== typeof window.ParsleyValidator)
     delay(300, function() {
       return size();
     });
+    if ($.browser.mobile) {
+      $(".nav-inner:first").append("<div class='item menu-popup-button'><a href='#'>+</a></div>");
+    }
+    $(".modal .nav-inner").append("<div class='item'><a href='/group/1/u_concept/'>U_CONCEPT</a></div>");
+    $('.menu-popup-button').on('click', function(e) {
+      $('#Nav').modal();
+      return e.preventDefault();
+    });
     $('.modal').on('shown.bs.modal', function(e) {
       return delay(300, initScroll);
     });
@@ -15157,7 +15165,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
       return e.preventDefault();
     });
     return $('a').on('click', function(e) {
-      if ($(this).parents('.modal').length === 0 && $(this).parents('.contest').length === 0 || $(this).parents('.nav-inner').length > 0) {
+      if ($(this).attr('href') !== '#' && ($(this).parents('.modal').length === 0 && $(this).parents('.contest').length === 0 || $(this).parents('.nav-inner').length > 0)) {
         window.leave = $(this).attr('href');
         $('#Leave').modal();
         return e.preventDefault();

@@ -109,10 +109,10 @@
 	padding: 43px 20px;
 	border-radius: 0 10px 10px 0;
 }
-#TEXT::-webkit-input-placeholder {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
-#TEXT::-moz-placeholder          {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
-#TEXT:-moz-placeholder           {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
-#TEXT:-ms-input-placeholder      {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+::-webkit-input-placeholder {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+::-moz-placeholder          {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+:-moz-placeholder           {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
+:-ms-input-placeholder      {text-transform: uppercase; color: #898989; font-family: GothamProBold; font-size: 11px;}
 
 .otvet  {
 	text-align:right;

@@ -6,3 +6,4 @@ bitrix/*
 !bitrix/modules/tatonimus.replica/
 group/u_contest/orders
 upload
+.svn

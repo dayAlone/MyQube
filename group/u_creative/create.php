@@ -2,8 +2,13 @@
     require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include.php");
     require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/check.php');
     require_once($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/vendor/autoload.php');
-    define("MANAGER", "ak@radia.ru");
-	define("NO_KEEP_STATISTIC", true);
+    $managers = array(
+        "alexander.bushnew@danceplanet.ru",
+        "yuliya.work4608@gmail.com",
+        "u-creative@yandex.ru",
+        "nastya.serebryakova@danceplanet.ru"
+    );
+    define("NO_KEEP_STATISTIC", true);
 	define("NOT_CHECK_PERMISSIONS", true);
     CModule::IncludeModule("iblock");
 
@@ -129,7 +134,9 @@
                 $mail->addAttachment($file);
                 $mail->addAttachment($src, 'preview.png');
                 $mail->setFrom('mail@myqube.ru', 'MyQube.ru');
-                $mail->addAddress(MANAGER, 'Менеджер');
+                for ($i=0; $i < count($managers); $i++) {
+                    $mail->addAddress($managers[$i], 'Менеджер');
+                }
                 $mail->Subject = "Новый заказ: ".$ID.'. '.$USER->GetFullName();
                 $body = "<h1>Новый заказ</h1>";
                 $body .= "<strong>Получатель</strong>: ".$USER->GetFullName()."<br/>";
@@ -164,7 +171,9 @@
         } else {
             $props = array();
             $props['USER'] = $user;
-
+            $props['Q1'] = 'N';
+            $props['Q2'] = 'N';
+            $props['Q3'] = 'N';
             $array = Array(
 				"ACTIVE"            => "Y",
                 "NAME"              => "Заказ: ".$USER->GetFullName(),

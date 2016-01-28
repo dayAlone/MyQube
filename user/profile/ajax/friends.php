@@ -139,6 +139,7 @@ $(function(){
 		<div class="popup-comments" id="friends-subs-page" style="display:none;">
 			<?
 			foreach($CurentUser["UF_USER_SUB"] as $key => $value) {
+				if(in_array($value, $CurentUser["UF_FRIENDS"])) break;
 				$user = CUser::GetByID($value)->Fetch();
 				if(!$user)continue;
 				if($user['PERSONAL_PHOTO']!="")

@@ -6,7 +6,7 @@
           <p>
             Участники проекта U_CONCEPT успешно создали арт-проекты.<br>
             Пришла Ваша очередь показать свои творческие таланты. <br>
-            Место проведения проекта <nobr>– <span>г. Екатеринбург, с 14.01.2016 г. по 30.01.2016 г.</span></nobr>
+            Место проведения проекта –&nbsp;<span>г.&nbsp;Екатеринбург, с 14.01.2016 г. по 30.01.2016 г.</span>
           </p>
           <div class="row contest__features">
             <div class="col-xs-12 col-sm-4 feature">
@@ -41,7 +41,7 @@
                 <input id="q-1-1" type="radio" name="q-1" value="0" class="radio"/><label for="q-1-1"><span>Taste+ Nano-Carbon<sup>*</sup></span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="q-1-2" type="radio" name="q-1" value="1" class="radio"/><label for="q-1-2"><span>Моноацетатный<br/ >фильтр</span></label>
+                <input id="q-1-2" type="radio" name="q-1" value="1" class="radio"/><label for="q-1-2"><span>Моноацетатный<br/> фильтр</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
                 <input id="q-1-3" type="radio" name="q-1" value="2" class="radio"/><label for="q-1-3"><span>Carbon Nano</span></label>
@@ -66,7 +66,7 @@
                 <input id="q-2-1" type="radio" name="q-2" value="0" class="radio"/><label for="q-2-1"><span>Супертонкий</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
-                <input id="q-2-2" type="radio" name="q-2" value="1" class="radio"/><label for="q-2-2"><span>Премиальный<br/>удлиненный</span></label>
+                <input id="q-2-2" type="radio" name="q-2" value="1" class="radio"/><label for="q-2-2"><span>Премиальный<br/> удлиненный</span></label>
               </div>
               <div class="col-xs-12 col-sm-4">
                 <input id="q-2-3" type="radio" name="q-2" value="2" class="radio"/><label for="q-2-3"><span>Классический</span></label>
@@ -148,7 +148,7 @@
         <div class="contest__question contest__step contest__step--6">
           <div class="center">
             <h1>Дизайн</h1>
-            <div class="message visible-xs">Выберите по одному элементу из каждой колонки<br/>для создания собственного дизайна.</div>
+            <div class="message visible-xs">Выберите по одному элементу из каждой колонки<br/> для создания собственного дизайна.</div>
             <div class="row">
               <div class="col-sm-3 col-xs-6"><img src="/group/u_creative/images/svg/horizont.svg" alt="" class="icon"/><br/>
                 <div class="pattern">
@@ -217,7 +217,7 @@
               */?>
             </div>
             <div class="col-sm-7 col-xs-12">
-              <h3>Пожалуйста, укажите свои контактные<br/>данные, чтобы продолжить.</h3>
+              <h3>Пожалуйста, укажите свои контактные<br/> данные, чтобы продолжить.</h3>
               <form data-parsley-validate="data-parsley-validate">
                 <label for="address">Адрес доставки в г. Екатеринбург</label>
                 <input id="address" type="text" name="address" required="required"/>

@@ -1,6 +1,6 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
 	<?
-	global $USER;
+	global $USER; 
 	$_SESSION["BackFromDetail"]["group_6"]["nPageSize"] = $_GET["page"];
 	$arr_t=array("nPageSize" => 1, "nElementID" => $_GET["POST_ID"]);
 	$arr_p=array("IBLOCK_ID" => 1, "ACTIVE" => "Y", "PROPERTY_SOCIAL_GROUP_ID" => $_GET["GROUP_ID"]);
@@ -24,9 +24,9 @@
 			$arItem = $arRes->GetFields();
 			$arItem["PROPERTIES"] = $arRes->GetProperties();
 			$arPost[] = $arItem;
-		}
+		}		
 	}
-	if((count($arPost) == 2) && ($_GET["POST_ID"] == $arPost[0]["ID"])) {
+	if((count($arPost) == 2) && ($_GET["POST_ID"] == $arPost[0]["ID"])) {	
 		$this_post = 0;
 		$close_url = '<a onclick="goBack_1(\''.'/group/'.$_GET["GROUP_ID"].(($_SESSION["BackFromDetail"]["brand"]==1)?"/about":"").'/#lenta_item_'.$arPost[$this_post]["ID"].'\');" href="#"><span class="icon_close"></span><b>Закрыть статью</b><div class="clear"></div></a>';
 		$prev_url = '';
@@ -36,7 +36,7 @@
 		$close_url = '<a onclick="goBack_1(\''.'/group/'.$_GET["GROUP_ID"].(($_SESSION["BackFromDetail"]["brand"]==1)?"/about":"").'/#lenta_item_'.$arPost[$this_post]["ID"].'\');" href="#"><span class="icon_close"></span><b>Закрыть статью</b><div class="clear"></div></a>';
 		$prev_url = '<a href="'.str_replace("#group_id#", $_GET["GROUP_ID"], $arPost[0]["DETAIL_PAGE_URL"]).'/"><span class="icon_prev"></span><b>Предыдущая статья</b><div class="clear"></div></a>';
 		$next_url = '';
-	} else {
+	} else {		
 		$this_post = 1;/*href="/group/'.$_GET["GROUP_ID"].'/#lenta_item_'.$arPost[$this_post]["ID"].'"*/
 		$close_url = '<a onclick="goBack_1(\''.'/group/'.$_GET["GROUP_ID"].(($_SESSION["BackFromDetail"]["brand"]==1)?"/about":"").'/#lenta_item_'.$arPost[$this_post]["ID"].'\');" href="#"><span class="icon_close"></span><b>Закрыть статью</b><div class="clear"></div></a>';
 		$prev_url = '<a href="'.str_replace("#group_id#", $_GET["GROUP_ID"], $arPost[0]["DETAIL_PAGE_URL"]).'/"><span class="icon_prev"></span><b>Предыдущая статья</b><div class="clear"></div></a>';
@@ -55,11 +55,11 @@
 	{
 		?>
 		<script>
-			$(document).ready(function() {
+			$(document).ready(function() {	
 				var topSnoska = $(".detail_page_content .snoska").offset().top;
-				var heightSnoska = $(".detail_page_content .snoska").height();
-				if($(".detail_page_content img:first").offset() !== undefined) {
-					var topFirstImg = $(".detail_page_content img:first").offset().top;
+				var heightSnoska = $(".detail_page_content .snoska").height();		
+				if($(".detail_page_content img:first").offset() !== undefined) {	
+					var topFirstImg = $(".detail_page_content img:first").offset().top;					
 					var newTopFirstImg = (heightSnoska+topSnoska)+50-topFirstImg;
 					if(newTopFirstImg > 0)
 						$(".detail_page_content img:first").css({"margin-top":newTopFirstImg+"px"});
@@ -70,7 +70,7 @@
 					if(newTopFirstIframe > 0)
 						$(".detail_page_content iframe:first").css({"margin-top":newTopFirstIframe+"px"});
 				}
-
+				
 				$('body').on("click", ".up_page", function() {
 					$('html, body').animate({scrollTop: 0},500);
 				});
@@ -80,7 +80,7 @@
 						var nextImg = $(".detail_page_content img").eq(i+1).offset().top;
 					} else {
 						var nextImg = $(".comments").offset().top;
-					}
+					}					
 					var pos = (nextImg - thisImg) / 2 - 30;
 					if(+pos > 10)
 						$(this).after("<div class='up_page' style='margin-top: "+pos.toFixed()+"px;'>В начало статьи</div>");
@@ -91,7 +91,7 @@
 						var nextIframe = $(".detail_page_content iframe").eq(i+1).offset().top;
 					} else {
 						var nextIframe = $(".comments").offset().top;
-					}
+					}					
 					var pos = (nextIframe - thisIframe) / 2 - 30;
 					if(+pos > 10)
 						$(this).after("<div class='up_page' style='margin-top: "+pos.toFixed()+"px;'>В начало статьи</div>");
@@ -113,11 +113,11 @@
                     #nav_left_open{
                         left: -165px !important;
                     }
-
+                    
                     .detail_page h1{
                         background-image: url('<?=CFile::GetPath($arPost[$this_post]["DETAIL_PICTURE"])?>');
                     }
-
+                    
                     h1 span{
                         position: relative;
                     }
@@ -130,10 +130,10 @@
                     <div class="mobile-arrow-back mobile-block"><?
 					echo $close_url?></div>
                     <div class="mobile-block post-h1-gradient"></div>
-
+                    
                     <span class="color_blue"><?=$arPost[$this_post]["NAME"]?></span><br><span><?=$arPost[$this_post]["PROPERTIES"]["NAME_2"]["VALUE"]?></span>
 
-
+                    
                 </h1>
 				<p class="snoska p"><?=$arPost[$this_post]["PREVIEW_TEXT"]?></p>
 				<div class="detail_text p"><?=$arPost[$this_post]["DETAIL_TEXT"]?></div>
@@ -160,7 +160,7 @@
 						);?>
 					<?}?>
 					<?
-					$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arPost[$this_post]["ID"], "PROPERTY_USER" => $USER->GetID() ),array());
+					$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arPost[$this_post]["ID"], "PROPERTY_USER" => $USER->GetID() ),array());	
 					?>
 					<a class="photo_list_like <?=($res_like>0)?"like_active":""?>" id="like_post_<?=$arPost[$this_post]["ID"]?>"></a>
 				</nav>
