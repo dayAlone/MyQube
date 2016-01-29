@@ -98,8 +98,8 @@ if($_GET["backurl"]) {
 }
 
 $CustomVKAuth = new CustomVKAuth;
-$CustomVKAuth->SetClientId('5110739');
-$CustomVKAuth->SetClientSecret('Jd3hweCOh1zpqUUX8B9M');
+$CustomVKAuth->SetClientId('5248591');
+$CustomVKAuth->SetClientSecret('CUYKlxAhs94WEiTKn861');
 $CustomVKAuth->SetAuthUri('https://oauth.vk.com/authorize/');
 $CustomVKAuth->SetRedirectUri('http://'.$_SERVER['SERVER_NAME'].'/vk.php');
 $CustomVKAuth->SetTokenUri('https://oauth.vk.com/access_token');
