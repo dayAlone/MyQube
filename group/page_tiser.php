@@ -41,10 +41,10 @@ $APPLICATION->SetPageProperty("og:image", "http://myqube.ru".str_replace(' ','%2
 $APPLICATION->SetPageProperty("og:url", "http://myqube.ru".$_SERVER["REQUEST_URI"]);
 
 if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
-	<script>
+	<?/*<script>
 		$(document).ready(function(){$.get("http://myqube.ru<?=$_SERVER["REQUEST_URI"]?>?utm_source=google&utm_medium=teaser&utm_term=<?=$soc_network?>&utm_campaign=<?=$arPost["ID"]?>",function(data){});});
 	</script>
-	<?/*
+
 		<?$APPLICATION->IncludeComponent(
 			"bitrix:system.auth.form",
 			"teaser",
@@ -60,8 +60,9 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 
 	*/
 	$image = 'http://myqube.ru/'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
+	$APPLICATION->SetAdditionalCSS("/layout/css/teaser.css", true);
 	?>
-	<link type="text/css" rel="stylesheet" href="/layout/css/teaser.css"/>
+
 	<div class='teaser'>
 		<?=(isset($_REQUEST['bg']) ? "<div class='teaser__background' style='background-image: url(".$image.")'></div>":"")?>
 		<div class='teaser__content'>
