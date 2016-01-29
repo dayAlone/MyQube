@@ -1,5 +1,5 @@
 <?class CustomVKAuth{
-	
+
 	function SetClientId($id){
 		$this->client_id = $id;
 	}
@@ -18,7 +18,7 @@
 	function SetDataUri($uri){
 		$this->data_uri = $uri;
 	}
-	
+
 	function GetLink(){
 		$url = $this->auth_uri;
 		$params = array(
@@ -30,7 +30,7 @@
 		$href = $url . '?' . urldecode(http_build_query($params));
 		return $href;
 	}
-	
+
 	function GetToken($GET){
 		$result = false;
 		$params = array(
@@ -50,11 +50,11 @@
 		curl_close($curl);
 		$this->token = json_decode($result, true);
 	}
-	
+
 	function GetData($fields = array()){
 		$tokenInfo = $this->token;
 		$data = array();
-		if (isset($tokenInfo['access_token'])) {	
+		if (isset($tokenInfo['access_token'])) {
 			if(!empty($fields)){
 				$this->params['fields'] = implode(",",$fields);
 			}
@@ -64,7 +64,7 @@
 			curl_setopt($curl, CURLOPT_URL, $tmpUrl);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-			$userInfo = curl_exec($curl);	
+			$userInfo = curl_exec($curl);
 			curl_close($curl);
 		}
 		return json_decode($userInfo);
@@ -77,7 +77,7 @@
 			} elseif($type == 1){
 				$Url = "https://graph.facebook.com/".$Url."/picture?type=large";
 			}
-			
+
 			$Avatar = file_get_contents($Url);
 			$AvatarPach = $_SERVER["DOCUMENT_ROOT"]."/upload/".$Folder.$FileName.".jpg";
 			file_put_contents($AvatarPach, $Avatar);
@@ -89,17 +89,17 @@
 	}
 }
 
-if($_GET["backurl"]) {	
+if($_GET["backurl"]) {
 	require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include/prolog_before.php");
 	global $APPLICATION;
 	$backurl = $APPLICATION->get_cookie("MQ_BACKURL");
 	if($backurl !== $_GET["backurl"])
 		$APPLICATION->set_cookie("MQ_BACKURL", $_GET["backurl"], time()+60,"/");
 }
-	
+
 $CustomVKAuth = new CustomVKAuth;
-$CustomVKAuth->SetClientId('5002353');
-$CustomVKAuth->SetClientSecret('C5Pxo5vrnz8kPOwkscrl');
+$CustomVKAuth->SetClientId('5110739');
+$CustomVKAuth->SetClientSecret('Jd3hweCOh1zpqUUX8B9M');
 $CustomVKAuth->SetAuthUri('https://oauth.vk.com/authorize/');
 $CustomVKAuth->SetRedirectUri('http://'.$_SERVER['SERVER_NAME'].'/vk.php');
 $CustomVKAuth->SetTokenUri('https://oauth.vk.com/access_token');
@@ -107,17 +107,17 @@ $CustomVKAuth->SetDataUri('https://api.vk.com/method/users.get');
 
 if(!empty($_GET) && !isset($_GET["backurl"])){
 	require_once($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include/prolog_before.php");
-	
-	global $USER;	
+
+	global $USER;
 	global $APPLICATION;
-	
+
 	$CustomVKAuth->GetToken($_GET);
 	$UserDate = $CustomVKAuth->GetData(array("uid","photo_big","email","first_name","last_name","bdate"));
-	
+
 	if($UserDate->response[0]->uid != ""){
 		if($USER->IsAuthorized()){
 			$Fields = array("UF_VK_PROFILE" => array($UserDate->response[0]->uid),"UF_AUTH_SOCNET"=>"1");
-			$Fields["PERSONAL_PHOTO"] = $CustomVKAuth->UploadAvatar($UserDate->response[0]->photo_big,"vk_avatar/",$UserDate->response[0]->uid,2);			
+			$Fields["PERSONAL_PHOTO"] = $CustomVKAuth->UploadAvatar($UserDate->response[0]->photo_big,"vk_avatar/",$UserDate->response[0]->uid,2);
 			if($Fields["PERSONAL_PHOTO"]["type"] == "inode/x-empty")
 				$Fields["PERSONAL_PHOTO"] = "";
 			if(empty($Fields["PERSONAL_PHOTO"]))
@@ -127,7 +127,7 @@ if(!empty($_GET) && !isset($_GET["backurl"])){
 			$VKProfile = CustomUser::ExistenceVKProfile($UserDate->response[0]->uid);
 			if($VKProfile > 0){
 				$USER->Authorize($VKProfile);
-			} else {			
+			} else {
 				$Fields = array(
 					"NAME" => $UserDate->response[0]->first_name,
 					"LAST_NAME" => $UserDate->response[0]->last_name,
@@ -147,18 +147,18 @@ if(!empty($_GET) && !isset($_GET["backurl"])){
 					"UF_PRIVATE_MYGROUPS" => 9,
 					"UF_INVITE_STATUS" => 1
 				);
-				
+
 				$Fields["PERSONAL_PHOTO"] = $CustomVKAuth->UploadAvatar($UserDate->response[0]->photo_big,"vk_avatar/",$UserDate->response[0]->uid,2);
 				if($Fields["PERSONAL_PHOTO"]["type"] == "inode/x-empty")
 					$Fields["PERSONAL_PHOTO"] = "";
 				if(empty($Fields["PERSONAL_PHOTO"]))
 					$Fields["PERSONAL_PHOTO"] = CFile::MakeFileArray($_SERVER["DOCUMENT_ROOT"]."/images/user_photo.png");
-					
+
 				if(!empty($UserDate->response[0]->bdate)){
 					if((date("Y") - date("Y", strtotime($UserDate->response[0]->bdate))) >= 18){
 						$Fields["UF_YOU_HAVE_18"] = 1;
 					}
-				}				
+				}
 				global $APPLICATION;
 				$cookieToken = $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN");
 				$ambassador = $APPLICATION->get_cookie("MQ_AMBASSADOR");
@@ -173,7 +173,7 @@ if(!empty($_GET) && !isset($_GET["backurl"])){
 					   "UF_TOKEN" => $cookieToken
 					);
 					$dbUsers = $USER->GetList($sort_by, $sort_ord, $arFilter);
-					while($arUser = $dbUsers->Fetch()) 
+					while($arUser = $dbUsers->Fetch())
 						$UserIdByToken = $arUser["ID"];
 					if($UserIdByToken) {
 						$UserId = $UserIdByToken;
@@ -185,14 +185,14 @@ if(!empty($_GET) && !isset($_GET["backurl"])){
 				} else
 					$UserId = CustomUser::NewUser($Fields);
 				if($UserId > 0){
-					
+
 					//if($Fields["UF_YOU_HAVE_18"] == 1){
 					//	CustomUser::AddUserGroupClosedCommunity(array("USER_ID"=> $UserId,"UF_YOU_HAVE_18" => 1));
 					//}
 					$USER->Authorize($UserId);
 					$Fields["UF_VK_PROFILE"] = array($UserDate->response[0]->uid);
 					CustomUser::UserUpdate($Fields);
-					
+
 					if($ambassador) {
 						$arGroups = CUser::GetUserGroup($UserId);
 						$arGroups[] = 13;
