@@ -41,24 +41,10 @@ $APPLICATION->SetPageProperty("og:image", "http://myqube.ru".str_replace(' ','%2
 $APPLICATION->SetPageProperty("og:url", "http://myqube.ru".$_SERVER["REQUEST_URI"]);
 
 if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
-	<?/*<script>
+	<script>
 		$(document).ready(function(){$.get("http://myqube.ru<?=$_SERVER["REQUEST_URI"]?>?utm_source=google&utm_medium=teaser&utm_term=<?=$soc_network?>&utm_campaign=<?=$arPost["ID"]?>",function(data){});});
 	</script>
-
-		<?$APPLICATION->IncludeComponent(
-			"bitrix:system.auth.form",
-			"teaser",
-			array(
-				"REGISTER_URL" => "/club/group/search/",
-				"PROFILE_URL" => "/user/profile/",
-				"FORGOT_PASSWORD_URL" => "",
-				"SHOW_ERRORS" => "Y",
-				"ONLY_SOCNET" => "Y"
-			),
-			false
-		);?>
-
-	*/
+	<?
 	$image = 'http://myqube.ru/'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
 	$APPLICATION->SetAdditionalCSS("/layout/css/teaser.css", true);
 	?>
@@ -74,19 +60,20 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 					<div class='teaser__text'>
 						<?=$arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]?>
 					</div>
-					<div class='login login--social'>
-						Чтобы читать дальше,<br>авторизируйтесь через соцсеть
-						<br>
-						<a href="#" class='login__link login__link--fb'>
-							<img src="/layout/images/svg/fb.svg" alt="" />
-						</a>
-						<a href="#" class='login__link login__link--vk'>
-							<img src="/layout/images/svg/vk.svg" alt="" />
-						</a>
-						<a href="#" class='login__link login__link--gp'>
-							<img src="/layout/images/svg/gp.svg" alt="" />
-						</a>
-					</div>
+					<?$APPLICATION->IncludeComponent(
+						"bitrix:system.auth.form",
+						"teaser",
+						array(
+							"REGISTER_URL" => "/club/group/search/",
+							"PROFILE_URL" => "/user/profile/",
+							"FORGOT_PASSWORD_URL" => "",
+							"SHOW_ERRORS" => "Y",
+							"ONLY_SOCNET" => "Y",
+							"BACKURL" => $backurl
+						),
+						false
+					);?>
+
 				</div>
 			</div>
 
