@@ -18,7 +18,7 @@
 ?>
 	<?
 		$geiop = CAltasibGeoBase::GetAddres();
-		if (($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin()) && strtotime('01.02.2016') > time()) {?>
+		if (($geiop['CITY_NAME'] == CITY_NAME || $USER->IsAdmin()) && strtotime('14.02.2016') > time()) {?>
 			<a href="/group/1/contest/u_creative/" style='margin-top: 5px;display: inline-block;z-index: 1;position:relative;padding: 0 20px;'><img src="/group/u_creative/images/big-banner.jpg" alt="" style="border-radius: 8px;" width='100%'/></a>
 		<?}
 	?>
