@@ -50,7 +50,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	?>
 
 	<div class='teaser'>
-		<?=(isset($_REQUEST['bg']) ? "<div class='teaser__background' style='background-image: url(".$image.")'></div>":"")?>
+		<div class='teaser__background' style='background-image: url(".$image.")'></div>
 		<div class='teaser__content'>
 			<div class='teaser__logo'><img src="/layout/images/svg/logo.svg" alt="" width="97" height="30"/></div>
 			<div class='teaser__wrapper'>
