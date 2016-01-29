@@ -46,7 +46,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	</script>
 	<?
 	$image = 'http://myqube.ru/'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
-	$APPLICATION->SetAdditionalCSS("/layout/css/teaser.css", true);
+	$APPLICATION->SetAdditionalCSS("/layout/css/preview.css", true);
 	?>
 
 	<div class='teaser'>
