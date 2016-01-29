@@ -5,11 +5,11 @@ if(strripos($_SERVER["HTTP_REFERER"], "facebook"))
 	$soc_network = "facebook";
 if(strripos($_SERVER["HTTP_REFERER"], "google"))
 	$soc_network = "google";
-if($strripos = strripos($_SERVER["REQUEST_URI"], "?")) {
-	$backurl = "/?backurl=".substr($_SERVER["REQUEST_URI"], 0, $strripos);
-} else {
-	$backurl = "/?backurl=".$_SERVER["REQUEST_URI"];
-}
+
+$backurl = "/?backurl=".strtok($_SERVER["REQUEST_URI"],'?');
+if (substr($backurl, -1) != '/') $backurl .= '/';
+
+$APPLICATION->set_cookie("MQ_BACKURL", strtok($_SERVER["REQUEST_URI"],'?'), time()+60,"/");
 $obCache = new CPHPCache();
 $cacheLifetime = 86400*7;
 $cacheID = 'TeaserItems'.$_GET["POST_ID"];
@@ -45,7 +45,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 		$(document).ready(function(){$.get("http://myqube.ru<?=$_SERVER["REQUEST_URI"]?>?utm_source=google&utm_medium=teaser&utm_term=<?=$soc_network?>&utm_campaign=<?=$arPost["ID"]?>",function(data){});});
 	</script>
 	<?
-	$image = 'http://myqube.ru/'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
+	$image = 'http://myqube.ru'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
 	$APPLICATION->SetAdditionalCSS("/layout/css/preview.css", true);
 	?>
 

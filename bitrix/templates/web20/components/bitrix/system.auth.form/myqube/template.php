@@ -17,17 +17,17 @@ if(strripos($_SERVER['HTTP_USER_AGENT'],"iphone") || strripos($_SERVER['HTTP_USE
 	$(document).ready(function(){
 		$(".auth-socserv-fb").each(function(){SetPostAuthSocNet($(this),"/facebook.php<?=$backurl?>");});
 		$(".auth-socserv-vk").each(function(){SetPostAuthSocNet($(this),"/vk.php<?=$backurl?>");});
-		$(".auth-socserv-gp").each(function(){SetPostAuthSocNet($(this),"/google.php<?=$backurl?>");});	
+		$(".auth-socserv-gp").each(function(){SetPostAuthSocNet($(this),"/google.php<?=$backurl?>");});
 	});
 	function SetTimerAuthSocNet(NewTime){
 		if(NewTime == null || typeof NewTime == "undefined"){
 			NewTime	= 1000;
 		}
-		Timer = setInterval(function() {   
-		    if(NewWindow.closed) {  
-		        clearInterval(Timer);  
+		Timer = setInterval(function() {
+		    if(NewWindow.closed) {
+		        clearInterval(Timer);
 		        window.location.href = window.location.href;
-		    }  
+		    }
 		}, NewTime);
 	}
 	function SetPostAuthSocNet(Obj,Url){
@@ -46,7 +46,7 @@ if(strripos($_SERVER['HTTP_USER_AGENT'],"iphone") || strripos($_SERVER['HTTP_USE
 	}
 	.enter_page_leftcol_cont {
 		vertical-align: middle;
-		display: table;	
+		display: table;
 	}
 </style>
 <div id="page_inside_middle">
@@ -67,10 +67,11 @@ if(strripos($_SERVER['HTTP_USER_AGENT'],"iphone") || strripos($_SERVER['HTTP_USE
 			<?}?>
 			<input type="hidden" name="AUTH_FORM" value="Y" />
 			<input type="hidden" name="TYPE" value="AUTH" />
-			<input type="image" name="Login" src="<?=SITE_TEMPLATE_PATH?>/images/enter_page_submit.png" value="Войти" class="enter_page_submit">
 			<input type="text" name="USER_LOGIN" maxlength="50" placeholder="Логин или адрес электронной почты" class="enter_page_input"><br>
 			<input type="password" name="USER_PASSWORD" maxlength="50" placeholder="Пароль" class="enter_page_input">
-		</form>		
+			<br>
+			<button type="button" name="Login" class="enter_page_submit"><span></span>Войти</button>
+		</form>
 	<?}?>
 	<div class="enter_page_social" style="margin-top:0; position: relative;"><?if($arParams["ONLY_SOCNET"] !== "Y") {?>Или<br>
 	Авторизируйтесь с помощью социальных сетей<br><?}?>

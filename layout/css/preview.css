@@ -3657,8 +3657,8 @@ a:hover {
 }
 @font-face {
   font-family: 'MainFont';
-  src: url("/bitrix/fonts/GothamProRegular/GothamProRegular.otf");
-  src: local(''), url("/bitrix/fonts/GothamProRegular/GothamProRegular.otf") format('truetype'), url("/bitrix/fonts/GothamProRegular/GothamProRegular.woff") format('woff');
+  src: url("/bitrix/fonts/GothamProRegular/GothamProRegular.ttf");
+  src: local(''), url("/bitrix/fonts/GothamProRegular/GothamProRegular.ttf") format('truetype'), url("/bitrix/fonts/GothamProRegular/GothamProRegular.woff") format('woff');
   font-weight: normal;
 }
 @font-face {
