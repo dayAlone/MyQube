@@ -61,7 +61,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	*/
 	$image = 'http://myqube.ru/'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
 	?>
-	<link type="text/css" rel="stylesheet" href="/layout/css/teaser.css">
+	<link type="text/css" rel="stylesheet" href="/layout/css/teaser.css"/>
 	<div class='teaser'>
 		<?=(isset($_REQUEST['bg']) ? "<div class='teaser__background' style='background-image: url(".$image.")'></div>":"")?>
 		<div class='teaser__content'>
