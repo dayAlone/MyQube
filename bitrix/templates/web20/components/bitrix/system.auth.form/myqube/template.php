@@ -70,7 +70,7 @@ if(strripos($_SERVER['HTTP_USER_AGENT'],"iphone") || strripos($_SERVER['HTTP_USE
 			<input type="text" name="USER_LOGIN" maxlength="50" placeholder="Логин или адрес электронной почты" class="enter_page_input"><br>
 			<input type="password" name="USER_PASSWORD" maxlength="50" placeholder="Пароль" class="enter_page_input">
 			<br>
-			<button type="button" name="Login" class="enter_page_submit"><span></span>Войти</button>
+			<button type="submit" name="Login" class="enter_page_submit"><span></span>Войти</button>
 		</form>
 	<?}?>
 	<div class="enter_page_social" style="margin-top:0; position: relative;"><?if($arParams["ONLY_SOCNET"] !== "Y") {?>Или<br>

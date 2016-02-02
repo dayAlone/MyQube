@@ -20,7 +20,7 @@ use Bitrix\Main\Entity;?>
 	$fh = fopen($_FILES['file']['tmp_name'], 'r+');
 	$i = 0;
 	while(($row = fgetcsv($fh, 8192)) !== FALSE ) {
-		//if($i > 4030) {
+		/*//if($i > 4030) {
 		$arUser = $USER->GetByLogin($row[6])->Fetch();
 		$emails = array();
 		$pass = mt_rand(10000000, 99999999);
@@ -89,12 +89,13 @@ use Bitrix\Main\Entity;?>
 			$ID = $result->getId();	//$result->getErrorMessages()[0];
 		}
 		$i++;
-		//}
+		//}*/
 
-		/*if($i > 4030) {
 		$emails = array(
-			"UF_USER_PARENT" => $row[1]
+			"NAME" => $row[1],
+			"LAST_NAME" => $row[2]
 		);
+		echo $row[0];
 		$user = new CUser;
 		$res = $user->Update($row[0], $emails);	
 		if($res) {
@@ -103,7 +104,7 @@ use Bitrix\Main\Entity;?>
 			echo $i; echo "<br>";
 			echo $row[0]; echo "<br>";
 		}
-		$i++;*/
+		$i++;
 	}
 	echo count($email);
 	echo "<pre>"; print_r($email); echo "</pre>";

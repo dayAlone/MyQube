@@ -237,32 +237,32 @@ if($_REQUEST["mode"] == "new_contact") {
 		exit();
 	}
 	$logKPI::add(
-				array(
-					'UF_USER' => 0,
-					'UF_AMPLIFIER' => $USER->GetID(),
-					'UF_EVENT' => 0,
-					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
-					'UF_ACTION_CODE' => 99,
-					'UF_ACTION_TEXT' => json_encode($_REQUEST),
-					'UF_TYPE' => 35,
-					'UF_TYPE_2' => 40,
-					"UF_PARENT" => file_get_contents('php://input')
-				)
-			);
+		array(
+			'UF_USER' => 0,
+			'UF_AMPLIFIER' => $USER->GetID(),
+			'UF_EVENT' => 0,
+			'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+			'UF_ACTION_CODE' => 99,
+			'UF_ACTION_TEXT' => json_encode($_REQUEST),
+			'UF_TYPE' => 35,
+			'UF_TYPE_2' => 40,
+			"UF_PARENT" => file_get_contents('php://input')
+		)
+	);
 	$json = json_decode(file_get_contents('php://input'), true);
 	$logKPI::add(
-				array(
-					'UF_USER' => 0,
-					'UF_AMPLIFIER' => $USER->GetID(),
-					'UF_EVENT' => 0,
-					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
-					'UF_ACTION_CODE' => 99,
-					'UF_ACTION_TEXT' => json_encode($_REQUEST),
-					'UF_TYPE' => 35,
-					'UF_TYPE_2' => 40,
-					"UF_PARENT" => json_encode($json)
-				)
-			);
+		array(
+			'UF_USER' => 0,
+			'UF_AMPLIFIER' => $USER->GetID(),
+			'UF_EVENT' => 0,
+			'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+			'UF_ACTION_CODE' => 99,
+			'UF_ACTION_TEXT' => json_encode($_REQUEST),
+			'UF_TYPE' => 35,
+			'UF_TYPE_2' => 40,
+			"UF_PARENT" => json_encode($json)
+		)
+	);
 	if(!isset($json)) {
 		print json_encode(array(
 			array(
@@ -427,16 +427,16 @@ if($_REQUEST["mode"] == "new_contact") {
 
 
 			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/*			unset($UF_TYPE);
-			$UF_TYPE = 2;
-			if(strlen(trim($val["EMAIL"]))>0)
-			{
-				$UF_TYPE = 3;
-			}
-			if (strlen(trim($val["UF_FB"])) > 0 || strlen(trim($val["UF_G_PLUS"])) > 0 || strlen(trim($val["UF_VK"])) > 0)
-			{
-				$UF_TYPE = 4;
-			}*/
+			/*			unset($UF_TYPE);
+						$UF_TYPE = 2;
+						if(strlen(trim($val["EMAIL"]))>0)
+						{
+							$UF_TYPE = 3;
+						}
+						if (strlen(trim($val["UF_FB"])) > 0 || strlen(trim($val["UF_G_PLUS"])) > 0 || strlen(trim($val["UF_VK"])) > 0)
+						{
+							$UF_TYPE = 4;
+						}*/
 			CEventLog::Add(array(
 				"SEVERITY" => "SECURITY",
 				"AUDIT_TYPE_ID" => "TESTER",
@@ -529,7 +529,8 @@ if($_REQUEST["mode"] == "update_contact") {
 		"Y" => 1,
 		"N" => 0
 	);
-	foreach($json as $key => $val) {
+	foreach($json as $key => $val)
+	{
 
 
 		CEventLog::Add(array(
@@ -567,6 +568,7 @@ if($_REQUEST["mode"] == "update_contact") {
 			$Fields["PERSONAL_BIRTHDAY"] = $val["PERSONAL_BIRTHDAY"];
 		}
 		$userType = $USER->GetByID($val["ID"])->Fetch();
+		$arrUserOldData = $userType;
 
 		$user = new CUser;
 		$ID = $user->Update($val["ID"], $Fields);
@@ -606,66 +608,70 @@ if($_REQUEST["mode"] == "update_contact") {
 
 
 			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/*			$logKPI::add(
+			/*			$logKPI::add(
+							array(
+								'UF_USER' => IntVal($val["ID"]),
+								'UF_AMPLIFIER' => $USER->GetID(),
+								'UF_EVENT' => '0',
+								'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+								'UF_ACTION_CODE' => 102,
+								'UF_ACTION_TEXT' => "update",
+								'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+								'UF_TYPE_2' =>  $arUserType[2][getUserType(IntVal($val["ID"]))]
+							)
+						);*/
+
+			/*if($val["contact_type"]=='5')
+			{*/
+
+			$logKPI::add(
 				array(
 					'UF_USER' => IntVal($val["ID"]),
 					'UF_AMPLIFIER' => $USER->GetID(),
 					'UF_EVENT' => '0',
 					'UF_DATE_TIME' => date("Y-m-d H:i:s"),
-					'UF_ACTION_CODE' => 102,
-					'UF_ACTION_TEXT' => "update",
+					'UF_ACTION_CODE' => 103,
+					'UF_ACTION_TEXT' => "change_status",
 					'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
-					'UF_TYPE_2' =>  $arUserType[2][getUserType(IntVal($val["ID"]))]
-				)
-			);*/
+					'UF_TYPE_2' =>  $arUserType[2][$val["contact_type"]],
+					'UF_BRAND_1'=>$arrUserOldData['UF_BRAND_NAME'],
+					'UF_BRAND_2'=>$val["brand_name"]
 
-			/*if($val["contact_type"]=='5')
-			{*/
-				$logKPI::add(
-					array(
-						'UF_USER' => IntVal($val["ID"]),
-						'UF_AMPLIFIER' => $USER->GetID(),
-						'UF_EVENT' => '0',
-						'UF_DATE_TIME' => date("Y-m-d H:i:s"),
-						'UF_ACTION_CODE' => 103,
-						'UF_ACTION_TEXT' => "change_status",
-						'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
-						'UF_TYPE_2' =>  $arUserType[2][$val["contact_type"]]
-					)
-				);
-		/*	}
-			elseif(strlen($val["EMAIL"])>0)
-			{
-				$UF_TYPE = 3;
-				$logKPI::add(
-					array(
-						'UF_USER' => IntVal($val["ID"]),
-						'UF_AMPLIFIER' => $USER->GetID(),
-						'UF_EVENT' => '0',
-						'UF_DATE_TIME' => date("Y-m-d H:i:s"),
-						'UF_ACTION_CODE' => 103,
-						'UF_ACTION_TEXT' => "change_status",
-						'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
-						'UF_TYPE_2' =>  $arUserType[2][$UF_TYPE]
-					)
-				);
-			}
-			elseif (strlen(trim($val["UF_FB"])) > 0 || strlen(trim($val["UF_G_PLUS"])) > 0 || strlen(trim($val["UF_VK"])) > 0)
-			{
-				$UF_TYPE = 4;
-				$logKPI::add(
-					array(
-						'UF_USER' => IntVal($val["ID"]),
-						'UF_AMPLIFIER' => $USER->GetID(),
-						'UF_EVENT' => '0',
-						'UF_DATE_TIME' => date("Y-m-d H:i:s"),
-						'UF_ACTION_CODE' => 103,
-						'UF_ACTION_TEXT' => "change_status",
-						'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
-						'UF_TYPE_2' =>  $arUserType[2][$UF_TYPE]
-					)
-				);
-			}*/
+				)
+			);
+			/*	}
+				elseif(strlen($val["EMAIL"])>0)
+				{
+					$UF_TYPE = 3;
+					$logKPI::add(
+						array(
+							'UF_USER' => IntVal($val["ID"]),
+							'UF_AMPLIFIER' => $USER->GetID(),
+							'UF_EVENT' => '0',
+							'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+							'UF_ACTION_CODE' => 103,
+							'UF_ACTION_TEXT' => "change_status",
+							'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+							'UF_TYPE_2' =>  $arUserType[2][$UF_TYPE]
+						)
+					);
+				}
+				elseif (strlen(trim($val["UF_FB"])) > 0 || strlen(trim($val["UF_G_PLUS"])) > 0 || strlen(trim($val["UF_VK"])) > 0)
+				{
+					$UF_TYPE = 4;
+					$logKPI::add(
+						array(
+							'UF_USER' => IntVal($val["ID"]),
+							'UF_AMPLIFIER' => $USER->GetID(),
+							'UF_EVENT' => '0',
+							'UF_DATE_TIME' => date("Y-m-d H:i:s"),
+							'UF_ACTION_CODE' => 103,
+							'UF_ACTION_TEXT' => "change_status",
+							'UF_TYPE' => $arUserType[1][getUserType(IntVal($val["ID"]))],
+							'UF_TYPE_2' =>  $arUserType[2][$UF_TYPE]
+						)
+					);
+				}*/
 			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
