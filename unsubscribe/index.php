@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("unsubscribe");
 
 if(!empty($_GET["id"])) {
 	$USER->Update($_GET["id"], array("UF_NOTICE_FROM_BAT" => 1));
-	?>		
+	?>
 	<style>
 		@font-face {
 		font-family: "GothamProRegular";
@@ -44,36 +44,36 @@ if(!empty($_GET["id"])) {
 			text-align: center;
 			margin: auto;
 			color: #fff;
-			
+
 		}
-		
+
 		.unsubscribe-logo{
 		background: url( /images/uns-kentlab.png);
 		width:125px;
 		height:27px;
 		margin: 20vh auto;
 		}
-		
-		@media screen and (max-device-width: 640px) { 
+
+		@media screen and (max-device-width: 640px) {
 			.unsubscribe{
 				width:320px
 			}
 			..unsubscribe-text{
 			font-size: 12px}
-			
+
 		}
-		
+
 
 	</style>
 	<div class="unsubscribe">
 		<p class="unsubscribe-text">Уважаемые пользователи!<br>
 		Вы отписались от автоматической рассылки уведомлений закрытой группы Kent Lab
 		</p>
-		<button onclick="location.href='/group/1/'">Перейти в группу</button>	
+		<button onclick="location.href='/group/1/'">Перейти в группу</button>
 		<div class="unsubscribe-logo"></div>
 
 	</div>
-<?} elseif(!empty($_GET["email"])) {
+<?} elseif(!empty($_GET["email"])||!empty($_GET["md_email"])) {
 	$Query = CUser::GetList(
 			($by="id"),
 			($order="desc"),
@@ -90,7 +90,7 @@ if(!empty($_GET["id"])) {
 			"IBLOCK_ID" => 23
 		));
 	}
-	?>		
+	?>
 	<style>
 		@font-face {
 		font-family: "GothamProRegular";
@@ -130,32 +130,32 @@ if(!empty($_GET["id"])) {
 			text-align: center;
 			margin: auto;
 			color: #fff;
-			
+
 		}
-		
+
 		.unsubscribe-logo{
 		background: url( /images/uns-kentlab.png);
 		width:125px;
 		height:27px;
 		margin: 20vh auto;
 		}
-		
-		@media screen and (max-device-width: 640px) { 
+
+		@media screen and (max-device-width: 640px) {
 			.unsubscribe{
 				width:320px
 			}
 			..unsubscribe-text{
 			font-size: 12px}
-			
+
 		}
-		
+
 
 	</style>
 	<div class="unsubscribe">
 		<p class="unsubscribe-text">Уважаемые пользователи!<br>
 		Вы отписались от автоматической рассылки уведомлений закрытой группы Kent Lab
 		</p>
-		<button onclick="location.href='/group/1/'">Перейти в группу</button>	
+		<button onclick="location.href='/group/1/'">Перейти в группу</button>
 		<div class="unsubscribe-logo"></div>
 
 	</div>

@@ -13,7 +13,8 @@ $APPLICATION->set_cookie("MQ_BACKURL", strtok($_SERVER["REQUEST_URI"],'?'), time
 $obCache = new CPHPCache();
 $cacheLifetime = 86400*7;
 $cacheID = 'TeaserItems'.$_GET["POST_ID"];
-$cachePath = '/'.$cacheID;
+$cachePath = '/teasers/'.$cacheID;
+
 
 if($obCache->InitCache($cacheLifetime, $cacheID, $cachePath) )
 {
@@ -22,17 +23,20 @@ if($obCache->InitCache($cacheLifetime, $cacheID, $cachePath) )
 }
 elseif( $obCache->StartDataCache()  )
 {
-   $res = CIBlockElement::GetList(array(), array("ID" => $_GET["POST_ID"]));
-   while($arRes = $res->GetNextElement()){
+	global $CACHE_MANAGER;
+	$CACHE_MANAGER->StartTagCache($cachePath);
+	$res = CIBlockElement::GetList(array(), array("ID" => $_GET["POST_ID"]));
+	while($arRes = $res->GetNextElement()){
 	   	$arItem = $arRes->GetFields();
+		$CACHE_MANAGER->RegisterTag("iblock_id_".$arItem["IBLOCK_ID"]);
 	   	$arItem["PROPERTIES"] = $arRes->GetProperties();
 	   	$arPost = $arItem;
-   }
-   $obCache->EndDataCache(array('arPost' => $arPost));
+	}
+	$CACHE_MANAGER->EndTagCache();
+	$obCache->EndDataCache(array('arPost' => $arPost));
 }
+$ogImage = CFile::ResizeImageGet($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"], array('width'=>600, 'height'=>600), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 
-$ogImage = CFile::ResizeImageGet($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"], array('width'=>600, 'height'=>600), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-<?
 $APPLICATION->SetPageProperty("title", $arPost["NAME"]);
 $APPLICATION->SetPageProperty("description", $arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]);
 $APPLICATION->SetPageProperty("og:title", $arPost["NAME"]);
@@ -45,7 +49,8 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 		$(document).ready(function(){$.get("http://myqube.ru<?=$_SERVER["REQUEST_URI"]?>?utm_source=google&utm_medium=teaser&utm_term=<?=$soc_network?>&utm_campaign=<?=$arPost["ID"]?>",function(data){});});
 	</script>
 	<?
-	$image = 'http://myqube.ru'.CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]);
+	$image = 'http://myqube.ru'.str_replace(' ','%20', CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]));
+
 	$APPLICATION->SetAdditionalCSS("/layout/css/preview.css", true);
 	?>
 

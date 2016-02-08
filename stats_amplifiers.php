@@ -160,7 +160,15 @@ foreach($counter as $uid => $joined){
 }*/	
 	$err_mess = "Error in Query to `kpi_amplifier`: ";
 	$strSql = "SELECT `b2`.`NAME` as `a_name`,`b2`.`LAST_NAME` as `a_last_name`,`b2`.`LOGIN` as `a_login`,`b1_d`.`UF_VK_PROFILE`,`b1_d`.`UF_FB_PROFILE`,`b1_d`.`UF_GP_PROFILE`,`kpi_amplifier`.*,
-	`b1`.`PERSONAL_BIRTHDAY` as `u_birth_date`,`b1`.`PERSONAL_PHONE` as `u_phone_1`,`b1`.`PERSONAL_MOBILE` as `u_phone_2`,`b1`.`NAME` as `u_name`,`b1`.`LAST_NAME` as `u_last_name`,`b1`.`EMAIL` as `u_email`,`b1`.`LOGIN` as `u_login` FROM `kpi_amplifier` RIGHT JOIN `b_user` as `b1` ON `b1`.`ID`=`kpi_amplifier`.`UF_USER` RIGHT JOIN `b_uts_user` as `b1_d` ON `b1`.`ID`=`b1_d`.`VALUE_ID` RIGHT JOIN `b_user` as `b2` ON `b2`.`ID`=`kpi_amplifier`.`UF_AMPLIFIER` RIGHT JOIN `b_user_group` ON `b_user_group`.`USER_ID`=`kpi_amplifier`.`UF_AMPLIFIER` WHERE `b_user_group`.`GROUP_ID`=8 AND (`kpi_amplifier`.`UF_EVENT`>0 OR `kpi_amplifier`.`UF_ACTION_TEXT`='change_status') AND `UF_DATE_TIME` >='".ConvertDateTime($date_from, "YYYY-MM-DD", "ru")."' AND `UF_DATE_TIME`<='".ConvertDateTime($date_to, "YYYY-MM-DD", "ru")."' ORDER BY `ID` desc LIMIT 0,10000";
+	`b1`.`PERSONAL_BIRTHDAY` as `u_birth_date`,`b1`.`PERSONAL_PHONE` as `u_phone_1`,`b1`.`PERSONAL_MOBILE` as `u_phone_2`,`b1`.`NAME` as `u_name`,`b1`.`LAST_NAME` as `u_last_name`,`b1`.`EMAIL` as `u_email`,`b1`.`LOGIN` as `u_login` 	
+	FROM `kpi_amplifier` 
+	RIGHT JOIN `b_user` as `b1` ON `b1`.`ID`=`kpi_amplifier`.`UF_USER` 
+	RIGHT JOIN `b_uts_user` as `b1_d` ON `b1`.`ID`=`b1_d`.`VALUE_ID` 
+	RIGHT JOIN `b_user` as `b2` ON `b2`.`ID`=`kpi_amplifier`.`UF_AMPLIFIER` 
+	RIGHT JOIN `b_user_group` ON `b_user_group`.`USER_ID`=`kpi_amplifier`.`UF_AMPLIFIER` 
+	WHERE `b_user_group`.`GROUP_ID`=8 AND (`kpi_amplifier`.`UF_EVENT`>0 OR (`kpi_amplifier`.`UF_ACTION_TEXT`='change_status' AND `kpi_amplifier`.`UF_TYPE`<>`kpi_amplifier`.`UF_TYPE_2`)) 
+	AND `UF_DATE_TIME` >='".ConvertDateTime($date_from, "YYYY-MM-DD", "ru")."' AND `UF_DATE_TIME`<='".ConvertDateTime($date_to, "YYYY-MM-DD", "ru")."' 
+	ORDER BY `ID` desc LIMIT 0,10000";
 	$res = $DB->Query($strSql, false, $err_mess.__LINE__);
 if(!isset($_GET["csv"])){?>
 

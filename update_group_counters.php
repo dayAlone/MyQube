@@ -1,12 +1,12 @@
 <?
-	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+	/*require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 	CModule::IncludeModule("iblock");
 	/*for($group=1;$group<=9;$group++)
 	{*/
-		$group=1;
+		/*$group=1;
 		$filter = Array	("UF_GROUPS" => $group); 
 		$rsUsers = CUser::GetList(($by="LAST_NAME"), ($order="asc"), $filter,array('NAV_PARAMS' => array("nTopCount" => 0))); 
-		CIBlockElement::SetPropertyValueCode($group, "USERS", $rsUsers->NavRecordCount);
+		CIBlockElement::SetPropertyValueCode($group, "USERS", $rsUsers->NavRecordCount);*/
 		/*echo "count = ".$rsUsers->NavRecordCount;*/
 	/*}*/
 ?>
