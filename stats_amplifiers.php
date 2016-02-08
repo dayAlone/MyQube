@@ -166,7 +166,7 @@ foreach($counter as $uid => $joined){
 	RIGHT JOIN `b_uts_user` as `b1_d` ON `b1`.`ID`=`b1_d`.`VALUE_ID` 
 	RIGHT JOIN `b_user` as `b2` ON `b2`.`ID`=`kpi_amplifier`.`UF_AMPLIFIER` 
 	RIGHT JOIN `b_user_group` ON `b_user_group`.`USER_ID`=`kpi_amplifier`.`UF_AMPLIFIER` 
-	WHERE `b_user_group`.`GROUP_ID`=8 AND (`kpi_amplifier`.`UF_EVENT`>0 OR (`kpi_amplifier`.`UF_ACTION_TEXT`='change_status' AND `kpi_amplifier`.`UF_TYPE`<>`kpi_amplifier`.`UF_TYPE_2`)) 
+	WHERE `b_user_group`.`GROUP_ID`=8 AND (`kpi_amplifier`.`UF_EVENT`>0 OR `kpi_amplifier`.`UF_ACTION_TEXT`='change_status') 
 	AND `UF_DATE_TIME` >='".ConvertDateTime($date_from, "YYYY-MM-DD", "ru")."' AND `UF_DATE_TIME`<='".ConvertDateTime($date_to, "YYYY-MM-DD", "ru")."' 
 	ORDER BY `ID` desc LIMIT 0,10000";
 	$res = $DB->Query($strSql, false, $err_mess.__LINE__);
@@ -295,8 +295,20 @@ $even = false;
 $total = 0;
 $events = Array(0=>"");
 CModule::IncludeModule("iblock");
+$types = array(
+	34 => 1,
+	35 => 2,
+	36 => 3,
+	37 => 4,
+	39 => 1,
+	40 => 2,
+	41 => 3,
+	42 => 4
+);
 while ($cells = $res->Fetch())
 {
+	if($cells["UF_ACTION_TEXT"] == "change_status" && $types[$cells["UF_TYPE"]] == $types[$cells["UF_TYPE_2"]])
+		continue;
 	if(!isset($events[$cells["UF_EVENT"]]))
 	{
 		$res_1 = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 2, "ID" => $cells["UF_EVENT"]));
@@ -320,16 +332,16 @@ while ($cells = $res->Fetch())
 			<td><?=$cells["UF_USER"]?></td>
 			<td><?=$cells["u_name"]?></td>
 			<td><?=$cells["u_last_name"]?></td>
-			<td><?=$cells["u_email"]?></td>
+			<td><?=($cells["UF_TYPE_2"]==39) ? "" : $cells["u_email"]?></td>
 			<td><?=$cells["u_phone_1"]." ".$cells["u_phone_2"]?></td>
 			<td><?=implode(" ",unserialize($cells["UF_FB_PROFILE"]));?></td>
 			<td><?=implode(" ",unserialize($cells["UF_VK_PROFILE"]));?></td>
 			<td><?=implode(" ",unserialize($cells["UF_GP_PROFILE"]));?></td>
 			<td><?=$cells["u_birth_date"]?></td>
-			<td><?=($cells["UF_TYPE"]==34||$cells["UF_TYPE_2"]==39)?"1":""?></td>
-			<td><?=($cells["UF_TYPE"]==36||$cells["UF_TYPE_2"]==41)?"1":""?></td>
-			<td><?=($cells["UF_TYPE"]==35||$cells["UF_TYPE_2"]==40)?"1":""?></td>
-			<td><?=($cells["UF_TYPE"]==37||$cells["UF_TYPE_2"]==42)?"1":""?></td>
+			<td><?=$cells["UF_EVENT"] ? (($cells["UF_TYPE"]==34||$cells["UF_TYPE_2"]==39)?"1":"") : ($cells["UF_TYPE_2"]==39)?"1":""?></td>
+			<td><?=$cells["UF_EVENT"] ? (($cells["UF_TYPE"]==36||$cells["UF_TYPE_2"]==41)?"1":"") : ($cells["UF_TYPE_2"]==41)?"1":""?></td>
+			<td><?=$cells["UF_EVENT"] ? (($cells["UF_TYPE"]==35||$cells["UF_TYPE_2"]==40)?"1":"") : ($cells["UF_TYPE_2"]==40)?"1":""?></td>
+			<td><?=$cells["UF_EVENT"] ? (($cells["UF_TYPE"]==37||$cells["UF_TYPE_2"]==42)?"1":"") : ($cells["UF_TYPE_2"]==42)?"1":""?></td>
 		</tr>
 	<?	}
 	else

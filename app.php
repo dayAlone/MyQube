@@ -275,7 +275,6 @@ if($_REQUEST["mode"] == "new_contact") {
 		"Y" => 1,
 		"N" => 0
 	);
-	$cUser = new CUser; 
 	foreach($json as $key => $val) {
 		if($val["contact_type"] == 0) $val["contact_type"] = 1;
 		$groups = array(1);
@@ -306,7 +305,8 @@ if($_REQUEST["mode"] == "new_contact") {
 			"UF_STATUS" => $contact_type[$val["contact_type"]],
 			"UF_GROUPS" => $groups
 		);
-		if(empty($cUser->GetByLogin($Fields["LOGIN"])->Fetch())) {
+		$checkLogin = $USER->GetByLogin($Fields["LOGIN"])->Fetch();
+		if(empty($checkLogin)) {
 			if(!empty($val["PARENT_NAME"])) {
 				$arUser = $USER->GetByLogin($val["PARENT_NAME"])->Fetch();
 				$Fields["UF_USER_PARENT"] = $arUser["ID"];

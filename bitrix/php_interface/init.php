@@ -203,7 +203,7 @@ class OnBeforeProlog {
 								CustomUser::UserUpdate(array("UF_GROUPS" => array(1)));
 								CModule::IncludeModule("iblock");
 								$filter = Array	("UF_GROUPS" => 1); 
-								$rsUsers = CUser::GetList(($by="LAST_NAME"), ($order="asc"), $filter,array('NAV_PARAMS' => array("nTopCount" => 0))); 
+								$rsUsers = CUser::GetList(($by="timestamp_x"), ($order="desc"), $filter); 
 								CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
 								LocalRedirect("/group/1/".$backurl);
 							} elseif(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены
