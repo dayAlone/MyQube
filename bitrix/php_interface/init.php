@@ -47,36 +47,12 @@ class OnAfterUserLogin {
 					}
 				}
 			}
-			/*if($arFields['USER_ID'] > 0) {
-				$APPLICATION->set_cookie("MQ_AUTH_REMEMBER", $arFields['USER_ID'], time()+60*60*24*3,"/");
-
-				if(empty($arFields['LAST_LOGIN'])) {
-
-				}
-			}*/
 		}
-	}
-}
-class OnBeforeUserLogout {
-	function AuthRemove($arParams) {
-		$_SESSION['BITRIX_SM_MQ_AUTH_REMOVE'] = 1;
 	}
 }
 class OnBeforeProlog {
 	function CustomSetLastActivityDate() {
 		if($GLOBALS['USER']->IsAuthorized()) CUser::SetLastActivityDate($GLOBALS['USER']->GetID());
-	}
-	function AuthRemoveOrRemember() {
-		global $USER;
-		global $APPLICATION;
-		if($_SESSION['BITRIX_SM_MQ_AUTH_REMOVE'])
-			$APPLICATION->set_cookie("MQ_AUTH_REMEMBER", "", time()-60,"/");
-
-		if(!$USER->IsAuthorized()) {
-			if($UserId = $APPLICATION->get_cookie("MQ_AUTH_REMEMBER")) {
-				$USER->Authorize($UserId);
-			}
-		}
 	}
 	function MyOnBeforePrologHandler() {
 		global $USER;
@@ -162,10 +138,7 @@ class OnBeforeProlog {
 
 		if($Dir[1] == "group" && $Dir[2] == 1 && $Dir[3] !== "post" && !empty($Dir[3]))
 			$_SESSION["BackFromDetail"]["group_6"]["nPageSize"] = 1;
-
-		/*if((!$USER->IsAdmin() || !CSite::InGroup(array(8,9))) && $Dir[1] != "staff" && $Dir[1] != "amplifiers" && $Dir[1] != "bitrix" && $_SERVER["HTTP_X_REAL_IP"] != "83.219.142.133" && $_SERVER["HTTP_X_REAL_IP"] != "178.236.242.146" && $_SERVER["HTTP_X_REAL_IP"] != "94.159.47.38" && $_SERVER["HTTP_X_REAL_IP"] != "213.33.231.234" && $_SERVER["HTTP_X_REAL_IP"] != "95.129.169.203‏" && $_SERVER["HTTP_X_REAL_IP"] != "5.142.183.206" && $USER->GetID() != 223){
-			die("<img src='http://www.trizacautomation.com/Website%20Under%20Construction.jpg' style='position: fixed; top: 0; right: 0; left: 0; bottom: 0; width: 100%; height: 100%;'>");
-		}*/
+		
 		$CurentUser = array();
 
 		if(!empty($_GET["backurl"])) {
@@ -543,104 +516,105 @@ class CustomUser {
 		$NewElement = new CIBlockElement;
 		$Id = 0;
 		$Password = date("His");
+		if(18 <= (date("Y") - date("Y",strtotime($Data["PERSONAL_BIRTHDAY"])))) {
+			if($Data["INFO"] == 1){
+				$Id = $NewElement->Add(array(
+					"NAME" => date("d.m.Y H:i:s"),
+					"IBLOCK_ID" => "19",
+					"ACTIVE" => "Y",
+					"PROPERTY_VALUES" => array(
+						"120" => $Data["UF_FB"], //FB
+						"121" => $Data["UF_G_PLUS"], //G+
+						"122" => $Data["UF_VK"], //VK
+						"117" => $Data["PERSONAL_BIRTHDAY"], //Дата рождения
+						"114" => $Data["NAME"], //Имя
+						"118" => $Data["UF_BRAND_1"], //Марка 1
+						"119" => $Data["UF_BRAND_2"], //Марка 2
+						"116" => $Data["EMAIL"], //Почта
+						"115" => $Data["LAST_NAME"], //Фамилия
+						"123" => $USER->GetID(), //Родитель
+						"124" => $Data["PERSONAL_MOBILE"], //Мобильный телефон
+						"125" => $Data["SOURSE"] //Источник данных app_staff или app_amplifier или web_staff или любая другая метка
+					)
+				));
 
-		if($Data["INFO"] == 1){
-			$Id = $NewElement->Add(array(
-				"NAME" => date("d.m.Y H:i:s"),
-				"IBLOCK_ID" => "19",
-				"ACTIVE" => "Y",
-				"PROPERTY_VALUES" => array(
-					"120" => $Data["UF_FB"], //FB
-					"121" => $Data["UF_G_PLUS"], //G+
-					"122" => $Data["UF_VK"], //VK
-					"117" => $Data["PERSONAL_BIRTHDAY"], //Дата рождения
-					"114" => $Data["NAME"], //Имя
-					"118" => $Data["UF_BRAND_1"], //Марка 1
-					"119" => $Data["UF_BRAND_2"], //Марка 2
-					"116" => $Data["EMAIL"], //Почта
-					"115" => $Data["LAST_NAME"], //Фамилия
-					"123" => $USER->GetID(), //Родитель
-					"124" => $Data["PERSONAL_MOBILE"], //Мобильный телефон
-					"125" => $Data["SOURSE"] //Источник данных app_staff или app_amplifier или web_staff или любая другая метка
-				)
-			));
-
-			if(!intval($Id)){
-				self::$TextError = $User->LAST_ERROR;
+				if(!intval($Id)){
+					self::$TextError = $User->LAST_ERROR;
+				}
+				return (intval($Id) > 0 ? true : false);
 			}
-			return (intval($Id) > 0 ? true : false);
-		}
 
-		$Fields = Array(
-			"NAME" => $Data["NAME"],
-			"LAST_NAME" => $Data["LAST_NAME"],
-			"EMAIL" => $Data["EMAIL"],
-			"LOGIN" => $Data["EMAIL"],
-			"LID" => "ru",
-			"ACTIVE" => "Y",
-			"PERSONAL_BIRTHDAY" => $Data["PERSONAL_BIRTHDAY"],
-			"UF_IAGREE" => $Data["UF_IAGREE"],
-			"GROUP_ID" => array(3,4,5),
-			"PASSWORD" => $Password,
-			"CONFIRM_PASSWORD" => $Password,
-			"PERSONAL_MOBILE" => $Data["PERSONAL_MOBILE"],
-			"UF_YOU_HAVE_18" => $Data["UF_YOU_HAVE_18"],
-			"UF_DO_YOU_SMOKE" => $Data["UF_DO_YOU_SMOKE"],
-			"UF_GP_PROFILE" => $Data["UF_G_PLUS"],
-			"UF_FB_PROFILE" => $Data["UF_FB"],
-			"UF_VK_PROFILE" => $Data["UF_VK"],
-			"UF_LATITUDE" => $Data["UF_LATITUDE"],
-			"UF_LONGITUDE" => $Data["UF_LONGITUDE"],
-			"UF_USER_PARENT" => $USER->GetID(),
-			"UF_BRAND_1" => $Data["UF_BRAND_1"],
-			"UF_BRAND_2" => $Data["UF_BRAND_2"],
-			"UF_PASSWORD" => $Password,
-			"UF_SOURSE" => $Data["SOURSE"],
-			"UF_PRIVATE_MYPAGE" => 1,
-			"UF_PRIVATE_MYFRIENDS" => 5,
-			"UF_PRIVATE_MYGROUPS" => 9,
-			"UF_GROUPS" => array(1)
-		);
-
-		$Id = $User->Add($Fields);
-		if(intval($Id)){
-			$el_log = new CIBlockElement;
-			$PROP_log = array();
-			$PROP_log["ID"] = $id;
-			$PROP_log["PERSONAL_BIRTHDAY"] = $Fields["PERSONAL_BIRTHDAY"];
-			$PROP_log["UF_IAGREE"] = $Fields["UF_IAGREE"];
-			$PROP_log["UF_YOU_HAVE_18"] = $Fields["UF_YOU_HAVE_18"];
-			$PROP_log["UF_DO_YOU_SMOKE"] = $Fields["UF_DO_YOU_SMOKE"];
-			$PROP_log["TYPE"] = "set_user";
-			$arLoadProductArray_log = Array(
-			  "IBLOCK_ID"      => 26,
-			  "PROPERTY_VALUES"=> $PROP_log,
-			  "NAME"           => $id
-			);
-			$el_log->Add($arLoadProductArray_log);
-			$Token = sha1($Id."".date("d.m.Y H:i:s"));
-			$Fields["UF_TOKEN"] = $Token;
-			$User->Update($Id,$Fields);
-			self::$TextError = "Пользователь успешно добавлен.";
-			$eventFields = array(
-				"USER_ID" => $Id,
-				"LOGIN" => $Data["EMAIL"],
-				"EMAIL" => $Data["EMAIL"],
+			$Fields = Array(
 				"NAME" => $Data["NAME"],
 				"LAST_NAME" => $Data["LAST_NAME"],
+				"EMAIL" => $Data["EMAIL"],
+				"LOGIN" => $Data["EMAIL"],
+				"LID" => "ru",
+				"ACTIVE" => "Y",
+				"PERSONAL_BIRTHDAY" => $Data["PERSONAL_BIRTHDAY"],
+				"UF_IAGREE" => $Data["UF_IAGREE"],
+				"GROUP_ID" => array(3,4,5),
 				"PASSWORD" => $Password,
-				"TOKEN" => $Token
+				"CONFIRM_PASSWORD" => $Password,
+				"PERSONAL_MOBILE" => $Data["PERSONAL_MOBILE"],
+				"UF_YOU_HAVE_18" => $Data["UF_YOU_HAVE_18"],
+				"UF_DO_YOU_SMOKE" => $Data["UF_DO_YOU_SMOKE"],
+				"UF_GP_PROFILE" => $Data["UF_G_PLUS"],
+				"UF_FB_PROFILE" => $Data["UF_FB"],
+				"UF_VK_PROFILE" => $Data["UF_VK"],
+				"UF_LATITUDE" => $Data["UF_LATITUDE"],
+				"UF_LONGITUDE" => $Data["UF_LONGITUDE"],
+				"UF_USER_PARENT" => $USER->GetID(),
+				"UF_BRAND_1" => $Data["UF_BRAND_1"],
+				"UF_BRAND_2" => $Data["UF_BRAND_2"],
+				"UF_PASSWORD" => $Password,
+				"UF_SOURSE" => $Data["SOURSE"],
+				"UF_PRIVATE_MYPAGE" => 1,
+				"UF_PRIVATE_MYFRIENDS" => 5,
+				"UF_PRIVATE_MYGROUPS" => 9,
+				"UF_GROUPS" => array(1)
 			);
-			$userFields = $USER->GetByID($USER->GetID())->Fetch();
-			if($Fields["UF_USER_PARENT"] == 29808 || $Fields["UF_USER_PARENT"] == 7813 || $Fields["UF_USER_PARENT"] == 43546 || $Fields["UF_USER_PARENT"] == 43562 || $Fields["UF_USER_PARENT"] == 43563 || $Fields["UF_USER_PARENT"] == 43547 || $Fields["UF_USER_PARENT"] == 43575 || $Fields["UF_USER_PARENT"] == 43731 || $Fields["UF_USER_PARENT"] == 43735 || $Fields["UF_USER_PARENT"] == 43551 || $Fields["UF_USER_PARENT"] == 43553 || $Fields["UF_USER_PARENT"] == 32177 || $Fields["UF_USER_PARENT"] == 32175 || $Fields["UF_USER_PARENT"] == 32176 || $Fields["UF_USER_PARENT"] == 32169 || $Fields["UF_USER_PARENT"] == 32173 || $Fields["UF_USER_PARENT"] == 32172 || $Fields["UF_USER_PARENT"] == 32174 || $Fields["UF_USER_PARENT"] == 32170) {
-				CEvent::Send("registration", "s1", $eventFields);
-			} elseif($userFields["PERSONAL_CITY"] == "Екатеринбург") {
-				CEvent::Send("NEW_USER", "s1", $eventFields);
+
+			$Id = $User->Add($Fields);
+			if(intval($Id)){
+				$el_log = new CIBlockElement;
+				$PROP_log = array();
+				$PROP_log["ID"] = $id;
+				$PROP_log["PERSONAL_BIRTHDAY"] = $Fields["PERSONAL_BIRTHDAY"];
+				$PROP_log["UF_IAGREE"] = $Fields["UF_IAGREE"];
+				$PROP_log["UF_YOU_HAVE_18"] = $Fields["UF_YOU_HAVE_18"];
+				$PROP_log["UF_DO_YOU_SMOKE"] = $Fields["UF_DO_YOU_SMOKE"];
+				$PROP_log["TYPE"] = "set_user";
+				$arLoadProductArray_log = Array(
+				  "IBLOCK_ID"      => 26,
+				  "PROPERTY_VALUES"=> $PROP_log,
+				  "NAME"           => $id
+				);
+				$el_log->Add($arLoadProductArray_log);
+				$Token = sha1($Id."".date("d.m.Y H:i:s"));
+				$Fields["UF_TOKEN"] = $Token;
+				$User->Update($Id,$Fields);
+				self::$TextError = "Пользователь успешно добавлен.";
+				$eventFields = array(
+					"USER_ID" => $Id,
+					"LOGIN" => $Data["EMAIL"],
+					"EMAIL" => $Data["EMAIL"],
+					"NAME" => $Data["NAME"],
+					"LAST_NAME" => $Data["LAST_NAME"],
+					"PASSWORD" => $Password,
+					"TOKEN" => $Token
+				);
+				$userFields = $USER->GetByID($USER->GetID())->Fetch();
+				if($Fields["UF_USER_PARENT"] == 29808 || $Fields["UF_USER_PARENT"] == 7813 || $Fields["UF_USER_PARENT"] == 43546 || $Fields["UF_USER_PARENT"] == 43562 || $Fields["UF_USER_PARENT"] == 43563 || $Fields["UF_USER_PARENT"] == 43547 || $Fields["UF_USER_PARENT"] == 43575 || $Fields["UF_USER_PARENT"] == 43731 || $Fields["UF_USER_PARENT"] == 43735 || $Fields["UF_USER_PARENT"] == 43551 || $Fields["UF_USER_PARENT"] == 43553 || $Fields["UF_USER_PARENT"] == 32177 || $Fields["UF_USER_PARENT"] == 32175 || $Fields["UF_USER_PARENT"] == 32176 || $Fields["UF_USER_PARENT"] == 32169 || $Fields["UF_USER_PARENT"] == 32173 || $Fields["UF_USER_PARENT"] == 32172 || $Fields["UF_USER_PARENT"] == 32174 || $Fields["UF_USER_PARENT"] == 32170) {
+					CEvent::Send("registration", "s1", $eventFields);
+				} elseif($userFields["PERSONAL_CITY"] == "Екатеринбург") {
+					CEvent::Send("NEW_USER", "s1", $eventFields);
+				} else {
+					CEvent::Send("NEW_USER_NEW", "s1", $eventFields);
+				}
 			} else {
-				CEvent::Send("NEW_USER_NEW", "s1", $eventFields);
+				self::$TextError = $User->LAST_ERROR;
 			}
-		} else {
-			self::$TextError = $User->LAST_ERROR;
 		}
 		return (intval($Id) > 0 ? true : false);
 	}

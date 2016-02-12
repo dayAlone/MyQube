@@ -2,6 +2,7 @@
 <?if($_GET["logout"] == "y"){ $USER->Logout();}?>
 <div class="show-message">
 	<?if($_GET["add_user"] == "Y"):?>Пользователь успешно добавлен.<?endif;?>
+	<?if($_GET["add_user"] == "N"):?><span style="color: red;">Пользователь Не добавлен.</span><?endif;?>
 </div>
 <ul class="menu">
 	<li>

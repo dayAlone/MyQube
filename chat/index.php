@@ -12,18 +12,13 @@ $(function(){
 </script>
 <?
 	$CurentUser = CUser::GetByID($USER->GetID())->Fetch();
-	/*echo "<xmp>";
-	print_r($CurentUser["UF_FRIENDS"]);
-	echo "</xmp>";*/
 	$order = array('sort' => 'asc');
-	$tmp = 'sort'; // параметр проигнорируется методом, но обязан быть
-	//if(empty($CurentUser["UF_FRIENDS"]))$CurentUser["UF_FRIENDS"]=Array(1,2,3,4,5);
-	$rsUsers = CUser::GetList($order, $tmp, Array("ID"=>implode('|', $CurentUser["UF_FRIENDS"])));
-	//echo "<xmp>"; print_r($rsUsers); echo "</xmp>";
-	/*while($arUser = $rsUsers->Fetch())
-	{
-		echo $arUser["LOGIN"]."<br>";
-	}*/
+	$tmp = 'sort'; 
+
+	<?if(!empty($CurentUser["UF_FRIENDS"])) {?>
+		$rsUsers = CUser::GetList($order, $tmp, Array("ID"=>implode('|', $CurentUser["UF_FRIENDS"])));
+	<?}?>
+
 ?>
 <link type="text/css" rel="stylesheet" href="/css/chat.css">
 <div class="chat">

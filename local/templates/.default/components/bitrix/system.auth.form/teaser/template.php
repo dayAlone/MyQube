@@ -1,13 +1,11 @@
 
 <script type="text/javascript">
-	var Timer;
-	var NewWindow;
+
 	$(document).ready(function(){
 		$(".login__link").on('click', function(e) {
-			NewWindow = window.open($(this).data('url'),'','width=660,height=425,scrollbars=1');
-			Timer = setInterval(function() {
-				console.log('check')
-			    if(NewWindow.closed) {
+			var NewWindow = window.open($(this).data('url'),'','width=660,height=425,scrollbars=1');
+			var Timer = setInterval(function() {
+				if(NewWindow.closed) {
 			        window.location.href = window.location.href
 			    }
 			}, 1000);

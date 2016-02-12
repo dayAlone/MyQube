@@ -5,11 +5,15 @@
 <ul class="menu"><li><a href="javascript:void(0)">Добавить контакт</a></li></ul>
 <div class="add-user-error">
 <?if(isset($_POST["Data"]["User"])){//htmlspecialcharsbx
-	if(CustomUser::Set($_POST["Data"]["User"])){LocalRedirect("/amplifiers/?add_user=Y");}
+	if(CustomUser::Set($_POST["Data"]["User"])) {
+		LocalRedirect("/amplifiers/?add_user=Y");
+	} else {
+		LocalRedirect("/amplifiers/?add_user=N");
+	}
 	echo ShowError(CustomUser::$TextError);
 }?>
 </div>
-<form class="add-user" method="POST">
+<form class="add-user" method="POST" id="amplifiers_form">
 	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<td>
@@ -70,7 +74,7 @@
 					placeholder="Дата рождения ДД.ММ.ГГГГ" 
 					type="text" 
 					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["PERSONAL_BIRTHDAY"]);?>"
-					name="Data[User][PERSONAL_BIRTHDAY]" />
+					name="Data[User][PERSONAL_BIRTHDAY]" required />
 			</td>
 		</tr>
 		<tr>
@@ -246,5 +250,14 @@
 			}
 		}
 	}
+	$("#amplifiers_form").submit(function() {
+		var newdate = $("#amplifiers_form input[name='Data[User][PERSONAL_BIRTHDAY]']").val();
+		var date = new Date(newdate.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'));
+		var time = date.getTime();
+		if(time > 0 && (Date.now() - time) < 567648000000)
+			return false;
+		else
+			return true;
+	});
 </script>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

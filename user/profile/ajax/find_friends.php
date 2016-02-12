@@ -16,9 +16,9 @@ if($_POST["s_age_from"]!="")
 if($_POST["s_age_to"]!="")
 	$filter["PERSONAL_BIRTHDAY_2"] = date("d.m.Y",mktime(0, 0, 0, date("m"), date("d"),   date("Y")-intval($_POST['s_age_from'])));	
 	//echo "<xmp>"; print_r($filter);echo "</xmp>";
-$rsUsers = CUser::GetList(($by="name"), ($order="asc"), $filter); // выбираем пользователей
+$rsUsers = CUser::GetList(($by="name"), ($order="asc"), $filter, Array("nPageSize"=>20)); // выбираем пользователей
 $is_filtered = $rsUsers->is_filtered; // отфильтрована ли выборка ?
-$rsUsers->NavStart(500); // разбиваем постранично по 50 записей
+$rsUsers->NavStart(20); // разбиваем постранично по 50 записей
 echo $rsUsers->NavPrint(GetMessage("PAGES")); // печатаем постраничную навигацию
 $flag = false;
 while($rsUsers->NavNext(true, "f_")) :
