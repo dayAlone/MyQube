@@ -25832,9 +25832,11 @@ return jQuery;
 
   this.size = function() {
     $('html').removeAttr('style');
-    if ($.browser.iphone) {
-      return $('html').attr('style', 'height: ' + $('html').height() + 'px');
-    }
+    return delay(100, function() {
+      if ($.browser.iphone) {
+        return $('html').attr('style', 'height: ' + $('html').height() + 'px');
+      }
+    });
   };
 
   $(document).ready(function() {
