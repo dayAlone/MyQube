@@ -3689,8 +3689,8 @@ body {
   touch-action: manipulation;
   -webkit-font-smoothing: antialiased;
 }
-body input {
-  -webkit-text-fill-color: transparent;
+body input:-webkit-autofill {
+  background-color: transparent !important;
 }
 .teaser__background {
   position: fixed;
