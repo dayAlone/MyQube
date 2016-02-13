@@ -3885,6 +3885,11 @@ body {
   -webkit-overflow-scrolling: touch;
   padding-top: 81px;
 }
+@media (max-width: 767px) {
+  .page--login:not(.page--on) .groups {
+    overflow: hidden;
+  }
+}
 @media (min-width: 768px) {
   .groups {
     padding-top: 0;
@@ -4207,6 +4212,9 @@ body {
   font-size: 13px;
   padding-top: 1px;
   font-weight: bold;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   color: rgba(0,0,0,0.7);
   -webkit-transition-property: box-shadow;
   -moz-transition-property: box-shadow;
