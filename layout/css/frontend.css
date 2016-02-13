@@ -3886,7 +3886,7 @@ body {
   padding-top: 81px;
 }
 .ios .groups {
-  max-height: 33vh;
+  max-height: calc(100vh - 67px);
 }
 @media (max-width: 767px) {
   .page--login:not(.page--on) .groups {
@@ -4076,7 +4076,7 @@ body {
   background-position: 50% 90px;
 }
 .ios .login {
-  max-height: 33vh;
+  max-height: calc(100vh - 67px);
 }
 @media (max-width: 767px) {
   .login {
