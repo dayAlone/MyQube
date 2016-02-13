@@ -3689,6 +3689,9 @@ body {
   touch-action: manipulation;
   -webkit-font-smoothing: antialiased;
 }
+body input {
+  -webkit-text-fill-color: transparent;
+}
 .teaser__background {
   position: fixed;
   top: 0%;
