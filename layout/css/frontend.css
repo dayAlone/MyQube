@@ -4457,9 +4457,6 @@ body input:-webkit-autofill {
 .age__input {
   text-align: center;
 }
-.age .qblock__footer {
-  margin-bottom: 0;
-}
 .age__button {
   width: 255px;
   margin: 0 auto;

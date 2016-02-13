@@ -11100,10 +11100,9 @@ return jQuery;
   };
 
   this.size = function() {
+    $('html').removeAttr('style');
     if ($.browser.iphone) {
       return $('html').css('height', $('html').height());
-    } else {
-      return $('html').removeAttr('style');
     }
   };
 
