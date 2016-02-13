@@ -10278,6 +10278,809 @@ return jQuery;
 
 }(jQuery);
 
+/*!
+ * jQuery Browser Plugin 0.1.0
+ * https://github.com/gabceb/jquery-browser-plugin
+ *
+ * Original jquery-browser code Copyright 2005, 2015 jQuery Foundation, Inc. and other contributors
+ * http://jquery.org/license
+ *
+ * Modifications Copyright 2015 Gabriel Cebrian
+ * https://github.com/gabceb
+ *
+ * Released under the MIT license
+ *
+ * Date: 05-07-2015
+ */
+/*global window: false */
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], function ($) {
+      return factory($);
+    });
+  } else if (typeof module === 'object' && typeof module.exports === 'object') {
+    // Node-like environment
+    module.exports = factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(window.jQuery);
+  }
+}(function(jQuery) {
+  "use strict";
+
+  function uaMatch( ua ) {
+    // If an UA is not provided, default to the current browser UA.
+    if ( ua === undefined ) {
+      ua = window.navigator.userAgent;
+    }
+    ua = ua.toLowerCase();
+
+    var match = /(edge)\/([\w.]+)/.exec( ua ) ||
+        /(opr)[\/]([\w.]+)/.exec( ua ) ||
+        /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+        /(iemobile)[\/]([\w.]+)/.exec( ua ) ||
+        /(version)(applewebkit)[ \/]([\w.]+).*(safari)[ \/]([\w.]+)/.exec( ua ) ||
+        /(webkit)[ \/]([\w.]+).*(version)[ \/]([\w.]+).*(safari)[ \/]([\w.]+)/.exec( ua ) ||
+        /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+        /(msie) ([\w.]+)/.exec( ua ) ||
+        ua.indexOf("trident") >= 0 && /(rv)(?::| )([\w.]+)/.exec( ua ) ||
+        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+        [];
+
+    var platform_match = /(ipad)/.exec( ua ) ||
+        /(ipod)/.exec( ua ) ||
+        /(windows phone)/.exec( ua ) ||
+        /(iphone)/.exec( ua ) ||
+        /(kindle)/.exec( ua ) ||
+        /(silk)/.exec( ua ) ||
+        /(android)/.exec( ua ) ||
+        /(win)/.exec( ua ) ||
+        /(mac)/.exec( ua ) ||
+        /(linux)/.exec( ua ) ||
+        /(cros)/.exec( ua ) ||
+        /(playbook)/.exec( ua ) ||
+        /(bb)/.exec( ua ) ||
+        /(blackberry)/.exec( ua ) ||
+        [];
+
+    var browser = {},
+        matched = {
+          browser: match[ 5 ] || match[ 3 ] || match[ 1 ] || "",
+          version: match[ 2 ] || match[ 4 ] || "0",
+          versionNumber: match[ 4 ] || match[ 2 ] || "0",
+          platform: platform_match[ 0 ] || ""
+        };
+
+    if ( matched.browser ) {
+      browser[ matched.browser ] = true;
+      browser.version = matched.version;
+      browser.versionNumber = parseInt(matched.versionNumber, 10);
+    }
+
+    if ( matched.platform ) {
+      browser[ matched.platform ] = true;
+    }
+
+    // These are all considered mobile platforms, meaning they run a mobile browser
+    if ( browser.android || browser.bb || browser.blackberry || browser.ipad || browser.iphone ||
+      browser.ipod || browser.kindle || browser.playbook || browser.silk || browser[ "windows phone" ]) {
+      browser.mobile = true;
+    }
+
+    // These are all considered desktop platforms, meaning they run a desktop browser
+    if ( browser.cros || browser.mac || browser.linux || browser.win ) {
+      browser.desktop = true;
+    }
+
+    // Chrome, Opera 15+ and Safari are webkit based browsers
+    if ( browser.chrome || browser.opr || browser.safari ) {
+      browser.webkit = true;
+    }
+
+    // IE11 has a new token so we will assign it msie to avoid breaking changes
+    if ( browser.rv || browser.iemobile) {
+      var ie = "msie";
+
+      matched.browser = ie;
+      browser[ie] = true;
+    }
+
+    // Edge is officially known as Microsoft Edge, so rewrite the key to match
+    if ( browser.edge ) {
+      delete browser.edge;
+      var msedge = "msedge";
+
+      matched.browser = msedge;
+      browser[msedge] = true;
+    }
+
+    // Blackberry browsers are marked as Safari on BlackBerry
+    if ( browser.safari && browser.blackberry ) {
+      var blackberry = "blackberry";
+
+      matched.browser = blackberry;
+      browser[blackberry] = true;
+    }
+
+    // Playbook browsers are marked as Safari on Playbook
+    if ( browser.safari && browser.playbook ) {
+      var playbook = "playbook";
+
+      matched.browser = playbook;
+      browser[playbook] = true;
+    }
+
+    // BB10 is a newer OS version of BlackBerry
+    if ( browser.bb ) {
+      var bb = "blackberry";
+
+      matched.browser = bb;
+      browser[bb] = true;
+    }
+
+    // Opera 15+ are identified as opr
+    if ( browser.opr ) {
+      var opera = "opera";
+
+      matched.browser = opera;
+      browser[opera] = true;
+    }
+
+    // Stock Android browsers are marked as Safari on Android.
+    if ( browser.safari && browser.android ) {
+      var android = "android";
+
+      matched.browser = android;
+      browser[android] = true;
+    }
+
+    // Kindle browsers are marked as Safari on Kindle
+    if ( browser.safari && browser.kindle ) {
+      var kindle = "kindle";
+
+      matched.browser = kindle;
+      browser[kindle] = true;
+    }
+
+     // Kindle Silk browsers are marked as Safari on Kindle
+    if ( browser.safari && browser.silk ) {
+      var silk = "silk";
+
+      matched.browser = silk;
+      browser[silk] = true;
+    }
+
+    // Assign the name and platform variable
+    browser.name = matched.browser;
+    browser.platform = matched.platform;
+    return browser;
+  }
+
+  // Run the matching process, also assign the function to the returned object
+  // for manual, jQuery-free use if desired
+  window.jQBrowser = uaMatch( window.navigator.userAgent );
+  window.jQBrowser.uaMatch = uaMatch;
+
+  // Only assign to jQuery.browser if jQuery is loaded
+  if ( jQuery ) {
+    jQuery.browser = window.jQBrowser;
+  }
+
+  return window.jQBrowser;
+}));
+
+/* @required jQuery */
+
+(function(root, factory) {
+  if(typeof define === "function" && define.amd) {
+    define(['jquery'], factory);
+  } else if(typeof module === 'object' && module.exports) {
+    factory(require('jquery'));
+  } else {
+    factory(root.jQuery);
+  }
+}(this, function($, undefined) {
+
+  /**
+   * Base BEM class.
+   * @constructor
+   */
+  function BEM(config) {
+    this.setConfig(config);
+  };
+
+  /**
+   * Set the config for the plugin
+   * @param {Object} config - defaults in br
+   * @param {String} [config.elemPrefix] - Element prefix (default: '__')
+   * @param {String} [config.modPrefix] - Modifier prefix (default: '_')
+   * @param {String} [config.modDlmtr] - Modifier delimiter (default: '_')
+   * @param {String} [config.namePattern] -
+   *   Pattern to match valid block names (default: '[a-zA-Z0-9-]+')
+   */
+  BEM.prototype.setConfig = function(config) {
+    this.config = $.extend({}, {
+      namePattern: '[a-zA-Z0-9-]+',
+      elemPrefix: '__',
+      modPrefix: '--',
+      modDlmtr: '_'
+    }, config);
+
+    this.blockClassRe = this.buildBlockClassRe();
+    this.elemClassRe = this.buildElemClassRe();
+    this.modClassRe = this.buildModClassRe();
+  };
+
+  /**
+   * Get parent block of element.
+   * @public
+   *
+   * @param {Object} $this
+   * @return {Object}
+   */
+  BEM.prototype.getBlock = function($this) {
+    var blockClass = this.getBlockClass($this)
+      , block = $this.closest('.' + blockClass);
+
+    block.selector = blockClass;
+    return block;
+  };
+
+  /**
+   * Switch block context.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {String} block
+   * @param {String} [elem]
+   * @return {Object}
+   */
+  BEM.prototype.switchBlock = function($this, block, elem) {
+    var elem = elem || null;
+
+    elem
+      ? $this.selector = this.buildSelector({ block: block, elem: elem })
+      : $this.selector = this.buildSelector({ block: block });
+
+    return $this;
+  };
+
+  /**
+   * Find element in block.
+   * @public
+   *
+   * @param  {Object}  $this    DOM element
+   * @param  {String}  elemKey  Element name
+   * @return {Object}
+   */
+  BEM.prototype.findElem = function($this, elemKey) {
+    var blockClass = this.getBlockClass($this)
+      , elemSelector = '.' + this.buildElemClass(blockClass, elemKey)
+      , elem = $this.is(elemSelector) ? $this : $this.find(elemSelector);
+
+    return elem;
+  };
+
+  /**
+   * Get value of modifier.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {String} modKey
+   * @return {String}
+   */
+  BEM.prototype.getMod = function($this, modKey) {
+    var mods = this.extractMods($this.first());
+
+    if (mods[modKey] != undefined) return mods[modKey];
+    return null;
+  };
+
+  /**
+   * Check modifier of element.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {String} modKey
+   * @param {String} [modVal]
+   * @return {Boolean}
+   */
+  BEM.prototype.hasMod = function($this, modKey, modVal) {
+    var mods = this.extractMods($this.first());
+
+    if (modVal) {
+      if (mods[modKey] == modVal) return true;
+    }
+    else {
+      if (mods[modKey]) return true;
+    }
+
+    return false;
+  };
+
+  /**
+   * Set modifier on element.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {String} modKey
+   * @param {String} [modVal]
+   * @param {Object}
+   */
+  BEM.prototype.setMod = function($this, modKey, modVal) {
+    var self = this
+      , selector = $this.selector;
+
+    $this.each(function() {
+      var current = $(this);
+      current.selector = selector;
+
+      var mods = self.extractMods(current)
+        , baseName = self.getBaseClass(current);
+
+      if (mods[modKey] != undefined) {
+        var oldModName = self.buildModClass(baseName, modKey, mods[modKey]);
+        current.removeClass(oldModName);
+      }
+
+      if (modVal !== false) {
+        var newModName = self.buildModClass(baseName, modKey, modVal);
+      }
+
+      current
+        .addClass(newModName)
+        .trigger('setmod', [modKey, modVal]);
+    });
+
+    return $this;
+  };
+
+  /**
+   * Delete modifier on element.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {String} modKey
+   * @param {String} [modVal]
+   * @param {Object}
+   */
+  BEM.prototype.delMod = function($this, modKey, modVal) {
+    var self = this
+      , selector = $this.selector;
+
+    $this.each(function() {
+      var current = $(this);
+      current.selector = selector;
+
+      var mods = self.extractMods(current)
+        , baseName = self.getBaseClass(current);
+
+      if (modVal) {
+        if (mods[modKey] == modVal) {
+          var modName = self.buildModClass(baseName, modKey, mods[modKey]);
+        }
+      }
+      else {
+        var modName = self.buildModClass(baseName, modKey, mods[modKey]);
+      }
+
+      current
+        .removeClass(modName)
+        .trigger('delmod', [modKey, modVal]);
+    });
+
+    return $this;
+  };
+
+  /**
+   * Filtering elements by modifier.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {String} modKey
+   * @param {String} [modVal]
+   * @param {Boolean} [inverse]
+   * @return {Object}
+   */
+  BEM.prototype.byMod = function($this, modKey, modVal, inverse) {
+    var self = this
+      , modVal = modVal || null
+      , inverse = inverse || false
+      , selector = $this.selector
+      , result = $();
+
+    $this.each(function() {
+      var current = $(this);
+      current.selector = selector;
+
+      var mods = self.extractMods(current)
+        , baseName = self.getBaseClass(current);
+
+      if (modVal) {
+        if (mods[modKey] == modVal) {
+          var modName = self.buildModClass(baseName, modKey, mods[modKey]);
+        }
+      }
+      else {
+        if (mods[modKey] != undefined) {
+          var modName = self.buildModClass(baseName, modKey, mods[modKey]);
+        }
+      }
+
+      result = result.add(inverse
+        ? current.not('.' + modName)
+        : current.filter('.' + modName));
+    });
+
+    result.selector = selector;
+    return result;
+  };
+
+  /**
+   * Get block names from element.
+   * @protected
+   *
+   * @param {Object|String} $this
+   * @return {Object}
+   */
+  BEM.prototype.extractBlocks = function($this) {
+    var self = this, result = []
+      , selectors = this.getClasses($this);
+
+    $.each(selectors, function(i, sel) {
+      var type = self.getClassType(sel);
+
+      if (type == 'block') {
+        result.push(sel);
+      }
+      else if (type == 'elem') {
+        var elem = sel.split(self.config.elemPrefix);
+        result.push(elem[0]);
+      }
+    });
+
+    return result;
+  };
+
+  /**
+   * Get element names from element.
+   * @protected
+   *
+   * @param {Object} $this
+   * @return {Object}
+   */
+  BEM.prototype.extractElems = function($this) {
+    var self = this, result = [];
+
+    $.each(self.getClasses($this), function(i, className) {
+      if (self.getClassType(className) == 'elem') {
+        var elemName = className.split(self.config.elemPrefix);
+        result.push(elemName[1]);
+      }
+    });
+
+    return result;
+  };
+
+  /**
+   * Get modifiers from element.
+   * @protected
+   *
+   * @param {Object} $this
+   * @return {Object}
+   */
+  BEM.prototype.extractMods = function($this) {
+    var self = this, result = {};
+
+    $this.each(function() {
+      var $this = $(this);
+
+      $.each(self.getClasses($this), function(i, className) {
+        if (self.getClassType(className) == 'mod') {
+          var re = self.buildModClassRe().exec(className);
+          var modName = re[1].split(self.config.modDlmtr);
+
+          if (modName[1] !== undefined && modName[1] !== false) {
+            var modVal = modName[1];
+          } else {
+            var modVal = true;
+          }
+
+          result[ modName[0] ] = modVal;
+        }
+      });
+    });
+
+    return result;
+  };
+
+  /**
+   * Get classes names from element.
+   * @protected
+   *
+   * @param {Object} $this
+   * @return {Object}
+   */
+  BEM.prototype.getClasses = function($this) {
+    var classes, result = [];
+
+    if (typeof $this == 'object') {
+
+      if ($this.selector.indexOf('.') === 0) {
+        classes = $this.selector.split('.');
+      }
+      else if ($this.attr('class') != undefined) {
+        classes = $this.attr('class').split(' ');
+      }
+      else {
+        return null;
+      }
+
+    }
+    else {
+      classes = $this.split('.');
+    }
+
+    $.each(classes, function(i, className) {
+      if (className != '') result.push($.trim(className));
+    });
+
+    return result;
+  };
+
+  /**
+   * Build regexp for blocks.
+   * @protected
+   *
+   * @return {RegExp}
+   */
+  BEM.prototype.buildBlockClassRe = function() {
+    return new RegExp(
+      '^(' + this.config.namePattern + ')$'
+    );
+  };
+
+  /**
+   * Build regexp for elements.
+   * @protected
+   *
+   * @return {RegExp}
+   */
+  BEM.prototype.buildElemClassRe = function() {
+    return new RegExp(
+      '^' + this.config.namePattern + this.config.elemPrefix + '(' + this.config.namePattern + ')$'
+    );
+  };
+
+  /**
+   * Build regexp for modifiers.
+   * @protected
+   *
+   * @return {RegExp}
+   */
+  BEM.prototype.buildModClassRe = function() {
+    return new RegExp(
+      '^(?:' + this.config.namePattern + '|' + this.config.namePattern + this.config.elemPrefix + this.config.namePattern + ')' + this.config.modPrefix + '(' + this.config.namePattern + '((' + this.config.modDlmtr + this.config.namePattern + ')$|$))'
+    );
+  };
+
+  /**
+   * Build class name for block.
+   * @protected
+   *
+   * @param {String} blockName
+   * @return {String}
+   */
+  BEM.prototype.buildBlockClass = function(blockName) {
+    return blockName;
+  };
+
+  /**
+   * Build class name for element.
+   * @protected
+   *
+   * @param {String} blockName
+   * @param {String} elemKey
+   * @return {String}
+   */
+  BEM.prototype.buildElemClass = function(blockName, elemKey) {
+    return blockName + this.config.elemPrefix + elemKey;
+  };
+
+  /**
+   * Build class name for modifier.
+   * @protected
+   *
+   * @param {String} blockName
+   * @param {String} modKey
+   * @param {String} modVal
+   * @return {String}
+   */
+  BEM.prototype.buildModClass = function(baseClass, modKey, modVal) {
+    if (modVal !== undefined && modVal !== true) {
+      return baseClass + this.config.modPrefix + modKey + this.config.modDlmtr + modVal;
+    } else {
+      return baseClass + this.config.modPrefix + modKey;
+    }
+  };
+
+  /**
+   * Build selector from object or string.
+   * @private
+   *
+   * @param {String|Object}
+   * @param {String}
+   * @return {String}
+   */
+  BEM.prototype.buildSelector = function(selector, prefix) {
+    if (prefix !== '') {
+      var prefix = prefix || '.';
+    }
+
+    if (typeof selector == 'object') {
+      if (selector.block != undefined) {
+        var buildSelector = this.buildBlockClass(selector.block);
+
+        if (selector.elem != undefined) {
+          buildSelector = this.buildElemClass(buildSelector, selector.elem);
+        }
+
+        if (selector.mod != undefined) {
+          var mod = selector.mod.split(':');
+          buildSelector = this.buildModClass(buildSelector, mod[0], mod[1]);
+        }
+      }
+    }
+
+    return buildSelector != undefined
+      ? prefix + buildSelector
+      : prefix + selector;
+  };
+
+  /**
+   * Build class name for block.
+   * @protected
+   *
+   * @param {Object|String} $this
+   * @param {Number} [index]
+   * @return {String}
+   */
+  BEM.prototype.getBlockClass = function($this, index) {
+    var blockClasses = this.extractBlocks($this);
+    var index = index || 0;
+
+    return index <= blockClasses.length - 1
+      ? blockClasses[index]
+      : null;
+  };
+
+  /**
+   * Get base class from element.
+   * @protected
+   *
+   * @param {Object} $this
+   * @return {String}
+   */
+  BEM.prototype.getBaseClass = function($this) {
+    var self = this, baseClass = null;
+    var selectors = this.getClasses($this);
+
+    $.each(selectors, function(i, sel) {
+      var classType = self.getClassType(sel);
+
+      if (classType && classType != 'mod') {
+        baseClass = sel;
+      }
+    });
+
+    return baseClass;
+  };
+
+  /**
+   * Get class type.
+   * @protected
+   *
+   * @param {String} className
+   * @return {String}
+   */
+  BEM.prototype.getClassType = function(className) {
+    if (this.modClassRe.test(className)) {
+      return 'mod';
+    }
+    else if (this.elemClassRe.test(className)) {
+      return 'elem';
+    }
+    else if (this.blockClassRe.test(className)) {
+      return 'block';
+    }
+    return null;
+  };
+
+  /**
+   * Create BEM instance.
+   */
+  $.BEM = new BEM();
+
+  /**
+   * Extend jQuery object.
+   */
+  $.fn.extend({
+    block: function() {
+      return $.BEM.getBlock(this);
+    },
+
+    elem: function(ctx, elemKey) {
+      if (!elemKey) {
+        elemKey = ctx;
+        ctx = null;
+      }
+
+      return $.BEM.findElem(ctx || this, elemKey);
+    },
+
+    ctx: function(block, elem) {
+      return $.BEM.switchBlock(this, block, elem);
+    },
+
+    mod: function(modKey, modVal) {
+      if (typeof modVal == 'undefined') {
+        modVal = null;
+      }
+
+      if (modVal === false) {
+        return $.BEM.delMod(this, modKey);
+      }
+
+      return (modVal != null)
+        ? $.BEM.setMod(this, modKey, modVal)
+        : $.BEM.getMod(this, modKey);
+    },
+
+    setMod: function(modKey, modVal) {
+      return $.BEM.setMod(this, modKey, modVal);
+    },
+
+    delMod: function(modKey, modVal) {
+      return $.BEM.delMod(this, modKey, modVal);
+    },
+
+    hasMod: function(modKey, modVal) {
+      return $.BEM.hasMod(this, modKey, modVal);
+    },
+
+    byMod: function(modKey, modVal) {
+      return $.BEM.byMod(this, modKey, modVal);
+    },
+
+    byNotMod: function(modKey, modVal) {
+      return $.BEM.byMod(this, modKey, modVal, 'inverse');
+    },
+
+    /**
+     * Toggle blocks's or elem's modifier `modKey` between `modVal1` and `modVal2`
+     * @param {String} modKey
+     * @param {String} modVal1
+     * @param {String} modVal2
+     * @return {*}
+     */
+    toggleMod: function (modKey, modVal1, modVal2) {
+      if (this.hasMod(modKey, modVal1)) {
+        return this
+            .delMod(modKey, modVal1)
+            .setMod(modKey, modVal2);
+      } else {
+        return this
+            .delMod(modKey, modVal2)
+            .setMod(modKey, modVal1);
+      }
+    }
+  });
+
+}));
+
 (function() {
   this.end = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd';
 
@@ -10287,8 +11090,6 @@ return jQuery;
     style.cssText = 'pointer-events:auto';
     return style.pointerEvents === 'auto';
   })();
-
-  this.leave = false;
 
   this.delay = function(ms, func) {
     return setTimeout(func, ms);
@@ -10302,318 +11103,23 @@ return jQuery;
     return console.log('size');
   };
 
-  this.initScroll = function() {
-    if ($(window).width() >= 995) {
-      return $('.scroll').perfectScrollbar({
-        suppressScrollX: true,
-        includePadding: true
-      });
-    } else {
-      return $('.scroll').perfectScrollbar('destroy');
-    }
-  };
-
-  this.next = function(e) {
-    if ($('.contest').hasMod('demo')) {
-      if (e) {
-        $(e.target).mod('innactive', true);
-        e.preventDefault();
-      }
-      return $.get('/group/u_creative/create.php', function(data) {
-        $(e.target).mod('innactive', false);
-        if (data !== 'error') {
-          return $('.contest').elem('step').byMod('active').mod('active', false).next().mod('active', true);
-        } else {
-          $('#Error').modal();
-          if (window.yaCounter34335385) {
-            console.log('u_creative_error');
-            return window.yaCounter34335385.reachGoal('u_creative_error');
-          }
-        }
-      });
-    }
-  };
-
-  this.save = function(prop, value) {
-    var fields;
-    if ($('.contest').elem('step').byMod('active').hasMod('1')) {
-      $.removeCookie('fields', {
-        path: '/'
-      });
-    }
-    fields = $.cookie('fields');
-    if (fields) {
-      fields = JSON.parse(fields);
-    } else {
-      fields = {};
-    }
-    fields[prop] = value;
-    $.removeCookie('fields', {
-      path: '/'
-    });
-    return $.cookie('fields', JSON.stringify(fields), {
-      path: '/'
-    });
-  };
-
   $(document).ready(function() {
-    var $intro, $step2, $step3, $step4, $step5, $step6, $step7, setCount, timer;
+    $.BEM = new $.BEM.constructor({
+      namePattern: '[a-zA-Z0-9-]+',
+      elemPrefix: '__',
+      modPrefix: '--',
+      modDlmtr: '--'
+    });
     delay(300, function() {
       return size();
     });
-    if ($.browser.mobile) {
-      $(".nav-inner:first").append("<div class='item menu-popup-button'><a href='#'>+</a></div>");
-    }
-    $(".modal .nav-inner").append("<div class='item'><a href='/group/1/u_concept/'>U_CONCEPT</a></div>");
-    $('.menu-popup-button').on('click', function(e) {
-      $('#Nav').modal();
+    $('.toolbar').elem('trigger').on('click', function(e) {
+      $('.page').mod('on', true);
       return e.preventDefault();
     });
-    $('.modal').on('shown.bs.modal', function(e) {
-      return delay(300, initScroll);
-    });
-    if ($('.contest').length === 0) {
-      $('.main').attr('style', 'padding-left: 0 !important');
-    }
-    $intro = $('.contest').elem('intro');
-    $intro.find('.button').on('click', function(e) {
-      if (!$intro.find('.checkbox').is(':checked')) {
-        $intro.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        save('agree', true);
-        if (window.yaCounter34335385) {
-          window.yaCounter34335385.reachGoal('u_creative_start');
-          console.log('u_creative_start');
-        }
-        return next(e);
-      }
-    });
-    $intro.find('.checkbox').on('change', function(e) {
-      $intro.find('.error').mod('active', false);
-      return $intro.find('.button').mod('disabled', false);
-    });
-    $step2 = $('.contest').elem('step').byMod('2');
-    $step2.find('input[type="radio"]').on('change', function(e) {
-      $step2.find('.button').mod('disabled', false);
-      return $step2.find('.error').mod('active', false);
-    });
-    $step2.find('.button').on('click', function(e) {
-      if ($step2.find('input[type="radio"]:checked').length === 0) {
-        $step2.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        save('q1', $step2.find('input[type="radio"]:checked').val());
-        return next(e);
-      }
-    });
-    $step3 = $('.contest').elem('step').byMod('3');
-    $step3.find('input[type="radio"]').on('change', function(e) {
-      $step3.find('.button').mod('disabled', false);
-      return $step3.find('.error').mod('active', false);
-    });
-    $step3.find('.button').on('click', function(e) {
-      if ($step3.find('input[type="radio"]:checked').length === 0) {
-        $step3.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        save('q2', $step3.find('input[type="radio"]:checked').val());
-        return next(e);
-      }
-    });
-    $step4 = $('.contest').elem('step').byMod('4');
-    $step4.find('input[type="radio"]').on('change', function(e) {
-      $step4.find('.button').mod('disabled', false);
-      return $step4.find('.error').mod('active', false);
-    });
-    $step4.find('.button').on('click', function(e) {
-      if ($step4.find('input[type="radio"]:checked').length === 0) {
-        $step4.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        save('q3', $step4.find('input[type="radio"]:checked').val());
-        return next(e);
-      }
-    });
-    $step5 = $('.contest').elem('step').byMod('5');
-    $('.wear').elem('image').on('click', function(e) {
-      var input;
-      input = $(this).parents('.wear').find('.wear__checkbox input');
-      input[0].checked = true;
-      input.trigger('change');
+    return $('.toolbar').elem('profile').on('click', function(e) {
+      $('.page').mod('on', false);
       return e.preventDefault();
-    });
-    $step5.find('.wear__checkbox input.radio').on('change', function(e) {
-      $step5.find('.error').mod('active', false);
-      $step5.find('.button').mod('disabled', false);
-      $step5.find('.wear').mod('innactive', true).mod('active', false);
-      return $(this).parents('.wear').mod('innactive', false).mod('active', true).find('.wear__sizes input:first')[0].checked = true;
-    });
-    $step5.find('.button').on('click', function(e) {
-      var type;
-      if ($step5.find('input[name="type"]:checked').length === 0) {
-        $step5.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        type = $step5.find('input[name="type"]:checked').val();
-        save('type', type);
-        save('size', $step5.find('input[name="size"]:checked').val());
-        $step6.find('.wear').byMod(type).removeClass('hidden');
-        $step7.find('.wear').byMod(type).removeClass('hidden');
-        return next(e);
-      }
-    });
-    $step6 = $('.contest').elem('step').byMod('6');
-    $step6.find('input[type="radio"]').on('change', function(e) {
-      var type, val;
-      val = $(this).val();
-      if ($(this).attr('name') === 'vertical') {
-        type = 2;
-      } else {
-        type = 1;
-      }
-      $(".wear__placeholder img[src*='" + type + "_']").removeClass('active');
-      $(".wear__placeholder img[src*='" + type + "_" + val + "']").addClass('active');
-      if ($step6.find('input[name="vertical"]:checked').length > 0 && $step6.find('input[name="horizont"]:checked').length > 0) {
-        $step6.find('.message').mod('active', false);
-        return $step6.find('.button').mod('disabled', false);
-      }
-    });
-    $step6.find('.button').on('click', function(e) {
-      if ($step6.find('input[name="vertical"]:checked').length === 0 || $step6.find('input[name="horizont"]:checked').length === 0) {
-        $step6.find('.message').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        return $('#Shure').modal();
-      }
-    });
-    $('#OK').on('show.bs.modal', function(e) {
-      var h, t, url, v;
-      h = $step6.find('input[name="vertical"]:checked').val();
-      v = $step6.find('input[name="horizont"]:checked').val();
-      t = $step5.find('input[name="type"]:checked').val();
-      save('vertical', h);
-      save('horizont', v);
-      url = encodeURIComponent('http://' + location.hostname + '/group/1/u_creative/?g=' + t + '&v=' + v + '&h=' + h);
-      $('.share').byMod('fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + url);
-      return $('.share').byMod('vk').attr('href', 'http://vk.com/share.php?url=' + url);
-    });
-    $('#OK').on('hidden.bs.modal', function(e) {
-      return next(e);
-    });
-    $step7 = $('.contest').elem('step').byMod('7');
-    $step7.find('input[type="text"]').on('keyup', function() {
-      var label;
-      label = $("label[for='" + ($(this).attr('name')) + "']");
-      label.removeClass('err');
-      if ($step7.find('label.err').length === 0) {
-        $step7.find('.error').mod('active', false);
-        return $step7.find('.button').mod('disabled', false);
-      }
-    });
-    $.listen('parsley:field:error', function(ParsleyField) {
-      var el, label;
-      el = ParsleyField.$element;
-      label = $("label[for='" + (el.attr('name')) + "']");
-      return label.addClass('err');
-    });
-    $.listen('parsley:field:success', function(ParsleyField) {
-      var el, label;
-      el = ParsleyField.$element;
-      label = $("label[for='" + (el.attr('name')) + "']");
-      return label.removeClass('err');
-    });
-    $step7.find('.button').on('click', function(e) {
-      var form;
-      form = $step7.find('form').parsley();
-      form.validate();
-      if ($step7.find('label.err').length > 0) {
-        $step7.find('.error').mod('active', true);
-        $(this).mod('disabled', true);
-        return e.preventDefault();
-      } else {
-        $('#Success .email').text($step7.find('input[name="email"]').val());
-        save('address', $step7.find('input[name="address"]').val());
-        save('phone', $step7.find('input[name="phone"]').val());
-        save('email', $step7.find('input[name="email"]').val());
-        save('finished', true);
-        $.get('/group/u_creative/create.php');
-        $('#Success').modal();
-        if (window.yaCounter34335385) {
-          window.yaCounter34335385.reachGoal('u_creative_finish');
-          console.log('u_creative_finish');
-        }
-        return e.preventDefault();
-      }
-    });
-    $('input[name="phone"]').mask('(999) 999-99-99');
-    if ($.browser && $.browser.mobile === true) {
-      $('body').addClass('mobile');
-    }
-    $('.button--go').on('click', function(e) {
-      return location.href = window.leave;
-    });
-    $('#Success, #Again, #Error').on('hide.bs.modal', function(e) {
-      e.preventDefault();
-      return location.href = '/group/1/';
-    });
-    $('a.photo_list_like').click(function(e) {
-      var path;
-      e.preventDefault();
-      $(this).toggleClass('like_active');
-      path = host_url + '/group/lenta/like_post.php';
-      return $.get(path, {
-        post_id: $(this).attr('id'),
-        like: Number($(this).hasClass('like_active'))
-      }, function(data) {
-        return console.log(data);
-      });
-    });
-    if ($('.contest').hasMod('locked')) {
-      $('#Again').modal();
-    }
-    setCount = function(i) {
-      $('.comments').elem('trigger').find('.count').text('(' + i + ')');
-      return $('.comments').data('count', i);
-    };
-    timer = false;
-    setCount($('.comment').length);
-    $('.comment_submit_button').on('click', function() {
-      return timer = interval(200, function() {
-        if ($('.comments').data('count') !== $('.comment').length) {
-          setCount($('.comment').length);
-          return clearInterval(timer);
-        }
-      });
-    });
-    $('.comments').elem('trigger').on('click', function(e) {
-      if (!$('.comments').hasMod('active')) {
-        $('.comments').mod('active', true);
-        $('html, body').stop().animate({
-          scrollTop: $(window).scrollTop() + $(this).offset().top
-        }, '500', 'swing');
-      } else {
-        $('.comments').mod('active', false);
-      }
-      return e.preventDefault();
-    });
-    $('.detail_page nav .close_nav').on('click', function(e) {
-      window.leave = $(this).attr('href');
-      $('#Leave').modal();
-      return e.preventDefault();
-    });
-    return $('a').on('click', function(e) {
-      if ($(this).attr('href') !== '#' && ($(this).parents('.modal').length === 0 && $(this).parents('.contest').length === 0 || $(this).parents('.nav-inner').length > 0)) {
-        window.leave = $(this).attr('href');
-        $('#Leave').modal();
-        return e.preventDefault();
-      }
     });
   });
 
