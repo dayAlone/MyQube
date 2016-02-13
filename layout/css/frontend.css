@@ -3885,6 +3885,9 @@ body {
   -webkit-overflow-scrolling: touch;
   padding-top: 81px;
 }
+.ios .groups {
+  max-height: 33vh;
+}
 @media (max-width: 767px) {
   .page--login:not(.page--on) .groups {
     overflow: hidden;
@@ -3893,7 +3896,7 @@ body {
 @media (min-width: 768px) {
   .groups {
     padding-top: 0;
-    max-height: none;
+    max-height: none !important;
   }
 }
 .groups__item {
@@ -4036,6 +4039,12 @@ body {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
+@media (max-width: 768px) {
+  .page--login .footer,
+  .login__footer {
+    display: none;
+  }
+}
 @media (max-width: 768px) and (min-height: 567px) {
   .page--login .footer,
   .login__footer {
@@ -4066,6 +4075,9 @@ body {
   padding-top: 90px;
   background-position: 50% 90px;
 }
+.ios .login {
+  max-height: 33vh;
+}
 @media (max-width: 767px) {
   .login {
     -webkit-transition-property: -webkit-transform;
@@ -4094,7 +4106,7 @@ body {
     padding-top: 0;
     width: 50%;
     height: auto;
-    max-height: none;
+    max-height: none !important;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
