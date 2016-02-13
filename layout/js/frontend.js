@@ -25858,13 +25858,11 @@ return jQuery;
     $(window).on('resize', _.debounce(size, 300));
     $(window).on('orientationchange', _.debounce(resetScroll, 300));
     if ($.browser.iphone) {
-      $('input').on('focus', function() {
-        console.log('1');
-        return $('page').addClass('page--fix');
-      }).on('blur', function() {
-        return delay(300, function() {
-          return $('page').removeClass('page--fix');
+      $('input').on('click', function(e) {
+        delay(100, function() {
+          return $(this).focus();
         });
+        return e.preventDefault();
       });
     }
     $('html').addClass($.browser.name);
