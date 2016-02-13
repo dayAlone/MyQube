@@ -4026,15 +4026,10 @@ body input:-webkit-autofill {
   -ms-transform: scale(1.01);
   transform: scale(1.01);
 }
-@media (min-width: 768px) {
-  .page--login {
-    padding-left: 50%;
-  }
-}
-.page--login .footer,
-.login__footer {
+.page .footer,
+.qblock__footer {
   position: fixed;
-  width: 50%;
+  width: 100%;
   left: 0;
   bottom: 20px;
   padding: 0 35px;
@@ -4056,23 +4051,31 @@ body input:-webkit-autofill {
   display: block;
 }
 @media (max-width: 767px) and (max-height: 566px) {
-  .page--login .footer,
-  .login__footer {
+  .page .footer,
+  .qblock__footer {
     display: none;
   }
 }
 @media (max-width: 767px) and (min-height: 567px) {
-  .page--login .footer,
-  .login__footer {
+  .page .footer,
+  .qblock__footer {
     z-index: 10;
     width: 100%;
     font-size: 10px;
   }
 }
 @media (min-width: 768px) and (max-height: 568px) {
-  .page--login .footer,
-  .login__footer {
+  .page .footer,
+  .qblock__footer {
     display: none;
+  }
+}
+@media (min-width: 768px) {
+  .page--login {
+    padding-left: 50%;
+  }
+  .page--login .footer {
+    width: 50%;
   }
 }
 .page--login.page--on .footer {
@@ -4081,13 +4084,13 @@ body input:-webkit-autofill {
   filter: alpha(opacity=0);
   pointer-events: none;
 }
-.login {
+.qblock {
   background-image: url("/layout/images/svg/q-bg.svg");
   background-repeat: no-repeat;
   text-align: center;
   z-index: 1;
   background-color: #ebebeb;
-  background-position: 50% 90px;
+  background-position: top center;
   overflow: scroll;
   position: fixed;
   max-height: 100%;
@@ -4099,8 +4102,11 @@ body input:-webkit-autofill {
   height: 100%;
   will-change: transform;
 }
+.toolbar + .qblock {
+  background-position: 50% 90px;
+}
 @media (min-width: 768px) {
-  .login {
+  .qblock {
     height: auto;
     position: relative;
     max-height: none !important;
@@ -4108,14 +4114,14 @@ body input:-webkit-autofill {
   }
 }
 @media (min-width: 768px) and (max-height: 568px) {
-  .login {
+  .qblock {
     overflow: scroll;
     max-height: 100vh !important;
     padding-bottom: 0 !important;
   }
 }
 @media (max-width: 767px) {
-  .login {
+  .qblock {
     -webkit-transition-property: -webkit-transform;
     -moz-transition-property: -moz-transform;
     -o-transition-property: -o-transform;
@@ -4127,7 +4133,7 @@ body input:-webkit-autofill {
     -ms-transition-duration: 0.3s;
     transition-duration: 0.3s;
   }
-  .page--on .login {
+  .page--on .qblock {
     -webkit-transform: translateX(100%);
     -moz-transform: translateX(100%);
     -o-transform: translateX(100%);
@@ -4136,21 +4142,48 @@ body input:-webkit-autofill {
   }
 }
 @media (min-width: 768px) {
-  .login {
+  .qblock {
     padding-bottom: 65px;
     background-position: top center;
     position: fixed;
-    width: 50%;
+    width: 100%;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    min-height: 400px;
   }
 }
 @media (max-width: 767px) and (min-height: 568px) {
-  .login__content {
+  .qblock {
+    background-position: 50% calc(50% - 15px);
+  }
+  .toolbar + .qblock {
+    background-position: 50% calc(50% + 5px);
+  }
+}
+.qblock__footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  font-size: 10px;
+  margin: 40px 0;
+  display: none;
+}
+@media (max-width: 768px) and (max-height: 567px) {
+  .qblock__footer {
+    display: block;
+  }
+}
+@media (min-width: 768px) and (max-height: 567px) {
+  .qblock__footer {
+    display: block;
+  }
+}
+@media (max-width: 767px) and (min-height: 568px) {
+  .qblock__content {
     width: 100%;
     position: absolute;
     top: 50%;
@@ -4159,6 +4192,15 @@ body input:-webkit-autofill {
     -o-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    padding-bottom: 80px;
+  }
+  .toolbar + .qblock .qblock__content {
+    padding-bottom: 0px;
+  }
+}
+@media (min-width: 768px) {
+  .login {
+    width: 50%;
   }
 }
 .login__label {
@@ -4193,7 +4235,8 @@ body input:-webkit-autofill {
     margin: 20px 0 25px;
   }
 }
-.login__button {
+.login__button,
+.age__button {
   width: 150px;
   height: 40px;
   border: 2px solid #fff;
@@ -4220,7 +4263,8 @@ body input:-webkit-autofill {
   transition-duration: 0.3s;
   margin-bottom: 20px;
 }
-.login__button span {
+.login__button span,
+.age__button span {
   display: inline-block;
   width: 100%;
   border-left: 2px solid #fff;
@@ -4237,18 +4281,22 @@ body input:-webkit-autofill {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-.login__button img {
+.login__button img,
+.age__button img {
   position: absolute;
   left: 12px;
   top: 7px;
 }
 .login__button:hover,
-.login__button:focus {
+.age__button:hover,
+.login__button:focus,
+.age__button:focus {
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px #00d7fe;
   box-shadow: 0 0 0 2px #00d7fe;
 }
-.login__input {
+.login__input,
+.age__input {
   width: 100%;
   height: 45px;
   max-width: 285px;
@@ -4277,24 +4325,30 @@ body input:-webkit-autofill {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-.login__input::-webkit-input-placeholder {
+.login__input::-webkit-input-placeholder,
+.age__input::-webkit-input-placeholder {
   color: #8a8a8a;
 }
-.login__input:-moz-placeholder {
+.login__input:-moz-placeholder,
+.age__input:-moz-placeholder {
   color: #8a8a8a;
 }
-.login__input::-moz-placeholder {
+.login__input::-moz-placeholder,
+.age__input::-moz-placeholder {
   color: #8a8a8a;
 }
-.login__input:-ms-input-placeholder {
+.login__input:-ms-input-placeholder,
+.age__input:-ms-input-placeholder {
   color: #8a8a8a;
 }
-.login__input:focus {
+.login__input:focus,
+.age__input:focus {
   -webkit-box-shadow: 0 0 0 2px #00d7fe;
   box-shadow: 0 0 0 2px #00d7fe;
 }
 @media (min-width: 768px) {
-  .login__input {
+  .login__input,
+  .age__input {
     font-size: 14px;
     max-width: 307px;
     margin-bottom: 15px;
@@ -4388,27 +4442,52 @@ body input:-webkit-autofill {
   -ms-filter: none;
   filter: none;
 }
-.login__footer {
-  position: relative;
-  width: 100%;
-  bottom: 0;
-  font-size: 10px;
-  margin: 40px 0;
+.age {
+  text-align: center;
+  padding-top: 0;
+}
+.age__logo {
+  display: inline-block;
+  margin: 25px 0 25px;
+}
+.age .row {
+  max-width: 270px;
+  margin: 0 auto;
+}
+.age__input {
+  text-align: center;
+}
+.age .qblock__footer {
+  margin-bottom: 0;
+}
+.age__button {
+  width: 255px;
+  margin: 0 auto;
+  height: 50px;
+  padding-left: 0;
+  margin-top: 35px;
+  line-height: 47px;
+}
+.age p {
+  color: #7e7e7e;
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 0 20px;
+  max-width: 420px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .age p {
+    font-size: 14px;
+  }
+}
+.age p br {
   display: none;
 }
-@media (max-width: 768px) and (max-height: 567px) {
-  .login__footer {
+@media (min-width: 768px) {
+  .age p br {
     display: block;
-  }
-}
-@media (min-width: 768px) and (max-height: 567px) {
-  .login__footer {
-    display: block;
-  }
-}
-@media (max-width: 767px) and (max-width: 767px) and (min-height: 568px) {
-  .login {
-    background-position: 50% calc(50% + 5px);
   }
 }
 .toolbar {

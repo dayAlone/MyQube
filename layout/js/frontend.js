@@ -11100,7 +11100,11 @@ return jQuery;
   };
 
   this.size = function() {
-    return console.log('size');
+    if ($.browser.iphone) {
+      return $('html').css('height', $('html').height());
+    } else {
+      return $('html').removeAttr('style');
+    }
   };
 
   $(document).ready(function() {
@@ -11115,9 +11119,6 @@ return jQuery;
     });
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
-    if ($.browser.iphone) {
-      $('html').css('height', $('html').height());
-    }
     $('.toolbar').elem('trigger').on('click', function(e) {
       $('.page').mod('on', true);
       return e.preventDefault();
