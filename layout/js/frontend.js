@@ -25837,6 +25837,14 @@ return jQuery;
     }
   };
 
+  this.resetScroll = function() {
+    console.log('reset');
+    $('.qblock, .groups').attr('style', 'overflow: hidden');
+    return delay(300, function() {
+      return $('.qblock, .groups').removeAttr('style');
+    });
+  };
+
   $(document).ready(function() {
     $.BEM = new $.BEM.constructor({
       namePattern: '[a-zA-Z0-9-]+',
@@ -25845,9 +25853,11 @@ return jQuery;
       modDlmtr: '--'
     });
     delay(300, function() {
-      return size();
+      size();
+      return resetScroll();
     });
     $(window).on('resize', _.debounce(size, 300));
+    $(window).on('orientationchange', _.debounce(resetScroll, 300));
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
     $('.toolbar').elem('trigger').on('click', function(e) {
