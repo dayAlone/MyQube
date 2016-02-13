@@ -3682,6 +3682,17 @@ a:hover {
 body,
 html {
   min-height: 100%;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  will-change: opacity;
 }
 body {
   font-family: 'MainFont', 'Helvetica Neue', Arial;

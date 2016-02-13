@@ -25832,11 +25832,19 @@ return jQuery;
 
   this.size = function() {
     $('html').removeAttr('style');
-    return delay(100, function() {
-      if ($.browser.iphone) {
-        return $('html').attr('style', 'height: ' + $('html').height() + 'px');
-      }
-    });
+    if ($.browser.iphone) {
+      return $('html').attr('style', 'height: ' + $('html').height() + 'px');
+    }
+  };
+
+  this.orientation = function() {
+    size();
+    if ($.browser.iphone) {
+      $('html').css('opacity', 0);
+      return delay(300, function() {
+        return $('html').css('opacity', 1);
+      });
+    }
   };
 
   $(document).ready(function() {
@@ -25849,7 +25857,8 @@ return jQuery;
     delay(300, function() {
       return size();
     });
-    $(window).on('resize orientationchange', _.debounce(size, 300));
+    $(window).on('resize', _.debounce(size, 300));
+    $(window).on('orientationchange', _.debounce(orientation, 300));
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
     $('.toolbar').elem('trigger').on('click', function(e) {
