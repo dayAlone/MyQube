@@ -4089,6 +4089,7 @@ body input:-webkit-autofill {
   background-repeat: no-repeat;
   text-align: center;
   z-index: 1;
+  max-width: 100%;
   background-color: #ebebeb;
   background-position: top center;
   overflow: scroll;
