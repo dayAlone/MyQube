@@ -3885,8 +3885,10 @@ body {
   -webkit-overflow-scrolling: touch;
   padding-top: 81px;
 }
-.ios .groups {
-  max-height: calc(100vh - 67px);
+@media (orientation: portrait) {
+  .ios .groups {
+    max-height: calc(100vh - 67px);
+  }
 }
 @media (max-width: 767px) {
   .page--login:not(.page--on) .groups {
@@ -4075,8 +4077,10 @@ body {
   padding-top: 90px;
   background-position: 50% 90px;
 }
-.ios .login {
-  max-height: calc(100vh - 67px);
+@media (orientation: portrait) {
+  .ios .login {
+    max-height: calc(100vh - 67px);
+  }
 }
 @media (max-width: 767px) {
   .login {
