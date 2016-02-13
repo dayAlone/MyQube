@@ -11113,8 +11113,9 @@ return jQuery;
     delay(300, function() {
       return size();
     });
+    $('html').addClass($.browser.name);
+    $('html').addClass($.browser.platform);
     if ($.browser.iphone) {
-      $('html').addClass('ios');
       $('html').css('height', $('html').height());
     }
     $('.toolbar').elem('trigger').on('click', function(e) {
