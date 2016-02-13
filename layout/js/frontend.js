@@ -25837,16 +25837,6 @@ return jQuery;
     }
   };
 
-  this.orientation = function() {
-    this.size();
-    if ($.browser.iphone) {
-      $('html').css('opacity', 0);
-      return delay(300, function() {
-        return $('html').css('opacity', 1);
-      });
-    }
-  };
-
   $(document).ready(function() {
     $.BEM = new $.BEM.constructor({
       namePattern: '[a-zA-Z0-9-]+',
@@ -25858,7 +25848,6 @@ return jQuery;
       return size();
     });
     $(window).on('resize', _.debounce(size, 300));
-    $(window).on('orientationchange', _.debounce(orientation, 300));
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
     $('.toolbar').elem('trigger').on('click', function(e) {
