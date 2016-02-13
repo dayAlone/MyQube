@@ -4360,6 +4360,11 @@ body {
     display: none;
   }
 }
+.toolbar__profile,
+.toolbar__trigger {
+  padding: 0 25px;
+  margin-right: -25px;
+}
 .page--login .toolbar__profile {
   display: none;
 }
