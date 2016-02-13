@@ -25838,7 +25838,6 @@ return jQuery;
   };
 
   this.resetScroll = function() {
-    console.log('reset');
     $('.qblock, .groups').attr('style', 'overflow: hidden');
     return delay(300, function() {
       return $('.qblock, .groups').removeAttr('style');
@@ -25858,6 +25857,16 @@ return jQuery;
     });
     $(window).on('resize', _.debounce(size, 300));
     $(window).on('orientationchange', _.debounce(resetScroll, 300));
+    if ($.browser.iphone) {
+      $('input').on('focus', function() {
+        console.log('1');
+        return $('page').addClass('page--fix');
+      }).on('blur', function() {
+        return delay(300, function() {
+          return $('page').removeClass('page--fix');
+        });
+      });
+    }
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
     $('.toolbar').elem('trigger').on('click', function(e) {

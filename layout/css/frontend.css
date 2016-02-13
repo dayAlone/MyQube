@@ -4081,6 +4081,9 @@ body input:-webkit-autofill {
     display: none;
   }
 }
+.page--fix {
+  position: fixed;
+}
 @media (min-width: 768px) {
   .page--login {
     padding-left: 50%;
