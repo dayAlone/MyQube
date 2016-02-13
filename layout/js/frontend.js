@@ -25838,7 +25838,7 @@ return jQuery;
   };
 
   this.orientation = function() {
-    size();
+    this.size();
     if ($.browser.iphone) {
       $('html').css('opacity', 0);
       return delay(300, function() {
