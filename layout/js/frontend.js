@@ -11115,6 +11115,7 @@ return jQuery;
     });
     if ($.browser.iphone) {
       $('html').addClass('ios');
+      $('html').css('height', $('html').height());
     }
     $('.toolbar').elem('trigger').on('click', function(e) {
       $('.page').mod('on', true);
