@@ -4461,7 +4461,8 @@ body input:-webkit-autofill {
   text-align: center;
   padding-top: 0;
 }
-.age__logo {
+.age__logo,
+.lock__logo {
   display: inline-block;
   margin: 25px 0 25px;
 }
@@ -4480,7 +4481,8 @@ body input:-webkit-autofill {
   margin-top: 35px;
   line-height: 47px;
 }
-.age p {
+.age p,
+.lock p {
   color: #7e7e7e;
   font-size: 13px;
   line-height: 1.7;
@@ -4490,17 +4492,70 @@ body input:-webkit-autofill {
   margin-bottom: 20px;
 }
 @media (min-width: 768px) {
-  .age p {
+  .age p,
+  .lock p {
     font-size: 14px;
   }
 }
-.age p br {
+.age p br,
+.lock p br {
   display: none;
 }
 @media (min-width: 768px) {
-  .age p br {
+  .age p br,
+  .lock p br {
     display: block;
   }
+}
+.age p a,
+.lock p a {
+  color: #ff1429;
+  padding-bottom: 2px;
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(255,20,41,0.3) 50%);
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(255,20,41,0.3) 50%);
+  background-image: -o-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(255,20,41,0.3) 50%);
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(255,20,41,0.3) 50%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(255,20,41,0.3) 50%);
+  background-repeat: repeat-x;
+  -webkit-background-size: 2px 2px;
+  -moz-background-size: 2px 2px;
+  background-size: 2px 2px;
+  background-position: 0 100%;
+  background-position: 0 11px;
+}
+.age p a:hover,
+.lock p a:hover {
+  text-decoration: none;
+}
+.age p a:hover,
+.lock p a:hover {
+  color: #001022;
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.3) 50%);
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.3) 50%);
+  background-image: -o-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.3) 50%);
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.3) 50%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,16,34,0.3) 50%);
+  background-repeat: repeat-x;
+  -webkit-background-size: 2px 2px;
+  -moz-background-size: 2px 2px;
+  background-size: 2px 2px;
+  background-position: 0 100%;
+  background-position: 0 11px;
+}
+.age p a:hover:hover,
+.lock p a:hover:hover {
+  text-decoration: none;
+}
+.lock {
+  padding-top: 0;
+}
+.lock__icon {
+  margin: 48px 0 52px;
+  left: -10px;
+  position: relative;
+}
+.lock p {
+  margin-bottom: 0;
 }
 .toolbar {
   position: fixed;
