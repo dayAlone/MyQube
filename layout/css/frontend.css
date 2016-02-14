@@ -4395,12 +4395,12 @@ label.checkbox__label:before {
   left: 0px;
   top: -5px;
   background-position: 50% -40px;
+  background-image: url("/layout/images/svg/check.svg");
+  background-repeat: no-repeat;
 }
 input:checked ~ label.checkbox__label:before {
   background-color: #28a143;
-  background-image: url("/layout/images/svg/check.svg");
   background-position: center center;
-  background-repeat: no-repeat;
 }
 .parsley-error label.checkbox__label:before {
   -webkit-box-shadow: 0 0 0 1px #ff1429;
