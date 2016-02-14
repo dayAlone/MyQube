@@ -28108,12 +28108,14 @@ if ('undefined' !== typeof window.ParsleyValidator)
   };
 
   this.resetScroll = function() {
+    var blocks;
+    blocks = '.qblock, .groups, .agreement';
     if ($('.page').hasMod('open')) {
       $('.page').mod('open', !$('.page').hasMod('open'));
     }
-    $('.qblock, .groups').attr('style', 'overflow: hidden');
+    $(blocks).attr('style', 'overflow: hidden');
     return delay(300, function() {
-      return $('.qblock, .groups').removeAttr('style');
+      return $(blocks).removeAttr('style');
     });
   };
 
