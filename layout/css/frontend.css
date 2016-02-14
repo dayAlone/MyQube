@@ -4788,7 +4788,6 @@ input:checked ~ label.checkbox__label:before {
 .agreement {
   position: fixed;
   top: 0;
-  right: 0;
   overflow: hidden;
   z-index: 20;
   background-color: #ebebeb;
@@ -4811,7 +4810,7 @@ input:checked ~ label.checkbox__label:before {
   pointer-events: none;
 }
 .agreement--open {
-  right: 0%;
+  right: 0;
   pointer-events: all;
 }
 @media (min-width: 768px) {
