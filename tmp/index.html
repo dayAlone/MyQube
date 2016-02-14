@@ -26,10 +26,12 @@
         тематических сообществ<br/>
         для единомышленников
       </div>
-      <label class="login__label">Введите логин и пароль</label><br>
-      <input type="text" name="USER_LOGIN" placeholder="Логин или адрес электронной почты" class="login__input"><br>
-      <input type="password" name="USER_PASSWORD" placeholder="Пароль" class="login__input"><br>
-      <button type="submit" class="login__button"><img src="/layout/images/svg/lock.svg" alt=""><span>Войти</span></button><br>
+      <form data-parsley-validate method="POST">
+        <label class="login__label">Введите логин и пароль</label><br>
+        <input type="text" name="USER_LOGIN" placeholder="Логин или адрес электронной почты" required class="login__input"><br>
+        <input type="password" name="USER_PASSWORD" placeholder="Пароль" required class="login__input"><br>
+        <button type="submit" class="login__button"><img src="/layout/images/svg/lock.svg" alt=""><span>Войти</span></button>
+      </form><br>
       <label class="login__label">
         или <br/>
         авторизуйтесь с&nbsp;помощью социальных&nbsp;сетей

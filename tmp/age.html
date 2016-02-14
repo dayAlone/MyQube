@@ -21,18 +21,20 @@
         Чтобы продолжить, пожалуйста, укажите<br/>
         дату вашего рождения.
       </p>
-      <div class="row">
-        <div class="col-xs-4">
-          <input type="text" placeholder="ДД" maxlength="2" class="age__input">
+      <form data-parsley-validate method="POST">
+        <div class="row">
+          <div class="col-xs-4">
+            <input type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="2" class="age__input">
+          </div>
+          <div class="col-xs-4">
+            <input type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="2" class="age__input">
+          </div>
+          <div class="col-xs-4">
+            <input type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" class="age__input">
+          </div>
         </div>
-        <div class="col-xs-4">
-          <input type="text" placeholder="ММ" maxlength="2" class="age__input">
-        </div>
-        <div class="col-xs-4">
-          <input type="text" placeholder="ГГГГ" maxlength="4" class="age__input">
-        </div>
-      </div>
-      <div class="button age__button">продолжить</div>
+        <button type="submit" class="button age__button">продолжить</button>
+      </form>
       <div class="age__footer qblock__footer">
         © 2015 MyQube. все права защищены. <br>
         социальная сеть предназначена для лиц старше&nbsp;18 лет
