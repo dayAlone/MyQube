@@ -4941,7 +4941,7 @@ body input:-webkit-autofill {
   left: 25px;
 }
 .sidebar-trigger {
-  position: absolute;
+  position: fixed;
   z-index: 200;
   top: 20px;
   left: 20px;
