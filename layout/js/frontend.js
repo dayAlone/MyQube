@@ -25838,6 +25838,9 @@ return jQuery;
   };
 
   this.resetScroll = function() {
+    if ($('.page').hasMod('open')) {
+      $('.page').mod('open', !$('.page').hasMod('open'));
+    }
     $('.qblock, .groups').attr('style', 'overflow: hidden');
     return delay(300, function() {
       return $('.qblock, .groups').removeAttr('style');
