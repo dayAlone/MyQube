@@ -4945,6 +4945,8 @@ body input:-webkit-autofill {
   z-index: 200;
   top: 20px;
   left: 20px;
+  width: 40px;
+  height: 40px;
   -webkit-transition-property: -webkit-transform;
   -moz-transition-property: -moz-transform;
   -o-transition-property: -o-transform;
