@@ -25869,7 +25869,6 @@ return jQuery;
     });
     $('.sidebar-trigger').on('click', function(e) {
       $('.page').mod('open', !$('.page').hasMod('open'));
-      resetScroll();
       return e.preventDefault();
     });
     $('.toolbar').elem('trigger').on('click', function(e) {
