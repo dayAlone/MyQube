@@ -4796,11 +4796,11 @@ input:checked ~ label.checkbox__label:before {
   overflow: auto;
   max-height: 100%;
   width: 100%;
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -o-transition-property: -o-transform;
-  -ms-transition-property: -ms-transform;
-  transition-property: transform;
+  -webkit-transition-property: right;
+  -moz-transition-property: right;
+  -o-transition-property: right;
+  -ms-transition-property: right;
+  transition-property: right;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
