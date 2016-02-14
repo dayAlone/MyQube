@@ -4787,6 +4787,7 @@ auto
   position: fixed;
   top: 0;
   right: 0;
+  overflow: hidden;
   z-index: 20;
   background-color: #ebebeb;
   padding: 60px 20px;
