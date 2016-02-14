@@ -5503,7 +5503,7 @@ input:checked ~ label.checkbox__label:before {
   }
 }
 .signup__button {
-  margin: 40px 0 0;
+  margin: 30px 0 0;
 }
 @media (max-height: 645px) {
   .signup__button {
