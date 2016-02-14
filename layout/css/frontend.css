@@ -4978,8 +4978,6 @@ input:checked ~ label.checkbox__label:before {
 @media (min-width: 768px) {
   .page--open .sidebar {
     width: 170px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
   }
 }
 @media (min-width: 768px) {
