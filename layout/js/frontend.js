@@ -25864,7 +25864,6 @@ return jQuery;
     $('html').addClass($.browser.platform);
     $('.sidebar').elem('logo').on('click', function(e) {
       $('.page').mod('open', !$('.page').hasMod('open'));
-      resetScroll();
       return e.preventDefault();
     });
     $('.wrap').on('click', function(e) {
