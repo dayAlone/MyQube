@@ -5605,6 +5605,6 @@ input:checked ~ label.checkbox__label:before {
 }
 @media (min-width: 768px) {
   .signup .row {
-    max-width: 320px;
+    max-width: 308px;
   }
 }
