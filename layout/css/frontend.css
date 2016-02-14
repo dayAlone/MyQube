@@ -5107,7 +5107,7 @@ body input:-webkit-autofill {
   }
 }
 .welcome .row {
-  margin: 40px auto;
+  margin: 30px auto 20px;
 }
 .welcome .action {
   width: 100%;
