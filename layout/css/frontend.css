@@ -4583,11 +4583,6 @@ input:checked ~ label.checkbox__label:before {
   line-height: 1;
   padding-left: 40px;
 }
-@media (min-width: 768px) {
-  .login__button {
-    margin-bottom: 20px;
-  }
-}
 .login__button span {
   display: inline-block;
   width: 100%;
