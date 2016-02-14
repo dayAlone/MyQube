@@ -24,13 +24,13 @@
       <form data-parsley-validate method="POST">
         <div class="row">
           <div class="col-xs-4">
-            <input type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="2" class="age__input">
+            <input type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 31]" class="age__input">
           </div>
           <div class="col-xs-4">
-            <input type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="2" class="age__input">
+            <input type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 12]" class="age__input">
           </div>
           <div class="col-xs-4">
-            <input type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" class="age__input">
+            <input type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" data-parsley-range="[1930, 2016]" class="age__input">
           </div>
         </div>
         <button type="submit" class="button age__button">продолжить</button>
