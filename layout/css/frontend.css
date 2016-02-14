@@ -3897,7 +3897,7 @@ body input:-webkit-autofill {
 }
 .groups {
   z-index: 0;
-auto
+  overflow: auto;
   position: fixed;
   max-height: 100%;
   -webkit-overflow-scrolling: touch;
@@ -4414,7 +4414,7 @@ input:checked ~ label.checkbox__label:before {
   max-width: 100%;
   background-color: #ebebeb;
   background-position: top center;
-auto
+  overflow: auto;
   position: fixed;
   max-height: 100%;
   -webkit-overflow-scrolling: touch;
