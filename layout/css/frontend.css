@@ -3897,7 +3897,7 @@ body input:-webkit-autofill {
 }
 .groups {
   z-index: 0;
-  overflow: scroll;
+auto
   position: fixed;
   max-height: 100%;
   -webkit-overflow-scrolling: touch;
@@ -3915,7 +3915,6 @@ body input:-webkit-autofill {
 }
 @media (min-width: 768px) and (max-height: 568px) {
   .groups {
-    overflow: scroll;
     max-height: 100vh !important;
     padding-bottom: 0 !important;
   }
@@ -4414,7 +4413,7 @@ input:checked ~ label.checkbox__label:before {
   max-width: 100%;
   background-color: #ebebeb;
   background-position: top center;
-  overflow: scroll;
+auto
   position: fixed;
   max-height: 100%;
   -webkit-overflow-scrolling: touch;
@@ -4433,7 +4432,6 @@ input:checked ~ label.checkbox__label:before {
 }
 @media (min-width: 768px) and (max-height: 568px) {
   .qblock {
-    overflow: scroll;
     max-height: 100vh !important;
     padding-bottom: 0 !important;
   }
@@ -4792,7 +4790,7 @@ input:checked ~ label.checkbox__label:before {
   z-index: 20;
   background-color: #ebebeb;
   padding: 60px 20px;
-  overflow: scroll;
+auto
   max-height: 100%;
   width: 100%;
   -webkit-transition-property: -webkit-transform;
