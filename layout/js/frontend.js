@@ -25867,6 +25867,11 @@ return jQuery;
       resetScroll();
       return e.preventDefault();
     });
+    $('.wrap').on('click', function(e) {
+      if ($.browser.mobile && $('.page').hasMod('open')) {
+        return $('.page').mod('open', !$('.page').hasMod('open'));
+      }
+    });
     $('.sidebar-trigger').on('click', function(e) {
       $('.page').mod('open', !$('.page').hasMod('open'));
       return e.preventDefault();
