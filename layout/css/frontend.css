@@ -5016,7 +5016,7 @@ input:checked ~ label.checkbox__label:before {
     left: 50%;
   }
   .page--open .sidebar__logo {
-    margin-left: 1px;
+    margin-left: -1px;
   }
 }
 .sidebar__logo svg {
