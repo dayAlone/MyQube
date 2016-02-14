@@ -28117,6 +28117,11 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
   };
 
+  this.agreementScroll = function() {
+    $(this).mod('start', $(this).elem('text').offset().top < $(this).scrollTop());
+    return $(this).mod('end', $(this).elem('text').height() < $(this).scrollTop() + $(this).height());
+  };
+
   $(document).ready(function() {
     $.BEM = new $.BEM.constructor({
       namePattern: '[a-zA-Z0-9-]+',
@@ -28130,6 +28135,15 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $(window).on('resize', _.debounce(size, 300));
     $(window).on('orientationchange', _.debounce(resetScroll, 300));
+    $('.agreement').on('scroll', _.throttle(agreementScroll, 100));
+    $('.signup').elem('agreement-trigger').on('click', function(e) {
+      $('.agreement').mod('open', true);
+      return e.preventDefault();
+    });
+    $('.agreement').elem('trigger').on('click', function(e) {
+      $('.agreement').mod('open', false);
+      return e.preventDefault();
+    });
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
     $('.sidebar').elem('logo').on('click', function(e) {
