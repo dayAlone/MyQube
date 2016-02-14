@@ -25832,7 +25832,7 @@ return jQuery;
 
   this.size = function() {
     $('html').removeAttr('style');
-    if ($.browser.iphone) {
+    if ($.browser.mobile) {
       return $('html').attr('style', 'height: ' + $('html').height() + 'px');
     }
   };
@@ -25859,6 +25859,16 @@ return jQuery;
     $(window).on('orientationchange', _.debounce(resetScroll, 300));
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
+    $('.sidebar').elem('logo').on('click', function(e) {
+      $('.page').mod('open', !$('.page').hasMod('open'));
+      resetScroll();
+      return e.preventDefault();
+    });
+    $('.sidebar-trigger').on('click', function(e) {
+      $('.page').mod('open', !$('.page').hasMod('open'));
+      resetScroll();
+      return e.preventDefault();
+    });
     $('.toolbar').elem('trigger').on('click', function(e) {
       $('.page').mod('on', true);
       return e.preventDefault();

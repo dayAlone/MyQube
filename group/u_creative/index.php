@@ -1,5 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+LocalRedirect('/group/1/u_concept/');
 require($_SERVER["DOCUMENT_ROOT"].'/group/u_creative/include/check.php');
 $page_name="u_concept";?>
 <script type="text/javascript" src="/group/u_creative/js/frontend.js" defer async></script>

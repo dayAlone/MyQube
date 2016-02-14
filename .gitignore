@@ -7,3 +7,4 @@ bitrix/*
 group/u_contest/orders
 upload
 .svn
+bitrix/php_interface/dbconn.php
