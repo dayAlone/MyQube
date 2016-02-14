@@ -5494,7 +5494,7 @@ input:checked ~ label.checkbox__label:before {
   color: #7e7e7e;
   font-size: 14px;
   padding: 0 20px;
-  max-width: 320px;
+  max-width: 360px;
   margin: 0 auto;
   margin-bottom: 15px;
 }
@@ -5514,7 +5514,7 @@ input:checked ~ label.checkbox__label:before {
     margin-top: 20px;
   }
 }
-@media (min-height: 565px) {
+@media (min-width: 768px) and (min-height: 565px) {
   .signup__button {
     margin-bottom: 50px;
   }
@@ -5576,6 +5576,11 @@ input:checked ~ label.checkbox__label:before {
 .signup__agreement-trigger:hover {
   text-decoration: none;
 }
+@media (min-width: 768px) {
+  .signup__agreement-trigger {
+    display: none;
+  }
+}
 .signup__agreement-trigger:hover {
   color: #001022;
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.5) 50%);
@@ -5596,7 +5601,6 @@ input:checked ~ label.checkbox__label:before {
 @media (max-width: 767px) and (max-height: 739px) {
   .signup .qblock__footer {
     display: block;
-    margin-top: 0;
   }
 }
 .signup .row {
