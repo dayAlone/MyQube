@@ -3941,7 +3941,7 @@ body input:-webkit-autofill {
   z-index: 2;
   color: #fff;
 }
-.groups__item:hover .groups__image {
+a.groups__item:hover .groups__image {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1);
@@ -3950,6 +3950,39 @@ body input:-webkit-autofill {
   opacity: 0.4;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
   filter: alpha(opacity=40);
+}
+.groups__item--big {
+  min-height: 100%;
+}
+@media (min-width: 768px) {
+  .groups__item--big {
+    min-height: 100vh;
+  }
+}
+.groups__item--big .groups__name,
+.groups__item--big .groups__description,
+.groups__item--big .groups__users {
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+@media (min-width: 768px) {
+  .groups__item--big .groups__lock {
+    right: 50%;
+    -webkit-transform: translateX(50%) translateY(-50%);
+    -moz-transform: translateX(50%) translateY(-50%);
+    -o-transform: translateX(50%) translateY(-50%);
+    -ms-transform: translateX(50%) translateY(-50%);
+    transform: translateX(50%) translateY(-50%);
+  }
+}
+.groups__item--big .groups__users {
+  margin-top: 40px;
+}
+.groups__item--big .groups__image {
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
 }
 .groups__users {
   left: 25px;
@@ -3970,7 +4003,8 @@ body input:-webkit-autofill {
     font-size: 15px;
   }
 }
-.groups__name {
+.groups__name,
+.groups__description {
   width: 100%;
   padding: 15px 25px;
   color: #00d7fe;
@@ -3980,14 +4014,21 @@ body input:-webkit-autofill {
   font-size: 24px;
 }
 @media (min-width: 480px) {
-  .groups__name {
+  .groups__name,
+  .groups__description {
     font-size: 29px;
   }
 }
 @media (min-width: 992px) {
-  .groups__name {
+  .groups__name,
+  .groups__description {
     font-size: 37px;
   }
+}
+.groups__description {
+  color: #fff;
+  padding-top: 0;
+  max-width: 50%;
 }
 .groups__lock {
   right: 20px;
@@ -4029,7 +4070,7 @@ body input:-webkit-autofill {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   -webkit-transition: 0.6s -webkit-transform, 0.6s opacity;
   -moz-transition: 0.6s -moz-transform, 0.6s opacity;
   -o-transition: 0.6s -o-transform, 0.6s opacity;
