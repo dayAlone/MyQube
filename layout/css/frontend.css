@@ -4502,8 +4502,13 @@ body input:-webkit-autofill {
   -webkit-border-radius: 8px;
   border-radius: 8px;
   max-width: 240px;
-  margin: 0px auto 0;
+  margin: 0px auto 35px;
   line-height: 33px;
+}
+@media (min-width: 768px) {
+  .login__social-frame {
+    margin-bottom: 0;
+  }
 }
 .login__social-frame:hover > a {
   opacity: 0.5;
