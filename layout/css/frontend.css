@@ -4801,28 +4801,16 @@ input:checked ~ label.checkbox__label:before {
   -ms-transition-duration: 0.3s;
   transition-duration: 0.3s;
   -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
+  right: -100%;
   ponter-events: none;
 }
 .agreement--open {
-  -webkit-transform: none;
-  -moz-transform: none;
-  -o-transform: none;
-  -ms-transform: none;
-  transform: none;
+  right: 0%;
 }
 @media (min-width: 768px) {
   .agreement {
     ponter-events: all;
-    -webkit-transform: none;
-    -moz-transform: none;
-    -o-transform: none;
-    -ms-transform: none;
-    transform: none;
+    right: 0;
     width: 50%;
     padding: 40px 30px;
     background-color: rgba(235,235,235,0.95);
