@@ -138,7 +138,7 @@ class OnBeforeProlog {
 
 		if($Dir[1] == "group" && $Dir[2] == 1 && $Dir[3] !== "post" && !empty($Dir[3]))
 			$_SESSION["BackFromDetail"]["group_6"]["nPageSize"] = 1;
-		
+
 		$CurentUser = array();
 
 		if(!empty($_GET["backurl"])) {
@@ -176,7 +176,7 @@ class OnBeforeProlog {
 								CustomUser::UserUpdate(array("UF_GROUPS" => array(1)));
 								CModule::IncludeModule("iblock");
 								$filter = Array	("UF_GROUPS" => 1);
-								//$rsUsers = CUser::GetList(($by="timestamp_x"), ($order="desc"), $filter); 
+								//$rsUsers = CUser::GetList(($by="timestamp_x"), ($order="desc"), $filter);
 								//CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
 								LocalRedirect("/group/1/".$backurl);
 							} elseif(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены

@@ -1,4 +1,5 @@
 <?
+	require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/php_interface/init.php');
 	function page_class()
 	{
 		global $APPLICATION;
