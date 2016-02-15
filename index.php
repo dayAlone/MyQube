@@ -29,8 +29,8 @@
 		    "SORT_BY1"            => "ID",
 		    "SORT_ORDER1"         => "ASC",
 		    "FIELD_CODE"          => "",
-		    "PROPERTY_CODE"       => array('USERS'),
-		    "DETAIL_URL"          => "/group/#SECTION_ID#/?backurl=".$_GET['backurl'],
+		    "PROPERTY_CODE"       => array('USERS', 'LIST_PICT'),
+		    "DETAIL_URL"          => "/group/#SECTION_ID#/".$_GET['backurl'] ? "?backurl=" . $_GET['backurl'] : "",
 		    "CACHE_TYPE"          => "A",
 		    "DISPLAY_PANEL"       => "N",
 		    "SET_TITLE"           => "N"
