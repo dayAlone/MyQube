@@ -4486,11 +4486,11 @@ input:checked ~ label.checkbox__label:before {
     min-height: 420px;
   }
   .qblock--fix {
-    -webkit-transform: translateY(calc(-50% + 1px));
-    -moz-transform: translateY(calc(-50% + 1px));
-    -o-transform: translateY(calc(-50% + 1px));
-    -ms-transform: translateY(calc(-50% + 1px));
-    transform: translateY(calc(-50% + 1px));
+    -webkit-transform: translateY(calc(-50% + 0.5px));
+    -moz-transform: translateY(calc(-50% + 0.5px));
+    -o-transform: translateY(calc(-50% + 0.5px));
+    -ms-transform: translateY(calc(-50% + 0.5px));
+    transform: translateY(calc(-50% + 0.5px));
   }
   .sidebar ~ .wrap .qblock {
     width: calc(50% - 50px);
