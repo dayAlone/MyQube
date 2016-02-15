@@ -5530,7 +5530,7 @@ input:checked ~ label.checkbox__label:before {
     margin-bottom: 50px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .signup__button {
     font-size: 11px;
   }
