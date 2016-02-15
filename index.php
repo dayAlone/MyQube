@@ -22,7 +22,7 @@
 	} else {
 		$APPLICATION->SetPageProperty("page_class", "welcome");
 	}
-	$APPLICATION->IncludeComponent("bitrix:news.list", "",
+	$APPLICATION->IncludeComponent("bitrix:news.list", "groups",
     	array(
 		    "IBLOCK_ID"           => 4,
 		    "NEWS_COUNT"          => "99999",
