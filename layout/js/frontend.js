@@ -28114,7 +28114,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
     return $('.qblock').each(function(key, el) {
       var h;
       h = $(el).height();
-      return $(el).mod('fix', h % 2);
+      return $(el).mod('fix', h % 2 === 0);
     });
   };
 
