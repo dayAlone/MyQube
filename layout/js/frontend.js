@@ -28106,6 +28106,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
 
   this.size = function() {
     $('html').removeAttr('style');
+    $('.page').mod('resize', false);
     if ($.browser.mobile) {
       $('html').attr('style', 'height: ' + $('html').height() + 'px');
     }
@@ -28143,6 +28144,11 @@ if ('undefined' !== typeof window.ParsleyValidator)
       size();
       return resetScroll();
     });
+    $(window).on('resize', function() {
+      if (!$('.page').hasMod('resize')) {
+        return $('.page').mod('resize', true);
+      }
+    });
     $(window).on('resize', _.debounce(size, 300));
     $(window).on('orientationchange', _.debounce(resetScroll, 300));
     $('.agreement').on('scroll', _.throttle(agreementScroll, 100));
@@ -28156,6 +28162,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
+    if ($.browser.mobile) {
+      $('html').addClass('.mobile');
+    }
     $('.sidebar').elem('logo').on('click', function(e) {
       $('.page').mod('open', !$('.page').hasMod('open'));
       return e.preventDefault();
