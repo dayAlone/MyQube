@@ -12,7 +12,7 @@
 
 		<div class="sidebar__nav nav">
 			<?foreach ($arResult as $key => $item) {?>
-				<a href="/user/profile/" class="nav__item">
+				<a href="<?=$item['LINK']?>" class="nav__item">
 					<?=svg('menu-'. $item['PARAMS']['CODE'])?>
 					<span><?=$item['TEXT']?></span>
 				</a>
