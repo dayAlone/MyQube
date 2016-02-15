@@ -21,6 +21,15 @@
 
 	} else {
 		$APPLICATION->SetPageProperty("page_class", "welcome");
+		$APPLICATION->IncludeComponent("bitrix:main.profile",
+			"welcome",
+			Array(
+		        "USER_PROPERTY_NAME" => "",
+		        "USER_PROPERTY" => Array('UF_FRIENDS'),
+		        "SEND_INFO" => "Y",
+		        "CHECK_RIGHTS" => "Y",
+	    	)
+		);
 	}
 	$APPLICATION->IncludeComponent("bitrix:news.list", "groups",
     	array(
