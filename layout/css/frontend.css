@@ -4385,7 +4385,7 @@ a.groups__item:hover .groups__image {
   display: none;
 }
 label.checkbox__label {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 15px;
   color: #7e7e7e;
   padding: 0 15px 0 33px;
@@ -5576,6 +5576,10 @@ input:checked ~ label.checkbox__label:before {
 @media (min-width: 768px) {
   .signup .row.signup__agreement {
     margin-bottom: 0;
+  }
+  .signup .row.signup__agreement .col-sm-6:nth-child(2) {
+    position: relative;
+    left: 10px;
   }
 }
 .signup__agreement-trigger {

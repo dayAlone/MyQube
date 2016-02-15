@@ -22,6 +22,21 @@
 	} else {
 		$APPLICATION->SetPageProperty("page_class", "welcome");
 	}
+	$APPLICATION->IncludeComponent("bitrix:news.list", "",
+    	array(
+		    "IBLOCK_ID"           => 4,
+		    "NEWS_COUNT"          => "99999",
+		    "SORT_BY1"            => "ID",
+		    "SORT_ORDER1"         => "ASC",
+		    "FIELD_CODE"          => "",
+		    "PROPERTY_CODE"       => array('USERS'),
+		    "DETAIL_URL"          => "/group/#SECTION_ID#/?backurl=".$_GET['backurl'],
+		    "CACHE_TYPE"          => "A",
+		    "DISPLAY_PANEL"       => "N",
+		    "SET_TITLE"           => "N"
+       ),
+       false
+    );
 ?>
 
 
