@@ -4675,6 +4675,7 @@ input:checked ~ label.checkbox__label:before {
   max-width: 240px;
   margin: 0px auto 35px;
   line-height: 33px;
+  white-space: nowrap;
 }
 @media (min-width: 768px) {
   .login__social-frame {

@@ -1,60 +1,60 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"ПРОФИЛЬ", 
-		"/user/profile/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Профиль",
+		"/user/profile/",
+		Array(),
+		Array("CODE"=> "profile"),
+		""
 	),
 	Array(
-		"ГРУППЫ", 
-		"/user/groups/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Группы",
+		"/user/groups/",
+		Array(),
+		Array("CODE"=> "group"),
+		""
 	),
 	Array(
-		"Вернуться в группу", 
-		$_SESSION["MQ_GROUP_LAST_POINT"] ? $_SESSION["MQ_GROUP_LAST_POINT"] : '/group/1/', 
-		Array(), 
-		Array("href"=>"В группу"), 
-		"" 
+		"В группу",
+		$_SESSION["MQ_GROUP_LAST_POINT"] ? $_SESSION["MQ_GROUP_LAST_POINT"] : '/group/1/',
+		Array(),
+		Array("CODE"=> "back", "href"=>"В группу"),
+		""
 	),
 	Array(
-		"СООБЩЕНИЯ", 
-		"/communication/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Сообщения",
+		"/communication/",
+		Array(),
+		Array("CODE"=> "message"),
+		""
 	),
 	Array(
-		"НОВОСТИ", 
-		"/user/news/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Новости",
+		"/user/news/",
+		Array(),
+		Array("CODE"=> "news"),
+		""
 	),
 	Array(
-		"КАЛЕНДАРЬ СОБЫТИЙ", 
-		"/user/calendar/", 
-		Array(), 
-		Array("href"=>"КАЛЕНДАРЬ"), 
-		"" 
+		"Календарь",
+		"/user/calendar/",
+		Array(),
+		Array("CODE"=> "calendar", "href"=>"КАЛЕНДАРЬ"),
+		""
 	),
+	/*Array(
+		"Мои конкурсы",
+		"/user/contest/",
+		Array(),
+		Array("CODE"=> "contest"),
+		"CSite::InPeriod(1441054800,1441141200)"
+	),*/
 	Array(
-		"МОИ КОНКУРСЫ", 
-		"/user/contest/", 
-		Array(), 
-		Array(), 
-		"CSite::InPeriod(1441054800,1441141200)" 
-	),
-	Array(
-		"ВЫХОД", 
-		"?logout=yes", 
-		Array(), 
-		Array(), 
-		"" 
+		"Выход",
+		"?logout=yes",
+		Array(),
+		Array("CODE"=> "exit"),
+		""
 	)
 );
 ?>
