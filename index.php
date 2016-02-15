@@ -19,7 +19,7 @@
 			false
 		);
 
-	} else {
+	} else if ($USER->IsAuthorized() && $USER->GetID() > 0) {
 		$APPLICATION->SetPageProperty("page_class", "welcome");
 		$APPLICATION->IncludeComponent("bitrix:main.profile",
 			"welcome",

@@ -6,9 +6,16 @@
 	 <div class="welcome__user">
 	   <div style="background-image: url(<?=CFile::GetPath($user['PERSONAL_PHOTO'])?>)" class="welcome__avatar"></div>
 	   <div class="welcome__name"><?=$user['NAME']?></div>
+
 	   <div class="welcome__about">
-		 <?=FormatDate("d F", MakeTimeStamp($user["PERSONAL_BIRTHDAY"]))?> <br/>
-		 Живет в <?=$user['PERSONAL_CITY']?>
+		   <? if (strlen($user["PERSONAL_BIRTHDAY"]) > 0):?>
+		    <?=FormatDate("d F", MakeTimeStamp($user["PERSONAL_BIRTHDAY"]))?> <br/>
+		   <?
+   			endif;
+			if (strlen($user["PERSONAL_CITY"]) > 0):
+		   ?>Живет в <?=$user['PERSONAL_CITY']?><?
+
+	   		endif;?>
 	   </div>
 	 </div><a href="#" class="welcome__action action">
 
