@@ -1,6 +1,5 @@
 <?
 	$user = $arResult['arUser'];
-	var_dump($arResult['arUser'])
 ?>
  <div class="welcome qblock">
    <div class="qblock__content">
