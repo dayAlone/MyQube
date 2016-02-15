@@ -6,14 +6,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>MyQube</title>
+  <title><?$APPLICATION->ShowTitle()?></title>
   <?
 	$APPLICATION->SetAdditionalCSS("/layout/css/frontend.css", true);
 	$APPLICATION->AddHeadScript('/layout/js/frontend.js');
 	$APPLICATION->ShowHead();
 	$APPLICATION->ShowViewContent('header');
   ?>
-  <title><?$APPLICATION->ShowTitle()?></title>
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
