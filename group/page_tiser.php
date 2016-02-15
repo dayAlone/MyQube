@@ -1,4 +1,5 @@
 <?
+
 if(strripos($_SERVER["HTTP_REFERER"], "vk.com"))
 	$soc_network = "vk";
 if(strripos($_SERVER["HTTP_REFERER"], "facebook"))
@@ -44,6 +45,8 @@ $APPLICATION->SetPageProperty("og:description", $arPost["PROPERTIES"]["OG_DESCRI
 $APPLICATION->SetPageProperty("og:image", "http://myqube.ru".str_replace(' ','%20',$ogImage["src"]));
 $APPLICATION->SetPageProperty("og:url", "http://myqube.ru".$_SERVER["REQUEST_URI"]);
 
+$APPLICATION->SetPageProperty("page_class", "teaser");
+
 if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	<script>
 		$(document).ready(function(){$.get("http://myqube.ru<?=$_SERVER["REQUEST_URI"]?>?utm_source=google&utm_medium=teaser&utm_term=<?=$soc_network?>&utm_campaign=<?=$arPost["ID"]?>",function(data){});});
@@ -51,7 +54,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	<?
 	$image = 'http://myqube.ru'.str_replace(' ','%20', CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]));
 
-	$APPLICATION->SetAdditionalCSS("/layout/css/preview.css", true);
+	
 	?>
 
 	<div class='teaser'>

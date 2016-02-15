@@ -28134,6 +28134,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
   };
 
   $(document).ready(function() {
+    var socialAuth;
     $.BEM = new $.BEM.constructor({
       namePattern: '[a-zA-Z0-9-]+',
       elemPrefix: '__',
@@ -28156,16 +28157,24 @@ if ('undefined' !== typeof window.ParsleyValidator)
     if ($.browser.mobile) {
       $('html').addClass('.mobile');
     }
-    $('.login').elem('social').on('click', function(e) {
+    window.host_url = 'http://' + location.host;
+    socialAuth = function(el) {
       var backurl;
-      backurl = $(this).block().data('backurl');
-      window.loginWindow = window.open($(this).data('url'), '', 'width=660, height=425, scrollbars=1');
-      window.loginTimer = interval(300, function() {
+      backurl = $(el).block().data('backurl');
+      window.loginWindow = window.open($(el).data('url'), '', 'width=660, height=425, scrollbars=1');
+      return window.loginTimer = interval(300, function() {
         if (window.loginWindow.closed) {
           location.href = backurl;
           return clearInterval(window.loginTimer);
         }
       });
+    };
+    $('.login').elem('social').on('click', function(e) {
+      socialAuth($(this));
+      return e.preventDefault();
+    });
+    $('.login').elem('link').on('click', function(e) {
+      socialAuth($(this));
       return e.preventDefault();
     });
     $('.agreement').on('scroll', _.throttle(agreementScroll, 100));

@@ -1,22 +1,5 @@
 <? $_GET['backurl'] = $arParams['BACKURL']; ?>
-<script type="text/javascript">
-
-	$(document).ready(function(){
-		$(".login__link").on('click', function(e) {
-			var NewWindow = window.open($(this).data('url'),'','width=660,height=425,scrollbars=1');
-			var Timer = setInterval(function() {
-				if(NewWindow.closed) {
-			        window.location.href = '<?=$arParams['BACKURL']?>'
-			    }
-			}, 1000);
-			e.preventDefault()
-		})
-
-	});
-
-</script>
-
-<div class='login login--social'>
+<div class='login login--social' data-backurl="<?=$_GET["backurl"]?>">
 	Чтобы читать дальше,<br>авторизируйтесь через соцсеть
 	<br>
 	<a href="#" class='login__link login__link--fb' data-url='<?=require($_SERVER['DOCUMENT_ROOT'].'/facebook.php');?>'>
