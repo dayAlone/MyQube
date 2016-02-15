@@ -28112,9 +28112,9 @@ if ('undefined' !== typeof window.ParsleyValidator)
     }
     $('.qblock').mod('fix', false);
     return $('.qblock').each(function(key, el) {
-      var offset;
-      offset = $(el).offset().top;
-      return $(el).mod('fix', offset !== parseInt(offset));
+      var h;
+      h = $(el).height();
+      return $(el).mod('fix', h % 2);
     });
   };
 
