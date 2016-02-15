@@ -7,7 +7,7 @@
 
 		// Страница с формой авторизации
 
-		$APPLICATION->SetPageProperty("page_class", "login");
+		$APPLICATION->SetPageProperty("page_class", "page--login");
 
 		$APPLICATION->IncludeComponent(
 			"bitrix:system.auth.form",
@@ -23,7 +23,7 @@
 
 		// Страница с профилем
 
-		$APPLICATION->SetPageProperty("page_class", "welcome");
+		$APPLICATION->SetPageProperty("page_class", "page--welcome");
 		$APPLICATION->IncludeComponent("bitrix:main.profile",
 			"welcome",
 			Array(

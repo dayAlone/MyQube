@@ -4095,7 +4095,7 @@ a.groups__item:hover .groups__image {
   transition-duration: 0s;
 }
 @media (min-width: 768px) {
-  .page .sidebar ~ .wrap .footer {
+  .page:not(.page--clean) .sidebar ~ .wrap .footer {
     padding-left: 85px;
   }
 }
@@ -4492,7 +4492,7 @@ input:checked ~ label.checkbox__label:before {
     -ms-transform: translateY(calc(-50% + 0.5px));
     transform: translateY(calc(-50% + 0.5px));
   }
-  .sidebar ~ .wrap .qblock {
+  .page:not(.page--clean) .sidebar ~ .wrap .qblock {
     width: calc(50% - 50px);
     left: 50px;
   }
@@ -4710,6 +4710,10 @@ input:checked ~ label.checkbox__label:before {
 .age {
   text-align: center;
 }
+.sidebar ~ .wrap .qblock.age {
+  width: 100%;
+  left: 0;
+}
 .age__logo,
 .lock__logo {
   display: inline-block;
@@ -4790,6 +4794,10 @@ input:checked ~ label.checkbox__label:before {
 .age p a:hover:hover,
 .lock p a:hover:hover {
   text-decoration: none;
+}
+.sidebar ~ .wrap .qblock.lock {
+  width: 100%;
+  left: 0;
 }
 .lock__icon {
   margin: 48px 0 52px;
@@ -4972,6 +4980,9 @@ input:checked ~ label.checkbox__label:before {
   -ms-transform: translateX(-100%);
   transform: translateX(-100%);
   overflow: hidden;
+}
+.page--clean .sidebar {
+  display: none;
 }
 .page--open .sidebar {
   -webkit-transition: 0.3s width, 0.3s -webkit-transform, 0.3s box-shadow 0.3s;

@@ -1,6 +1,55 @@
+<?
+	switch ($_GET['message']) {
+		case 'birthday':
+			$APPLICATION->SetPageProperty("page_class", "page--age page--clean");
+			if($_POST["DD"] && $_POST["MM"] && $_POST["YYYY"]) {
+				CustomUser::UserUpdate(array("PERSONAL_BIRTHDAY" => $_POST["DD"].'.'.$_POST["MM"].'.'.$_POST["YYYY"]));
+				if(strripos($_GET["backurl"], "?message=")) {
+					$backurl = substr($_GET["backurl"], 0, strripos($_GET["backurl"], "?message="));
+				}
+				LocalRedirect("/group/1/".(strlen($backurl) > 0 ? "?backurl=" . $backurl : ''));
+			}?>
+				<div class="age qblock">
+			      <div class="qblock__content"><img src="/layout/images/svg/logo-full.svg" alt="" class="age__logo">
+			        <p>
+			          К сожалению, мы не смогли получить информацию <br/>
+			          от социальной сети о вашем возрасте.<br/>
+			          Чтобы продолжить, пожалуйста, укажите<br/>
+			          дату вашего рождения.
+			        </p>
+			        <form data-parsley-validate method="POST">
+			          <div class="row">
+			            <div class="col-xs-4">
+			              <input type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 31]" class="age__input">
+			            </div>
+			            <div class="col-xs-4">
+			              <input type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 12]" class="age__input">
+			            </div>
+			            <div class="col-xs-4">
+			              <input type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" data-parsley-range="[1930, 2016]" class="age__input">
+			            </div>
+			          </div>
+			          <button type="submit" class="button age__button">продолжить</button>
+			        </form>
+			        <div class="age__footer qblock__footer">
+			          © 2015 MyQube. все права защищены. <br>
+			          социальная сеть предназначена для лиц старше&nbsp;18 лет
+			        </div>
+			      </div>
+			    </div>
+			<?
+			break;
+		case 'checking_user_fields';
+			break;
+		default:
+			# code...
+			break;
+	}
+?>
+<? /*
 <script src="//code.jquery.com/jquery-1.8.3.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="/js/jquery.ui.touch-punch.min.js"></script>			
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="/js/plugins/jquery.slimscroll/jquery.slimscroll.min.js"></script>
 <link type="text/css" rel="stylesheet" href="/css/group.css">
 <script type="text/javascript" src="/js/web20/script.js"></script>
@@ -23,7 +72,7 @@
         #nav_left_open{
             left: -165px !important;
         }
-    
+
 		input[type="checkbox"] + label {
 			margin-left: 0px;
 		}
@@ -75,24 +124,24 @@
 	</style>
 	<div class="enter_page">
 		<div class="enter_page_rightcol" style="background-image: url('<?=CFile::GetPath($arGroup["DETAIL_PICTURE"])?>');">
-		
+
 			<?if($_GET["message"] == "checking_user_fields" && $_GET["step"] == "2") {?>
-				
+
 				<div class="container">
 					<div class="privacy-window">
 						<div class="wrap-privacy">
 							<div class="privacy-text">
-							
+
 							<?include("registration_info.php");?>
-							
+
 							</div>
 						</div>
 						<div class="privacy-shadow"></div>
 					</div>
 				</div>
-				
+
 			<?}?>
-		
+
 			<div id="scroll">
 				<div class="enter_page_group_item">
 					<h1><?=$arGroup["NAME"]?><br><?=$arGroup["PREVIEW_TEXT"]?></h1>
@@ -102,19 +151,19 @@
 			</div>
 		</div>
 		<div class="enter_page_leftcol">
-		
+
 			<?if($_GET["message"] == "birthday") {?>
-			
+
 				<style>
                        @media screen and (max-device-width: 640px){
                             .enter_page_leftcol_text{
                                 height: auto;
                             }
-                            
+
                             .enter_page_input{
                                 margin-bottom: 0px;
-                            }  
-                            
+                            }
+
                             .popup-text-reg-block{
                                 z-index: 10;
                                 position: absolute;
@@ -122,8 +171,8 @@
                                 height: 100%;
                                 background: rgba(0,0,0,.9);
                                 color: #fff;
-                            } 
-                            
+                            }
+
                             .popup-text-reg-block-text{
                                 margin: 20px;
                                 height: 60%;
@@ -131,7 +180,7 @@
                                 font-size: 14px;
                                 line-height: 1.5;
                                 overflow-y: scroll;
-                            }      
+                            }
                             .popup-text-reg-block-text:after{
                                 width: 100%;
                                 height: 100px;
@@ -144,8 +193,8 @@
                                 background: -o-linear-gradient(top,  #ffffff 0%,#000000 100%);
                                 background: -ms-linear-gradient(top,  #ffffff 0%,#000000 100%);
                                 background: linear-gradient(to bottom,  rgba( 0,0,0,0 ) 0%, rgba( 0,0,0,1 ) 100%);
-                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", endColorstr="#000000",GradientType=0 );  
-                                
+                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffffff", endColorstr="#000000",GradientType=0 );
+
                             }
                             .popup-text-reg-block input{
                                 margin: 20px auto;
@@ -153,32 +202,32 @@
                                 height: 40px;
                                 width: 40px;
                             }
-                        
+
                         .popup-text-reg-block-input-text{
                             font-size: 20px;
                         }
 
-                            
-                                 
+
+
                         }
 				</style>
 				<div class="mobile-block popup-text-reg-block">
 					<div class="popup-text-reg-block-text">
-					
+
 						<?include("registration_info.php");?>
-					
+
 					</div>
 					<div class="popup-text-reg-block-shadow"></div>
 					<input id="popup-chechbox" type="checkbox"/>
 					<div class="popup-text-reg-block-input-text">СОГЛАСЕН С ПРАВИЛАМИ</div>
-				</div>  
-				
+				</div>
+
 			<?}?>
-			
+
 			<style>
 				.enter_page_leftcol_cont {
 					vertical-align: middle;
-					display: table;	
+					display: table;
 				}
 				#page_inside_middle {
 					vertical-align: middle;
@@ -187,11 +236,11 @@
                 @media screen and (max-device-width: 640px){
                     .enter_page_leftcol_cont {
                         display: block;
-                        
-                    }  
+
+                    }
     				#page_inside_middle {
     				    display: block;
-    				}                     
+    				}
                 }
 				#return_main_page {
 					display:none;
@@ -222,12 +271,12 @@
 			<div class="enter_page_leftcol_cont">
 			<style>
 			@media screen and (max-device-width: 640px){
-			.enter_page_leftcol_cont {				
+			.enter_page_leftcol_cont {
 				min-height: auto !important;
 			}
 			}
 			</style>
-			
+
 				<?if($_GET["message"] == "birthday") {
 					if($_POST["DD"]) {
 						if($_POST["DO_YOU_SMOKE"]) $smoke = true; else $smoke = false;
@@ -239,7 +288,7 @@
 						CustomUser::UserUpdate($Fields);
 						if(strripos($_GET["backurl"], "?message="))
 							$backurl = substr($_GET["backurl"], 0, strripos($_GET["backurl"], "?message="));
-						LocalRedirect("/group/1/&backurl=".$backurl);                        
+						LocalRedirect("/group/1/&backurl=".$backurl);
 					}?>
 
 					<link rel="stylesheet" href="../../mobile/reg.css">
@@ -275,7 +324,7 @@
 							<input type="submit" src="/bitrix/templates/web20/images/enter_page_submit.png" value="Продолжить">
 						</form>
 					</div>
-					
+
 				<?} elseif($_GET["message"] == "checking_user_fields") {
 					$CurentUser = CUser::GetByID($USER->GetID())->Fetch();
 					$date = explode(".", $CurentUser["PERSONAL_BIRTHDAY"]);
@@ -289,7 +338,7 @@
 						if(strripos($_GET["backurl"], "?message="))
 							$backurl = substr($_GET["backurl"], 0, strripos($_GET["backurl"], "?message="));
 						LocalRedirect("/group/1/?message=checking_user_fields&step=2&backurl=".$backurl);
-					} elseif($_GET["step"] == 2 && $_POST["BRAND_1"]) {		
+					} elseif($_GET["step"] == 2 && $_POST["BRAND_1"]) {
 						if($_POST["DO_YOU_SMOKE"]) $smoke = true; else $smoke = false;
 						if($_POST["IAGREE"]) $iagree = true; else $iagree = false;
 						$Fields = array(
@@ -304,7 +353,7 @@
 						LocalRedirect("/group/1/&backurl=".$backurl);
 					}
 					?>
-					
+
                     <link rel="stylesheet" href="../../mobile/reg.css">
                     <div class="mobile-block header-reg-mobile">
                         <div class="header-reg-mobile-up">
@@ -326,9 +375,9 @@
 							<a href="/" id="return_main_page">Перейти на главную страницу</a>
 						</div>
 						<form name="REGISTRATION" id="enter_page_form" method="post" target="_top" action="?message=checking_user_fields&step=2&backurl=<?=$_GET["backurl"];?>">
-						
+
 							<?if(empty($_GET["step"])) {?>
-							
+
 								<input type="text" name="USER_NAME" id="user_name" maxlength="50" value="<?=$CurentUser["NAME"]?>" class="enter_page_input requried" placeholder="Введите имя"><br>
 								<div class="error user_name">Пожалуйста, укажите ваше имя</div>
 								<input type="email" name="USER_EMAIL" id="user_email" maxlength="50" value="<?=strripos($CurentUser["EMAIL"], "kentlabemail") ? "" : $CurentUser["EMAIL"]?>" class="enter_page_input requried" placeholder="Адрес электронной почты"><br>
@@ -338,9 +387,9 @@
 								<input type="text" name="YYYY" maxlength="4" placeholder="ГГГГ"<?if(!empty($date)) echo " disabled";?> value="<?=$date[2]?>" class="enter_page_input enter_page_input_date requried"><br>
 								<div class="error birthday">Пожалуйста, укажите вашу<br> дату рождения</div>
 								<input type="submit" src="/bitrix/templates/web20/images/enter_page_submit.png" value="Перейти на последний шаг регистрации">
-								
-							<?} elseif($_GET["step"] == 2) {?>	
-							
+
+							<?} elseif($_GET["step"] == 2) {?>
+
 								<style>
 									@media screen and (max-device-width: 640px){
 										.enter_page_leftcol{
@@ -351,11 +400,11 @@
 											height: auto !important;
 										}
 									}
-								</style>					
+								</style>
 								<input type="text" id="user_brand1" name="BRAND_1" maxlength="50" placeholder="Предпочитаемая марка сигарет 1" class="enter_page_input requried"><br>
 								<div class="error user_brand1">Введите марку сигарет</div>
 								<input type="text" id="user_brand2" name="BRAND_2" maxlength="50" placeholder="Предпочитаемая марка сигарет 2" class="enter_page_input"><br>
-								<div class="error user_brand2">Введите марку сигарет</div>		
+								<div class="error user_brand2">Введите марку сигарет</div>
 								<input type="checkbox" name="IAGREE" id="iagree" class="enter_page_input requried">
 								<label for="iagree">
 									<div>Даю согласие на обработку моих персональных данных</div>
@@ -367,14 +416,14 @@
 								</label>
 								<!--div class="error do_you_smoke">Данная группа предназначена<br> для совершеннолетних курильщиков</div-->
 								<input type="submit" src="/bitrix/templates/web20/images/enter_page_submit.png" value="Зарегистрироваться">
-								
+
 							<?}?>
-							
+
 						</form>
 					</div>
-					
+
 				<?} elseif($_GET["message"] == "you_are_under_18") {?>
-				
+
 					<br><br><br><br><br><br>
 					<img src="/bitrix/templates/web20/images/enter_page_no_access.png" class="enter_page_leftcol_lock_icon">
 					<br>
@@ -383,14 +432,14 @@
 						для совершеннолетних курильщиков.<br>
 						<a href="/">Перейти на главную страницу</a>
 					</div>
-					
+
 				<?} else {?>
-				
+
                     <div class="container" style="display:none;">
 						<div class="background-container"></div>
-						
+
 						<?include("ajax/1/manifest.php");?>
-						
+
 					</div>
                     <style>
 						@media screen and (max-device-width: 640px){
@@ -398,20 +447,20 @@
 								left: 0px;
 							}
 							.enter_page{
-							   min-height: 960px;  
+							   min-height: 960px;
 							}
 							.enter_page_leftcol_text{
 								height: auto;
 							}
 							.enter_page_input{
 								margin-bottom: 0px;
-							}  	
+							}
 							div.main{
 								height: auto !important;
-							}							
+							}
 						}
                     </style>
-                    <link rel="stylesheet" href="../../mobile/reg.css">  
+                    <link rel="stylesheet" href="../../mobile/reg.css">
 					<div class="mobile-block header-reg-mobile">
                         <div class="header-reg-mobile-up">
                             <a href="../../index.php"><div class="header-reg-mobile-up-left"></div></a>
@@ -422,10 +471,10 @@
                             <div class="header-reg-mobile-down-text">KENT Lab Innovations, Experience, Trends</div>
                         </div>
                     </div>
-					
+
 					<?$APPLICATION->IncludeComponent(
-						"bitrix:system.auth.form", 
-						"myqube", 
+						"bitrix:system.auth.form",
+						"myqube",
 						array(
 							"REGISTER_URL" => "/",
 							"PROFILE_URL" => "/user/profile/",
@@ -435,7 +484,7 @@
 						false
 					);?>
 				<?}?>
-				
+
 				<div class="enter_page_rights">
 					© 2015 MyQube. Все права защищены.<br>
 					Социальная сеть предназначена для лиц старше 18 лет
@@ -445,8 +494,9 @@
                 <div>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</div>
                 <div>
 					<span>О ГРУППЕ   </span>|
-					<span>  МАНИФЕСТ</span>                
+					<span>  МАНИФЕСТ</span>
                 </div>
             </div>
 		</div>
 	</div>
+*/?>

@@ -18,7 +18,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class='page page--<?=$APPLICATION->AddBufferContent("page_class");?>'>
+<body class='page <?=$APPLICATION->AddBufferContent("page_class");?>'>
 	<div id="panel"><?$APPLICATION->ShowPanel();?></div>
     <?
         if($USER->IsAuthorized())
