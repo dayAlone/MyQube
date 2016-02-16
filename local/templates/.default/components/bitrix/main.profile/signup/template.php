@@ -22,9 +22,9 @@
 		  <label class="signup__label">Дата<br/>рождения</label>
 		</div>
 		<div class="col-xs-9 right">
-			<input value="<?=date('d', strtotime($user['PERSONAL_BIRTHDAY']));?>" type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 31]" class="signup__input signup__input--small">
-			<input value="<?=date('m', strtotime($user['PERSONAL_BIRTHDAY']));?>" type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 12]" class="signup__input signup__input--small">
-			<input value="<?=date('Y', strtotime($user['PERSONAL_BIRTHDAY']));?>" type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" data-parsley-range="[1930, 2016]" class="signup__input signup__input--small">
+			<input value="<?=(strlen($user['PERSONAL_BIRTHDAY']) > 0 ? date('d', strtotime($user['PERSONAL_BIRTHDAY'])) : '');?>" type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 31]" class="signup__input signup__input--small">
+			<input value="<?=(strlen($user['PERSONAL_BIRTHDAY']) > 0 ? date('m', strtotime($user['PERSONAL_BIRTHDAY'])) : '');?>" type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 12]" class="signup__input signup__input--small">
+			<input value="<?=(strlen($user['PERSONAL_BIRTHDAY']) > 0 ? date('Y', strtotime($user['PERSONAL_BIRTHDAY'])) : '');?>" type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" data-parsley-range="[1930, 2016]" class="signup__input signup__input--small">
 		</div>
 	  </div>
 	  <input type="text" name="UF_BRAND_1" value="<?=$user['UF_BRAND_1']?>" placeholder="Предпочитаемая марка сигарет 1" required class="signup__input"><br>
