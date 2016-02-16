@@ -4456,7 +4456,7 @@ input:checked ~ label.checkbox__label:before {
     padding-bottom: 0 !important;
   }
 }
-.sidebar ~ .wrap .qblock {
+.page:not(.page--clean) .sidebar ~ .wrap .qblock {
   background-image: none;
 }
 @media (max-width: 767px) {

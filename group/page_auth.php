@@ -1,50 +1,71 @@
 <?
+
 	switch ($_GET['message']) {
 		case 'birthday':
 			$APPLICATION->SetPageProperty("page_class", "page--age page--clean");
-			if($_POST["DD"] && $_POST["MM"] && $_POST["YYYY"]) {
-				CustomUser::UserUpdate(array("PERSONAL_BIRTHDAY" => $_POST["DD"].'.'.$_POST["MM"].'.'.$_POST["YYYY"]));
-				if(strripos($_GET["backurl"], "?message=")) {
-					$backurl = substr($_GET["backurl"], 0, strripos($_GET["backurl"], "?message="));
-				}
-				LocalRedirect("/group/1/".(strlen($backurl) > 0 ? "?backurl=" . $backurl : ''));
-			}?>
-				<div class="age qblock">
-			      <div class="qblock__content"><img src="/layout/images/svg/logo-full.svg" alt="" class="age__logo">
-			        <p>
-			          К сожалению, мы не смогли получить информацию <br/>
-			          от социальной сети о вашем возрасте.<br/>
-			          Чтобы продолжить, пожалуйста, укажите<br/>
-			          дату вашего рождения.
-			        </p>
-			        <form data-parsley-validate method="POST">
-			          <div class="row">
-			            <div class="col-xs-4">
-			              <input type="text" name="DD" placeholder="Дд" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 31]" class="age__input">
-			            </div>
-			            <div class="col-xs-4">
-			              <input type="text" name="MM" placeholder="Мм" required maxlength="2" data-parsley-minlength="1" data-parsley-range="[1, 12]" class="age__input">
-			            </div>
-			            <div class="col-xs-4">
-			              <input type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" data-parsley-range="[1930, 2016]" class="age__input">
-			            </div>
-			          </div>
-			          <button type="submit" class="button age__button">продолжить</button>
-			        </form>
-			        <div class="age__footer qblock__footer">
-			          © 2015 MyQube. все права защищены. <br>
-			          социальная сеть предназначена для лиц старше&nbsp;18 лет
-			        </div>
-			      </div>
-			    </div>
-			<?
+			$APPLICATION->IncludeComponent("bitrix:main.profile",
+				"age",
+				Array(
+			        "USER_PROPERTY_NAME" => "",
+			        "USER_PROPERTY" => Array(""),
+			        "SEND_INFO" => "Y",
+			        "CHECK_RIGHTS" => "Y",
+		    	)
+			);
 			break;
 		case 'checking_user_fields';
+			$APPLICATION->SetPageProperty("page_class", "page--signup");
+			$APPLICATION->IncludeComponent("bitrix:main.profile",
+				"signup",
+				Array(
+			        "USER_PROPERTY_NAME" => "",
+			        "USER_PROPERTY" => Array(""),
+			        "SEND_INFO" => "Y",
+			        "CHECK_RIGHTS" => "Y",
+		    	)
+			);
+			$APPLICATION->IncludeComponent("bitrix:news.detail",
+				"group",
+				Array(
+				    "IBLOCK_ID"     => 4,
+					"IBLOCK_TYPE"   => "sections",
+				    "ELEMENT_ID"    => $_GET['GROUP_ID'],
+				    "PROPERTY_CODE" => array('USERS', 'LIST_PICT'),
+				)
+			);
+			?>
+			<div class='agreement'>
+				<a href="#" class="agreement__trigger"><img src="/layout/images/svg/arrow-right.svg" alt=""></a>
+			    <div class="agreement__text">
+				  <?
+				  	require($_SERVER['DOCUMENT_ROOT']."/group/registration_info.php");
+
+				  ?>
+				</div>
+			</div>
+			<?
 			break;
-		default:
-			# code...
+		case 'you_are_under_18':
+			$APPLICATION->SetPageProperty("page_class", "page--lock page--clean");
+			?>
+			<div class="lock qblock">
+		      <div class="qblock__content"><img src="/layout/images/svg/logo-full.svg" alt="" class="lock__logo"><br><img src="/layout/images/svg/lock-enter.svg" alt="" width="109" class="lock__icon">
+		        <p>
+		          К сожалению, социальная сеть MyQube открыта<br/>
+		          только для совершеннолетних.<br/>
+		          <a href='/'>Перейти на главную страницу</a>
+
+		        </p>
+		        <div class="lock__footer qblock__footer">
+		          <? include($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php') ?>
+		        </div>
+		      </div>
+		    </div>
+			<?
 			break;
 	}
+
+
 ?>
 <? /*
 <script src="//code.jquery.com/jquery-1.8.3.js"></script>

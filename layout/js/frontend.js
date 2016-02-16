@@ -28186,6 +28186,17 @@ if ('undefined' !== typeof window.ParsleyValidator)
       $('.agreement').mod('open', false);
       return e.preventDefault();
     });
+    $('input[name="DD"], input[name="MM"], input[name="YYYY"]').on('keyup', function(e) {
+      var value;
+      if (!$(this).hasMod('value')) {
+        value = [];
+        $('input[name="DD"], input[name="MM"], input[name="YYYY"]').map(function(key, el) {
+          return value.push($(this).val());
+        });
+        console.log(value.join('.'));
+        return $('input[name="PERSONAL_BIRTHDAY"]').val(value.join('.'));
+      }
+    });
     $('.wrap').on('click', function(e) {
       if ($.browser.mobile && $('.page').hasMod('open')) {
         return $('.page').mod('open', !$('.page').hasMod('open'));
