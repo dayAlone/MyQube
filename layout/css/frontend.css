@@ -5524,6 +5524,9 @@ input:checked ~ label.checkbox__label:before {
   text-transform: uppercase;
   margin-bottom: 6px;
 }
+.signup__name input {
+  width: 96%;
+}
 .signup__description {
   color: #7e7e7e;
   font-size: 14px;
