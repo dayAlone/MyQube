@@ -5,7 +5,7 @@
    <div class="qblock__content">
 	 <div class="welcome__user">
 	   <div style="background-image: url(<?=CFile::GetPath($user['PERSONAL_PHOTO'])?>)" class="welcome__avatar"></div>
-	   <div class="welcome__name"><?=$user['NAME']?></div>
+	   <div class="welcome__name"><?=$user['NAME']?> <?=$user['LAST_NAME']?></div>
 
 	   <div class="welcome__about">
 		   <? if (strlen($user["PERSONAL_BIRTHDAY"]) > 0):?>
