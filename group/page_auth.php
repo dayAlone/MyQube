@@ -39,7 +39,6 @@
 			    <div class="agreement__text">
 				  <?
 				  	require($_SERVER['DOCUMENT_ROOT']."/group/registration_info.php");
-
 				  ?>
 				</div>
 			</div>
@@ -62,6 +61,28 @@
 		      </div>
 		    </div>
 			<?
+			break;
+		default:
+			$APPLICATION->SetPageProperty("page_class", "page--login");
+			$_GET['backurl'] = '/group/'.$_GET['GROUP_ID'].'/';
+			$APPLICATION->IncludeComponent(
+				"bitrix:system.auth.form",
+				"login",
+				array(
+					"FORGOT_PASSWORD_URL" => "",
+					"SHOW_ERRORS" => "N"
+				),
+				false
+			);
+			$APPLICATION->IncludeComponent("bitrix:news.detail",
+				"group",
+				Array(
+				    "IBLOCK_ID"     => 4,
+					"IBLOCK_TYPE"   => "sections",
+				    "ELEMENT_ID"    => $_GET['GROUP_ID'],
+				    "PROPERTY_CODE" => array('USERS', 'LIST_PICT'),
+				)
+			);
 			break;
 	}
 

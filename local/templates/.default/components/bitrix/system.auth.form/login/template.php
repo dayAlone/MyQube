@@ -1,5 +1,5 @@
 <?
-$_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : '/';
+$_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID']) > 0 ? "/group/".$_GET['GROUP_ID']."/" : "/");
 ?>
 
 <div class="login qblock" data-backurl="<?=$_GET["backurl"]?>">
@@ -10,7 +10,7 @@ $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : '/';
 		тематических сообществ<br/>
 		для единомышленников
 	</div>
-	<form data-parsley-validate method="POST" action="/?login=yes">
+	<form data-parsley-validate method="POST" action="<?=(intval($_GET['GROUP_ID']) > 0 ? "/group/".$_GET['GROUP_ID']."/" : "/?login=yes")?>">
 		<input type="hidden" name="USER_REMEMBER" value="Y">
 		<input type="hidden" name="AUTH_FORM" value="Y">
 		<input type="hidden" name="TYPE" value="AUTH">
