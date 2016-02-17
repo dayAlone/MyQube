@@ -1,6 +1,12 @@
 <?
 $arUrlRewrite = array(
 	array(
+		"CONDITION" => "#^/signup/([\\w-_]+)/.*#",
+		"RULE" => "action=\$1&\$2",
+		"ID" => "",
+		"PATH" => "/signup/index.php",
+	),
+	array(
 		"CONDITION" => "#^/group/([0-9]+)/contest/u_creative/?#",
 		"RULE" => "GROUP_ID=\$1",
 		"ID" => "",
