@@ -28163,12 +28163,19 @@ if ('undefined' !== typeof window.ParsleyValidator)
       backurl = $(el).block().data('backurl');
       window.loginWindow = window.open($(el).data('url'), 'popup', 'width=420, height=230');
       return window.addEventListener('message', function(event) {
-        var data;
+        var data, form;
         data = event.data;
         if (data.auth === true) {
           location.href = backurl;
         } else if (data.url) {
-          location.href = data.url + '?' + data.fields;
+          if (data.fields) {
+            form = $('.login').elem('age');
+            form.find('input').val(JSON.stringify(data.fields));
+            form.attr('action', data.url + '?backurl=' + backurl);
+            form.submit();
+          } else {
+            location.href = data.url;
+          }
         }
         return window.loginWindow.close();
       });
@@ -28202,8 +28209,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
         $('input[name="DD"], input[name="MM"], input[name="YYYY"]').map(function(key, el) {
           return value.push($(this).val());
         });
-        console.log(value.join('.'));
-        return $('input[name="PERSONAL_BIRTHDAY"]').val(value.join('.'));
+        $('input[name="PERSONAL_BIRTHDAY"]').val(value.join('.'));
+        return $('input[name="REGISTER[PERSONAL_BIRTHDAY]"]').val(value.join('.'));
       }
     });
     $('.wrap').on('click', function(e) {

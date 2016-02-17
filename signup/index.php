@@ -73,7 +73,7 @@
 						'UF_PRIVATE_MYGROUPS'  => 9,
 						'UF_INVITE_STATUS'     => 1,
 						'PERSONAL_CITY'        => $data['city'],
-						'PERSONAL_PHOTO'       => CFile::MakeFileArray($data['picture']),
+						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture'])['tmp_name'] : false,
 						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
 						'UF_AMBASSADOR'        => $APPLICATION->get_cookie("MQ_AMBASSADOR") ? 1 : false,
 						'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
@@ -144,6 +144,30 @@
 			<?
 			break;
 
+
+		case 'age':
+			//{"NAME":"Andrey","LAST_NAME":"Kolmakov","LOGIN":"code_red@mail.ru","EMAIL":"code_red@mail.ru","LID":"ru","ACTIVE":"Y","GROUP_ID":[3,4,5],"PASSWORD":"1badd63eeb04408a60aa7da14aca0bc6","CONFIRM_PASSWORD":"1badd63eeb04408a60aa7da14aca0bc6","UF_YOU_HAVE_18":1,"UF_AUTH_SOCNET":1,"UF_PRIVATE_MYPAGE":1,"UF_PRIVATE_MYFRIENDS":5,"UF_PRIVATE_MYGROUPS":9,"UF_INVITE_STATUS":1,"PERSONAL_CITY":false,"PERSONAL_PHOTO":{"name":"1378371_10202314149880939_392229151_n.jpg","size":6034,"tmp_name":"/Users/slider/Documents/Projec'... (length=693)
+			require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+			$APPLICATION->SetPageProperty("page_class", "page--age page--clean");
+			$APPLICATION->IncludeComponent("bitrix:main.register",
+				"age",
+				Array(
+		            "USER_PROPERTY_NAME" => "",
+		            "SEF_MODE"           => "Y",
+		            "SHOW_FIELDS"        => Array("NAME", "LAST_NAME", "LOGIN", "EMAIL", "GROUP_ID", "PASSWORD", "CONFIRM_PASSWORD", "PERSONAL_CITY", "PERSONAL_PHOTO", "PERSONAL_BIRTHDAY"),
+		            "REQUIRED_FIELDS"    => Array("NAME"),
+		            "AUTH"               => "Y",
+		            "USE_BACKURL"        => "Y",
+		            "USE_CAPTCHA"        => "N",
+		            "SUCCESS_PAGE"       => $_REQUEST['backurl'],
+		            "SET_TITLE"          => "N",
+		            "USER_PROPERTY"      => Array('UF_YOU_HAVE_18', 'UF_AUTH_SOCNET', 'UF_PRIVATE_MYPAGE', 'UF_PRIVATE_MYFRIENDS', 'UF_PRIVATE_MYGROUPS', 'UF_INVITE_STATUS', 'UF_AMBASSADOR', 'UF_FB_PROFILE'),
+					"SEF_FOLDER"         => "/",
+		            "VARIABLE_ALIASES"   => Array()
+		        )
+		    );
+			break;
 		default:
 			?><a href='<?=MyQubeSocialAuth::getLink('google')?>'>google</a><br/><?
 			?><a href='<?=MyQubeSocialAuth::getLink('vk')?>'>vkontakte</a><br/><?

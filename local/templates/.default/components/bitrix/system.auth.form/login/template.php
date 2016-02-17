@@ -12,6 +12,9 @@ $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID
 		для единомышленников
 	</div>
 	<a href="#" class="login__trigger">Войти по логину и паролю</a>
+	<form action='' method='post' class='login__age'>
+		<input type="hidden" name="fields" value=""/>
+	</form>
 	<form class='login__form' data-parsley-validate method="POST" action="<?=(intval($_GET['GROUP_ID']) > 0 ? "/group/".$_GET['GROUP_ID']."/" : "/?login=yes")?>">
 		<input type="hidden" name="USER_REMEMBER" value="Y">
 		<input type="hidden" name="AUTH_FORM" value="Y">
