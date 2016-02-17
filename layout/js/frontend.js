@@ -28164,13 +28164,13 @@ if ('undefined' !== typeof window.ParsleyValidator)
       window.loginWindow = window.open($(el).data('url'), 'popup', 'width=420, height=230');
       return window.addEventListener('message', function(event) {
         var data;
-        console.log(event);
         data = event.data;
         if (data.auth === true) {
-          return location.href = backurl;
+          location.href = backurl;
         } else if (data.url) {
-          return location.href = data.url + '?' + data.fields;
+          location.href = data.url + '?' + data.fields;
         }
+        return window.loginWindow.close();
       });
     };
     $('.login').elem('social').on('click', function(e) {
