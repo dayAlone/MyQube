@@ -1,5 +1,4 @@
 <?
-	//error_reporting( E_ALL);
 	class MyQubeSocialAuth
 	{
 		private $network  = '';
@@ -30,11 +29,15 @@
 					case 'vk':
 						$data = $data['response'][0];
 						$data['picture'] = $data['photo_big'];
-						unset($data['photo_big']);
+						$data['id'] = $data['uid'];
+						$data['city'] = $data['home_town'];
+						unset($data['photo_big'], $data['user_id'], $data['home_town']);
 						break;
 
 					case 'facebook':
 						$data['picture'] = $data['picture']['data']['url'];
+						$data['city'] = $data['hometown'] ? $data['hometown'] : $data['location'] ? $data['location'] : false;
+						unset($data['hometown'], $data['location']);
 						break;
 					case 'google':
 						$data['picture']    = $data['image']['url'];
@@ -42,10 +45,7 @@
 						$data['first_name'] = $data['name']['givenName'];
 						$data['last_name']  = $data['name']['familyName'];
 						$data['age_range']  = $data['ageRange'];
-						unset($data['emails']);
-						unset($data['image']);
-						unset($data['name']);
-						unset($data['ageRange']);
+						unset($data['emails'], $data['image'], $data['name'], $data['ageRange']);
 						break;
 				}
 				$this->data = array_merge($this->data, $data);
@@ -82,8 +82,8 @@
 					'authUri'      => 'https://www.facebook.com/dialog/oauth',
 					'tokenUri'     => 'https://graph.facebook.com/v2.3/oauth/access_token',
 					'dataUri'      => 'https://graph.facebook.com/me',
-					'scope'        => 'email,user_birthday,publish_actions',
-					'fields'       => 'id,age_range,email,first_name,last_name,birthday,picture.type(large)'
+					'scope'        => 'email,user_birthday,publish_actions,user_location,user_hometown',
+					'fields'       => 'id,age_range,email,first_name,last_name,birthday,picture.type(large),hometown,location'
 				),
 				'vk' => array(
 					'clientId'     => '5002353',
@@ -92,7 +92,7 @@
 					'tokenUri'     => 'https://oauth.vk.com/access_token',
 					'dataUri'      => 'https://api.vk.com/method/users.get',
 					'scope'        => 'email,user_birthday,publish_stream',
-					'fields'       => 'uid,photo_big,email,first_name,last_name,bdate'
+					'fields'       => 'uid,photo_big,email,first_name,last_name,bdate,home_town'
 
 				),
 				'google' => array(
