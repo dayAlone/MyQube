@@ -13,7 +13,7 @@
 		return file_get_contents($path);
 	}
 	function pluralize($num, $arEnds) {
-		
+
 		if (strlen($num)>1 && substr($num, strlen($num)-2, 1)=="1")
 		{
 			return $arEnds[0];
@@ -27,6 +27,14 @@
 				return $arEnds[2];
 			else
 				return $arEnds[3];
+		}
+	}
+
+	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
+
+	function OnBeforeUserRegisterHandler(&$arFields) {
+		if (strlen($arFields['PHOTO']) > 0) {
+			$arFields['PERSONAL_PHOTO'] = CFile::MakeFileArray($arFields['PHOTO']);
 		}
 	}
 ?>

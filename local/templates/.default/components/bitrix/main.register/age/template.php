@@ -1,5 +1,6 @@
 <?
 	$data = json_decode($_REQUEST['fields'], true);
+	if (count($data) == 0) LocalRedirect('/');
 	$data['UF_YOU_HAVE_18'] = 1;
 
 ?>

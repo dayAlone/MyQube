@@ -73,7 +73,8 @@
 						'UF_PRIVATE_MYGROUPS'  => 9,
 						'UF_INVITE_STATUS'     => 1,
 						'PERSONAL_CITY'        => $data['city'],
-						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture'])['tmp_name'] : false,
+						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture']) : false,
+						'PHOTO'                => $data['picture'],
 						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
 						'UF_AMBASSADOR'        => $APPLICATION->get_cookie("MQ_AMBASSADOR") ? 1 : false,
 						'PERSONAL_GENDER'      => $data['gender'],
@@ -148,14 +149,14 @@
 
 		case 'age':
 			require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-
+			if ($USER->IsAuthorized()) LocalRedirect('/');
 			$APPLICATION->SetPageProperty("page_class", "page--age page--clean");
 			$APPLICATION->IncludeComponent("bitrix:main.register",
 				"age",
 				Array(
 		            "USER_PROPERTY_NAME" => "",
 		            "SEF_MODE"           => "Y",
-		            "SHOW_FIELDS"        => Array("NAME", "LAST_NAME", "LOGIN", "EMAIL", "GROUP_ID", "PASSWORD", "CONFIRM_PASSWORD", "PERSONAL_CITY", "PERSONAL_PHOTO", "PERSONAL_BIRTHDAY", "PERSONAL_GENDER"),
+		            "SHOW_FIELDS"        => Array("NAME", "LAST_NAME", "LOGIN", "EMAIL", "GROUP_ID", "PASSWORD", "CONFIRM_PASSWORD", "PERSONAL_CITY", "PERSONAL_PHOTO", "PERSONAL_BIRTHDAY", "PERSONAL_GENDER", "PHOTO"),
 		            "REQUIRED_FIELDS"    => Array("NAME"),
 		            "AUTH"               => "Y",
 		            "USE_BACKURL"        => "Y",
