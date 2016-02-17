@@ -45,8 +45,8 @@
 						$data['first_name'] = $data['name']['givenName'];
 						$data['last_name']  = $data['name']['familyName'];
 						$data['age_range']  = $data['ageRange'];
-						$data['city']       = $data['placesLived'];
-						unset($data['emails'], $data['image'], $data['name'], $data['ageRange']);
+						$data['city']       = is_array($data['placesLived']) && count($data['placesLived']) > 0 ? $data['placesLived'][0]['value'] : false;
+						unset($data['emails'], $data['image'], $data['name'], $data['ageRange'], $data['placesLived']);
 						break;
 				}
 				$this->data = array_merge($this->data, $data);
