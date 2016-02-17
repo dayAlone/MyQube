@@ -77,8 +77,8 @@
 					fields       => 'id,age_range,email,first_name,last_name,birthday,picture.type(large)'
 				),
 				vk => array(
-					clientId     => '5248591',
-					clientSecret => 'CUYKlxAhs94WEiTKn861',
+					clientId     => '5002353',
+					clientSecret => 'C5Pxo5vrnz8kPOwkscrl',
 					authUri      => 'https://oauth.vk.com/authorize/',
 					tokenUri     => 'https://oauth.vk.com/access_token',
 					dataUri      => 'https://api.vk.com/method/users.get',
