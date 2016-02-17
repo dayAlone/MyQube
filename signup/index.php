@@ -54,7 +54,8 @@
 				}
 
 				// Подготавливаем поля для регистрации
-
+				var_dump($data);
+				die();
 				if (!$ID) {
 					$fields = array(
 						'NAME'                 => $data['first_name'],
@@ -76,6 +77,7 @@
 						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture'])['tmp_name'] : false,
 						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
 						'UF_AMBASSADOR'        => $APPLICATION->get_cookie("MQ_AMBASSADOR") ? 1 : false,
+						'PERSONAL_GENDER'      => $data['gender'],
 						'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
 					);
 					if ($fields['UF_YOU_HAVE_18'] > 0) {
@@ -155,7 +157,7 @@
 				Array(
 		            "USER_PROPERTY_NAME" => "",
 		            "SEF_MODE"           => "Y",
-		            "SHOW_FIELDS"        => Array("NAME", "LAST_NAME", "LOGIN", "EMAIL", "GROUP_ID", "PASSWORD", "CONFIRM_PASSWORD", "PERSONAL_CITY", "PERSONAL_PHOTO", "PERSONAL_BIRTHDAY"),
+		            "SHOW_FIELDS"        => Array("NAME", "LAST_NAME", "LOGIN", "EMAIL", "GROUP_ID", "PASSWORD", "CONFIRM_PASSWORD", "PERSONAL_CITY", "PERSONAL_PHOTO", "PERSONAL_BIRTHDAY", "PERSONAL_GENDER"),
 		            "REQUIRED_FIELDS"    => Array("NAME"),
 		            "AUTH"               => "Y",
 		            "USE_BACKURL"        => "Y",
