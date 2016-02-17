@@ -48,7 +48,7 @@
 						$data['first_name'] = $data['name']['givenName'];
 						$data['last_name']  = $data['name']['familyName'];
 						$data['age_range']  = $data['ageRange'];
-						//$data['gender']     = 'M';
+						$data['gender']     = strlen($data['gender']) == 0 ? false : $data['gender'] == 'male' ? 'M' : 'F';
 						$data['city']       = is_array($data['placesLived']) && count($data['placesLived']) > 0 ? $data['placesLived'][0]['value'] : false;
 						unset($data['emails'], $data['image'], $data['name'], $data['ageRange'], $data['placesLived']);
 						break;

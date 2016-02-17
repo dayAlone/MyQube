@@ -54,8 +54,7 @@
 				}
 
 				// Подготавливаем поля для регистрации
-				var_dump($data);
-				die();
+
 				if (!$ID) {
 					$fields = array(
 						'NAME'                 => $data['first_name'],
@@ -148,7 +147,6 @@
 
 
 		case 'age':
-			//{"NAME":"Andrey","LAST_NAME":"Kolmakov","LOGIN":"code_red@mail.ru","EMAIL":"code_red@mail.ru","LID":"ru","ACTIVE":"Y","GROUP_ID":[3,4,5],"PASSWORD":"1badd63eeb04408a60aa7da14aca0bc6","CONFIRM_PASSWORD":"1badd63eeb04408a60aa7da14aca0bc6","UF_YOU_HAVE_18":1,"UF_AUTH_SOCNET":1,"UF_PRIVATE_MYPAGE":1,"UF_PRIVATE_MYFRIENDS":5,"UF_PRIVATE_MYGROUPS":9,"UF_INVITE_STATUS":1,"PERSONAL_CITY":false,"PERSONAL_PHOTO":{"name":"1378371_10202314149880939_392229151_n.jpg","size":6034,"tmp_name":"/Users/slider/Documents/Projec'... (length=693)
 			require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 			$APPLICATION->SetPageProperty("page_class", "page--age page--clean");
@@ -169,6 +167,25 @@
 		            "VARIABLE_ALIASES"   => Array()
 		        )
 		    );
+			break;
+		case 'lock':
+			require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+			$APPLICATION->SetPageProperty("page_class", "page--lock page--clean");
+			?>
+			<div class="lock qblock">
+		      <div class="qblock__content"><img src="/layout/images/svg/logo-full.svg" alt="" class="lock__logo"><br><img src="/layout/images/svg/lock-enter.svg" alt="" width="109" class="lock__icon">
+		        <p>
+		          К сожалению, социальная сеть MyQube открыта<br/>
+		          только для совершеннолетних.<br/>
+		          <a href='/'>Перейти на главную страницу</a>
+
+		        </p>
+		        <div class="lock__footer qblock__footer">
+		          <? include($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php') ?>
+		        </div>
+		      </div>
+		    </div>
+			<?
 			break;
 		default:
 			?><a href='<?=MyQubeSocialAuth::getLink('google')?>'>google</a><br/><?
