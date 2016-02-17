@@ -1,4 +1,3 @@
-<pre>
 <?
 	error_reporting( E_ALL);
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
@@ -13,8 +12,7 @@
 			$api    = new MyQubeSocialAuth($_REQUEST['action'], $_REQUEST['code']);
 			$data   = $api->getData();
 			$result = array('auth'=> false);
-			var_dump($data);
-			
+
 			if ($data) {
 
 
@@ -55,8 +53,6 @@
 					}
 				}
 
-				$ID = false;
-
 				// Подготавливаем поля для регистрации
 
 				if (!$ID) {
@@ -76,7 +72,7 @@
 						'UF_PRIVATE_MYFRIENDS' => 5,
 						'UF_PRIVATE_MYGROUPS'  => 9,
 						'UF_INVITE_STATUS'     => 1,
-						'PERSONAL_CITY'        => 123,
+						'PERSONAL_CITY'        => $data['city'],
 						'PERSONAL_PHOTO'       => CFile::MakeFileArray($data['picture']),
 						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
 						'UF_AMBASSADOR'        => $APPLICATION->get_cookie("MQ_AMBASSADOR") ? 1 : false,
@@ -116,7 +112,7 @@
 						$result['auth'] = true;
 
 						// Тут что-то обновляется неведомое от старого сайта
-
+						/*
 						$fields = array(
 							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id']
 						);
@@ -132,22 +128,20 @@
 							$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
 							CUser::SetUserGroup($UserId, array_merge(array(13), CUser::GetUserGroup($ID)));
 						}
+						*/
 					}
 				}
 
-
-				//var_dump($fields);
-				/*
-
-				 else if (strlen($data['email']) > 0) {
-
-				}*/
 			} else {
 				$result['url'] = '/signup/error/';
 			}
-
-			echo json_encode($result, JSON_UNESCAPED_UNICODE);
-
+			?>
+			<script type="text/javascript">
+				if(window.opener) {
+					window.opener.postMessage(<?=json_encode($result, JSON_UNESCAPED_UNICODE)?>, '*');
+			  	}
+			</script>
+			<?
 			break;
 
 		default:
@@ -158,4 +152,3 @@
 	}
 
 ?>
-</pre>

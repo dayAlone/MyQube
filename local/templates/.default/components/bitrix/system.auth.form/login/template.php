@@ -1,4 +1,5 @@
 <?
+require_once($_SERVER['DOCUMENT_ROOT'].'/includes/social.php');
 $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID']) > 0 ? "/group/".$_GET['GROUP_ID']."/" : "/");
 ?>
 
@@ -26,9 +27,9 @@ $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID
 		авторизуйтесь с&nbsp;помощью социальных&nbsp;сетей
 	</label>
 	<div class="login__social-frame">
-		<a href="#" class="login__social login__social--fb" data-url="<?require($_SERVER['DOCUMENT_ROOT'].'/facebook.php');?>"><?=svg('fb')?></a>
-		<a href="#" class="login__social login__social--vk" data-url="<?require($_SERVER['DOCUMENT_ROOT'].'/vk.php');?>"><?=svg('vk')?></a>
-		<a href="#" class="login__social login__social--gp" data-url="<?require($_SERVER['DOCUMENT_ROOT'].'/google.php');?>"><?=svg('gp')?></a>
+		<a href="#" class="login__social login__social--fb" data-url="<?=MyQubeSocialAuth::getLink('facebook');?>"><?=svg('fb')?></a>
+		<a href="#" class="login__social login__social--vk" data-url="<?=MyQubeSocialAuth::getLink('vk');?>"><?=svg('vk')?></a>
+		<a href="#" class="login__social login__social--gp" data-url="<?=MyQubeSocialAuth::getLink('google');?>"><?=svg('gp')?></a>
 	</div>
 	<div class="login__footer qblock__footer">
 		<? include($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php') ?>

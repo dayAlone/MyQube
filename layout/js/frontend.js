@@ -28161,11 +28161,15 @@ if ('undefined' !== typeof window.ParsleyValidator)
     socialAuth = function(el) {
       var backurl;
       backurl = $(el).block().data('backurl');
-      window.loginWindow = window.open($(el).data('url'), '', 'width=660, height=425, scrollbars=1');
-      return window.loginTimer = interval(300, function() {
-        if (window.loginWindow.closed) {
-          location.href = backurl;
-          return clearInterval(window.loginTimer);
+      window.loginWindow = window.open($(el).data('url'), 'popup', 'width=420, height=230');
+      return window.addEventListener('message', function(event) {
+        var data;
+        console.log(event);
+        data = event.data;
+        if (data.auth === true) {
+          return location.href = backurl;
+        } else if (data.url) {
+          return location.href = data.url + '?' + data.fields;
         }
       });
     };
