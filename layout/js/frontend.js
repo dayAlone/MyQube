@@ -28177,6 +28177,11 @@ if ('undefined' !== typeof window.ParsleyValidator)
       socialAuth($(this));
       return e.preventDefault();
     });
+    $('.login').elem('trigger').on('click', function(e) {
+      $(this).hide();
+      $('.login').elem('form').show();
+      return e.preventDefault();
+    });
     $('.agreement').on('scroll', _.throttle(agreementScroll, 100));
     $('.signup').elem('agreement-trigger').on('click', function(e) {
       $('.agreement').mod('open', true);

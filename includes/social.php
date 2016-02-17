@@ -1,14 +1,14 @@
 <?
+	//error_reporting( E_ALL);
 	class MyQubeSocialAuth
 	{
-		private $network = '';
-		private $code = '';
-		private $token = '';
+		private $network  = '';
+		private $code     = '';
+		private $token    = '';
 		private $settings = array();
-		private $data = array();
+		private $data     = array();
 
-		function __construct($network, $code)
-		{
+		function __construct($network, $code) {
 			$this->settings = MyQubeSocialAuth::getSettings($network);
 			$this->network  = $network;
 			$this->code     = $code;
@@ -18,7 +18,7 @@
 		function getData() {
 			if ($this->token) {
 				$params = array(
-					fields => $this->settings['fields'],
+					fields       => $this->settings['fields'],
 					access_token => $this->token
 				);
 				$curl = curl_init();
@@ -31,15 +31,24 @@
 						$data = $data['response'][0];
 						$data['picture'] = $data['photo_big'];
 						unset($data['photo_big']);
-						$this->data = array_merge($this->data, $data);
 						break;
 
 					case 'facebook':
 						$data['picture'] = $data['picture']['data']['url'];
-						$this->data = array_merge($this->data, $data);
+						break;
+					case 'google':
+						$data['picture']    = $data['image']['url'];
+						$data['email']      = $data['emails'][0]['value'];
+						$data['first_name'] = $data['name']['givenName'];
+						$data['last_name']  = $data['name']['familyName'];
+						$data['age_range']  = $data['ageRange'];
+						unset($data['emails']);
+						unset($data['image']);
+						unset($data['name']);
+						unset($data['ageRange']);
 						break;
 				}
-
+				$this->data = array_merge($this->data, $data);
 				curl_close($curl);
 				return $this->data;
 			}
@@ -67,40 +76,42 @@
 
 		static function getSettings($network) {
 			$settings = array(
-				facebook => array(
-					clientId     => '974777605876398',
-					clientSecret => 'b553b6ae0e23e093cea3bcd7cdbdc9c5',
-					authUri      => 'https://www.facebook.com/dialog/oauth',
-					tokenUri     => 'https://graph.facebook.com/v2.3/oauth/access_token',
-					dataUri      => 'https://graph.facebook.com/me',
-					scope        => 'email,user_birthday,publish_actions',
-					fields       => 'id,age_range,email,first_name,last_name,birthday,picture.type(large)'
+				'facebook' => array(
+					'clientId'     => '974777605876398',
+					'clientSecret' => 'b553b6ae0e23e093cea3bcd7cdbdc9c5',
+					'authUri'      => 'https://www.facebook.com/dialog/oauth',
+					'tokenUri'     => 'https://graph.facebook.com/v2.3/oauth/access_token',
+					'dataUri'      => 'https://graph.facebook.com/me',
+					'scope'        => 'email,user_birthday,publish_actions',
+					'fields'       => 'id,age_range,email,first_name,last_name,birthday,picture.type(large)'
 				),
-				vk => array(
-					clientId     => '5002353',
-					clientSecret => 'C5Pxo5vrnz8kPOwkscrl',
-					authUri      => 'https://oauth.vk.com/authorize/',
-					tokenUri     => 'https://oauth.vk.com/access_token',
-					dataUri      => 'https://api.vk.com/method/users.get',
-					scope        => 'email,user_birthday,publish_stream',
-					fields       => 'uid,photo_big,email,first_name,last_name,bdate'
+				'vk' => array(
+					'clientId'     => '5002353',
+					'clientSecret' => 'C5Pxo5vrnz8kPOwkscrl',
+					'authUri'      => 'https://oauth.vk.com/authorize/',
+					'tokenUri'     => 'https://oauth.vk.com/access_token',
+					'dataUri'      => 'https://api.vk.com/method/users.get',
+					'scope'        => 'email,user_birthday,publish_stream',
+					'fields'       => 'uid,photo_big,email,first_name,last_name,bdate'
 
 				),
-				google => array(
-					clientId     => '247902913440-bkocvmnoscqamblogttbjn0f3q966j74.apps.googleusercontent.com',
-					clientSecret => 'sZV6ZSEFq8Oppd7xjg1YQhyh',
-					authUri      => 'https://accounts.google.com/o/oauth2/auth',
-					tokenUri     => 'https://accounts.google.com/o/oauth2/token',
-					dataUri      => 'https://www.googleapis.com/plus/v1/people/me',
-					scope        => 'https://www.googleapis.com/auth/plus.login',
-					fields       => ''
+				'google' => array(
+					'clientId'     => '247902913440-bkocvmnoscqamblogttbjn0f3q966j74.apps.googleusercontent.com',
+					'clientSecret' => 'sZV6ZSEFq8Oppd7xjg1YQhyh',
+					'authUri'      => 'https://accounts.google.com/o/oauth2/auth',
+					'tokenUri'     => 'https://accounts.google.com/o/oauth2/token',
+					'dataUri'      => 'https://www.googleapis.com/plus/v1/people/me',
+					'scope'        => 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
+					'fields'       => 'aboutMe,ageRange,birthday,currentLocation,emails/value,id,image/url,name(familyName,givenName)'
 				)
 			);
 			return $settings[$network];
 		}
 
 		static function getLink($network) {
+
 			$settings = MyQubeSocialAuth::getSettings($network);
+
 			$params = array(
 				redirect_uri  => 'http://'.$_SERVER['SERVER_NAME'].'/signup/'.$network.'/',
 				response_type => 'code',
@@ -108,7 +119,10 @@
 				scope         => $settings['scope'],
 				display       => 'popup'
 			);
+
 			$href = $settings['authUri'] . '?' . urldecode(http_build_query($params));
+
 			return $href;
 		}
 	}
+?>

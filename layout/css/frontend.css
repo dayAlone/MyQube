@@ -4580,6 +4580,38 @@ input:checked ~ label.checkbox__label:before {
     display: block;
   }
 }
+.login__trigger {
+  text-transform: uppercase;
+  color: #001022;
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.4) 50%);
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.4) 50%);
+  background-image: -o-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.4) 50%);
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 50%, rgba(0,16,34,0.4) 50%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,16,34,0.4) 50%);
+  background-repeat: repeat-x;
+  -webkit-background-size: 2px 2px;
+  -moz-background-size: 2px 2px;
+  background-size: 2px 2px;
+  background-position: 0 100%;
+  background-position: 0 calc(100%);
+  font-size: 12px;
+  font-weight: 500;
+  display: none;
+  margin: 15px 0 30px;
+}
+.login__trigger:hover {
+  text-decoration: none;
+}
+@media (max-height: 480px) {
+  .login__trigger {
+    display: inline-block;
+  }
+}
+@media (max-height: 480px) {
+  .login__form {
+    display: none;
+  }
+}
 .login__logo {
   display: none;
 }
