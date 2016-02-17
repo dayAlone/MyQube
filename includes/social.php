@@ -27,16 +27,16 @@
 				$data = json_decode(curl_exec($curl), true);
 				switch ($this->network) {
 					case 'vk':
-						$data = $data['response'][0];
+						$data            = $data['response'][0];
 						$data['picture'] = $data['photo_big'];
-						$data['id'] = $data['uid'];
-						$data['city'] = $data['home_town'];
+						$data['id']      = $data['uid'];
+						$data['city']    = $data['home_town'];
 						unset($data['photo_big'], $data['user_id'], $data['home_town']);
 						break;
 
 					case 'facebook':
 						$data['picture'] = $data['picture']['data']['url'];
-						$data['city'] = $data['hometown'] ? $data['hometown'] : $data['location'] ? $data['location'] : false;
+						$data['city']    = $data['hometown'] ? $data['hometown'] : $data['location'] ? $data['location'] : false;
 						unset($data['hometown'], $data['location']);
 						break;
 					case 'google':
@@ -45,6 +45,7 @@
 						$data['first_name'] = $data['name']['givenName'];
 						$data['last_name']  = $data['name']['familyName'];
 						$data['age_range']  = $data['ageRange'];
+						$data['city']       = $data['placesLived'];
 						unset($data['emails'], $data['image'], $data['name'], $data['ageRange']);
 						break;
 				}
@@ -102,7 +103,7 @@
 					'tokenUri'     => 'https://accounts.google.com/o/oauth2/token',
 					'dataUri'      => 'https://www.googleapis.com/plus/v1/people/me',
 					'scope'        => 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
-					'fields'       => 'aboutMe,ageRange,birthday,currentLocation,emails/value,id,image/url,name(familyName,givenName)'
+					'fields'       => 'aboutMe,ageRange,birthday,currentLocation,emails/value,id,image/url,name(familyName,givenName),placesLived/value'
 				)
 			);
 			return $settings[$network];
