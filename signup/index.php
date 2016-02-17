@@ -5,6 +5,7 @@
 	switch ($_REQUEST['action']) {
 		case 'facebook':
 		case 'vk':
+		case 'google':
 			$api = new MyQubeSocialAuth($_REQUEST['action'], $_REQUEST['code']);
 			var_dump($api->getData());
 			echo '<a href="/signup/">signup</a>';
