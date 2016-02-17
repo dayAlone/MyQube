@@ -62,7 +62,7 @@ class OnBeforeProlog {
 			p - Parent User
 			d - Create user date
 		*/
-
+		if ($APPLICATION->GetCurDir('/signup/')) return;
 		$Dir = explode("/",$_SERVER["REQUEST_URI"]);
 		$Query_string = explode("&",$_SERVER["QUERY_STRING"]);
 		$Query = explode("=",$Query_string[0]);
