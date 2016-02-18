@@ -28113,7 +28113,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('.qblock').mod('fix', false);
     return $('.qblock').each(function(key, el) {
       var h;
-      h = $(el).height();
+      h = $(el).outerHeight(true);
       return $(el).mod('fix', h % 2 !== 0);
     });
   };
