@@ -4358,6 +4358,15 @@ a.groups__item:hover .groups__image {
     max-width: 310px;
   }
 }
+.button--small,
+.login__button--small,
+.age__button--small,
+.signup__button--small {
+  width: auto;
+  padding: 0 25px;
+  height: 41px;
+  line-height: 39px;
+}
 .button img,
 .login__button img,
 .age__button img,
@@ -4423,6 +4432,16 @@ input:checked ~ label.checkbox__label:before {
 .parsley-error label.checkbox__label:before {
   -webkit-box-shadow: 0 0 0 1px #ff1429;
   box-shadow: 0 0 0 1px #ff1429;
+}
+.modal-content {
+  background-color: #ebebeb;
+  padding: 30px;
+}
+@media (min-width: 768px) {
+  .modal-content {
+    -webkit-box-shadow: 0 0px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0px 15px rgba(0,0,0,0.2);
+  }
 }
 .qblock {
   background-image: url("/layout/images/svg/q-bg.svg");

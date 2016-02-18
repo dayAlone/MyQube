@@ -24,7 +24,7 @@
 	   <a href="/communication/" class="welcome__action action">
 
 	   Друзья
-	   <div class="action__counter"><?=(count($user['UF_FRIENDS']) > 0 ? count($user['UF_FRIENDS']) : '')?></div><img src="/layout/images/svg/blue-arrow.svg" class="action__arrow"></a><br>
+	   <div class="action__counter"><?=(count($user['UF_FRIENDS']) > 0 && intval($user['UF_FRIENDS'][0]) > 0? count($user['UF_FRIENDS']) : '')?></div><img src="/layout/images/svg/blue-arrow.svg" class="action__arrow"></a><br>
 	   <a href="/user/groups/" class="welcome__action action">
 
 	   Группы

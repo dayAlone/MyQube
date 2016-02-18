@@ -43,7 +43,8 @@
 		    "FIELD_CODE"          => "",
 		    "PROPERTY_CODE"       => array('USERS', 'LIST_PICT'),
 		    "DETAIL_URL"          => "/group/#ELEMENT_ID#/",
-		    "CACHE_TYPE"          => "A",
+		    "CACHE_TYPE"          => "N",
+			"CACHE_NOTES"         => $USER->IsAuthorized(),
 		    "DISPLAY_PANEL"       => "N",
 		    "SET_TITLE"           => "N"
        ),
