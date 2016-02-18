@@ -10,7 +10,7 @@
 </div>
 <? if ($USER->IsAuthorized()) {?>
 <div id="groupInvite" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-  <div class="modal-dialog dialog-xs">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content center">
 		<a data-dismiss="modal" href="#" class="close"><?=svg('close')?></a>
 		<button type="submit" name="button" class="button button--small">отправить</button>

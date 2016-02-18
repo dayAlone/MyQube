@@ -138,45 +138,53 @@
 
 					} else {
 
-						// Авторизация
 
-						$USER->Authorize($ID);
+						$user = CUser::GetByID($ID)->Fetch();
 
-						if($USER->IsAuthorized()) {
+						$fields = array(
+							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array_unique(array_merge(array($data['id']), $user['UF_'.$shorts[$_REQUEST['action']].'_PROFILE'])),
+						);
 
-							$result['auth'] = true;
+						if ($user['ACTIVE'] === 'Y') {
 
-							// Тут что-то обновляется неведомое от старого сайта
+							// Авторизация
 
-							$user = CUser::GetByID($ID)->Fetch();
+							$USER->Authorize($ID);
 
-							$fields = array(
-								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array_unique(array_merge(array($data['id']), $user['UF_'.$shorts[$_REQUEST['action']].'_PROFILE'])),
-							);
+							if($USER->IsAuthorized()) {
 
-							if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
-								$fields = array_merge($fields, array(
-									'UF_INVITE_STATUS' => 1,
-									'UF_STATUS' => 31
-								));
+								$result['auth'] = true;
+
+								// Тут что-то обновляется неведомое от старого сайта
+
+								if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
+									$fields = array_merge($fields, array(
+										'UF_INVITE_STATUS' => 1,
+										'UF_STATUS' => 31
+									));
+								}
+
+								if (!$APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
+									$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
+									$fields = array_merge($fields, array(
+										'UF_AUTH_TOKEN' => $token
+									));
+								}
+
+								if ($APPLICATION->get_cookie("MQ_AMBASSADOR"))  {
+									$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
+									CUser::SetUserGroup($ID, array_merge(array(13), CUser::GetUserGroup($ID)));
+								}
 							}
+						} else {
 
-							if (!$APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
-								$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
-								$fields = array_merge($fields, array(
-									'UF_AUTH_TOKEN' => $token
-								));
-							}
+							$result['lock'] = '/';
 
-							$user = new CUser;
-							$user->Update($ID, $fields);
-
-
-							if ($APPLICATION->get_cookie("MQ_AMBASSADOR"))  {
-								$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
-								CUser::SetUserGroup($ID, array_merge(array(13), CUser::GetUserGroup($ID)));
-							}
 						}
+
+						$user = new CUser;
+						$user->Update($ID, $fields);
+
 					}
 
 				}

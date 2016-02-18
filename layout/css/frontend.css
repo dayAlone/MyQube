@@ -4443,6 +4443,11 @@ input:checked ~ label.checkbox__label:before {
     box-shadow: 0 0px 15px rgba(0,0,0,0.2);
   }
 }
+@media (min-width: 768px) {
+  .modal-sm {
+    width: 440px;
+  }
+}
 .qblock {
   background-image: url("/layout/images/svg/q-bg.svg");
   background-repeat: no-repeat;
