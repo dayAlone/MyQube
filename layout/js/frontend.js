@@ -28161,7 +28161,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
     socialAuth = function(el) {
       var backurl;
       backurl = $(el).block().data('backurl');
-      window.loginWindow = window.open($(el).data('url'), 'popup', 'width=420, height=230');
+      window.loginWindow = window.open($(el).data('url'), 'popup', 'width=420, height=420, menubar=no, location=no, resizable=no, scrollbars=yes, status=no');
       return window.addEventListener('message', function(event) {
         var data, form;
         data = event.data;

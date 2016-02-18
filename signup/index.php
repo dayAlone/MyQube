@@ -15,11 +15,8 @@
 
 			if ($data) {
 
-
 				$ID = false;
 				$shorts = array('facebook'=>'FB', 'vk'=>'VK', 'google'=>'GP');
-
-
 
 				if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 
@@ -184,7 +181,7 @@
 				}
 
 			} else {
-				$result['url'] = '/signup/error/';
+				$result['url'] = '/';
 			}
 			?>
 			<script type="text/javascript">
