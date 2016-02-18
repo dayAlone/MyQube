@@ -28234,10 +28234,14 @@ if ('undefined' !== typeof window.ParsleyValidator)
       $('.page').mod('on', false);
       return e.preventDefault();
     });
-    return $('#groupInvite form').on('submit', function(e) {
+    $('#groupInvite form').on('submit', function(e) {
       $('#groupInvite .modal__form').addClass('hidden');
       $('#groupInvite .modal__success').removeClass('hidden');
       return e.preventDefault();
+    });
+    return $('#groupInvite').on('hidden.bs.modal', function(e) {
+      $('#groupInvite .modal__form').removeClass('hidden');
+      return $('#groupInvite .modal__success').addClass('hidden');
     });
   });
 
