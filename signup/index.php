@@ -107,6 +107,9 @@
 
 				}
 
+
+				// Авторизация
+
 				if ($ID) {
 					$USER->Authorize($ID);
 					if($USER->IsAuthorized()) {
@@ -114,7 +117,7 @@
 						$result['auth'] = true;
 
 						// Тут что-то обновляется неведомое от старого сайта
-						/*
+
 						$fields = array(
 							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id']
 						);
@@ -124,13 +127,14 @@
 								'UF_STATUS' => 31
 							));
 						}
-						CUser:Update($ID, array($fields));
+						$user = new CUser;
+
+						$user->Update($ID, array($fields));
 
 						if ($APPLICATION->get_cookie("MQ_AMBASSADOR"))  {
 							$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
 							CUser::SetUserGroup($UserId, array_merge(array(13), CUser::GetUserGroup($ID)));
 						}
-						*/
 					}
 				}
 
@@ -189,6 +193,7 @@
 			<?
 			break;
 		default:
+			//LocalRedirect('/');
 			?><a href='<?=MyQubeSocialAuth::getLink('google')?>'>google</a><br/><?
 			?><a href='<?=MyQubeSocialAuth::getLink('vk')?>'>vkontakte</a><br/><?
 			?><a href='<?=MyQubeSocialAuth::getLink('facebook')?>'>facebook</a><br/><?
