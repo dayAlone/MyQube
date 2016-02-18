@@ -351,9 +351,9 @@ if($_REQUEST["mode"] == "new_contact") {
 					CModule::IncludeModule("main");
 					$userFields = $USER->GetByID($USER->GetID())->Fetch();
 					if($userFields["PERSONAL_CITY"] == "Екатеринбург") {
-						CEvent::Send("NEW_APP_USER", "s1", $arEventFields);
+						CEvent::SendImmediate("NEW_APP_USER", "s1", $arEventFields);
 					} else {
-						CEvent::Send("NEW_USER_NEW", "s1", $arEventFields);
+						CEvent::SendImmediate("NEW_USER_NEW", "s1", $arEventFields);
 					}
 				}
 				$usersInGroup = CIBlockElement::GetProperty(4, 1, array("sort" => "asc"), Array("CODE"=>"USERS"))->Fetch();
