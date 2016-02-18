@@ -109,43 +109,60 @@
 				}
 
 
-				// Авторизация
+
 
 				if ($ID) {
-					$USER->Authorize($ID);
-					if($USER->IsAuthorized()) {
 
-						$result['auth'] = true;
+					if ((isset($data['age_range']) && $data['age_range']['min'] < 18) || (isset($data['bdate']) && strtotime($data['bdate']) > strtotime('-18 years'))) {
 
-						// Тут что-то обновляется неведомое от старого сайта
+						// Если соц. сеть вдруг вернула возраст меньше 18, то деактевируем пользователя
 
-						$fields = array(
-							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
-						);
-
-						if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
-							$fields = array_merge($fields, array(
-								'UF_INVITE_STATUS' => 1,
-								'UF_STATUS' => 31
-							));
-						} else {
-							$token = sha1($ID."".date("d.m.Y H:i:s"));
-							$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
-							$fields = array_merge($fields, array(
-								'UF_TOKEN' => $token
-							));
-						}
+						$result['url'] = '/signup/lock/';
 
 						$user = new CUser;
+						$user->Update($ID, array('ACTIVE' => 'N', 'UF_YOU_HAVE_18' => 0));
 
-						$user->Update($ID, $fields);
+
+					} else {
+
+						// Авторизация
+
+						$USER->Authorize($ID);
+
+						if($USER->IsAuthorized()) {
+
+							$result['auth'] = true;
+
+							// Тут что-то обновляется неведомое от старого сайта
+
+							$fields = array(
+								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
+							);
+
+							if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
+								$fields = array_merge($fields, array(
+									'UF_INVITE_STATUS' => 1,
+									'UF_STATUS' => 31
+								));
+							} else {
+								$token = sha1($ID."".date("d.m.Y H:i:s"));
+								$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
+								$fields = array_merge($fields, array(
+									'UF_TOKEN' => $token
+								));
+							}
+
+							$user = new CUser;
+							$user->Update($ID, $fields);
 
 
-						if ($APPLICATION->get_cookie("MQ_AMBASSADOR"))  {
-							$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
-							CUser::SetUserGroup($ID, array_merge(array(13), CUser::GetUserGroup($ID)));
+							if ($APPLICATION->get_cookie("MQ_AMBASSADOR"))  {
+								$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
+								CUser::SetUserGroup($ID, array_merge(array(13), CUser::GetUserGroup($ID)));
+							}
 						}
 					}
+
 				}
 
 			} else {
