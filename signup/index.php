@@ -96,7 +96,7 @@
 
 							if (!$ID) {
 								$result = array_merge($result, array(
-									'url' => '/signup/error/',
+									'url' => '/',
 									'error' => htmlspecialchars(strip_tags($raw->LAST_ERROR))
 								));
 							}
@@ -110,7 +110,7 @@
 
 
 				// Авторизация
-				
+
 				if ($ID) {
 					$USER->Authorize($ID);
 					if($USER->IsAuthorized()) {
@@ -162,6 +162,9 @@
 
 
 		case 'age':
+
+			// Уточнение возраста
+
 			require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 			if ($USER->IsAuthorized()) LocalRedirect('/');
 			$APPLICATION->SetPageProperty("page_class", "page--age page--clean");
@@ -184,6 +187,9 @@
 		    );
 			break;
 		case 'lock':
+
+			// Сообщение для несовершеннолетних
+
 			require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 			$APPLICATION->SetPageProperty("page_class", "page--lock page--clean");
 			?>
