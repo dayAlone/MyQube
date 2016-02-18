@@ -4503,6 +4503,18 @@ input:checked ~ label.checkbox__label:before {
   background-image: none;
 }
 @media (max-width: 767px) {
+  .mobile .qblock {
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    -ms-transition-property: -ms-transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+  }
   .page--on .qblock {
     -webkit-transform: translateX(100%);
     -moz-transform: translateX(100%);
