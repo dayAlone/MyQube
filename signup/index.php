@@ -17,6 +17,7 @@
 
 				$ID = false;
 				$shorts = array('facebook'=>'FB', 'vk'=>'VK', 'google'=>'GP');
+				$token = sha1($ID."".date("d.m.Y H:i:s"));
 
 				if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 
@@ -81,18 +82,19 @@
 						'GROUP_ID'             => array(3, 4, 5),
 						'PASSWORD'             => md5($data['id']),
 						'CONFIRM_PASSWORD'     => md5($data['id']),
+						'PERSONAL_CITY'        => $data['city'],
+						'PHOTO'                => $data['picture'],
+						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture']) : false,
+						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
+						'PERSONAL_GENDER'      => $data['gender'],
 						'UF_YOU_HAVE_18'       => isset($data['age_range']) && $data['age_range']['min'] >= 18 ? 1 : strtotime($data['bdate']) < strtotime('-18 years') ? 1 : 0,
 						'UF_AUTH_SOCNET'       => 1,
 						'UF_PRIVATE_MYPAGE'    => 1,
 						'UF_PRIVATE_MYFRIENDS' => 5,
 						'UF_PRIVATE_MYGROUPS'  => 9,
 						'UF_INVITE_STATUS'     => 1,
-						'PERSONAL_CITY'        => $data['city'],
-						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture']) : false,
-						'PHOTO'                => $data['picture'],
-						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
 						'UF_AMBASSADOR'        => $APPLICATION->get_cookie("MQ_AMBASSADOR") ? 1 : false,
-						'PERSONAL_GENDER'      => $data['gender'],
+						'UF_TOKEN'             => $token,
 						'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
 					);
 					if ($fields['UF_YOU_HAVE_18'] > 0) {
@@ -160,7 +162,6 @@
 							}
 
 							if (!$APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
-								$token = sha1($ID."".date("d.m.Y H:i:s"));
 								$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
 								$fields = array_merge($fields, array(
 									'UF_AUTH_TOKEN' => $token

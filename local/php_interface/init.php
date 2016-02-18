@@ -46,7 +46,7 @@
 			$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
 
 			$user = new CUser;
-			$user->Update($arFields["USER_ID"], array('UF_AUTH_TOKEN' => $token));
+			$user->Update($arFields["USER_ID"], array('UF_AUTH_TOKEN' => $token, 'UF_TOKEN' => $token));
 
 		}
 	}
