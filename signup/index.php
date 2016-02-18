@@ -178,7 +178,7 @@
 							}
 						} else {
 
-							$result['lock'] = '/';
+							$result['url'] = '/lock/';
 
 						}
 
