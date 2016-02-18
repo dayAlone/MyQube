@@ -28155,7 +28155,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
     $('html').addClass($.browser.name);
     $('html').addClass($.browser.platform);
     if ($.browser.mobile) {
-      $('html').addClass('.mobile');
+      $('html').addClass('mobile');
     }
     window.host_url = 'http://' + location.host;
     socialAuth = function(el) {
