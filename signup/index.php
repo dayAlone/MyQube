@@ -178,7 +178,7 @@
 							}
 						} else {
 
-							$result['url'] = '/lock/';
+							$result['url'] = '/signup/lock/';
 
 						}
 
