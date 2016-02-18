@@ -351,7 +351,7 @@ if($_REQUEST["mode"] == "new_contact") {
 					CModule::IncludeModule("main");
 					$userFields = $USER->GetByID($USER->GetID())->Fetch();
 					if($userFields["PERSONAL_CITY"] == "Екатеринбург") {
-						CEvent::Send("NEW_USER", "s1", $arEventFields);
+						CEvent::Send("NEW_APP_USER", "s1", $arEventFields);
 					} else {
 						CEvent::Send("NEW_USER_NEW", "s1", $arEventFields);
 					}
