@@ -31,10 +31,25 @@
 	}
 
 	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
+	AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
+
 
 	function OnBeforeUserRegisterHandler(&$arFields) {
 		if (strlen($arFields['PHOTO']) > 0) {
 			$arFields['PERSONAL_PHOTO'] = CFile::MakeFileArray($arFields['PHOTO']);
 		}
 	}
+	function OnAfterUserRegisterHandler($arFields) {
+		global $APPLICATION;
+		if($arFields["USER_ID"] > 0) {
+			$token = sha1($arFields["USER_ID"]."".date("d.m.Y H:i:s"));
+			$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
+
+			$user = new CUser;
+			$user->Update($arFields["USER_ID"], array('UF_TOKEN' => $token));
+			
+		}
+	}
+
+
 ?>

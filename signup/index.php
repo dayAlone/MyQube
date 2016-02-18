@@ -27,7 +27,7 @@
 						($by='id'),
 						($order='desc'),
 						array('UF_TOKEN' => $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")),
-						array('FIELDS' => array('ID', 'EMAIL', 'UF_'.$shorts[$_REQUEST['action']].'_PROFILE'))
+						array('FIELDS' => array('ID', 'EMAIL', 'UF_'.$shorts[$_REQUEST['action']].'_PROFILE', 'UF_TOKEN'))
 						)->Fetch();
 					if (intval($userByToken['ID']) > 0) {
 						$ID = $userByToken['ID'];
@@ -51,6 +51,7 @@
 					if (intval($userByEmail['ID']) > 0) {
 						$ID = $userByEmail['ID'];
 					}
+
 				}
 
 				// Подготавливаем поля для регистрации
@@ -109,7 +110,7 @@
 
 
 				// Авторизация
-
+				
 				if ($ID) {
 					$USER->Authorize($ID);
 					if($USER->IsAuthorized()) {
@@ -119,7 +120,7 @@
 						// Тут что-то обновляется неведомое от старого сайта
 
 						$fields = array(
-							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
+							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
 						);
 
 						if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
@@ -137,11 +138,12 @@
 
 						$user = new CUser;
 
-						$user->Update($ID, array($fields));
+						$user->Update($ID, $fields);
+
 
 						if ($APPLICATION->get_cookie("MQ_AMBASSADOR"))  {
 							$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
-							CUser::SetUserGroup($UserId, array_merge(array(13), CUser::GetUserGroup($ID)));
+							CUser::SetUserGroup($ID, array_merge(array(13), CUser::GetUserGroup($ID)));
 						}
 					}
 				}
