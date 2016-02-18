@@ -19,18 +19,33 @@
 				$ID = false;
 				$shorts = array('facebook'=>'FB', 'vk'=>'VK', 'google'=>'GP');
 
+
+
 				if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 
-					// Вход по текену из куков
+					// Вход по текену из приложения
 
-					$userByToken = CUser::GetList(
+					$userByAppToken = CUser::GetList(
 						($by='id'),
 						($order='desc'),
 						array('UF_TOKEN' => $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")),
-						array('FIELDS' => array('ID', 'EMAIL', 'UF_'.$shorts[$_REQUEST['action']].'_PROFILE', 'UF_TOKEN'))
+						array('FIELDS' => array('ID'))
 						)->Fetch();
-					if (intval($userByToken['ID']) > 0) {
-						$ID = $userByToken['ID'];
+					if (intval($userByAppToken['ID']) > 0) {
+						$ID = $userByAppToken['ID'];
+					}
+				} else if ($APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
+
+					// Вход по текену из куков
+
+					$userByAuthToken = CUser::GetList(
+						($by='id'),
+						($order='desc'),
+						array('UF_AUTH_TOKEN' => $APPLICATION->get_cookie("MQ_AUTH_TOKEN")),
+						array('FIELDS' => array('ID'))
+						)->Fetch();
+					if (intval($userByAuthToken['ID']) > 0) {
+						$ID = $userByAuthToken['ID'];
 					}
 				} else {
 
@@ -54,9 +69,11 @@
 
 				}
 
-				// Подготавливаем поля для регистрации
 
 				if (!$ID) {
+
+					// Подготавливаем поля для регистрации
+
 					$fields = array(
 						'NAME'                 => $data['first_name'],
 						'LAST_NAME'            => $data['last_name'],
@@ -81,14 +98,6 @@
 						'PERSONAL_GENDER'      => $data['gender'],
 						'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
 					);
-
-					if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
-						$fields = array_merge($fields, array(
-							'UF_INVITE_STATUS' => 1,
-							'UF_STATUS' => 31
-						));
-					}
-
 					if ($fields['UF_YOU_HAVE_18'] > 0) {
 						if (strlen($fields['PERSONAL_BIRTHDAY']) === 0) {
 							$result = array_merge($result, array(
@@ -144,11 +153,18 @@
 								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
 							);
 
-							if (!$APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
-								$token = sha1($ID."".date("d.m.Y H:i:s"));
-								$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
+							if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 								$fields = array_merge($fields, array(
-									'UF_TOKEN' => $token
+									'UF_INVITE_STATUS' => 1,
+									'UF_STATUS' => 31
+								));
+							}
+
+							if (!$APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
+								$token = sha1($ID."".date("d.m.Y H:i:s"));
+								$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
+								$fields = array_merge($fields, array(
+									'UF_AUTH_TOKEN' => $token
 								));
 							}
 
