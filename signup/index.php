@@ -140,10 +140,19 @@
 
 
 						$user = CUser::GetByID($ID)->Fetch();
+						$accounts = $user['UF_'.$shorts[$_REQUEST['action']].'_PROFILE'];
 
-						$fields = array(
-							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array_unique(array_merge(array($data['id']), $user['UF_'.$shorts[$_REQUEST['action']].'_PROFILE'])),
-						);
+						// Объединяем несколько аккаунтов соц сетей (а вдруг)
+
+						if (count($accounts) > 0 && intval($accounts[0]) > 0) {
+							$fields = array(
+								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array_unique(array_merge(array($data['id']), $accounts)),
+							);
+						} else {
+							$fields = array(
+								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
+							);
+						}
 
 						if ($user['ACTIVE'] === 'Y') {
 

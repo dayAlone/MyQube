@@ -12,6 +12,8 @@
 <div id="groupInvite" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
   <div class="modal-dialog modal-sm">
     <div class="modal-content center">
+		<h5>Для вступления в эту группу<br/>необходимо подать заявку</h5>
+		<input type="email" name="email" value="" placeholder="Введите адрес электронной почты" class="input">
 		<a data-dismiss="modal" href="#" class="close"><?=svg('close')?></a>
 		<button type="submit" name="button" class="button button--small">отправить</button>
     </div>

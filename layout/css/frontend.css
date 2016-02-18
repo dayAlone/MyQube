@@ -4437,6 +4437,20 @@ input:checked ~ label.checkbox__label:before {
   background-color: #ebebeb;
   padding: 30px;
 }
+.modal-content h5 {
+  color: #7e7e7e;
+  font-size: 17px;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+.modal-content h5 br {
+  display: none;
+}
+@media (min-width: 768px) {
+  .modal-content h5 br {
+    display: block;
+  }
+}
 @media (min-width: 768px) {
   .modal-content {
     -webkit-box-shadow: 0 0px 15px rgba(0,0,0,0.2);
