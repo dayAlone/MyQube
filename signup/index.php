@@ -119,14 +119,22 @@
 						// Тут что-то обновляется неведомое от старого сайта
 
 						$fields = array(
-							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id']
+							'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
 						);
+
 						if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 							$fields = array_merge($fields, array(
 								'UF_INVITE_STATUS' => 1,
 								'UF_STATUS' => 31
 							));
+						} else {
+							$token = sha1($ID."".date("d.m.Y H:i:s"));
+							$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
+							$fields = array_merge($fields, array(
+								'UF_TOKEN' => $token
+							));
 						}
+
 						$user = new CUser;
 
 						$user->Update($ID, array($fields));
