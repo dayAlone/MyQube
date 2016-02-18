@@ -2,7 +2,12 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/includes/social.php');
 $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID']) > 0 ? "/group/".$_GET['GROUP_ID']."/" : "/");
 ?>
-
+<div class="toolbar">
+  <div class="row">
+	<div class="col-xs-7"><img src="/layout/images/svg/logo-full.svg" alt="" class="toolbar__logo"></div>
+	<div class="col-xs-5 right"><a href="#" class="toolbar__trigger"><img src="/layout/images/svg/arrow-right.svg" alt=""></a><a href="#" class="toolbar__profile"><img src="/layout/images/svg/user.svg" alt=""></a></div>
+  </div>
+</div>
 <div class="login qblock" data-backurl="<?=$_GET["backurl"]?>">
 	<img src="/layout/images/svg/logo-full.svg" alt="" class="login__logo">
 	<div class="qblock__content">
