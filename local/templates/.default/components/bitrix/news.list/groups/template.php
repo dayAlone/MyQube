@@ -8,15 +8,25 @@
 		</a>
 	<? } ?>
 </div>
-<? if ($USER->IsAuthorized()) {?>
-<div id="groupInvite" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content center">
-		<h5>Для вступления в эту группу<br/>необходимо подать заявку</h5>
-		<input type="email" name="email" value="" placeholder="Введите адрес электронной почты" class="input">
-		<a data-dismiss="modal" href="#" class="close"><?=svg('close')?></a>
-		<button type="submit" name="button" class="button button--small">отправить</button>
-    </div>
-  </div>
-</div>
-<?}?>
+<? if ($USER->IsAuthorized()) {
+	$this->SetViewTarget('footer');?>
+
+	<div id="groupInvite" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content center">
+			<a data-dismiss="modal" href="#" class="modal__close"><?=svg('close')?></a>
+			<div class='modal__success hidden xl-margin-top xl-margin-bottom'>
+				<h5>Ваша заявка отправлена</h5>
+			</div>
+			<form action='' class='modal__form' data-parsley-validate>
+				<h5>Для вступления в эту группу<br/>необходимо подать заявку</h5>
+				<input type="email" name="email" value="<?=$USER->GetEmail()?>" placeholder="Введите адрес электронной почты" class="input" required>
+				<button type="submit" name="button" class="button button--small">отправить</button>
+			</form>
+
+	    </div>
+	  </div>
+	</div>
+	<?
+	$this->EndViewTarget();
+}?>

@@ -4433,6 +4433,11 @@ input:checked ~ label.checkbox__label:before {
   -webkit-box-shadow: 0 0 0 1px #ff1429;
   box-shadow: 0 0 0 1px #ff1429;
 }
+.modal__close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
 .modal-content {
   background-color: #ebebeb;
   padding: 30px;

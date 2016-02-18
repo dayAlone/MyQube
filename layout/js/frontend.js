@@ -28230,8 +28230,13 @@ if ('undefined' !== typeof window.ParsleyValidator)
       $('.page').mod('on', true);
       return e.preventDefault();
     });
-    return $('.toolbar').elem('profile').on('click', function(e) {
+    $('.toolbar').elem('profile').on('click', function(e) {
       $('.page').mod('on', false);
+      return e.preventDefault();
+    });
+    return $('#groupInvite form').on('submit', function(e) {
+      $('#groupInvite .modal__form').addClass('hidden');
+      $('#groupInvite .modal__success').removeClass('hidden');
       return e.preventDefault();
     });
   });

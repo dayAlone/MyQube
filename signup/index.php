@@ -15,6 +15,12 @@
 
 			if ($data) {
 
+				// Сказала ли соц сеть что пользователь восемнадцатилетний
+				$have18 = false;
+				if (isset($data['age_range']) && ($data['age_range']['min'] >= 18 || $data['age_range']['max'] >= 18)) $have18 = true;
+				if (isset($data['bdate']) && strtotime($data['bdate']) < strtotime('-18 years'))  $have18 = true;
+
+
 				$ID = false;
 				$shorts = array('facebook'=>'FB', 'vk'=>'VK', 'google'=>'GP');
 				$token = sha1($ID."".date("d.m.Y H:i:s"));
@@ -75,7 +81,7 @@
 					$fields = array(
 						'NAME'                 => $data['first_name'],
 						'LAST_NAME'            => $data['last_name'],
-						'LOGIN'                => $data['email'],
+						'LOGIN'                => $shorts[$_REQUEST['action']].'_'.$data['id'],
 						'EMAIL'                => $data['email'],
 						'LID'                  => 'ru',
 						'ACTIVE'               => 'Y',
@@ -87,7 +93,7 @@
 						'PERSONAL_PHOTO'       => strlen($data['picture']) > 0 ? CFile::MakeFileArray($data['picture']) : false,
 						'PERSONAL_BIRTHDAY'    => isset($data['bdate']) ? $data['bdate'] : '',
 						'PERSONAL_GENDER'      => $data['gender'],
-						'UF_YOU_HAVE_18'       => isset($data['age_range']) && $data['age_range']['min'] >= 18 ? 1 : strtotime($data['bdate']) < strtotime('-18 years') ? 1 : 0,
+						'UF_YOU_HAVE_18'       => $have18 ? 1 : 0,
 						'UF_AUTH_SOCNET'       => 1,
 						'UF_PRIVATE_MYPAGE'    => 1,
 						'UF_PRIVATE_MYFRIENDS' => 5,
@@ -97,7 +103,8 @@
 						'UF_TOKEN'             => $token,
 						'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
 					);
-					if ($fields['UF_YOU_HAVE_18'] > 0) {
+
+					if ($have18) {
 						if (strlen($fields['PERSONAL_BIRTHDAY']) === 0) {
 							$result = array_merge($result, array(
 								'fields' => $fields,
@@ -126,7 +133,7 @@
 
 				if ($ID) {
 
-					if ((isset($data['age_range']) && $data['age_range']['min'] < 18) || (isset($data['bdate']) && strtotime($data['bdate']) > strtotime('-18 years'))) {
+					if (!$have18) {
 
 						// Если соц. сеть вдруг вернула возраст меньше 18, то деактевируем пользователя
 
@@ -192,6 +199,7 @@
 						}
 
 						$user = new CUser;
+
 						$user->Update($ID, $fields);
 
 					}
