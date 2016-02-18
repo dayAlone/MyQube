@@ -62,7 +62,12 @@ class OnBeforeProlog {
 			p - Parent User
 			d - Create user date
 		*/
+		if(isset($_GET["token"])){
+			$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $_GET["token"], time()+60*60*24*30*12*4,"/");
+		}
+
 		if (strstr($APPLICATION->GetCurDir(), '/signup/')) return;
+
 		$Dir = explode("/",$_SERVER["REQUEST_URI"]);
 		$Query_string = explode("&",$_SERVER["QUERY_STRING"]);
 		$Query = explode("=",$Query_string[0]);
@@ -93,9 +98,7 @@ class OnBeforeProlog {
 				</div>
 			</div>";
 		}
-		if(isset($_GET["token"])){
-			$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $_GET["token"], time()+60*60*24*30*12*4,"/");
-		}
+
 
 		// Редиректы со старого сайта
 		if($Dir[1] == "personal") {

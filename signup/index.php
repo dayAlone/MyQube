@@ -81,6 +81,14 @@
 						'PERSONAL_GENDER'      => $data['gender'],
 						'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'],
 					);
+
+					if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
+						$fields = array_merge($fields, array(
+							'UF_INVITE_STATUS' => 1,
+							'UF_STATUS' => 31
+						));
+					}
+
 					if ($fields['UF_YOU_HAVE_18'] > 0) {
 						if (strlen($fields['PERSONAL_BIRTHDAY']) === 0) {
 							$result = array_merge($result, array(
@@ -107,9 +115,6 @@
 					}
 
 				}
-
-
-
 
 				if ($ID) {
 
@@ -139,12 +144,7 @@
 								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
 							);
 
-							if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
-								$fields = array_merge($fields, array(
-									'UF_INVITE_STATUS' => 1,
-									'UF_STATUS' => 31
-								));
-							} else {
+							if (!$APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 								$token = sha1($ID."".date("d.m.Y H:i:s"));
 								$APPLICATION->set_cookie("MQ_REGISTRATION_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
 								$fields = array_merge($fields, array(
