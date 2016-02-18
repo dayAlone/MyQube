@@ -5415,6 +5415,7 @@ input:checked ~ label.checkbox__label:before {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  background-position: center center;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   margin: 0 auto;
