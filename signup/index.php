@@ -149,8 +149,10 @@
 
 							// Тут что-то обновляется неведомое от старого сайта
 
+							$user = CUser::GetByID($ID)->Fetch();
+
 							$fields = array(
-								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
+								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array_unique(array_merge(array($data['id']), $user['UF_'.$shorts[$_REQUEST['action']].'_PROFILE'])),
 							);
 
 							if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
