@@ -38,7 +38,9 @@
 					if (intval($userByAppToken['ID']) > 0) {
 						$ID = $userByAppToken['ID'];
 					}
-				} else if ($APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
+				}
+
+				if ($APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
 
 					// Вход по текену из куков
 
@@ -50,8 +52,13 @@
 						)->Fetch();
 					if (intval($userByAuthToken['ID']) > 0) {
 						$ID = $userByAuthToken['ID'];
+					} else {
+						$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
 					}
-				} else {
+				}
+
+				
+				if (!$ID) {
 
 					// Поиск по эл. почте или ID из соц. сети
 
