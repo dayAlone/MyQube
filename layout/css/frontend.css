@@ -4643,8 +4643,10 @@ input:checked ~ label.checkbox__label:before {
   margin-bottom: 0;
   padding: 0;
   position: relative;
+  display: none;
 }
 .login__errors--active {
+  display: inline-block;
   top: -10px;
 }
 .login__trigger {
