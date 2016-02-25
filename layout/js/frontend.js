@@ -28175,8 +28175,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
             form.submit();
           } else if (data.error) {
             console.log(data);
-            $('.login').elem('error').mod('active', true);
-            $('.login').elem('error').text(data.error);
+            $('.login').elem('errors').mod('active', true);
+            $('.login').elem('errors').text(data.error);
           } else {
             location.href = data.url;
           }
