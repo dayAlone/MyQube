@@ -4644,6 +4644,7 @@ input:checked ~ label.checkbox__label:before {
   padding: 0;
   position: relative;
   display: none;
+  text-transform: none;
 }
 .login__errors--active {
   display: inline-block;

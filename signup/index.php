@@ -57,25 +57,37 @@
 					}
 				}
 
-				
+
 				if (!$ID) {
 
-					// Поиск по эл. почте или ID из соц. сети
+					// Поиск по эл. почте
 
 					$userByEmail = CUser::GetList(
 						($by='id'),
 						($order='desc'),
-						array(
-							array(
-								'LOGIC' => 'OR',
-					        	array('EMAIL' => $data['email']),
-					        	array('UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id'])
-							)
-						),
-						array('FIELDS' => array('ID', 'EMAIL', 'UF_'.$shorts[$_REQUEST['action']].'_PROFILE'))
+						array('EMAIL' => $data['email']),
+						array('FIELDS' => array('ID'))
 						)->Fetch();
+
 					if (intval($userByEmail['ID']) > 0) {
 						$ID = $userByEmail['ID'];
+					}
+
+				}
+
+				if (!$ID) {
+
+					// Поиск по соц. сети
+
+					$userBySocial = CUser::GetList(
+						($by='id'),
+						($order='desc'),
+						array('UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => $data['id']),
+						array('FIELDS' => array('ID'))
+						)->Fetch();
+
+					if (intval($userBySocial['ID']) > 0) {
+						$ID = $userBySocial['ID'];
 					}
 
 				}
