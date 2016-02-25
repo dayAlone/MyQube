@@ -4310,8 +4310,8 @@ a.groups__item:hover .groups__image {
 .login__input.parsley-error:focus,
 .age__input.parsley-error:focus,
 .signup__input.parsley-error:focus {
-  -webkit-box-shadow: 0 0 0 2px #00d7fe, 0 0 0 1px #ff1429;
-  box-shadow: 0 0 0 2px #00d7fe, 0 0 0 1px #ff1429;
+  -webkit-box-shadow: 0 0 0 2px #00d7fe, inset 0 0 0 1px #ff1429;
+  box-shadow: 0 0 0 2px #00d7fe, inset 0 0 0 1px #ff1429;
 }
 .input:focus,
 .login__input:focus,
