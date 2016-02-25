@@ -28173,6 +28173,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
             form.find('input').val(JSON.stringify(data.fields));
             form.attr('action', data.url + '?backurl=' + backurl);
             form.submit();
+          } else if (data.error) {
+            $('.login').elem('error').text(data.error);
           } else {
             location.href = data.url;
           }

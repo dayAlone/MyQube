@@ -4612,9 +4612,9 @@ input:checked ~ label.checkbox__label:before {
     padding-top: 0;
   }
 }
+.login__errors,
 .login__label {
   text-transform: uppercase;
-  font-weight: normal;
   color: #979797;
   font-size: 11px;
   margin-bottom: 10px;
@@ -4623,17 +4623,29 @@ input:checked ~ label.checkbox__label:before {
   padding: 0 30px;
   font-weight: 500;
 }
+.mozilla .login__errors,
 .mozilla .login__label {
   line-height: 1;
   margin-bottom: 13px;
 }
+.login__errors br,
 .login__label br {
   display: none;
 }
 @media (min-width: 410px) {
+  .login__errors br,
   .login__label br {
     display: block;
   }
+}
+.login__errors {
+  color: #ff1429;
+  margin-bottom: 0;
+  padding: 0;
+  position: relative;
+}
+.login__errors--active {
+  top: -10px;
 }
 .login__trigger {
   text-transform: uppercase;
