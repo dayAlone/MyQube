@@ -17,10 +17,10 @@
 	  <?=$arResult["BX_SESSION_CHECK"]?>
 	  <div class="row no-gutter signup__name">
 		<div class="col-sm-6 col-xs-12 left">
-			<input type="text" name="NAME" data-parsley-minlength="2" data-parsley-pattern="[a-zA-Zа-яА-Я]" placeholder="Ваше имя" value='<?=$user['NAME']?>' required class="signup__input"><br>
+			<input type="text" name="NAME" data-parsley-minlength="2" data-parsley-pattern="^[a-zA-Zа-яА-Я]+$" placeholder="Ваше имя" value='<?=$user['NAME']?>' required class="signup__input"><br>
 		</div>
 		<div class="col-sm-6 col-xs-12 right">
-			<input type="text" name="LAST_NAME" data-parsley-minlength="2" data-parsley-pattern="[a-zA-Zа-яА-Я]" placeholder="Ваша фамилия" value='<?=$user['LAST_NAME']?>' required class="signup__input"><br>
+			<input type="text" name="LAST_NAME" data-parsley-minlength="2" data-parsley-pattern="^[a-zA-Zа-яА-Я]+$" placeholder="Ваша фамилия" value='<?=$user['LAST_NAME']?>' required class="signup__input"><br>
 		</div>
 	  </div>
 	  <input type="email" name="EMAIL" placeholder="Ваш адрес электронной почты" value="<?=$user['EMAIL']?>" required class="signup__input">
