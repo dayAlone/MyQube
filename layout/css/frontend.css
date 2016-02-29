@@ -4652,6 +4652,7 @@ input:checked ~ label.checkbox__label:before {
   color: #ff1429;
   margin-bottom: 0;
   padding: 0;
+  line-height: 1;
   position: relative;
   display: none;
   text-transform: none;

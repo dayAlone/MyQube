@@ -90,7 +90,7 @@
 
 							// Проверка прикрепленного аккаунта
 							if ($userBySocial['ID'] !== $ID) {
-								
+
 								$result = array_merge($result, array(
 									'error' => 'Пользователь данной социальной сети уже зарегистрирован на&nbsp;сайте'
 								));
@@ -183,10 +183,12 @@
 						if (count($accounts) > 0 && intval($accounts[0]) > 0) {
 							$fields = array(
 								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array_unique(array_merge(array($data['id']), $accounts)),
+								'UF_AUTH_SOCNET' => 1
 							);
 						} else {
 							$fields = array(
 								'UF_'.$shorts[$_REQUEST['action']].'_PROFILE' => array($data['id']),
+								'UF_AUTH_SOCNET' => 1
 							);
 						}
 
