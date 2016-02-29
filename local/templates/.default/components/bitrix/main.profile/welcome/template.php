@@ -1,10 +1,11 @@
 <?
 	$user = $arResult['arUser'];
+	$photo = CFile::GetPath($user['PERSONAL_PHOTO']);
 ?>
  <div class="welcome qblock">
    <div class="qblock__content">
 	 <div class="welcome__user">
-	   <div style="background-image: url(<?=CFile::GetPath($user['PERSONAL_PHOTO'])?>)" class="welcome__avatar"></div>
+	   <div style="background-image: url(<?=(strlen($photo) > 0 ? $photo : '/layout/images/user.png')?>)" class="welcome__avatar"></div>
 	   <div class="welcome__name"><?=$user['NAME']?> <?=$user['LAST_NAME']?></div>
 
 	   <div class="welcome__about">

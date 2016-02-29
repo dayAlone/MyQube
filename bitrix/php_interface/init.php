@@ -79,24 +79,25 @@ class OnBeforeProlog {
 			CustomUser::UserUpdate($Fields);
 		}
 		if($USER->GetID() > 0 && !$USER->GetByID($USER->GetID())->Fetch()["UF_AUTH_SOCNET"] && $APPLICATION->GetCurDir() !== '/') {
-			echo "<div class=\"after-login-message\">
-				<div class=\"after-login-message-inner\">
-					<h4>Для удобства использования социальной сети вы можете авторизоваться через:</h4>";
-					$APPLICATION->IncludeComponent(
-						"bitrix:system.auth.form",
-						"myqube",
-						array(
-							"REGISTER_URL" => "/club/group/search/",
-							"PROFILE_URL" => "/user/profile/",
-							"FORGOT_PASSWORD_URL" => "",
-							"SHOW_ERRORS" => "Y",
-							"ONLY_SOCNET" => "Y"
-						),
-						false
-					);
-			echo "<div class=\"after-login-message-n\"><a href=\"?AUTH_SOCNET=N\">ОТКАЗАТЬСЯ</a></div>
-				</div>
-			</div>";
+				echo "<div class=\"after-login-message\">
+					<div class=\"after-login-message-inner\">
+						<h4>Для удобства использования социальной сети вы можете авторизоваться через:</h4>";
+						$APPLICATION->IncludeComponent(
+							"bitrix:system.auth.form",
+							"myqube",
+							array(
+								"REGISTER_URL" => "/club/group/search/",
+								"PROFILE_URL" => "/user/profile/",
+								"FORGOT_PASSWORD_URL" => "",
+								"SHOW_ERRORS" => "Y",
+								"ONLY_SOCNET" => "Y"
+							),
+							false
+						);
+				echo "<div class=\"after-login-message-n\"><a href=\"?AUTH_SOCNET=N\">ОТКАЗАТЬСЯ</a></div>
+					</div>
+				</div>";
+
 		}
 
 

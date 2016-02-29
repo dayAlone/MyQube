@@ -4618,6 +4618,9 @@ input:checked ~ label.checkbox__label:before {
   .login .qblock__content {
     padding-top: 0;
   }
+  .login--full-width {
+    width: 100%;
+  }
 }
 .login__errors,
 .login__label {

@@ -21,11 +21,11 @@
 				if (isset($data['bdate']) && strtotime($data['bdate']) < strtotime('-18 years'))  $have18 = true;
 
 
-				$ID = false;
+				$ID = $USER->IsAuthorized() ? $USER->GetID() : false;
 				$shorts = array('facebook'=>'FB', 'vk'=>'VK', 'google'=>'GP');
 				$token = sha1($ID."".date("d.m.Y H:i:s"));
 
-				if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
+				if (!$ID && $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 
 					// Вход по текену из приложения
 
@@ -40,7 +40,7 @@
 					}
 				}
 
-				if ($APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
+				if (!$ID && $APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
 
 					// Вход по текену из куков
 
@@ -56,7 +56,6 @@
 						$APPLICATION->set_cookie("MQ_AMBASSADOR", 0, time() - 60, "/");
 					}
 				}
-
 
 				if (!$ID) {
 
@@ -91,7 +90,6 @@
 					}
 
 				}
-
 
 				if (!$ID) {
 
@@ -184,7 +182,7 @@
 
 							// Авторизация
 
-							$USER->Authorize($ID);
+							if (!$USER->IsAuthorized()) $USER->Authorize($ID);
 
 							if($USER->IsAuthorized()) {
 
