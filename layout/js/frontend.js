@@ -28167,8 +28167,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
         data = event.data;
         if (data.auth === true) {
           location.href = backurl;
-        } else if (data.url) {
-          if (data.fields) {
+        } else {
+          if (data.fields && data.url) {
             form = $('.login').elem('age');
             form.find('input').val(JSON.stringify(data.fields));
             form.attr('action', data.url + '?backurl=' + backurl);
@@ -28176,8 +28176,8 @@ if ('undefined' !== typeof window.ParsleyValidator)
           } else if (data.error) {
             console.log(data);
             $('.login').elem('errors').mod('active', true);
-            $('.login').elem('errors').text(data.error);
-          } else {
+            $('.login').elem('errors').html(data.error);
+          } else if (data.url) {
             location.href = data.url;
           }
         }
@@ -28216,6 +28216,12 @@ if ('undefined' !== typeof window.ParsleyValidator)
         $('input[name="PERSONAL_BIRTHDAY"]').val(value.join('.'));
         return $('input[name="REGISTER[PERSONAL_BIRTHDAY]"]').val(value.join('.'));
       }
+    });
+    if ($('#connectSocial').length > 0) {
+      $('#connectSocial').modal();
+    }
+    $('#connectSocial').on('hidden.bs.modal', function(e) {
+      return $.get('/?AUTH_SOCNET=N');
     });
     $('.wrap').on('click', function(e) {
       if ($.browser.mobile && $('.page').hasMod('open')) {

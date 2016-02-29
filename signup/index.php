@@ -74,7 +74,7 @@
 
 				}
 
-				if (!$ID) {
+				if (!$ID || $USER->IsAuthorized()) {
 
 					// Поиск по соц. сети
 
@@ -86,7 +86,19 @@
 						)->Fetch();
 
 					if (intval($userBySocial['ID']) > 0) {
-						$ID = $userBySocial['ID'];
+						if ($USER->IsAuthorized()) {
+
+							// Проверка прикрепленного аккаунта
+							if ($userBySocial['ID'] !== $ID) {
+								
+								$result = array_merge($result, array(
+									'error' => 'Пользователь данной социальной сети уже зарегистрирован на&nbsp;сайте'
+								));
+							}
+
+						} else {
+							$ID = $userBySocial['ID'];
+						}
 					}
 
 				}
@@ -148,7 +160,7 @@
 
 				}
 
-				if ($ID) {
+				if ($ID && !isset($result['error'])) {
 
 					if (!$have18) {
 
