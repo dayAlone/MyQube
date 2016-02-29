@@ -270,7 +270,7 @@ function getName2 (obj, str){
 					?>
 					<div class="users-wrap">
 						<div class="users-icon" style="cursor:default;"></div>
-						<div class="users-number"><? echo intval($arProps["USERS"]["VALUE"]); ?> <span class="nomobile-span"><?=getNumEnding(intval($arProps["USERS"]["VALUE"]), Array("участник", "участника", "участников"))?></span></div>
+						<div class="users-number"><? echo intval($arProps["USERS_M"]["VALUE"]); ?> <span class="nomobile-span"><?=getNumEnding(intval($arProps["USERS_M"]["VALUE"]), Array("участник", "участника", "участников"))?></span></div>
 					</div>
 					<div class="socwrap">
 						<div class="social-buttons" style="cursor:default;"></div>

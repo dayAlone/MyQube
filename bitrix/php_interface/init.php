@@ -78,7 +78,7 @@ class OnBeforeProlog {
 			$Fields = array("UF_AUTH_SOCNET"=>"1");
 			CustomUser::UserUpdate($Fields);
 		}
-		if($USER->GetID() > 0 && !$USER->GetByID($USER->GetID())->Fetch()["UF_AUTH_SOCNET"]) {
+		if($USER->GetID() > 0 && !$USER->GetByID($USER->GetID())->Fetch()["UF_AUTH_SOCNET"] && $APPLICATION->GetCurDir() !== '/') {
 			echo "<div class=\"after-login-message\">
 				<div class=\"after-login-message-inner\">
 					<h4>Для удобства использования социальной сети вы можете авторизоваться через:</h4>";
@@ -213,6 +213,16 @@ class OnBeforeProlog {
 			LocalRedirect($_GET["backurl"]);
 		}
 	}
+}
+function updateGroupCounters()
+{
+	if(CModule::IncludeModule("iblock"))
+	{
+		$filter = Array	("UF_GROUPS" => 1);
+		$rsUsers = CUser::GetList(($by="id"), ($order="asc"), $filter, Array('NAV_PARAMS' => array("nPageSize" => 1,"bDescPageNumbering" => "N","bShowAll" => "N"  )));
+		CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS_M");
+	}
+	return "updateGroupCounters();";
 }
 function onEpilog(){
     global $APPLICATION;

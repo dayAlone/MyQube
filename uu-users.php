@@ -92,8 +92,7 @@ use Bitrix\Main\Entity;?>
 		//}*/
 
 		$emails = array(
-			"NAME" => $row[1],
-			"LAST_NAME" => $row[2]
+			"PERSONAL_BIRTHDAY" => date("d.m.Y", strtotime($row[1]))
 		);
 		echo $row[0];
 		$user = new CUser;

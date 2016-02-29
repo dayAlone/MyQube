@@ -13,6 +13,9 @@
 	echo ShowError(CustomUser::$TextError);
 }?>
 </div>
+<style>
+	.required, .required a, .required span { border-color: red !important; color: red !important; }
+</style>
 <form class="add-user" method="POST" id="amplifiers_form">
 	<table cellpadding="0" cellspacing="0">
 		<tr>
@@ -49,7 +52,7 @@
 					type="text" 
 					onchange="ActiveButtonSend(this);"
 					name="Data[User][EMAIL]" 
-					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["EMAIL"]);?>"/>
+					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["EMAIL"]);?>" class="required"/>
 			</td>
 		</tr>
 		<tr>
@@ -73,13 +76,14 @@
 				<input 
 					placeholder="Дата рождения ДД.ММ.ГГГГ" 
 					type="text" 
+					onchange="ActiveButtonSend(this);"
 					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["PERSONAL_BIRTHDAY"]);?>"
-					name="Data[User][PERSONAL_BIRTHDAY]" required />
+					name="Data[User][PERSONAL_BIRTHDAY]" required  class="required"/>
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td class="add-user-age" colspan="3">
+			<td class="add-user-age required" colspan="3">
 				<input 
 					<?=htmlspecialcharsbx($_POST["Data"]["User"]["UF_DO_YOU_SMOKE"]) == 1 ? " checked=\"checked\" " : "";?>
 					type="checkbox" 
@@ -93,7 +97,7 @@
 						name="Data[User][AGE]" 
 						size="2"
 						onchange="ActiveButtonSend(this);"
-						value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["AGE"]);?>"/> 
+						value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["AGE"]);?>" class="required"/> 
 					лет, и  я являюсь совершеннолетним курильщиком
 				</span>
 				<input 
@@ -154,7 +158,7 @@
 	<div class="add-user-submit">
 		<input type="submit" id="SendForm" value=""/>
 	</div>
-	<div class="add-user-iagree">
+	<div class="add-user-iagree required">
 			<input 
 				<?=htmlspecialcharsbx($_POST["Data"]["User"]["UF_IAGREE"]) == 1 ? " checked=\"checked\" " : "";?>
 				type="checkbox" 
@@ -224,25 +228,62 @@
 		}
 	}
 	
-	function ActiveButtonSend(Obj){
+	function ActiveButtonSend(Obj) {
 		var Flag = false;
 		var Email = $("input[name='Data[User][EMAIL]']").val();
 		var Mobile = $("input[name='Data[User][PERSONAL_MOBILE]']").val();
 		var YouSmoke = $("input[name='Data[User][UF_DO_YOU_SMOKE]']").prop("checked") ? true : false;
 		var Age = $("input[name='Data[User][AGE]']").val();
 		var Iagree = $("input[name='Data[User][UF_IAGREE]']").prop("checked") ? true : false;
+		var birthDay = $("input[name='Data[User][PERSONAL_BIRTHDAY]']").val();		
+		var InfoContact = $("input[name='Data[User][INFO]']").prop("checked") ? true : false;		
+		
+		var time = new Date(birthDay.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'));
+		if(Email.length > 0) {
+			$("input[name='Data[User][EMAIL]']").removeClass("required");
+			$("input[name='Data[User][EMAIL]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][EMAIL]']").hasClass("required")) {
+			$("input[name='Data[User][EMAIL]']").addClass("required");
+		}
+		if(YouSmoke) {
+			$("input[name='Data[User][UF_DO_YOU_SMOKE]']").removeClass("required");
+			$("input[name='Data[User][UF_DO_YOU_SMOKE]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][UF_DO_YOU_SMOKE]']").hasClass("required")) {
+			$("input[name='Data[User][UF_DO_YOU_SMOKE]']").addClass("required");
+		}
+		if(Age > 17) {
+			$("input[name='Data[User][AGE]']").removeClass("required");
+			$("input[name='Data[User][AGE]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][AGE]']").hasClass("required")) {
+			$("input[name='Data[User][AGE]']").addClass("required");
+			$("input[name='Data[User][AGE]']").parents(".add-user-age").addClass("required");
+		}
+		if(Iagree) {
+			$("input[name='Data[User][UF_IAGREE]']").removeClass("required");
+			$("input[name='Data[User][UF_IAGREE]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][UF_IAGREE]']").hasClass("required")) {
+			$("input[name='Data[User][UF_IAGREE]']").addClass("required");
+			$("input[name='Data[User][UF_IAGREE]']").parents(".add-user-iagree").addClass("required");
+		}
+		if(birthDay && (Date.now() - time.getTime()) > 567648000000) {
+			$("input[name='Data[User][PERSONAL_BIRTHDAY]']").removeClass("required");
+			$("input[name='Data[User][PERSONAL_BIRTHDAY]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][PERSONAL_BIRTHDAY]']").hasClass("required")) {
+			$("input[name='Data[User][PERSONAL_BIRTHDAY]']").addClass("required");
+		}
 		if(!InfoContact){
 			if(Email.length > 0){
 				if(YouSmoke){
-					if(Age > 17){
+					if(Age > 17){						
 						$("input[name='Data[User][UF_YOU_HAVE_18]']").val("1");
 						if(Iagree){
-							Flag = true;
+							if(birthDay && (Date.now() - time.getTime()) > 567648000000) {	
+								Flag = true;
+							}
 						}
 					}
 				}
 			}
-			
 			if(Flag){
 				$("#SendForm").show();
 			} else {
