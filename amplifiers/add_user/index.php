@@ -26,8 +26,9 @@
 				 <input 
 				 	placeholder="Имя" 
 					type="text" 
+					onchange="ActiveButtonSend(this);"
 					name="Data[User][NAME]" 
-					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["NAME"]);?>"/>
+					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["NAME"]);?>" class="required"/>
 			</td>
 		</tr>
 		<tr>
@@ -38,8 +39,9 @@
 				<input 
 					placeholder="Фамилия" 
 					type="text" 
+					onchange="ActiveButtonSend(this);"
 					name="Data[User][LAST_NAME]" 
-					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["LAST_NAME"]);?>"/>
+					value="<?=htmlspecialcharsbx($_POST["Data"]["User"]["LAST_NAME"]);?>" class="required"/>
 			</td>
 		</tr>
 		<tr>
@@ -231,6 +233,8 @@
 	function ActiveButtonSend(Obj) {
 		var Flag = false;
 		var Email = $("input[name='Data[User][EMAIL]']").val();
+		var Name = $("input[name='Data[User][NAME]']").val();
+		var LastName = $("input[name='Data[User][LAST_NAME]']").val();
 		var Mobile = $("input[name='Data[User][PERSONAL_MOBILE]']").val();
 		var YouSmoke = $("input[name='Data[User][UF_DO_YOU_SMOKE]']").prop("checked") ? true : false;
 		var Age = $("input[name='Data[User][AGE]']").val();
@@ -239,6 +243,18 @@
 		var InfoContact = $("input[name='Data[User][INFO]']").prop("checked") ? true : false;		
 		
 		var time = new Date(birthDay.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'));
+		if(Name.length > 0) {
+			$("input[name='Data[User][NAME]']").removeClass("required");
+			$("input[name='Data[User][NAME]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][NAME]']").hasClass("required")) {
+			$("input[name='Data[User][NAME]']").addClass("required");
+		}
+		if(LastName.length > 0) {
+			$("input[name='Data[User][LAST_NAME]']").removeClass("required");
+			$("input[name='Data[User][LAST_NAME]']").parents(".required").removeClass("required");
+		} else if(!$("input[name='Data[User][LAST_NAME]']").hasClass("required")) {
+			$("input[name='Data[User][LAST_NAME]']").addClass("required");
+		}
 		if(Email.length > 0) {
 			$("input[name='Data[User][EMAIL]']").removeClass("required");
 			$("input[name='Data[User][EMAIL]']").parents(".required").removeClass("required");
@@ -272,7 +288,7 @@
 			$("input[name='Data[User][PERSONAL_BIRTHDAY]']").addClass("required");
 		}
 		if(!InfoContact){
-			if(Email.length > 0){
+			if(Email.length > 0 && Name.length > 0 && LastName.length > 0){
 				if(YouSmoke){
 					if(Age > 17){						
 						$("input[name='Data[User][UF_YOU_HAVE_18]']").val("1");

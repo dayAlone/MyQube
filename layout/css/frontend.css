@@ -4633,6 +4633,10 @@ input:checked ~ label.checkbox__label:before {
   padding: 0 30px;
   font-weight: 500;
 }
+.login::after {
+  display: block;
+  content: "123";
+}
 .mozilla .login__errors,
 .mozilla .login__label {
   line-height: 1;

@@ -38,7 +38,7 @@
 
 					case 'facebook':
 						$data['picture'] = $data['picture']['data']['url'];
-						$data['city']    = $data['hometown'] ? $data['hometown'] : $data['location'] ? $data['location'] : false;
+						$data['city']    = $data['hometown'] ? $data['hometown'] : $data['location']['name'] ? $data['location']['name'] : false;
 						$data['gender']  = strlen($data['gender']) == 0 ? false : $data['gender'] == 'male' ? 'M' : 'F';
 						unset($data['hometown'], $data['location']);
 						break;
