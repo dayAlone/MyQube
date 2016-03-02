@@ -172,11 +172,13 @@ class OnBeforeProlog {
 				if($USER->IsAuthorized()){
 					$CurentUser = CUser::GetByID($USER->GetID())->Fetch();
 
-					if(!in_array(1,$CurentUser["UF_GROUPS"])) { // не член 1 группы
+					if(!in_array(1, $CurentUser["UF_GROUPS"])) { // не член 1 группы
 						if(empty($backurl) && !empty($Dir[3])) {
 							LocalRedirect("/group/1/?backurl=".$_SERVER["REQUEST_URI"]);
 						}
+
 						if(strlen($CurentUser["PERSONAL_BIRTHDAY"]) > 0){ // ДатаРождения заполнена
+							/*
 							if(CustomUser::UserCheckFields()) { // все поля заполнены корректно
 								CustomUser::UserUpdate(array("UF_GROUPS" => array(1)));
 								CModule::IncludeModule("iblock");
@@ -184,8 +186,11 @@ class OnBeforeProlog {
 								//$rsUsers = CUser::GetList(($by="timestamp_x"), ($order="desc"), $filter);
 								//CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
 								LocalRedirect("/group/1/".$backurl);
-							} elseif(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены
-								CustomUser::UserUpdate(array("UF_YOU_HAVE_18" => true));
+							} else
+							*/
+							if(18 <= (date("Y") - date("Y",strtotime($CurentUser["PERSONAL_BIRTHDAY"])))) { // старше 18 лет, но не все поля заполнены
+								if (!$CurentUser['UF_YOU_HAVE_18']) CustomUser::UserUpdate(array("UF_YOU_HAVE_18" => true));
+
 								if($_GET["message"] !== "checking_user_fields") {
 									LocalRedirect("/group/1/?message=checking_user_fields".$backurl);
 								}

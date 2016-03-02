@@ -13,6 +13,7 @@
 	  <input type="hidden" name="ID" value="<?=$user['ID']?>">
 	  <input type="hidden" name="LOGIN" value="<?=$user['LOGIN']?>" />
 	  <input type="hidden" name="save" value="Сохранить">
+	  <input type="hidden" name="UF_GROUPS[]" value="1">
 	  <input type="hidden" name="PERSONAL_BIRTHDAY" value="<?=$user['PERSONAL_BIRTHDAY']?>">
 	  <?=$arResult["BX_SESSION_CHECK"]?>
 	  <div class="row no-gutter signup__name">

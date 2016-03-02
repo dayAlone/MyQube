@@ -31,9 +31,20 @@
 	}
 
 	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
+	AddEventHandler("main", "OnBeforeUserUpdate", "OnBeforeUserUpdateHandler");
 	AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
 
-
+	function OnBeforeUserUpdateHandler(&$arFields) {
+		if (isset($arFields['UF_GROUPS']) && in_array(1, $arFields['UF_GROUPS'])) {
+			$user = CUser::GetByID($arFields['ID'])->Fetch();
+			
+			if (!in_array(1, $user['UF_GROUPS'])) {
+				CModule::IncludeModule("iblock");
+				$rsUsers = CUser::GetList(($by="id"), ($order="desc"), array('UF_GROUPS' => 1), array('NAV_PARAMS' => array("nTopCount" => 0)));
+				CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
+			}
+		}
+	}
 	function OnBeforeUserRegisterHandler(&$arFields) {
 		if (strlen($arFields['PHOTO']) > 0) {
 			$arFields['PERSONAL_PHOTO'] = CFile::MakeFileArray($arFields['PHOTO']);
