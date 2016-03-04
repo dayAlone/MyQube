@@ -2,7 +2,6 @@
 	$data = json_decode($_REQUEST['fields'], true);
 	if (count($data) == 0) LocalRedirect('/');
 	$data['UF_YOU_HAVE_18'] = 1;
-
 ?>
 <div class="age qblock">
   <div class="qblock__content"><img src="/layout/images/svg/logo-full.svg" alt="" class="age__logo">
@@ -13,7 +12,12 @@
 	  дату вашего рождения.
 	</p>
 	<form data-parsley-validate method="post" action="<?=$_SERVER['REQUEST_URL']?>" enctype="multipart/form-data">
-	  <?ShowError($arResult["ERRORS"]);?>
+	  <? if (count($arResult["ERRORS"]) > 0): ?>
+		<div class='login__errors login__errors--active'>
+			<?=implode("<br/>", $arResult["ERRORS"])?>
+		</div>
+	  <?endif;?>
+
 	  <input type='hidden' name='fields' value='<?=$_REQUEST['fields']?>'/>
 	  <input type='hidden' name='backurl' value='<?=$_REQUEST['backurl']?>'/>
 	  <input type="hidden" name="register_submit_button" value="Регистрация">

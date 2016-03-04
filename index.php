@@ -4,7 +4,7 @@
 	$APPLICATION->SetTitle("Социальная сеть MYQUBE.RU");
 
 	if (!$USER->IsAuthorized()) {
-
+		
 		// Страница с формой авторизации
 
 		$APPLICATION->SetPageProperty("page_class", "page--login");
@@ -14,7 +14,7 @@
 			"login",
 			array(
 				"FORGOT_PASSWORD_URL" => "",
-				"SHOW_ERRORS" => "N"
+				"SHOW_ERRORS" => "Y"
 			),
 			false
 		);

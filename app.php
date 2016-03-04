@@ -792,7 +792,7 @@ if($_REQUEST["mode"] == "get_kpi") {
     );
 }
 
-/*
+/**
     Получаем список пользователей
 */
 if($_REQUEST["mode"] == "get_contact_list") {

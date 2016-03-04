@@ -1,6 +1,7 @@
 <?
 require_once($_SERVER['DOCUMENT_ROOT'].'/includes/social.php');
 $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID']) > 0 ? "/group/".$_GET['GROUP_ID']."/" : "/");
+
 ?>
 <div class="toolbar">
   <div class="row">
@@ -16,7 +17,14 @@ $_GET["backurl"] = $_GET["backurl"] ? $_GET["backurl"] : (intval($_GET['GROUP_ID
 		тематических сообществ<br/>
 		для единомышленников
 	</div>
-    <div class='login__errors'></div>
+    <? if (count($arResult["ERROR_MESSAGE"]) > 0): ?>
+      <div class='login__errors login__errors--active'>
+          <?=$arResult["ERROR_MESSAGE"]["MESSAGE"]?>
+      </div>
+    <?else:?>
+        <div class='login__errors'></div>
+    <?endif;?>
+
 	<a href="#" class="login__trigger">Войти по логину и паролю</a>
 	<form action='' method='post' class='login__age'>
 		<input type="hidden" name="fields" value=""/>
