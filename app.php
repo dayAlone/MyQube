@@ -850,7 +850,9 @@ if($_REQUEST["mode"] == "get_contact_list") {
     );
 }
 
-//get_event_list
+/**
+    Получаем список событий
+*/
 if($_REQUEST["mode"] == "get_event_list") {
     if(!$USER->IsAuthorized()) exit();
 
@@ -934,7 +936,9 @@ if($_REQUEST["mode"] == "get_event_list") {
     );
 }
 
-//get_brand_list
+/**
+    Получаем список брендов
+*/
 if($_REQUEST["mode"] == "get_brand_list") {
     if(!$USER->IsAuthorized()) exit();
 
