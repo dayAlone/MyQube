@@ -11,6 +11,7 @@ global $USER;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 define("HLBLOCK_KPIAMPLIFIER", "2");//Лог и KPI
 
+
 $arUserType[1] = array("1"=>"33", "2"=>"34", "3"=>"35", "4"=>"36", "5"=>"37", "6"=>"43");
 $arUserType[2] = array("1"=>"38", "2"=>"39", "3"=>"40", "4"=>"41", "5"=>"42", "6"=>"44");
 
@@ -287,7 +288,9 @@ if($_REQUEST["mode"] == "promo") {
     );
 }
 
-//new_contact
+/*
+    Добавление нового контакта
+*/
 if($_REQUEST["mode"] == "new_contact") {
     if(!$USER->IsAuthorized()) exit();
 
@@ -308,52 +311,60 @@ if($_REQUEST["mode"] == "new_contact") {
     );
     foreach($json as $key => $val) {
         if($val["contact_type"] == 0) $val["contact_type"] = 1;
+
         $groups = array(1);
-        if($val["INFO"] == 1)
-            $groups = array();
+        if($val["INFO"] == 1) $groups = array();
 
         $Fields = array(
-            "NAME"              => $val["NAME"],
-            "LAST_NAME"         => $val["LAST_NAME"],
-            "LOGIN"             => $val["EMAIL"] ? $val["EMAIL"] : $val["app_id"].time().'@xyz.xyz',
-            "EMAIL"             => $val["EMAIL"] ? $val["EMAIL"] : $val["app_id"].time().'kentlabemail@xyz.xyz',
-            "ACTIVE"            => "Y",
-            "PASSWORD"          => $val["app_id"].time(),
-            "CONFIRM_PASSWORD"  => $val["app_id"].time(),
-            "PERSONAL_MOBILE"   => $val["PERSONAL_MOBILE"],
-            "PERSONAL_BIRTHDAY" => $val["PERSONAL_BIRTHDAY"],
-            "UF_FB_PROFILE"     => array($val["UF_FB"]),
-            "UF_VK_PROFILE"     => array($val["UF_VK"]),
-            "UF_GP_PROFILE"     => array($val["UF_G_PLUS"]),
-            "UF_MARK_1"         => $val["UF_MARK_1"],
-            "UF_MARK_2"         => $val["UF_MARK_2"],
-            "ADMIN_NOTES"       => $val["ADMIN_NOTES"],
-            "UF_INFO"           => $val["INFO"],
-            "UF_IAGREE"         => 1,
-            "UF_YOU_HAVE_18"    => 1,
-            "UF_DO_YOU_SMOKE"   => 1,
-            "UF_EVENT"          => $val["UF_EVENT"],
-            "UF_APP_ID"         => $val["app_id"],
-            "UF_STATUS"         => $contact_type[$val["contact_type"]],
-            "UF_GROUPS"         => $groups
+            "NAME"              => $val["NAME"],                                                                    // Имя
+            "LAST_NAME"         => $val["LAST_NAME"],                                                               // Фамилия
+            "LOGIN"             => $val["EMAIL"] ? $val["EMAIL"] : $val["app_id"].time().'@xyz.xyz',                // Логин
+            "EMAIL"             => $val["EMAIL"] ? $val["EMAIL"] : $val["app_id"].time().'kentlabemail@xyz.xyz',    // Эл. почта
+            "ACTIVE"            => "Y",                                                                             // Активность
+            "PASSWORD"          => $val["app_id"].time(),                                                           // Пароль
+            "CONFIRM_PASSWORD"  => $val["app_id"].time(),                                                           // Повторение паролья
+            "PERSONAL_MOBILE"   => $val["PERSONAL_MOBILE"],                                                         // Номер телефона
+            "PERSONAL_BIRTHDAY" => $val["PERSONAL_BIRTHDAY"],                                                       // День рождения
+            "UF_FB_PROFILE"     => array($val["UF_FB"]),                                                            // Профиль ФБ
+            "UF_VK_PROFILE"     => array($val["UF_VK"]),                                                            // Профиль ВК
+            "UF_GP_PROFILE"     => array($val["UF_G_PLUS"]),                                                        // Профиль Г+
+            "UF_MARK_1"         => $val["UF_MARK_1"],                                                               // Марка сигарет
+            "UF_MARK_2"         => $val["UF_MARK_2"],                                                               // Марка сигарет 2
+            "ADMIN_NOTES"       => $val["ADMIN_NOTES"],                                                             // Комментарий
+            "UF_INFO"           => $val["INFO"],                                                                    // Комментарий
+            "UF_IAGREE"         => 1,                                                                               // Согласен с правилами
+            "UF_YOU_HAVE_18"    => 1,                                                                               // Есть 18
+            "UF_DO_YOU_SMOKE"   => 1,                                                                               // Курильщик
+            "UF_EVENT"          => $val["UF_EVENT"],                                                                // Мероприятие
+            "UF_APP_ID"         => $val["app_id"],                                                                  // ID приложения
+            "UF_STATUS"         => $contact_type[$val["contact_type"]],                                             // Стутус
+            "UF_GROUPS"         => $groups                                                                          // Группы
         );
+
+        // Проверка на существование логина
         $checkLogin = $USER->GetByLogin($Fields["LOGIN"])->Fetch();
         if(empty($checkLogin)) {
 
+            // Устанавливаем родителя
             if(!empty($val["PARENT_NAME"])) {
-                $arUser = $USER->GetByLogin($val["PARENT_NAME"])->Fetch();
+                $arUser                   = $USER->GetByLogin($val["PARENT_NAME"])->Fetch();
                 $Fields["UF_USER_PARENT"] = $arUser["ID"];
             } elseif($USER->GetID() > 0) {
                 $Fields["UF_USER_PARENT"] = $USER->GetID();
             }
+
+            // Устанавливаем дату регистрации
             if(!empty($val["REG_DATE"])) {
                 $Fields["DATE_REGISTER"] = $val["REG_DATE"];
             }
+
+            // Добавляем пользователя
             $user = new CUser;
             $ID = $user->Add($Fields);
 
             if(intval($ID) > 0) {
 
+                // Записываем в лог регистрацию
                 $el_log = new CIBlockElement;
                 $PROP_log = array(
                     'ID'                => $ID,
@@ -371,7 +382,11 @@ if($_REQUEST["mode"] == "new_contact") {
                 );
                 $el_log->Add($arLoadProductArray_log);
 
+
+                // Создаем Токен для пользователя
                 $Hash = md5($ID.$USER->GetID().time());
+
+                // Если указана почта отправляем ему письмо с токеном, логином и паролем
                 if(!empty($val["EMAIL"])) {
 
                     CModule::IncludeModule("main");
@@ -393,13 +408,19 @@ if($_REQUEST["mode"] == "new_contact") {
                         CEvent::SendImmediate("NEW_USER_NEW", "s1", $arEventFields);
                     }
                 }
+
+                // Обновляем счетчик для группы KENT Lab
                 $usersInGroup = CIBlockElement::GetProperty(4, 1, array("sort" => "asc"), Array("CODE"=>"USERS"))->Fetch();
                 $usersInGroup["VALUE"]++;
                 CIBlockElement::SetPropertyValues(1, 4, $usersInGroup["VALUE"], "USERS");
+
+                // Сохраняем токены
                 $Field["UF_HASH"] = $Hash;
                 $Field["UF_TOKEN"] = $Hash;
-                $USER->Update($ID,$Field);
+                $USER->Update($ID, $Field);
 
+
+                // Добавляем записи в KPI
                 $arKpi = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>17, "><DATE_ACTIVE_FROM" => array(date($DB->DateFormatToPHP(CLang::GetDateFormat("SHORT")), mktime(0,0,0,date("n"),1,date("Y"))), date($DB->DateFormatToPHP(CLang::GetDateFormat("SHORT")), mktime(0,0,0,date("n")+1,1,date("Y")))), "PROPERTY_USER_ID" => $USER->GetID()), false, false, Array("*"));
                 while($obKpi = $arKpi->GetNextElement()) {
                     $kpi = $obKpi->GetFields();
@@ -422,6 +443,9 @@ if($_REQUEST["mode"] == "new_contact") {
                     );
                     $el->Add($arLoadProductArray);
                 }
+
+
+                // Записываем информацию в лог
 
                 $data = array(
                     "UF_USER"        => $ID,
@@ -477,19 +501,19 @@ if($_REQUEST["mode"] == "new_contact") {
 
             if(intval($ID) > 0)
                 $res[] = array(
-                    "status" => "OK",
-                    "status_msg" => "NewUserAdd",
+                    "status"      => "OK",
+                    "status_msg"  => "NewUserAdd",
                     "date_update" => date("Y-m-d H:i:s", time()),
-                    "app_id" => $val["app_id"] ? $val["app_id"] : 0,
-                    "ID" => $ID,
-                    "hash" => $Hash,
-                    "type" => $val["contact_type"] ? $val["contact_type"] : 0
+                    "app_id"      => $val["app_id"] ? $val["app_id"] : 0,
+                    "ID"          => $ID,
+                    "hash"        => $Hash,
+                    "type"        => $val["contact_type"] ? $val["contact_type"] : 0
                 );
             else
                 $res[] = array(
-                    "status" => "ERROR",
+                    "status"     => "ERROR",
                     "status_msg" => str_replace('&quot;', '', strip_tags($user->LAST_ERROR)),
-                    "app_id" => $val["app_id"] ? $val["app_id"] : 0
+                    "app_id"     => $val["app_id"] ? $val["app_id"] : 0
                 );
         }
     }
@@ -498,7 +522,9 @@ if($_REQUEST["mode"] == "new_contact") {
     );
 }
 
-//update_contact
+/*
+    Обновление контакта
+*/
 if($_REQUEST["mode"] == "update_contact") {
     if(!$USER->IsAuthorized()) exit();
 
@@ -527,8 +553,7 @@ if($_REQUEST["mode"] == "update_contact") {
     );
     foreach($json as $key => $val)
     {
-
-
+        // Создаем запись в логе
         CEventLog::Add(array(
             "SEVERITY" => "SECURITY",
             "AUDIT_TYPE_ID" => "TESTER",
@@ -537,31 +562,35 @@ if($_REQUEST["mode"] == "update_contact") {
             "DESCRIPTION" => json_encode($val),
         ));
 
+
+
+
+
         $Fields = array(
-            "NAME" => $val["NAME"],
-            "LAST_NAME" => $val["LAST_NAME"],
-            "PERSONAL_MOBILE" => $val["PERSONAL_MOBILE"],
-            "UF_FB_PROFILE" => array($val["UF_FB"]),
-            "UF_VK_PROFILE" => array($val["UF_VK"]),
-            "UF_GP_PROFILE" => array($val["UF_G_PLUS"]),
-            "UF_MARK_1" => $val["UF_MARK_1"],
-            "UF_MARK_2" => $val["UF_MARK_2"],
-            "ADMIN_NOTES" => $val["ADMIN_NOTES"],
-            "INFO" => $val["INFO"],
-            "UF_EVENT" => $val["UF_EVENT"],
-            "UF_APP_ID" => $val["app_id"],
-            "UF_BRAND_ID" => $val["brand_id"],
-            "UF_BRAND_NAME" => $val["brand_name"]
+            "NAME"            => $val["NAME"],              // Имя
+            "LAST_NAME"       => $val["LAST_NAME"],         // Фамилия
+            "PERSONAL_MOBILE" => $val["PERSONAL_MOBILE"],   // Телефон
+            "UF_FB_PROFILE"   => array($val["UF_FB"]),      // Профиль ФБ
+            "UF_VK_PROFILE"   => array($val["UF_VK"]),      // Профиль ВК
+            "UF_GP_PROFILE"   => array($val["UF_G_PLUS"]),  // Профиль Г+
+            "UF_MARK_1"       => $val["UF_MARK_1"],         // Марка сигарет
+            "UF_MARK_2"       => $val["UF_MARK_2"],         // Марка сигарет 2
+            "ADMIN_NOTES"     => $val["ADMIN_NOTES"],       // Комментарии
+            "INFO"            => $val["INFO"],              // Комментарии
+            "UF_EVENT"        => $val["UF_EVENT"],          // Событие
+            "UF_APP_ID"       => $val["app_id"],            // ID приложения
+            "UF_BRAND_ID"     => $val["brand_id"],          // Бренд
+            "UF_BRAND_NAME"   => $val["brand_name"]         // Название бренда
         );
         if($val["contact_type"]) {
-            $Fields["UF_STATUS"] = $contact_type[$val["contact_type"]];
+            $Fields["UF_STATUS"] = $contact_type[$val["contact_type"]]; // Статус пользователя
         }
         if($val["EMAIL"]) {
-            $Fields["LOGIN"] = $val["EMAIL"];
-            $Fields["EMAIL"] = $val["EMAIL"];
+            $Fields["LOGIN"] = $val["EMAIL"]; // Логин
+            $Fields["EMAIL"] = $val["EMAIL"]; // Почта
         }
         if($val["PERSONAL_BIRTHDAY"]) {
-            $Fields["PERSONAL_BIRTHDAY"] = $val["PERSONAL_BIRTHDAY"];
+            $Fields["PERSONAL_BIRTHDAY"] = $val["PERSONAL_BIRTHDAY"]; // День рождения
         }
         $userType = $USER->GetByID($val["ID"])->Fetch();
         $arrUserOldData = $userType;
@@ -570,13 +599,14 @@ if($_REQUEST["mode"] == "update_contact") {
         $ID = $user->Update($val["ID"], $Fields);
 
         $el_log = new CIBlockElement;
-        $PROP_log = array();
-        $PROP_log["ID"] = $val["ID"];
-        $PROP_log["PERSONAL_BIRTHDAY"] = $val["PERSONAL_BIRTHDAY"];
-        $PROP_log["UF_IAGREE"] = $status[$val["UF_IAGREE"]];
-        $PROP_log["UF_YOU_HAVE_18"] = $status[$val["UF_YOU_HAVE_18"]];
-        $PROP_log["UF_DO_YOU_SMOKE"] = $status[$val["UF_DO_YOU_SMOKE"]];
-        $PROP_log["TYPE"] = "app_user_update";
+        $PROP_log = array(
+            "ID"                => $val["ID"],
+            "PERSONAL_BIRTHDAY" => $val["PERSONAL_BIRTHDAY"],
+            "UF_IAGREE"         => $status[$val["UF_IAGREE"]],
+            "UF_YOU_HAVE_18"    => $status[$val["UF_YOU_HAVE_18"]],
+            "UF_DO_YOU_SMOKE"   => $status[$val["UF_DO_YOU_SMOKE"]],
+            "TYPE"              => "app_user_update"
+        );
         $arLoadProductArray_log = Array(
             "IBLOCK_ID"      => 26,
             "PROPERTY_VALUES"=> $PROP_log,
@@ -585,14 +615,14 @@ if($_REQUEST["mode"] == "update_contact") {
         $el_log->Add($arLoadProductArray_log);
 
         $data = array(
-            "UF_USER" => $val["ID"],
-            "UF_AMPLIFIER" => $USER->GetID(),
-            "UF_EVENT" => $val["UF_EVENT"],
-            "UF_DATE_TIME" => date("d.m.Y H:i:s"),
+            "UF_USER"        => $val["ID"],
+            "UF_AMPLIFIER"   => $USER->GetID(),
+            "UF_EVENT"       => $val["UF_EVENT"],
+            "UF_DATE_TIME"   => date("d.m.Y H:i:s"),
             "UF_ACTION_CODE" => 102,
             "UF_ACTION_TEXT" => "update",
-            "UF_TYPE" => $contact_type_ret[$userType["UF_STATUS"]],
-            "UF_TYPE_2" => $val["contact_type"] ? $val["contact_type"] : $userType["UF_STATUS"]
+            "UF_TYPE"        => $contact_type_ret[$userType["UF_STATUS"]],
+            "UF_TYPE_2"      => $val["contact_type"] ? $val["contact_type"] : $userType["UF_STATUS"]
         );
         addToHLBlock(4, $data);
 
@@ -694,15 +724,15 @@ if($_REQUEST["mode"] == "isloggedin") {
     if($USER->IsAuthorized())
         getResultJSON(
             array(
-                "status" => "OK",
+                "status"     => "OK",
                 "status_msg" => "Вы авторизованы"
             )
         );
     else
         getResultJSON(
             array(
-                "status" => "ERROR",
-                "status_msg" => "Вы не авторизованы",
+                "status"      => "ERROR",
+                "status_msg"  => "Вы не авторизованы",
                 "status_code" => 102
             )
         );
@@ -729,36 +759,38 @@ if($_REQUEST["mode"] == "get_kpi") {
             "status_msg" => "KPI",
             "data" => array(
                 0 => array(
-                    "sum" => $kpiRes["PROPERTIES"]["KPI_1"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_1"]["VALUE"] : 0,
-                    "type" => 1,
-                    "target_kpi" => $kpi["PROPERTIES"]["KPI_1"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_1"]["VALUE"] : 0
+                    "sum"        => $kpiRes["PROPERTIES"]["KPI_1"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_1"]["VALUE"] : 0,
+                    "type"       => 1,
+                    "target_kpi" => $kpi["PROPERTIES"]["KPI_1"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_1"]["VALUE"]       : 0
                 ),
                 1 => array(
-                    "sum" => $kpiRes["PROPERTIES"]["KPI_2"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_2"]["VALUE"] : 0,
-                    "type" => 2,
-                    "target_kpi" => $kpi["PROPERTIES"]["KPI_2"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_2"]["VALUE"] : 0
+                    "sum"        => $kpiRes["PROPERTIES"]["KPI_2"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_2"]["VALUE"] : 0,
+                    "type"       => 2,
+                    "target_kpi" => $kpi["PROPERTIES"]["KPI_2"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_2"]["VALUE"]       : 0
                 ),
                 2 => array(
-                    "sum" => $kpiRes["PROPERTIES"]["KPI_3"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_3"]["VALUE"] : 0,
-                    "type" => 3,
-                    "target_kpi" => $kpi["PROPERTIES"]["KPI_3"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_3"]["VALUE"] : 0
+                    "sum"        => $kpiRes["PROPERTIES"]["KPI_3"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_3"]["VALUE"] : 0,
+                    "type"       => 3,
+                    "target_kpi" => $kpi["PROPERTIES"]["KPI_3"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_3"]["VALUE"]       : 0
                 ),
                 3 => array(
-                    "sum" => $kpiRes["PROPERTIES"]["KPI_4"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_4"]["VALUE"] : 0,
-                    "type" => 4,
-                    "target_kpi" => $kpi["PROPERTIES"]["KPI_4"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_4"]["VALUE"] : 0
+                    "sum"        => $kpiRes["PROPERTIES"]["KPI_4"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_4"]["VALUE"] : 0,
+                    "type"       => 4,
+                    "target_kpi" => $kpi["PROPERTIES"]["KPI_4"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_4"]["VALUE"]       : 0
                 ),
                 4 => array(
-                    "sum" => $kpiRes["PROPERTIES"]["KPI_5"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_5"]["VALUE"] : 0,
-                    "type" => 5,
-                    "target_kpi" => $kpi["PROPERTIES"]["KPI_5"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_5"]["VALUE"] : 0
+                    "sum"        => $kpiRes["PROPERTIES"]["KPI_5"]["VALUE"] ? $kpiRes["PROPERTIES"]["KPI_5"]["VALUE"] : 0,
+                    "type"       => 5,
+                    "target_kpi" => $kpi["PROPERTIES"]["KPI_5"]["VALUE"] ? $kpi["PROPERTIES"]["KPI_5"]["VALUE"]       : 0
                 )
             )
         )
     );
 }
 
-//get_contact_list
+/*
+    Получаем список пользователей
+*/
 if($_REQUEST["mode"] == "get_contact_list") {
     if(!$USER->IsAuthorized()) exit();
 
