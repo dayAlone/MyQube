@@ -182,7 +182,7 @@ if($_REQUEST["mode"] == "checkauth") {
 }
 
 
-/*
+/**
     Работа с логом
 */
 if($_REQUEST["mode"] == "log") {
@@ -271,7 +271,7 @@ if($_REQUEST["mode"] == "log") {
         );
 }
 
-/*
+/**
     Показ промо
 */
 if($_REQUEST["mode"] == "promo") {
@@ -288,7 +288,7 @@ if($_REQUEST["mode"] == "promo") {
     );
 }
 
-/*
+/**
     Добавление нового контакта
 */
 if($_REQUEST["mode"] == "new_contact") {
@@ -522,7 +522,7 @@ if($_REQUEST["mode"] == "new_contact") {
     );
 }
 
-/*
+/**
     Обновление контакта
 */
 if($_REQUEST["mode"] == "update_contact") {
@@ -719,7 +719,9 @@ if($_REQUEST["mode"] == "update_contact") {
     print json_encode($res, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
-//isloggedin
+/**
+    Проверка авторизован ли пользователь
+*/
 if($_REQUEST["mode"] == "isloggedin") {
     if($USER->IsAuthorized())
         getResultJSON(
@@ -738,7 +740,9 @@ if($_REQUEST["mode"] == "isloggedin") {
         );
 }
 
-//get_kpi
+/**
+    Получение значений KPI
+*/
 if($_REQUEST["mode"] == "get_kpi") {
     if(!$USER->IsAuthorized()) exit();
 
@@ -953,7 +957,9 @@ if($_REQUEST["mode"] == "get_brand_list") {
     );
 }
 
-//put_photo
+/**
+    Загрузка фотографии пользователя
+*/
 if($_REQUEST["mode"] == "put_photo") {
     if(!$USER->IsAuthorized()) exit();
 
