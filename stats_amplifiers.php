@@ -85,7 +85,7 @@ if($_GET["date_from"] || $_GET["date_to"])
 else
 {
 	$date_from = date('d.m.Y', time()-3600*24*10);
-	$date_to = date('d.m.Y', time());
+	$date_to = date('d.m.Y', strtotime('+1day'));
 }
 if(!isset($_GET["csv"])){
 	$APPLICATION->ShowHead();

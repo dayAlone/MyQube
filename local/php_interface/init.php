@@ -35,7 +35,6 @@
 
 			$user = new CUser;
 			$user->Update($arFields["USER_ID"], array('UF_AUTH_TOKEN' => $token, 'UF_TOKEN' => $token));
-
 		}
 	}
 	function OnAfterUserLoginHandler(&$arFields) {
