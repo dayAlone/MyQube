@@ -39,30 +39,56 @@
 		}
 	}
 	function OnAfterUserLoginHandler(&$arFields) {
-		$user = CUser::GetByID($arFields['USER_ID'])->Fetch();
-		$fields = getValuesList('UF_STATUS', 'USER');
-		if (intval($user['UF_USER_PARENT']) > 0 && $user['UF_STATUS'] === $fields[4]['ID'] && $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
+		CModule::IncludeModule("iblock");
+		CModule::IncludeModule("highloadblock");
 
+		$user = CUser::GetByID($arFields['USER_ID'])->Fetch();
+		$fields = getValuesList('UF_STATUS', 'USER', 'ID');
+		$flipFields = array_flip($fields);
+
+		if (intval($user['UF_USER_PARENT']) > 0
+			&& $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) { // && $user['UF_STATUS'] === $fields[4]['ID'] &&
+			$groups = CUser::GetUserGroup($user['UF_USER_PARENT']);
 			$types = array(getValuesList('UF_TYPE', 'HLBLOCK_2'), getValuesList('UF_TYPE_2', 'HLBLOCK_2'));
 
-			$user = new CUser;
-			$user->Update($arFields["USER_ID"], array('UF_STATUS' => $fields[6]['ID']));
 
-			$hbKPI     = HL\HighloadBlockTable::getById(HLBLOCK_KPIAMPLIFIER)->fetch();
+			$newStatus = in_array(8, $groups) ? 6 : 4;
+
+			$user = new CUser;
+			$user->Update($arFields["USER_ID"], array('UF_INVITE_STATUS' => 1, 'UF_STATUS' => $fields[$newStatus]));
+
+			$hbKPI     = HL\HighloadBlockTable::getById(2)->fetch();
 			$entityKPI = HL\HighloadBlockTable::compileEntity($hbKPI);
 			$logKPI    = $entityKPI->getDataClass();
 			$logKPI::add(
 		        array(
-		            'UF_USER'        => IntVal($user["ID"]),
+		            'UF_USER'        => $user["ID"],
 		            'UF_AMPLIFIER'   => $user['UF_USER_PARENT'],
 		            'UF_EVENT'       => 0,
 		            'UF_DATE_TIME'   => date("Y-m-d H:i:s"),
 		            'UF_ACTION_CODE' => 103,
 		            'UF_ACTION_TEXT' => "change_status",
-		            'UF_TYPE'        => $types[0][4],
-		            'UF_TYPE_2'      => $types[1][6]
+		            'UF_TYPE'        => $user['UF_STATUS'] ? $types[0][$flipFields[$user['UF_STATUS']]] : 0,
+		            'UF_TYPE_2'      => $types[1][$newStatus]
 		        )
 		    );
+
+			$hbLOG = HL\HighloadBlockTable::getById(4)->fetch();
+			$entityLOG = HL\HighloadBlockTable::compileEntity($hbLOG);
+			$logLOG = $entity->getDataClass();
+			$logLOG::add(
+				array(
+					'UF_USER'        => $user["ID"],
+		            'UF_AMPLIFIER'   => $user['UF_USER_PARENT'],
+		            'UF_EVENT'       => 0,
+		            'UF_DATE_TIME'   => date("Y-m-d H:i:s"),
+					"UF_ACTION_CODE" => 104,
+					"UF_ACTION_TEXT" => "Приглашение принято",
+					"UF_TYPE"        => $flipFields[$user['UF_STATUS']],
+					"UF_TYPE_2"      => $newStatus
+				)
+			);
+
 		}
 	}
 ?>

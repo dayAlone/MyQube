@@ -204,13 +204,15 @@
 
 								// Тут что-то обновляется неведомое от старого сайта
 
+								/*
 								if ($APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")) {
 									$fields = array_merge($fields, array(
 										'UF_INVITE_STATUS' => 1,
 										'UF_STATUS' => 31
 									));
 								}
-
+								*/
+								
 								if (!$APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
 									$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
 									$fields = array_merge($fields, array(

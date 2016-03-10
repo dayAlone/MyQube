@@ -5,13 +5,15 @@ use Bitrix\Main\Entity;
 define('CITY_NAME', 'Екатеринбург');
 //define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/app_log.txt");
 
-AddEventHandler("main", "OnAfterUserLogin", Array("OnAfterUserLogin", "AuthRemember"));
+
 AddEventHandler('main', 'OnBeforeProlog', Array("OnBeforeProlog", 'CustomSetLastActivityDate'));
 AddEventHandler("main", "OnBeforeProlog", Array("OnBeforeProlog", "MyOnBeforePrologHandler"));
 AddEventHandler('main', 'OnEpilog', 'onEpilog');
 AddEventHandler("iblock", "OnAfterIBlockElementAdd", "NWCommentsCounter");
 AddEventHandler("iblock", "OnBeforeIBlockElementDelete", "NWCommentsCounterDel");
 
+/*
+AddEventHandler("main", "OnAfterUserLogin", Array("OnAfterUserLogin", "AuthRemember"));
 class OnAfterUserLogin {
 	function AuthRemember(&$arFields) {
 		if($arFields['USER_ID'] > 0) {
@@ -51,6 +53,7 @@ class OnAfterUserLogin {
 		}
 	}
 }
+*/
 class OnBeforeProlog {
 	function CustomSetLastActivityDate() {
 		if($GLOBALS['USER']->IsAuthorized()) CUser::SetLastActivityDate($GLOBALS['USER']->GetID());
