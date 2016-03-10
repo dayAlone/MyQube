@@ -28,12 +28,14 @@ function pluralize($num, $arEnds) {
             return $arEnds[3];
     }
 }
-function getValuesList($field, $entity) {
+function getValuesList($field, $entity, $prop = false) {
     CModule::IncludeModule("main");
     $fields = array();
     $raw = CUserTypeEntity::GetList( array($by=>$order), array('FIELD_NAME' => $field, 'ENTITY_ID' => $entity) )->Fetch();
     $enum = CUserFieldEnum::GetList(array(), array("USER_FIELD_ID" => $raw['ID']));
-    while($el = $enum->GetNext()) $fields[$el['XML_ID']] = $el;
+    while($el = $enum->GetNext()) {
+        $fields[$el['XML_ID']] = !$prop ? $el : $el[$prop];
+    }
     return $fields;
 }
 
