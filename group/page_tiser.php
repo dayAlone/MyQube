@@ -45,7 +45,7 @@ $APPLICATION->SetPageProperty("og:description", $arPost["PROPERTIES"]["OG_DESCRI
 $APPLICATION->SetPageProperty("og:image", "http://myqube.ru".str_replace(' ','%20',$ogImage["src"]));
 $APPLICATION->SetPageProperty("og:url", "http://myqube.ru".$_SERVER["REQUEST_URI"]);
 
-$APPLICATION->SetPageProperty("page_class", "teaser");
+$APPLICATION->SetPageProperty("page_class", "page--teaser");
 
 if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	<script>
@@ -54,7 +54,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 	<?
 	$image = 'http://myqube.ru'.str_replace(' ','%20', CFile::GetPath($arPost["PROPERTIES"]["OG_IMAGE"]["VALUE"]));
 
-	
+
 	?>
 
 	<div class='teaser'>
