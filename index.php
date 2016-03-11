@@ -3,8 +3,39 @@
 	//require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
 	$APPLICATION->SetPageProperty("title", "Социальная сеть MYQUBE.RU");
 	$APPLICATION->SetTitle("Социальная сеть MYQUBE.RU");
+	/*
+	CModule::IncludeModule("iblock");
+	$rs = CIBlockElement::GetList (
+		Array("ID" => "ASC"),
+		Array("IBLOCK_ID" => 6),
+		false,
+		false,
+		array('ID', 'NAME', 'PROPERTY_LIKE', 'PROPERTY_USER', 'DATE_CREATE')
+	);
+	$hbLike     = HL\HighloadBlockTable::getById(1)->fetch();
+	$entityLike = HL\HighloadBlockTable::compileEntity($hbLike);
+	$logLike    = $entityLike->getDataClass();
 
+	while ($item = $rs->Fetch()) {
+		$logLike::add(
+				array(
+					'UF_USER'        => intval($user["ID"]),
+					'UF_AMPLIFIER'   => intval($user['UF_USER_PARENT']),
+					'UF_EVENT'       => 0,
+					'UF_DATE_TIME'   => date("Y-m-d H:i:s"),
+					'UF_ACTION_CODE' => 103,
+					'UF_ACTION_TEXT' => "change_status",
+					'UF_TYPE'        => $user['UF_STATUS'] ? $types[0][$flipFields[$user['UF_STATUS']]] : 1,
+					'UF_TYPE_2'      => $types[1][$newStatus]
+				)
+			);
+	}
 
+	$APPLICATION->IncludeComponent("radia:likes","",Array(
+        "ELEMENT" => "1",
+    ));
+	die();
+	*/
 	if (!$USER->IsAuthorized()) {
 
 		// Страница с формой авторизации
@@ -32,7 +63,7 @@
 		        "USER_PROPERTY_NAME" => "",
 		        "USER_PROPERTY" => Array('UF_FRIENDS'),
 		        "SEND_INFO" => "Y",
-		        "CHECK_RIGHTS" => "Y",
+		        "CHECK_RIGHTS" => "N",
 	    	)
 		);
 	}
