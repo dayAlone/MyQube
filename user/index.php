@@ -3,12 +3,12 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 $page_name="lenta";?>
 
-<style>  
+<style>
 	.post-soc {
 		bottom: 0;
 		height: 30px;
 		position: absolute;
-	}	
+	}
 	a.likes {
 		margin-left:20px;
 	}
@@ -55,7 +55,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 				if($CreatedBy['PERSONAL_PHOTO']!="")
 					$file = CFile::ResizeImageGet($CreatedBy['PERSONAL_PHOTO'], array('width'=>50, 'height'=>50), BX_RESIZE_IMAGE_EXACT, true);
 				else $file["src"]="/images/user_photo.png";
-				?>					
+				?>
 				<div class="post" style="position: relative;">
 					<div class="post-head">
 						<div class="comment">
@@ -92,24 +92,13 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 						}
 						?>
 					</div>
-					<?
-					$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arFields["ID"], "PROPERTY_USER" => $USER->GetID() ),array());	
-					?>
+
 					<div class="post-soc">
-						<!--<div class="photo_list_info">-->
-							<!--<a class="likes photo_list_like  <?=($res_like>0)?"like_active":""?>" id="like_post_<?=$arFields["ID"]?>" style="margin-left:20px;"></a>-->
 						<?
-							$GLOBALS['gl_active'] = $res_like;
-							$GLOBALS['gl_like_id'] = "like_post_".$arFields["ID"];
-							$GLOBALS['gl_like_numm'] = intval($arProps["LIKES"]["VALUE"]);
-							$GLOBALS['gl_like_param'] = "post_id";
-							$GLOBALS['gl_like_js'] = ($GLOBALS['gl_like_js']==1)?0:1;
-							$GLOBALS['gl_like_url'] = "/group/lenta/like_post.php";
-							$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-								"AREA_FILE_SHOW" => "file", 
-								"PATH" => "/like.php"
-								)
-							);
+							$APPLICATION->IncludeComponent("radia:likes","",Array(
+						        "ELEMENT" => $arFields["ID"],
+								"BLACK"  => true
+						    ));
 						?>
 						<!--</div>-->
 						<!--a class="comments-wrap">

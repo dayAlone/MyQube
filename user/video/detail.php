@@ -14,7 +14,7 @@ $(function(){
 				});
 });*/
 </script>
-<? 
+<?
 	CModule::IncludeModule("iblock");
 	$_SESSION["BackFromDetail"]["group_6"]["nPageSize"] = $_GET["page"];
 	$event_id = $_GET["POST_ID"];
@@ -40,11 +40,14 @@ $(function(){
 				<div class="main-text"><?=$arEvent["NAME"]?></div>
 				<!-- Три иконки справа -->
 				<div class="right-menu">
+
 					<?
-						$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arEvent['ID'], "PROPERTY_USER" => $USER->GetID() ),array());	
+						$APPLICATION->IncludeComponent("radia:likes","",Array(
+							"ELEMENT" => $arEvent['ID'],
+							"COUNTER" => 'N'
+						));
 					?>
-					<!--<a id="video_item_<?=$arEvent['ID']?>" class="likes <?=($res_like>0)?"active":""?>"></a>-->
-					
+
 					<!--<a class="comments-wrap" href="#comment_form_<?=$arEvent['ID']?>">
 								<div class="comments-icon"></div>
 								<div class="comments-number"><?=intval($arEvent["PROPERTIES"]["COMMENTS_COUNT"]["VALUE"])?> комментариев</div>
@@ -72,7 +75,7 @@ $(function(){
 							"WIDTH" => 780/*$arEvent["PROPERTIES"]["VIDEO_FILE"]["VALUE"]["width"]*/,
 							"HEIGHT" => 780*$arEvent["PROPERTIES"]["VIDEO_FILE"]["VALUE"]["height"]/$arEvent["PROPERTIES"]["VIDEO_FILE"]["VALUE"]["width"],
 							"PREVIEW" => CFile::GetPath($arEvent["PREVIEW_PICTURE"]))
-					);	
+					);
 				}
 				else
 				{
@@ -86,32 +89,26 @@ $(function(){
 							<iframe src="https://player.vimeo.com/video/<?=$vimeo_video_id?>?badge=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 						<?
 						}
-						else 
+						else
 						{
 							$parsed_url = parse_url($arEvent["PROPERTIES"]["VIDEO"]["VALUE"]);
 							parse_str($parsed_url['query'], $parsed_query);
-							echo '<iframe src="http://www.youtube.com/embed/'.$parsed_query['v'].'" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>';	
+							echo '<iframe src="http://www.youtube.com/embed/'.$parsed_query['v'].'" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>';
 						}
 				}
 				?>
-					</div>	
-                    
+					</div>
+
                     <div class="right-menu" style="margin-right:0px;">
-			<?
-				$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arEvent['ID'], "PROPERTY_USER" => $USER->GetID() ),array());
-				/*global $gl_active, $gl_like_id;*/
-				$GLOBALS['gl_active'] = $res_like;
-				$GLOBALS['gl_like_id'] = "video_item_".$arEvent['ID'];
-				$GLOBALS['gl_like_numm'] = intval($arEvent["PROPERTIES"]["LIKES"]["VALUE"]);
-				$GLOBALS['gl_like_param'] = "post_id";
-				$GLOBALS['gl_like_js'] = 1;
-				$GLOBALS['gl_like_url'] = "/group/video/like_post.php";
-				$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-					"AREA_FILE_SHOW" => "file", 
-					"PATH" => "/like.php"
-					)
-				);
-			?>
+
+			<div class='likes-wrap' style='width: 60px;float:left'>
+				<?
+					$APPLICATION->IncludeComponent("radia:likes","",Array(
+						"ELEMENT" => $arEvent['ID'],
+						"COUNTER" => 'N'
+					));
+				?>
+			</div>
 			<a class="comments-wrap" href="#comment_form_<?=$arEvent['ID']?>">
 				<div class="comments-icon"></div>
 				<div class="comments-number"><?=intval($arEvent["PROPERTIES"]["COMMENTS_COUNT"]["VALUE"])?></div>
@@ -119,8 +116,8 @@ $(function(){
 			<? if($arEvent["PROPERTIES"]["SHARE"]["VALUE"]=='Y'):?>
 				<div style="display:inline-block;">
 					<?$APPLICATION->IncludeComponent(
-						"bitrix:main.share", 
-						"myqube_best", 
+						"bitrix:main.share",
+						"myqube_best",
 						array(
 							"COMPONENT_TEMPLATE" => "myqube_best",
 							"HIDE" => "N",
@@ -147,8 +144,8 @@ $(function(){
 				</div>-->
 			<?endif;?>
 			</div>
-                    
-                    			
+
+
 		</div>
 
 
@@ -201,7 +198,7 @@ $(function(){
 							"WIDTH" => 780/*$arEvent["PROPERTIES"]["VIDEO_FILE"]["VALUE"]["width"]*/,
 							"HEIGHT" => 780*$arEvent["PROPERTIES"]["VIDEO_FILE"]["VALUE"]["height"]/$arEvent["PROPERTIES"]["VIDEO_FILE"]["VALUE"]["width"],
 							"PREVIEW" => CFile::GetPath($arEvent["PREVIEW_PICTURE"]))
-					);	
+					);
 				}
 				else
 				{
@@ -232,31 +229,23 @@ $(function(){
 						<iframe src="https://player.vimeo.com/video/<?=$vimeo_video_id?>?badge=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 					<?
 					}
-					else 
+					else
 					{
 						$parsed_url = parse_url($arEvent["PROPERTIES"]["VIDEO"]["VALUE"]);
 						parse_str($parsed_url['query'], $parsed_query);
-						echo '<iframe src="http://www.youtube.com/embed/'.$parsed_query['v'].'" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>';	
+						echo '<iframe src="http://www.youtube.com/embed/'.$parsed_query['v'].'" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>';
 					}
 				}
 				?>
 			</div>
 			<div class="right-menu" style="margin-right:0px;">
-			<?
-				$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arEvent['ID'], "PROPERTY_USER" => $USER->GetID() ),array());
-				/*global $gl_active, $gl_like_id;*/
-				$GLOBALS['gl_active'] = $res_like;
-				$GLOBALS['gl_like_id'] = "video_item_".$arEvent['ID'];
-				$GLOBALS['gl_like_numm'] = intval($arEvent["PROPERTIES"]["LIKES"]["VALUE"]);
-				$GLOBALS['gl_like_param'] = "post_id";
-				$GLOBALS['gl_like_js'] = 0;
-				$GLOBALS['gl_like_url'] = "/group/video/like_post.php";
-				$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-					"AREA_FILE_SHOW" => "file", 
-					"PATH" => "/like.php"
-					)
-				);
-			?>
+			<div class='likes-wrap' style='width: 60px;float:left'>
+				<?
+					$APPLICATION->IncludeComponent("radia:likes","",Array(
+						"ELEMENT" => $arEvent['ID']
+					));
+				?>
+			</div>
 			<a class="comments-wrap" href="#comment_form_<?=$arEvent['ID']?>">
 				<div class="comments-icon"></div>
 				<div class="comments-number"><?=intval($arEvent["PROPERTIES"]["COMMENTS_COUNT"]["VALUE"])?></div>
@@ -264,8 +253,8 @@ $(function(){
 			<? if($arEvent["PROPERTIES"]["SHARE"]["VALUE"]=='Y'):?>
 				<div style="display:inline-block;">
 					<?$APPLICATION->IncludeComponent(
-						"bitrix:main.share", 
-						"myqube_best", 
+						"bitrix:main.share",
+						"myqube_best",
 						array(
 							"COMPONENT_TEMPLATE" => "myqube_best",
 							"HIDE" => "N",

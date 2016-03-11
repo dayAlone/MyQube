@@ -73,7 +73,7 @@
 		width:60px;
 		float: left;
 	}
-    
+
     @media screen and (max-device-width: 640px){
     .detail_picture_view{
         top: 240px !important;
@@ -81,26 +81,26 @@
     .popup_detail_picture_wrapper img{
         top: 940px;
     }
-    
+
     .gallery_nw_prev{
         left: 0px !important;
     }
-    
+
     .gallery_nw_prev, .gallery_nw_next{
         background-position: center !important;
         width: 110px !important;
         height: 270px !important;
         top:18% !important;
-        right: 0px !important;     
+        right: 0px !important;
     }
-    
+
     .comments{
         margin: auto !important;
         padding: 0 !important;
     }
-    
-    
-    } 
+
+
+    }
     .comments_count {
 		display:none;
 	}
@@ -147,9 +147,9 @@ $(function(){
 			<h1>
 				<a class="gallery_back" href="/group/<?=$arGroup["ID"]?>/photo/?page=<?=$page?>#photo_list_item_<?=substr($event_id, 0, strripos($event_id, "?"))?>"></a>
 				<?=$arEvent["NAME"]?>
-				
+
 				<?
-					//$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arEvent['ID'], "PROPERTY_USER" => $USER->GetID() ),array());	
+					//$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arEvent['ID'], "PROPERTY_USER" => $USER->GetID() ),array());
 				?>
 			</h1>
 			<div class="gallery_leftcol">
@@ -186,23 +186,14 @@ $(function(){
 					<div class="gallery_nw_next"></div>
 					<div id="loaderImage"></div>
 				</div>
-				
+
 				<div style="float:right; margin-top: 15px;">
 					<div id="like_box">
-					<!--<a id="photo_item_<?=$arEvent["ID"]?>" class="likes <?=($res_like>0)?"active":""?>"></a>-->
+
 					<?
-						$GLOBALS['gl_active'] = 0;
-						$GLOBALS['gl_like_id'] = "like_post_".$first_picture_id;
-						$GLOBALS['gl_like_id_1'] = $arEvent["ID"];
-						$GLOBALS['gl_like_numm'] = intval($arPost["PROPERTIES"]["LIKES"]["VALUE"]);
-						$GLOBALS['gl_like_param'] = "post_id";
-						$GLOBALS['gl_like_js'] = 1;
-						$GLOBALS['gl_like_url'] = "/group/video/like_post.php";
-						$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-							"AREA_FILE_SHOW" => "file", 
-							"PATH" => "/like.php"
-							)
-						);
+						$APPLICATION->IncludeComponent("radia:likes","",Array(
+							"ELEMENT" => 'photo_'.$arEvent["PROPERTIES"]["PHOTO"]["VALUE"][0]
+						));
 					?>
 					</div>
 					<!-- Блок комментариев -->
@@ -210,12 +201,12 @@ $(function(){
 						<div class="comments-icon"></div>
 						<div class="comments-number" style="width:30px;"></div>
 					</div>
-					
+
 					<?if($arEvent["PROPERTIES"]["SHARE"]["VALUE"] == "Y"){?>
 						<div style="float:left;">
 						<?$APPLICATION->IncludeComponent(
-							"bitrix:main.share", 
-							"myqube_best", 
+							"bitrix:main.share",
+							"myqube_best",
 							array(
 								"COMPONENT_TEMPLATE" => "myqube_best",
 								"HIDE" => "N",
@@ -298,7 +289,7 @@ $(function(){
 					}
 					if($(".gallery_preview_cont_cont").scrollTop()<=pos-1){
 						$(".gallery_arrow_down").show();
-					}		
+					}
 					//alert($(".gallery_preview_cont_cont_cont").css("top"));
 					//alert("-"+pos+"px");
 				});
@@ -306,7 +297,7 @@ $(function(){
 
 			$(".gallery_arrow_up").click(function(event) {
 				event.stopPropagation();
-				event.preventDefault(); 
+				event.preventDefault();
 				$(".gallery_preview_cont_cont").animate({
 					scrollTop: $(".gallery_preview_cont_cont").scrollTop()-100
 				}, 500, function() {
@@ -322,32 +313,21 @@ $(function(){
 					}
 					if($(".gallery_preview_cont_cont").scrollTop()<=pos-1){
 						$(".gallery_arrow_down").show();
-					}		
+					}
 				});
 			});
 			//$(".gallery_comments").hover(function() {
 				//$( ".gallery_comments" ).find("span").show("slide", { direction: "right" }, 500);
 			//});
 			var	current_photo = $(".gallery_preview_cont_cont_cont a").first();
-			
+
 			var path = host_url+"/group/photo/comments_count.php";
 			$.get(path, {post_id: $(current_photo).attr("id").replace("photo_", "")}, function(data){
 				$(data).appendTo(".comments-number");
 				$("#comments_count_" + $(current_photo).attr("id").replace("photo_", "")).first().css("display","block");
 			});
-			path = host_url+"/group/photo/likes_count.php";
-			$.get(path, {post_id: $(current_photo).attr("id").replace("photo_", "")}, function(data){
-				/*if($("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).hasClass("active"))*/
-				var res = JSON.parse(data);
-				/*console.log(res.count);*/
-				if(res.active==1)
-					$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).addClass("active");
-				else 
-					$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).removeClass("active");
-				$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).next().html(res.count);
-				$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).attr("id","like_post_"+$(current_photo).attr("id").replace("photo_", ""));
-			});
-						
+
+
 			$(".gallery_comments").click(function(event) {
 				event.preventDefault();
 				if($("#comment_form_" + $(current_photo).attr("id").replace("photo_", "")).length == 0)
@@ -372,7 +352,7 @@ $(function(){
 					$(".gallery_comments").removeClass("gallery_comments_active");
 				}*/
 
-				
+
 				/*if ($( ".gallery_photo_cont" ).css("height")=="150px"){
 					$( ".gallery_photo_cont" ).animate({
 						height: $( "#gallery_photo" ).css("height")
@@ -396,9 +376,9 @@ $(function(){
 				$('<img/>').attr('src', $(current_photo).attr("href")).load(function () {
 					$('#gallery_photo').fadeOut(500, function() {
 						$('#gallery_photo').attr("src",$(current_photo).attr("href"));
-					});	
+					});
 				});
-				
+
 			});
 			$(function(){
 				$( "#gallery_photo" ).load(function() {
@@ -422,13 +402,8 @@ $(function(){
 					stopAnimation();
 					path = host_url+"/group/photo/likes_count.php";
 					$.get(path, {post_id: $(current_photo).attr("id").replace("photo_", "")}, function(data){
-						$(".likes").attr("id","like_post_"+$(current_photo).attr("id").replace("photo_", ""));
-						var res = JSON.parse(data);
-						if(res.active==1)
-							$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).addClass("active");
-						else 
-							$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).removeClass("active");
-						$("#like_post_" + $(current_photo).attr("id").replace("photo_", "")).next().html(res.count);
+						$('#like_box').html(data)
+						window.initLikes()
 					});
 				});
 				$(".gallery_nw_next").click(function() {
@@ -441,7 +416,7 @@ $(function(){
 					$('<img/>').attr('src', $(current_photo).attr("href")).load(function () {
 						$('#gallery_photo').fadeOut(500, function() {
 							$('#gallery_photo').attr("src",$(current_photo).attr("href"));
-						});	
+						});
 					});
 				});
 				$(".gallery_nw_prev").click(function() {
@@ -454,7 +429,7 @@ $(function(){
 					$('<img/>').attr('src', $(current_photo).attr("href")).load(function () {
 						$('#gallery_photo').fadeOut(500, function() {
 							$('#gallery_photo').attr("src",$(current_photo).attr("href"));
-						});	
+						});
 					});
 				});
 			});
@@ -477,7 +452,7 @@ $(function(){
 				background-image:url('/images/gallery_arrow_down_min.png');
 			}
 		</style>
-		
+
 		<div class="detail_picture_view">
 			<div class="popup_background"></div>
 			<div class="popup_detail_picture_wrapper">

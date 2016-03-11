@@ -1,24 +1,25 @@
-<? 
+<?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Группы");
+ CJSCore::Init(array("jquery"));
 ?>
 <script>
 $(document).ready(function(){
-	
-	$("#new-friends-number,.chat-head").click(function(){		
+
+	$("#new-friends-number,.chat-head").click(function(){
 		$("#shadow-new-friens-popup").show();
-		$("#shadow-friends-edit-popup").show();	
+		$("#shadow-friends-edit-popup").show();
 		var path = host_url+"/user/profile/ajax/friends.php";
 		$.get(path, {}, function(data){
 			$("#shadow-new-friens-popup").html(data);
 		});
 	});
-	
+
 	$("body").on("click", "#popup-friends-cancel", function(){
 		$("#shadow-new-friens-popup").hide();
 		$("#shadow-friends-edit-popup").hide();
 	});
-	
+
 	$("body").on("click", ".add-or-del-friend", function(){
 		var userID = $(this).data("id");
 		var subin = $(this).data("subin");
@@ -36,9 +37,9 @@ $(document).ready(function(){
 		if($(this).hasClass("add"))
 			alert("Ваша заявка отправлена");
 	});
-	
+
 	$(".id_add_photo").click(function(){
-		$("#add_post_page").show();	
+		$("#add_post_page").show();
 		$("#new_post_page").hide();
 		$("#new_photo_page").show();
 		$("#new_album_page").hide();
@@ -63,12 +64,12 @@ function getName2 (obj, str){
 		var i = str.lastIndexOf('\\')+1;
 	}else{
 	var i = str.lastIndexOf('/')+1;
-	}						
-	var filename = "("+str.slice(i)+")";			
+	}
+	var filename = "("+str.slice(i)+")";
 	var uploaded = document.getElementById("fileformlabel");
 	$(obj).parent().find(".selectbutton").html(filename+" <span></span>");
 }
-</script>	
+</script>
 <link rel="stylesheet" href="/css/cabinet.css">
 <style>
 	.frends-filter .slimScrollDiv {
@@ -103,48 +104,48 @@ function getName2 (obj, str){
 	.slimScrollDiv {
 		margin:0 10%;
 		padding-top:50px;
-	}	
-    
+	}
+
    @media screen and (max-device-width: 640px){
         .chat{
             display: none !important;
         }
-        
-        
+
+
         .users-number, .likes-number, .socblock{
             font-size: 22px;
         }
-        
+
         .socblock{
             width: auto !important;
             margin-left: 10px;
         }
-        
+
         .nomobile-span{
             display: none;
         }
-        
+
         .slimScrollDiv{
             margin: 0 auto !important;
         }
        .slimScrollDiv{
             width: 100% !important;
        }
-       
+
        .main-block{
             width: 100% !important;
        }
-       
+
        .event{
             margin: 20px auto;
             float: none;
        }
-       
-        
+
+
         .item.search-preform{
             margin-left: 100px;
         }
-        
+
         .mobile-menu-ico {
             z-index: 5;
             top: 14px;
@@ -154,7 +155,7 @@ function getName2 (obj, str){
             height: 40px;
             margin-left: 20px;
         }
-        
+
         .event-header{
             width: 100% !important;
             font-size: 62px !important;
@@ -165,37 +166,38 @@ function getName2 (obj, str){
         div.event-date{
             font-size: 30px !important;
         }
-    } 
+    }
     .users-wrap {
 			margin-left:0px !important;
 	}
     .likes-wrap {
 		width:60px !important;
+		text-align: left;
 	}
-    
+
 </style>
 <script type="text/javascript">
 
             $("#menu-button").click(function(){
-                
+
                 if($("#nav_left_open").css('left') == '-165px'){
-                    
+
                    $("#nav_left_open").animate({ left: '0' }, 400);
-                    $("div.main").animate({ left: '165' }, 400);                   
+                    $("div.main").animate({ left: '165' }, 400);
                 };
                 if($("#nav_left_open").css('left') == '0px'){
-          
+
                     $("#nav_left_open").animate({ left: '-165' }, 400);
                     $("div.main").animate({ left: '0' }, 400);
                 };
 
 
-                          
+
             })
 
 
 	$(function(){
-       
+
 		$('#scroll_1').slimScroll({
 			color: '#00d6ff',
 			size: '10px',
@@ -204,7 +206,7 @@ function getName2 (obj, str){
 			distance: '10px',
 			alwaysVisible: true
 		});
-		$('.search-form input[name="q"]').keyup(function() { 
+		$('.search-form input[name="q"]').keyup(function() {
 			$(".event").each(function(){
 				if($('.search-form input[name="q"]').val()=='' || $(this).find(".event-header").html().toLowerCase().indexOf($('.search-form input[name="q"]').val().toLowerCase())>=0)
 					$(this).show();
@@ -250,24 +252,16 @@ function getName2 (obj, str){
 					<?=$arFields["NAME"]?><span class="blue"></span>
 						<hr>
 					</div>
-					<div class="event-date"><?=$arFields["PREVIEW_TEXT"]?></div></a>			
+					<div class="event-date"><?=$arFields["PREVIEW_TEXT"]?></div></a>
 				</div>
 			<div class="bottom-small-menu">
-					<?$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arFields["ID"], "PROPERTY_USER" => $USER->GetID() ),array());?>
-					<!--<div class="likes-wrap"><a class="likes <?=($res_like>0)?"active":""?>" id="like_group_<?=$arFields["ID"]?>"></a><div class="likes-number"><?=intval($arProps["LIKES"]["VALUE"])?></div></div>-->
-					<?
-						$GLOBALS['gl_active'] = $res_like;
-						$GLOBALS['gl_like_id'] = "like_group_".$arFields["ID"];
-						$GLOBALS['gl_like_numm'] = intval($arProps["LIKES"]["VALUE"]);
-						$GLOBALS['gl_like_param'] = "post_id";
-						$GLOBALS['gl_like_js'] = ($GLOBALS['gl_like_js']==1)?0:1;
-						$GLOBALS['gl_like_url'] = "/user/groups/like_post.php";
-						$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-							"AREA_FILE_SHOW" => "file", 
-							"PATH" => "/like.php"
-							)
-						);
-					?>
+					<div class="likes-wrap">
+						<?
+							$APPLICATION->IncludeComponent("radia:likes","",Array(
+						        "ELEMENT" => $arFields["ID"]
+						    ));
+						?>
+					</div>
 					<div class="users-wrap">
 						<div class="users-icon" style="cursor:default;"></div>
 						<div class="users-number"><? echo intval($arProps["USERS_M"]["VALUE"]); ?> <span class="nomobile-span"><?=getNumEnding(intval($arProps["USERS_M"]["VALUE"]), Array("участник", "участника", "участников"))?></span></div>
@@ -277,15 +271,15 @@ function getName2 (obj, str){
 						<div class="socblock"><? echo intval($arProps["SHARES"]["VALUE"]); ?></div> <span style="top: 4px; position: relative; font-size: 11px;"><span class="nomobile-span">ПОДЕЛИЛИСЬ</span></span>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div>
-		<?	
+		<?
 	}
 	?>
 </div>
 <?/*$APPLICATION->IncludeComponent(
-	"smsmedia:friends", 
-	"myqube", 
+	"smsmedia:friends",
+	"myqube",
 	array(
 		"SET_TITLE" => "Y",
 		"COMPONENT_TEMPLATE" => "myqube",

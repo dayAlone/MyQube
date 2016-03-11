@@ -3,13 +3,13 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 $page_name="lenta";?>
 
-<style>  
+<style>
 	.post-soc {
 		bottom: 0;
 		height: 30px;
 		position: absolute;
-	}	
-	a.likes {
+	}
+	a.like {
 		margin-left:20px;
 	}
 	.social-buttons {
@@ -59,7 +59,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 				if($CreatedBy['PERSONAL_PHOTO']!="")
 					$file = CFile::ResizeImageGet($CreatedBy['PERSONAL_PHOTO'], array('width'=>50, 'height'=>50), BX_RESIZE_IMAGE_EXACT, true);
 				else $file["src"]="/images/user_photo.png";
-				?>					
+				?>
 				<div class="post" style="position: relative;">
 					<div class="post-head">
 						<div class="comment">
@@ -92,7 +92,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 						foreach ($arProps["CONTENT"]["VALUE"] as $k=>$v)
 						{
 							$res_2 = CIBlockElement::GetByID($v);
-							if($ar_res_2 = $res_2->GetNext())		
+							if($ar_res_2 = $res_2->GetNext())
 							{
 								if($ar_res_2["IBLOCK_ID"]==7){
 									$file = CFile::ResizeImageGet($ar_res_2["PREVIEW_PICTURE"], array('width'=>280, 'height'=>300), BX_RESIZE_IMAGE_EXACT, true);
@@ -103,7 +103,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 								if($ar_res_2["IBLOCK_ID"]==8){
 									$ar_res_3 = CIBlockElement::GetProperty(8, $ar_res_2["ID"],Array());
 									$er_res_3_f=$ar_res_3->Fetch();
-									
+
 									if(strpos($er_res_3_f["VALUE"],"vimeo.com"))
 									{
 										$vimeo_video_id = preg_replace('/^.*vimeo.com\/(\d+)$/i','$1',$er_res_3_f["VALUE"]);
@@ -111,11 +111,11 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 										<div class="container_photo"><iframe src="https://player.vimeo.com/video/<?=$vimeo_video_id?>?badge=0" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 									<?
 									}
-									else 
+									else
 									{
 										$parsed_url = parse_url($er_res_3_f["VALUE"]);
 										parse_str($parsed_url['query'], $parsed_query);
-										echo '<div class="container_photo"><iframe src="http://www.youtube.com/embed/'.$parsed_query['v'].'" allowfullscreen="" width="100%" height="400" frameborder="0"></iframe></div>';	
+										echo '<div class="container_photo"><iframe src="http://www.youtube.com/embed/'.$parsed_query['v'].'" allowfullscreen="" width="100%" height="400" frameborder="0"></iframe></div>';
 									}
 								}
 							}
@@ -127,24 +127,13 @@ include($_SERVER["DOCUMENT_ROOT"]."/user/header.php");
 						}
 						?>
 					</div>
-					<?
-					$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arFields["ID"], "PROPERTY_USER" => $USER->GetID() ),array());	
-					?>
 					<div class="post-soc">
-						<!--<div class="photo_list_info">-->
-							<!--<a class="likes photo_list_like  <?=($res_like>0)?"like_active":""?>" id="like_post_<?=$arFields["ID"]?>" style="margin-left:20px;"></a>-->
+
 						<?
-							$GLOBALS['gl_active'] = $res_like;
-							$GLOBALS['gl_like_id'] = "like_post_".$arFields["ID"];
-							$GLOBALS['gl_like_numm'] = intval($arProps["LIKES"]["VALUE"]);
-							$GLOBALS['gl_like_param'] = "post_id";
-							$GLOBALS['gl_like_url'] = "/group/lenta/like_post.php";
-							$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-								"AREA_FILE_SHOW" => "file", 
-								"PATH" => "/like.php"
-								)
-							);
-							$GLOBALS['gl_like_js']=0;
+							$APPLICATION->IncludeComponent("radia:likes","",Array(
+						        "ELEMENT" => $arFields["ID"],
+								"BLACK"  => true
+						    ));
 						?>
 						<!--</div>-->
 						<!--a class="comments-wrap">

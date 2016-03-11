@@ -10,13 +10,13 @@ if($_GET["count"])
 	$group_id = (isset($arGroup["id"]))?$arGroup["id"]:$_GET["GROUP_ID"];
 	$iblock_id = 8;
 	$arPosts = array();
-	
+
 	// Постраничная пагинация / Сессия прописывается в init.php
 	if(($nPageSize = $_GET["page"]) && !$_GET["PAGEN_1"])
 		$nPageSizePhoto = $nPageSize*9;
 	else
 		$nPageSizePhoto = 9;
-	
+
 	$arFilter = array("IBLOCK_ID" => $iblock_id, "ACTIVE_DATE" => "Y", "PROPERTY_ANC_ID" => $group_id, "PROPERTY_ANC_TYPE" => 20);
 	if(isset($only_my)&&$only_my==1) {
 		$arFilter['PROPERTY_ANC_ID']=$only_for;
@@ -50,7 +50,7 @@ if($_GET["count"])
 				if(!($vimeo_video_id>0))
 					$vimeo_video_id = fetch_vimeo_id($arPost["PROPERTIES"]["VIDEO"]["VALUE"]);
 				$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$vimeo_video_id.php"));
-				$pic=$hash[0]['thumbnail_large']; 
+				$pic=$hash[0]['thumbnail_large'];
 			}
 			else
 				$pic = "http://img.youtube.com/vi/".$parsed_query['v']."/0.jpg";
@@ -78,26 +78,14 @@ if($_GET["count"])
 			</style>
 			<div class="video-socbutton" style="margin: 30px 0 0 20px;">
 				<!-- класс video-like-gray - серый video-like-red - красный лайк -->
-				<?
-						$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arPost['ID'], "PROPERTY_USER" => $USER->GetID() ),array());	
-				?>
-				<!--<a class="likes <?=($res_like>0)?"active":""?>" id="like_post_<?=$arPost["ID"]?>"></a>-->
-				<?
-				/*$GLOBALS['gl_active'] = $res_like;
-				$GLOBALS['gl_like_id'] = "like_post_".$arPost["ID"];
-				$GLOBALS['gl_like_numm'] = intval($arPost["PROPERTIES"]["LIKES"]["VALUE"]);
-				$GLOBALS['gl_like_param'] = "post_id";
-				$GLOBALS['gl_like_js'] = (!isset($GLOBALS['gl_like_js']))?1:0;
-				$GLOBALS['gl_like_url'] = "/group/video/like_post.php";
-				$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-					"AREA_FILE_SHOW" => "file", 
-					"PATH" => "/like.php"
-					)
-				);*/
-				?>
+				
 				<div class="likes-wrap" style="float:left;">
-					<a id="like_post_1279" class="likes_tiser" style="margin-right:5px;"></a>
-					<div class="likes-number" style="padding-top:4px;margin-left:25px;"><?=intval($arPost["PROPERTIES"]["LIKES"]["VALUE"])?></div>
+					<?
+						$APPLICATION->IncludeComponent("radia:likes","",Array(
+							"ELEMENT" => $arPost["ID"],
+							"INACTIVE" => true
+						));
+					?>
 				</div>
 				<a class="comments-wrap">
 							<div class="comments-icon"></div>
@@ -112,6 +100,6 @@ if($_GET["count"])
 				<?}?>
 			</div>
 		</div>
-		<?		
+		<?
 	}
 	?>

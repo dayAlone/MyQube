@@ -1,0 +1,49 @@
+.like {
+    line-height: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+.like:hover {
+    text-decoration: none;
+}
+.like.like--black {
+    color: black;
+}
+.like.like--strong {
+    font-weight: bold;
+}
+.like.like--innactive {
+    pointer-events: none;
+}
+.like svg {
+    height: 17px;
+    position: relative;
+    top: -2px;
+}
+.like svg path {
+    transition: .3s all;
+    stroke: #f10c1a;
+}
+.like:hover svg path {
+    transition: .3s all;
+    stroke: #f10c1a;
+    fill-opacity: 1;
+}
+.like.like--gray svg path {
+    stroke: #898989;
+}
+.like svg, .like span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 11px;
+
+}
+.like span {
+    padding-left: 2px;
+}
+.like.like--liked svg path {
+    fill: #f10c1a;
+    fill-opacity: 1;
+    stroke: #f10c1a;
+}

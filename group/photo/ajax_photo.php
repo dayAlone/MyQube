@@ -9,7 +9,7 @@ if($_GET["count"])
 	$group_id = (isset($arGroup["id"]))?$arGroup["id"]:$_GET["GROUP_ID"];
 	$iblock_id = 7;
 	$arPosts = array();
-	
+
 	// Постраничная пагинация / Сессия прописывается в init.php
 	if(($nPageSize = $_GET["page"]) && !$_GET["PAGEN_1"])
 		$nPageSizePhoto = $nPageSize*9;
@@ -24,7 +24,7 @@ if($_GET["count"])
 		$arFilter["<=PROPERTY_DATE_EVENT"] = ConvertDateTime(date("d.m.Y", time()), "YYYY-MM-DD")." 00:00:00";
 	else
 		$arFilter[">=PROPERTY_DATE_EVENT"] = ConvertDateTime(date("d.m.Y", time()), "YYYY-MM-DD")." 00:00:00";*/
-	
+
 	if($_GET["q"])
 		$arFilter["%NAME"] = $_GET["q"];
 	$res = CIBlockElement::GetList(array("active_from" => "DESC"), $arFilter, false, Array("nPageSize" => $nPageSizePhoto));
@@ -64,20 +64,21 @@ if($_GET["count"])
 					<!--div class="photo_list_avatar" style="background: url('<?=CFile::GetPath($user["PERSONAL_PHOTO"])?>'); background-size: 80px;">
 					</div>
 					<div class="photo_list_name"><?=$user["NAME"]?></div-->
-					<div class="photo_list_header search-item-name"><?=$arPost["NAME"]?></div>							
+					<div class="photo_list_header search-item-name"><?=$arPost["NAME"]?></div>
 				</div>
 				<style>
 					.social-buttons {cursor: default;}
 					.comments-icon {cursor: default !important;}
 				</style>
 				<div class="photo_list_info">
-					<?
-						$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arPost['ID'], "PROPERTY_USER" => $USER->GetID() ),array());	
-					?>
-					<!--<a class="likes <?=($res_like>0)?"active":""?>" id="like_post_<?=$arPost["ID"]?>"></a>-->
-					<div class="likes-wrap">
-						<div id="<?=$GLOBALS['gl_like_id']?>" href="#" class="likes_tiser"></div>
-						<div class="likes-number-tiser"><?=intval($arPost["PROPERTIES"]["LIKES"]["VALUE"])?></div>
+					<div class="likes-wrap" style='width: 60px; float: left;'>
+						<?
+							$APPLICATION->IncludeComponent("radia:likes","",Array(
+								"ELEMENT" => $arPost['ID'],
+								"PHOTOS" => $arPost["PROPERTIES"]["PHOTO"]["VALUE"],
+								"INACTIVE" => true
+							));
+						?>
 					</div>
 					<a class="comments-wrap">
 								<div class="comments-icon"></div>
@@ -92,11 +93,11 @@ if($_GET["count"])
 					<?}?>
 					<!--<div class="photo_list_date">
 						3 ч назад
-					</div>		
+					</div>
 					-->
 				</div>
 			</div>
-            
+
    <!--       <div class="cover_bottom_info mobile-block" id="bottom_photo_list_item_<?=$arPost["ID"]?>">
               <div class="cover_bottom_info_inside">
                 <div class="group_info_slogan">12345</div>
@@ -105,17 +106,17 @@ if($_GET["count"])
                     <div>
                         <div class="group_info_mobile-block_like"></div>
                         <div class="group_info_mobile-block_star"></div>
-                        <div class="group_info_mobile-block_fb"></div>                    
-                        <div class="group_info_mobile-block_vk"></div>                    
-                        <div class="group_info_mobile-block_gplus"></div>                    
+                        <div class="group_info_mobile-block_fb"></div>
+                        <div class="group_info_mobile-block_vk"></div>
+                        <div class="group_info_mobile-block_gplus"></div>
                     </div>
-                </div>       
-              </div>           
+                </div>
+              </div>
           </div>  -->
-            
-            
+
+
 			<?
-			//echo '<pre>'; print_r($arPost); echo '</pre>';		
+			//echo '<pre>'; print_r($arPost); echo '</pre>';
 		}
 		?>
 	</div>

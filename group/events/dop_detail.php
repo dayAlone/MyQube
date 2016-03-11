@@ -27,12 +27,12 @@
 	}
 	.main-img {
 		margin-bottom: 10px;
-    } 
+    }
 	.bottom-small-menu {
 		float:right;
 	}
 </style>
-<? 
+<?
 	CModule::IncludeModule("iblock");
 	if($_GET["page"])
 		$page = $_GET["page"];
@@ -50,9 +50,9 @@
 	$APPLICATION->SetPageProperty("og:title", $arEvent["NAME"]);
 	$APPLICATION->SetPageProperty("og:description", $arEvent["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]);
 	$APPLICATION->SetPageProperty("og:image", CFile::GetPath($arEvent["PROPERTIES"]["OG_IMAGE"]["VALUE"]));
-	
+
 	//echo $arEvent["NAME"];
-	
+
 	//echo "<xmp>";print_r($arEvent);echo"</xmp>";
 ?>
 		<script>
@@ -85,7 +85,7 @@
 						<div class="repost-ico"><img src="<?=SITE_TEMPLATE_PATH?>/images/repost.png" alt="pic"></div>
 				</div>-->
 				<div class="acccept">
-					
+
 					<?if(in_array($USER->GetID(), $arEvent["PROPERTIES"]["ANC_ID"]["VALUE"])) {?>
 						<button class="active">Я иду</button>
 					<?}else {
@@ -121,24 +121,13 @@
 					<img src="<?=CFile::GetPath($arEvent["DETAIL_PICTURE"])?>" alt="main-img">
 				</div>
 						<div class="bottom-small-menu">
-							<!-- Кнопка лайков -->
+							<div class='likes-wrap' style='max-width: 60px;float:left;'>
 							<?
-								$res_like = CIBlockElement::GetList(array(), array("IBLOCK_ID" => 6, "PROPERTY_LIKE" => $arEvent['ID'], "PROPERTY_USER" => $USER->GetID() ),array());	
+								$APPLICATION->IncludeComponent("radia:likes","",Array(
+									"ELEMENT" => $arEvent['ID']
+								));
 							?>
-							<!--<a class="likes <?=($res_like>0)?"active":""?>"></a>-->
-							<?
-							$GLOBALS['gl_active'] = $res_like;
-							$GLOBALS['gl_like_id'] = "like_post_".$arEvent["ID"];
-							$GLOBALS['gl_like_numm'] = intval($arEvent["PROPERTIES"]["LIKES"]["VALUE"]);
-							$GLOBALS['gl_like_param'] = "event_id";
-							$GLOBALS['gl_like_js'] = ($GLOBALS['gl_like_js']==1)?0:1;
-							$GLOBALS['gl_like_url'] = "/group/events/like_event.php";
-							$APPLICATION->IncludeComponent("bitrix:main.include","",Array(
-								"AREA_FILE_SHOW" => "file", 
-								"PATH" => "/like.php"
-								)
-							);
-						?>
+							</div>
 							<!-- Блок комментариев -->
 							<a class="comments-wrap" href="#comment_form_<?=$arEvent['ID']?>">
 								<div class="comments-icon"></div>
@@ -148,8 +137,8 @@
 							<? if($arEvent["PROPERTIES"]["SHARE"]["VALUE"]=='Y'):?>
 								<div style="float:left;">
 									<?$APPLICATION->IncludeComponent(
-										"bitrix:main.share", 
-										"myqube_best", 
+										"bitrix:main.share",
+										"myqube_best",
 										array(
 											"COMPONENT_TEMPLATE" => "myqube_best",
 											"HIDE" => "N",
@@ -198,6 +187,6 @@
 						"COMPONENT_TEMPLATE" => "myqube"
 					),
 					false
-				);?>				
+				);?>
 			</div>
 		</div>
