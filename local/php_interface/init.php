@@ -42,13 +42,19 @@
 		CModule::IncludeModule("highloadblock");
 		global $APPLICATION;
 
-		$user = CUser::GetByID($arFields['USER_ID'])->Fetch();
-		$fields = getValuesList('UF_STATUS', 'USER', 'ID');
-		$flipFields = array_flip($fields);
+		$arGroups = CUser::GetUserGroup($user["ID"]);
+		if (!in_array(5, $arGroups)) {
+			$arGroups[] = 5;
+			CUser::SetUserGroup($user["ID"], $arGroups);
+		}
 
 		if (intval($user['UF_USER_PARENT']) > 0
 			&& $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")
 			&& $user['UF_INVITE_STATUS'] != 1) { // && $user['UF_STATUS'] === $fields[4]['ID'] &&
+
+			$user = CUser::GetByID($arFields['USER_ID'])->Fetch();
+			$fields = getValuesList('UF_STATUS', 'USER', 'ID');
+			$flipFields = array_flip($fields);
 
 			$groups = CUser::GetUserGroup($user['UF_USER_PARENT']);
 			$types = array(getValuesList('UF_TYPE', 'HLBLOCK_2', 'ID'), getValuesList('UF_TYPE_2', 'HLBLOCK_2', 'ID'));
@@ -57,10 +63,6 @@
 
 			$raw = new CUser;
 			$raw->Update($arFields["USER_ID"], array('UF_INVITE_STATUS' => 1, 'UF_STATUS' => $fields[$newStatus]));
-
-			$arGroups = CUser::GetUserGroup($user["ID"]);
-			$arGroups[] = 5;
-			CUser::SetUserGroup($user["ID"], $arGroups);
 
 			$hbKPI     = HL\HighloadBlockTable::getById(2)->fetch();
 			$entityKPI = HL\HighloadBlockTable::compileEntity($hbKPI);

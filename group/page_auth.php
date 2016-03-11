@@ -7,9 +7,9 @@
 				"age",
 				Array(
 			        "USER_PROPERTY_NAME" => "",
-			        "USER_PROPERTY" => Array(""),
-			        "SEND_INFO" => "Y",
-			        "CHECK_RIGHTS" => "Y",
+			        "USER_PROPERTY"      => Array(""),
+			        "SEND_INFO"          => "N",
+			        "CHECK_RIGHTS"       => "N",
 		    	)
 			);
 			break;
@@ -20,8 +20,8 @@
 				Array(
 			        "USER_PROPERTY_NAME" => "",
 			        "USER_PROPERTY" => Array(""),
-			        "SEND_INFO" => "Y",
-			        "CHECK_RIGHTS" => "Y",
+			        "SEND_INFO" => "N",
+			        "CHECK_RIGHTS" => "N",
 		    	)
 			);
 			$APPLICATION->IncludeComponent("bitrix:news.detail",
