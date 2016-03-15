@@ -5,41 +5,6 @@
     CModule::IncludeModule("main");
     CModule::IncludeModule("iblock");
 
-    $files = array();
-    $rs = CIBlockElement::GetList (
-		Array("ID" => "ASC"),
-		Array("IBLOCK_ID" => 7),
-		false,
-		false,
-		array('ID', 'NAME', 'PROPERTY_PHOTO')
-	);
-    while ($item = $rs->Fetch()) {
-        $files[] = $item['PROPERTY_PHOTO_VALUE'];
-    }
-
-    $rs = CIBlockElement::GetList (
-		Array("ID" => "ASC"),
-		Array("IBLOCK_ID" => 6),
-		false,
-		false,
-		array('ID', 'NAME', 'PROPERTY_LIKE', 'PROPERTY_USER', 'DATE_CREATE')
-	);
-
-	$hbLike     = HL\HighloadBlockTable::getById(1)->fetch();
-	$entityLike = HL\HighloadBlockTable::compileEntity($hbLike);
-	$logLike    = $entityLike->getDataClass();
-
-	while ($item = $rs->Fetch()) {
-        if (intval($item['PROPERTY_USER_VALUE']) > 0 && strlen($item['PROPERTY_LIKE_VALUE']) > 0) {
-    		$res = $logLike::add(
-    				array(
-    					'UF_USER_ID'    => $item['PROPERTY_USER_VALUE'],
-    					'UF_TIME'       => $item['DATE_CREATE'],
-    					'UF_ELEMENT_ID' => (in_array($item['PROPERTY_LIKE_VALUE'], $files) ? 'photo_' : '') .$item['PROPERTY_LIKE_VALUE'],
-    				)
-    			);
-        }
-	}
 
 	/*
     require($_SERVER['DOCUMENT_ROOT'] . '/includes/helpers.php');
@@ -138,6 +103,11 @@
         $FIELD_ID = $ob->Add($arFields);
 
     }
+
+    $raw = CUserTypeEntity::GetList( array($by=>$order), array('ENTITY_ID' => 'HLBLOCK_1','FIELD_NAME' => 'UF_LIKE') )->Fetch();
+    $ob = new CUserTypeEntity();
+    $res = $ob->Delete($raw['ID']);
+
     $raw = CUserTypeEntity::GetList( array($by=>$order), array('ENTITY_ID' => 'HLBLOCK_1','FIELD_NAME' => 'UF_ELEMENT_ID') )->Fetch();
     $ob = new CUserTypeEntity();
     $res = $ob->Delete($raw['ID']);
@@ -158,7 +128,41 @@
     );
     $FIELD_ID = $ob->Add($arFields);
 
+    $files = array();
+    $rs = CIBlockElement::GetList (
+		Array("ID" => "ASC"),
+		Array("IBLOCK_ID" => 7),
+		false,
+		false,
+		array('ID', 'NAME', 'PROPERTY_PHOTO')
+	);
+    while ($item = $rs->Fetch()) {
+        $files[] = $item['PROPERTY_PHOTO_VALUE'];
+    }
 
+    $rs = CIBlockElement::GetList (
+		Array("ID" => "ASC"),
+		Array("IBLOCK_ID" => 6),
+		false,
+		false,
+		array('ID', 'NAME', 'PROPERTY_LIKE', 'PROPERTY_USER', 'DATE_CREATE')
+	);
+
+	$hbLike     = HL\HighloadBlockTable::getById(1)->fetch();
+	$entityLike = HL\HighloadBlockTable::compileEntity($hbLike);
+	$logLike    = $entityLike->getDataClass();
+
+	while ($item = $rs->Fetch()) {
+        if (intval($item['PROPERTY_USER_VALUE']) > 0 && strlen($item['PROPERTY_LIKE_VALUE']) > 0) {
+    		$res = $logLike::add(
+    				array(
+    					'UF_USER_ID'    => $item['PROPERTY_USER_VALUE'],
+    					'UF_TIME'       => $item['DATE_CREATE'],
+    					'UF_ELEMENT_ID' => (in_array($item['PROPERTY_LIKE_VALUE'], $files) ? 'photo_' : '') .$item['PROPERTY_LIKE_VALUE'],
+    				)
+    			);
+        }
+	}
 
     */
 ?>

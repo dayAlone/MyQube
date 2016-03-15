@@ -9,7 +9,7 @@
 	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
 	AddEventHandler("main", "OnBeforeUserUpdate", "OnBeforeUserUpdateHandler");
 	AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
-	AddEventHandler("main", "OnAfterUserLogin", "OnAfterUserLoginHandler");
+	AddEventHandler("main", "OnAfterUserAuthorize", "OnAfterUserAuthorizeHandler");
 
 	function OnBeforeUserUpdateHandler(&$arFields) {
 		if (isset($arFields['UF_GROUPS']) && in_array(1, $arFields['UF_GROUPS'])) {
@@ -37,7 +37,7 @@
 			$user->Update($arFields["USER_ID"], array('UF_AUTH_TOKEN' => $token, 'UF_TOKEN' => $token));
 		}
 	}
-	function OnAfterUserLoginHandler(&$arFields) {
+	function OnAfterUserAuthorizeHandler(&$arFields) {
 		CModule::IncludeModule("iblock");
 		CModule::IncludeModule("highloadblock");
 		global $APPLICATION;
