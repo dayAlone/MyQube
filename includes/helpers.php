@@ -1,4 +1,7 @@
 <?
+use Bitrix\Highloadblock as HL;
+use Bitrix\Main\Entity;
+
 function page_class()
 {
     global $APPLICATION;
@@ -53,5 +56,52 @@ function addValueToList($field, $entity, $props) {
     }
 }
 
+
+function changeUserStatus($ID, $PARENT, $CURRENT, $NEW, $text) {
+
+    CModule::IncludeModule("iblock");
+	CModule::IncludeModule("highloadblock");
+	global $APPLICATION;
+
+    $fields = getValuesList('UF_STATUS', 'USER', 'ID');
+    $flipFields = array_flip($fields);
+    $types = array(getValuesList('UF_TYPE', 'HLBLOCK_2', 'ID'), getValuesList('UF_TYPE_2', 'HLBLOCK_2', 'ID'));
+
+    $raw = new CUser;
+    $raw->Update($ID, array('UF_INVITE_STATUS' => 1, 'UF_STATUS' => $fields[$NEW]));
+
+    $hbKPI     = HL\HighloadBlockTable::getById(2)->fetch();
+    $entityKPI = HL\HighloadBlockTable::compileEntity($hbKPI);
+    $logKPI    = $entityKPI->getDataClass();
+
+    $logKPI::add(
+            array(
+                'UF_USER'        => intval($ID),
+                'UF_AMPLIFIER'   => intval($PARENT),
+                'UF_EVENT'       => 0,
+                'UF_DATE_TIME'   => date("Y-m-d H:i:s"),
+                'UF_ACTION_CODE' => 103,
+                'UF_ACTION_TEXT' => "change_status",
+                'UF_TYPE'        => $CURRENT ? $types[0][$flipFields[$CURRENT]] : 1,
+                'UF_TYPE_2'      => $types[1][$NEW]
+            )
+        );
+
+    $hbLOG = HL\HighloadBlockTable::getById(4)->fetch();
+    $entityLOG = HL\HighloadBlockTable::compileEntity($hbLOG);
+    $logLOG = $entityLOG->getDataClass();
+    $res = $logLOG::add(
+        array(
+            'UF_USER'        => intval($ID),
+            'UF_AMPLIFIER'   => intval($PARENT),
+            'UF_EVENT'       => 0,
+            'UF_DATE_TIME'   => date("d.m.Y H:i:s", time()),
+            "UF_ACTION_CODE" => 104,
+            "UF_ACTION_TEXT" => $text,
+            "UF_TYPE"        => $CURRENT ? $flipFields[$CURRENT] : 1,
+            "UF_TYPE_2"      => $NEW
+        )
+    );
+}
 
 ?>

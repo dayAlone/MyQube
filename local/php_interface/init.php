@@ -5,11 +5,10 @@
 	use Bitrix\Highloadblock as HL;
 	use Bitrix\Main\Entity;
 
-
 	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
 	AddEventHandler("main", "OnBeforeUserUpdate", "OnBeforeUserUpdateHandler");
 	AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
-	AddEventHandler("main", "OnAfterUserAuthorize", "OnAfterUserAuthorizeHandler");
+
 
 	function OnBeforeUserUpdateHandler(&$arFields) {
 		if (isset($arFields['UF_GROUPS']) && in_array(1, $arFields['UF_GROUPS'])) {
@@ -19,6 +18,15 @@
 				CModule::IncludeModule("iblock");
 				$rsUsers = CUser::GetList(($by="id"), ($order="desc"), array('UF_GROUPS' => 1), array('NAV_PARAMS' => array("nTopCount" => 0)));
 				CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
+
+				if (intval($user['UF_USER_PARENT']) > 0
+					&& $user['UF_STATUS'] === 4) {
+
+					$groups = CUser::GetUserGroup($user['UF_USER_PARENT']);
+					if (in_array(8, $groups)) changeUserStatus($user['ID'], $user['UF_USER_PARENT'], $user['UF_STATUS'], 6, "Регистрация в KENT Lab");
+
+				}
+
 			}
 		}
 	}
@@ -37,65 +45,26 @@
 			$user->Update($arFields["USER_ID"], array('UF_AUTH_TOKEN' => $token, 'UF_TOKEN' => $token));
 		}
 	}
-	function OnAfterUserAuthorizeHandler(&$arFields) {
-		CModule::IncludeModule("iblock");
-		CModule::IncludeModule("highloadblock");
-		global $APPLICATION;
 
-		$arGroups = CUser::GetUserGroup($user["ID"]);
-		if (!in_array(5, $arGroups)) {
-			$arGroups[] = 5;
-			CUser::SetUserGroup($user["ID"], $arGroups);
-		}
 
-		if (intval($user['UF_USER_PARENT']) > 0
-			&& $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")
-			&& $user['UF_INVITE_STATUS'] != 1) { // && $user['UF_STATUS'] === $fields[4]['ID'] &&
 
-			$user = CUser::GetByID($arFields['USER_ID'])->Fetch();
-			$fields = getValuesList('UF_STATUS', 'USER', 'ID');
-			$flipFields = array_flip($fields);
+AddEventHandler("main", "OnAfterUserAuthorize", "UserLoginHandler");
+AddEventHandler("main", "OnAfterUserLogin", "UserLoginHandler");
 
-			$groups = CUser::GetUserGroup($user['UF_USER_PARENT']);
-			$types = array(getValuesList('UF_TYPE', 'HLBLOCK_2', 'ID'), getValuesList('UF_TYPE_2', 'HLBLOCK_2', 'ID'));
+function UserLoginHandler(&$arFields) {
+	CModule::IncludeModule("iblock");
+	CModule::IncludeModule("highloadblock");
+	global $APPLICATION;
 
-			$newStatus = in_array(8, $groups) ? 6 : 4;
+	$user = CUser::GetByID($arFields['USER_ID'])->Fetch();
 
-			$raw = new CUser;
-			$raw->Update($arFields["USER_ID"], array('UF_INVITE_STATUS' => 1, 'UF_STATUS' => $fields[$newStatus]));
+	if (intval($user['UF_USER_PARENT']) > 0
+		&& $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")
+		&& $user['UF_INVITE_STATUS'] != 1) {
 
-			$hbKPI     = HL\HighloadBlockTable::getById(2)->fetch();
-			$entityKPI = HL\HighloadBlockTable::compileEntity($hbKPI);
-			$logKPI    = $entityKPI->getDataClass();
+		changeUserStatus($user['ID'], $user['UF_USER_PARENT'], $user['UF_STATUS'], 4, "Приглашение принято");
 
-			$logKPI::add(
-			        array(
-			            'UF_USER'        => intval($user["ID"]),
-			            'UF_AMPLIFIER'   => intval($user['UF_USER_PARENT']),
-			            'UF_EVENT'       => 0,
-			            'UF_DATE_TIME'   => date("Y-m-d H:i:s"),
-			            'UF_ACTION_CODE' => 103,
-			            'UF_ACTION_TEXT' => "change_status",
-			            'UF_TYPE'        => $user['UF_STATUS'] ? $types[0][$flipFields[$user['UF_STATUS']]] : 1,
-			            'UF_TYPE_2'      => $types[1][$newStatus]
-			        )
-			    );
-
-			$hbLOG = HL\HighloadBlockTable::getById(4)->fetch();
-			$entityLOG = HL\HighloadBlockTable::compileEntity($hbLOG);
-			$logLOG = $entityLOG->getDataClass();
-			$res = $logLOG::add(
-				array(
-					'UF_USER'        => intval($user["ID"]),
-		            'UF_AMPLIFIER'   => intval($user['UF_USER_PARENT']),
-		            'UF_EVENT'       => 0,
-		            'UF_DATE_TIME'   => date("d.m.Y H:i:s", time()),
-					"UF_ACTION_CODE" => 104,
-					"UF_ACTION_TEXT" => "Приглашение принято",
-					"UF_TYPE"        => $user['UF_STATUS'] ? $flipFields[$user['UF_STATUS']] : 1,
-					"UF_TYPE_2"      => $newStatus
-				)
-			);
-		}
 	}
+}
+
 ?>

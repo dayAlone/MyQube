@@ -196,7 +196,7 @@
 
 							// Авторизация
 
-							if (!$USER->IsAuthorized()) $USER->Authorize($ID);
+							if (!$USER->IsAuthorized()) $USER->Authorize($ID, true);
 
 							if($USER->IsAuthorized()) {
 
@@ -212,7 +212,7 @@
 									));
 								}
 								*/
-								
+
 								if (!$APPLICATION->get_cookie("MQ_AUTH_TOKEN")) {
 									$APPLICATION->set_cookie("MQ_AUTH_TOKEN", $token, time() + 60 * 60 * 24 * 30 * 12 * 4,"/");
 									$fields = array_merge($fields, array(
