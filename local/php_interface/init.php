@@ -18,11 +18,12 @@
 				CModule::IncludeModule("iblock");
 				$rsUsers = CUser::GetList(($by="id"), ($order="desc"), array('UF_GROUPS' => 1), array('NAV_PARAMS' => array("nTopCount" => 0)));
 				CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");
+				$groups = CUser::GetUserGroup($user['UF_USER_PARENT']);
+				$fields = array_flip(getValuesList('UF_STATUS', 'USER', 'ID'));
 
 				if (intval($user['UF_USER_PARENT']) > 0
-					&& $user['UF_STATUS'] === 4) {
+					&& $fields[$user['UF_STATUS']] == 4) {
 
-					$groups = CUser::GetUserGroup($user['UF_USER_PARENT']);
 					if (in_array(8, $groups)) changeUserStatus($user['ID'], $user['UF_USER_PARENT'], $user['UF_STATUS'], 6, "Регистрация в KENT Lab");
 
 				}
@@ -61,8 +62,11 @@ function UserLoginHandler(&$arFields) {
 	if (intval($user['UF_USER_PARENT']) > 0
 		&& $APPLICATION->get_cookie("MQ_REGISTRATION_TOKEN")
 		&& $user['UF_INVITE_STATUS'] != 1) {
-
-		changeUserStatus($user['ID'], $user['UF_USER_PARENT'], $user['UF_STATUS'], 4, "Приглашение принято");
+		$fields = array_flip(getValuesList('UF_STATUS', 'USER', 'ID'));
+		if ($fields[$user['UF_STATUS']] != 4) {
+			changeUserStatus($user['ID'], $user['UF_USER_PARENT'], $user['UF_STATUS'], 4, "Приглашение принято");
+		}
+		
 
 	}
 }
