@@ -197,7 +197,7 @@
 						if (strlen($data['email']) > 0 && (strstr($user['EMAIL'], '@xyz.xyz') || strstr($user['LOGIN'], '@xyz.xyz'))) {
 							$email = CUser::GetList(($by="id"), ($order="desc"), array('EMAIL' => $data['email']))->Fetch();
 							$login = CUser::GetList(($by="id"), ($order="desc"), array('LOGIN' => $data['email']))->Fetch();
-							if (!$exist) {
+							if (!$exist && !$login) {
 								$fields['EMAIL'] = $data['email'];
 								$fields['LOGIN'] = $data['email'];
 							}
