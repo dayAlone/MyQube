@@ -192,6 +192,16 @@
 							);
 						}
 
+						// Заменяем почту, если она есть
+
+						if (strlen($data['email']) > 0 && strstr($user['EMAIL'], '@xyz.xyz')) {
+							$exist = CUser::GetList(($by="id"), ($order="desc"), array('EMAIL' => $data['email']))->Fetch();
+							if (!$exist) {
+								$fields['EMAIL'] = $data['email'];
+							}
+						}
+
+
 						if ($user['ACTIVE'] === 'Y') {
 
 							// Авторизация
