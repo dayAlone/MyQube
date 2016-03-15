@@ -194,10 +194,12 @@
 
 						// Заменяем почту, если она есть
 
-						if (strlen($data['email']) > 0 && strstr($user['EMAIL'], '@xyz.xyz')) {
-							$exist = CUser::GetList(($by="id"), ($order="desc"), array('EMAIL' => $data['email']))->Fetch();
+						if (strlen($data['email']) > 0 && (strstr($user['EMAIL'], '@xyz.xyz') || strstr($user['LOGIN'], '@xyz.xyz'))) {
+							$email = CUser::GetList(($by="id"), ($order="desc"), array('EMAIL' => $data['email']))->Fetch();
+							$login = CUser::GetList(($by="id"), ($order="desc"), array('LOGIN' => $data['email']))->Fetch();
 							if (!$exist) {
 								$fields['EMAIL'] = $data['email'];
+								$fields['LOGIN'] = $data['email'];
 							}
 						}
 
