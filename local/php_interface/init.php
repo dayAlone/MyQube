@@ -24,6 +24,7 @@
 			$user = CUser::GetByID($arFields['ID'])->Fetch();
 
 			if (!in_array(1, $user['UF_GROUPS'])) {
+				AddMessage2Log('update users');
 				CModule::IncludeModule("iblock");
 				$rsUsers = CUser::GetList(($by="id"), ($order="desc"), array('UF_GROUPS' => 1), array('NAV_PARAMS' => array("nTopCount" => 0)));
 				CIBlockElement::SetPropertyValues(1, 4, $rsUsers->NavRecordCount, "USERS");

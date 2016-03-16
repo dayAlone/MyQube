@@ -3,7 +3,7 @@ use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 
 define('CITY_NAME', 'Екатеринбург');
-//define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/app_log.txt");
+define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/app_log.txt");
 
 
 //AddEventHandler('main', 'OnBeforeProlog', Array("OnBeforeProlog", 'CustomSetLastActivityDate'));
