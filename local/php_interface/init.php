@@ -8,7 +8,16 @@
 	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
 	AddEventHandler("main", "OnBeforeUserUpdate", "OnBeforeUserUpdateHandler");
 	AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
+	AddEventHandler("main", "OnBeforeUserAdd", "OnBeforeUserAddHandler");
 
+	function OnBeforeUserAddHandler(&$arFields) {
+		$bdate = $arFields["PERSONAL_BIRTHDAY"];
+		if (!isset($bdate) || strtotime($bdate) > strtotime('-18 years') || strlen($bdate) == 0 || strtotime($bdate) < strtotime('-65 years')) {
+			global $APPLICATION;
+            $APPLICATION->throwException("Ваш возраст должен быть больше 18 лет.");
+            return false;
+		}
+	}
 
 	function OnBeforeUserUpdateHandler(&$arFields) {
 		if (isset($arFields['UF_GROUPS']) && in_array(1, $arFields['UF_GROUPS'])) {
@@ -66,7 +75,7 @@ function UserLoginHandler(&$arFields) {
 		if ($fields[$user['UF_STATUS']] != 4) {
 			changeUserStatus($user['ID'], $user['UF_USER_PARENT'], $user['UF_STATUS'], 4, "Приглашение принято");
 		}
-		
+
 
 	}
 }
