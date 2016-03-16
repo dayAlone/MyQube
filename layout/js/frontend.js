@@ -28199,7 +28199,12 @@ if ('undefined' !== typeof window.ParsleyValidator)
     });
     $('.age').elem('button').removeAttr('disabled');
     $('.age').elem('button').on('click', function(e) {
-      $('.age form').submit();
+      var instance;
+      instance = $('.age form').parsley();
+      instance.validate();
+      if (instance.isValid()) {
+        $('.age form').submit();
+      }
       return e.preventDefault();
     });
     $('.agreement').on('scroll', _.throttle(agreementScroll, 100));
