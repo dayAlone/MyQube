@@ -40,7 +40,7 @@
 		  <input value="<?=$_REQUEST['YYYY']?>" type="text" name="YYYY" placeholder="Гггг" required maxlength="4" data-parsley-minlength="4" data-parsley-range="[1930, 2016]" class="age__input">
 		</div>
 	  </div>
-	  <button disabled="disabled" type="submit" class="button age__button">продолжить</button>
+	  <a href='#' class="button age__button">продолжить</a>
 	</form>
 	<div class="age__footer qblock__footer">
 	  <? include($_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php') ?>
