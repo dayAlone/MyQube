@@ -8,7 +8,7 @@
 	AddEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
 	AddEventHandler("main", "OnBeforeUserUpdate", "OnBeforeUserUpdateHandler");
 	AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
-	AddEventHandler("main", "OnBeforeUserAdd", "OnBeforeUserAddHandler");
+	//AddEventHandler("main", "OnBeforeUserAdd", "OnBeforeUserAddHandler");
 
 	function OnBeforeUserAddHandler(&$arFields) {
 		$bdate = $arFields["PERSONAL_BIRTHDAY"];

@@ -6,7 +6,7 @@ define('CITY_NAME', 'Екатеринбург');
 //define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/app_log.txt");
 
 
-AddEventHandler('main', 'OnBeforeProlog', Array("OnBeforeProlog", 'CustomSetLastActivityDate'));
+//AddEventHandler('main', 'OnBeforeProlog', Array("OnBeforeProlog", 'CustomSetLastActivityDate'));
 AddEventHandler("main", "OnBeforeProlog", Array("OnBeforeProlog", "MyOnBeforePrologHandler"));
 AddEventHandler('main', 'OnEpilog', 'onEpilog');
 AddEventHandler("iblock", "OnAfterIBlockElementAdd", "NWCommentsCounter");
