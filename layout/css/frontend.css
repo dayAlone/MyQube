@@ -3733,6 +3733,7 @@ body input:-webkit-autofill {
   text-align: center;
   color: #fff;
   font-size: 12px;
+  z-index: 1000;
   padding: 6px 20px;
 }
 @media (min-width: 768px) {
