@@ -3733,7 +3733,6 @@ body input:-webkit-autofill {
   text-align: center;
   color: #fff;
   font-size: 12px;
-  line-height: 40px;
   padding: 6px 20px;
 }
 @media (min-width: 768px) {
@@ -3747,7 +3746,7 @@ body input:-webkit-autofill {
 .teaser__content {
   max-width: 940px;
   width: calc(100% - 40px);
-  margin: 20px auto 40px;
+  margin: 85px auto 40px;
 }
 @media (min-width: 768px) {
   .teaser__content {
