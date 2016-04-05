@@ -3724,7 +3724,7 @@ body input:-webkit-autofill {
   filter: blur(10px);
   -webkit-filter: blur(10px);
 }
-.teaser__description {
+.teaser__small {
   color: #fff;
   width: 9px;
   height: 9px;

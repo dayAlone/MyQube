@@ -64,7 +64,7 @@ if($arPost["IBLOCK_ID"] == 1 || $arPost["IBLOCK_ID"] == 7) {?>
 			<div class='teaser__wrapper'>
 				<div class='teaser__image' style='background-image: url(<?=$image?>)'></div>
 				<div class='teaser__description'>
-					<small class="teaser__description">Уважаемый пользователь, интересующая Вас статья размещена на сайте табачной компании.</small>
+					<small class="teaser__small">Уважаемый пользователь, интересующая Вас статья размещена на сайте табачной компании.</small>
 					<h1 class='teaser__title'><?=$arPost["NAME"]?></h1>
 					<div class='teaser__text'>
 						<?=$arPost["PROPERTIES"]["OG_DESCRIPTION"]["VALUE"]["TEXT"]?>
