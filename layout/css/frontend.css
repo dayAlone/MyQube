@@ -3724,6 +3724,15 @@ body input:-webkit-autofill {
   filter: blur(10px);
   -webkit-filter: blur(10px);
 }
+.teaser__description {
+  color: #fff;
+  width: 9px;
+  height: 9px;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
 .teaser__info {
   position: fixed;
   top: 0;
